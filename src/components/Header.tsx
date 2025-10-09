@@ -13,8 +13,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className }) => {
   const navigate = useNavigate();
 
-  const handleGetForMacClick = () => {
-    navigate('/login'); // Assuming 'Get for Mac' leads to login/signup
+  const handleSignUpClick = () => { // Renamed handler for clarity
+    navigate('/login'); // This still leads to the login/signup page
   };
 
   return (
@@ -32,9 +32,9 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       </div>
       <Button
         className="bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 rounded-lg px-4 py-2 text-sm font-semibold shadow-md"
-        onClick={handleGetForMacClick}
+        onClick={handleSignUpClick}
       >
-        <Apple className="h-4 w-4 mr-2" /> Get for Mac
+        Sign up
       </Button>
     </header>
   );
