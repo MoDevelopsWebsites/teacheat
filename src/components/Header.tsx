@@ -4,7 +4,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Apple } from 'lucide-react';
 
 interface HeaderProps {
   className?: string;
@@ -13,13 +12,13 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className }) => {
   const navigate = useNavigate();
 
-  const handleSignUpClick = () => { // Renamed handler for clarity
-    navigate('/login'); // This still leads to the login/signup page
+  const handleSignUpClick = () => {
+    navigate('/login');
   };
 
   return (
     <header className={cn("w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10", className)}>
-      <div className="flex items-center space-x-8"> {/* Group logo and nav links, add space */}
+      <div className="flex items-center space-x-12"> {/* Increased space-x from 8 to 12 */}
         <Link to="/" className="font-bold text-xl text-landing-logo-text hover:text-landing-logo-text/80 transition-colors">
           Teacheat
         </Link>
