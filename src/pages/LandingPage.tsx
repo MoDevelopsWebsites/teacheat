@@ -163,7 +163,7 @@ const LandingPage = () => {
         <p className="text-lg md:text-xl text-landing-text-primary/80 mb-10 max-w-2xl">
           Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
         </p>
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
           <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
             <Apple className="h-5 w-5 mr-2" /> Get for Mac
           </Button>

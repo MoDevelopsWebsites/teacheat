@@ -30,35 +30,37 @@ const PricingFeatureTable: React.FC<PricingFeatureTableProps> = ({ data }) => {
 
   return (
     <div className="w-full max-w-6xl mx-auto bg-pricing-card-bg rounded-xl shadow-lg border border-pricing-card-border overflow-hidden">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="bg-gray-50 dark:bg-gray-800">
-            <th className="p-4 text-pricing-text-primary text-lg font-semibold w-1/3">Features</th>
-            <th className="p-4 text-center text-pricing-text-primary text-lg font-semibold w-1/6">Starter</th>
-            <th className="p-4 text-center text-pricing-text-primary text-lg font-semibold w-1/6">Pro</th>
-            <th className="p-4 text-center text-pricing-text-primary text-lg font-semibold w-1/6">Enterprise</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((category, categoryIndex) => (
-            <React.Fragment key={categoryIndex}>
-              <tr className="bg-gray-100 dark:bg-gray-700">
-                <td colSpan={4} className="p-4 text-pricing-text-primary text-base font-semibold uppercase tracking-wider">
-                  {category.name}
-                </td>
-              </tr>
-              {category.features.map((feature, featureIndex) => (
-                <tr key={featureIndex} className="border-t border-pricing-card-border/50">
-                  <td className="p-4 text-pricing-text-primary text-sm">{feature.name}</td>
-                  <td className="p-4 text-center">{renderFeatureValue(feature.starter)}</td>
-                  <td className="p-4 text-center">{renderFeatureValue(feature.pro)}</td>
-                  <td className="p-4 text-center">{renderFeatureValue(feature.enterprise)}</td>
+      <div className="overflow-x-auto"> {/* Added for horizontal scrolling on small screens */}
+        <table className="w-full text-left border-collapse min-w-[600px]"> {/* Added min-w to ensure table doesn't shrink too much */}
+          <thead>
+            <tr className="bg-gray-50 dark:bg-gray-800">
+              <th className="p-4 text-pricing-text-primary text-lg font-semibold w-1/3">Features</th>
+              <th className="p-4 text-center text-pricing-text-primary text-lg font-semibold w-1/6">Starter</th>
+              <th className="p-4 text-center text-pricing-text-primary text-lg font-semibold w-1/6">Pro</th>
+              <th className="p-4 text-center text-pricing-text-primary text-lg font-semibold w-1/6">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((category, categoryIndex) => (
+              <React.Fragment key={categoryIndex}>
+                <tr className="bg-gray-100 dark:bg-gray-700">
+                  <td colSpan={4} className="p-4 text-pricing-text-primary text-base font-semibold uppercase tracking-wider">
+                    {category.name}
+                  </td>
                 </tr>
-              ))}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+                {category.features.map((feature, featureIndex) => (
+                  <tr key={featureIndex} className="border-t border-pricing-card-border/50">
+                    <td className="p-4 text-pricing-text-primary text-sm">{feature.name}</td>
+                    <td className="p-4 text-center">{renderFeatureValue(feature.starter)}</td>
+                    <td className="p-4 text-center">{renderFeatureValue(feature.pro)}</td>
+                    <td className="p-4 text-center">{renderFeatureValue(feature.enterprise)}</td>
+                  </tr>
+                ))}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -11,9 +11,9 @@ import { cn } from '@/lib/utils';
 
 const MeetingRecapCard: React.FC = () => {
   return (
-    <Card className="relative w-full max-w-5xl h-[600px] bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 flex overflow-hidden">
+    <Card className="relative w-full max-w-5xl md:h-[600px] h-auto bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row overflow-hidden">
       {/* Left Sidebar */}
-      <div className="w-64 bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col p-4">
+      <div className="w-full md:w-64 bg-gray-50 dark:bg-gray-800 md:border-r border-gray-200 dark:border-gray-700 flex flex-col p-4">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-2 text-gray-900 dark:text-white">
             <span className="font-bold text-lg">Teacheat</span>
@@ -38,7 +38,7 @@ const MeetingRecapCard: React.FC = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-grow flex flex-col p-6">
+      <div className="flex-grow flex flex-col p-6 overflow-y-auto">
         <div className="flex items-center mb-6">
           <Button variant="ghost" className="text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
             <ArrowLeft className="h-4 w-4 mr-2" /> Back
@@ -49,7 +49,7 @@ const MeetingRecapCard: React.FC = () => {
           <CardTitle className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Parent-tutor consultation on educational services
           </CardTitle>
-          <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-center gap-2 md:space-x-4 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex items-center">
               <MessageSquareText className="h-4 w-4 mr-1 text-blue-500" /> Meeting
             </div>
@@ -65,10 +65,10 @@ const MeetingRecapCard: React.FC = () => {
           </div>
         </CardHeader>
 
-        <div className="flex-grow grid grid-cols-3 gap-6">
+        <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Left Column: Summary & Action Items */}
           <div className="col-span-2 flex flex-col">
-            <div className="flex space-x-4 mb-4">
+            <div className="flex flex-wrap gap-4 mb-4">
               <div className="flex flex-col">
                 <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Times used</span>
                 <span className="text-2xl font-bold text-gray-900 dark:text-white">2</span>
@@ -93,7 +93,7 @@ const MeetingRecapCard: React.FC = () => {
           </div>
 
           {/* Right Column: Usage & Missed Opportunities */}
-          <div className="col-span-1 border-l border-gray-200 dark:border-gray-700 pl-6 flex flex-col">
+          <div className="col-span-1 md:border-l border-gray-200 dark:border-gray-700 md:pl-6 pt-6 md:pt-0 flex flex-col">
             <div className="flex border-b border-gray-200 dark:border-gray-700 mb-4">
               <Button variant="ghost" className="rounded-none border-b-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-semibold pb-2 -mb-px">
                 Usage
