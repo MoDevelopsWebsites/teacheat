@@ -29,7 +29,7 @@ const EnterpriseLandingPage: React.FC = () => {
       <Header className="absolute top-0 left-0 right-0" />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32">
+      <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32"> {/* Changed items-center to items-start and text-center to text-left */}
         <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
           Enterprise
         </p>
