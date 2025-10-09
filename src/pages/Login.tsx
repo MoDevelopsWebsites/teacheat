@@ -12,7 +12,7 @@ const Login = () => {
         </h1>
         <Auth
           supabaseClient={supabase}
-          providers={[]}
+          providers={['google', 'github', 'discord']} // Added social providers here
           appearance={{
             theme: ThemeSupa,
             variables: {
