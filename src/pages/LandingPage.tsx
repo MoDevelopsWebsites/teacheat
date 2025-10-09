@@ -19,9 +19,9 @@ import CTABottomSection from '@/components/CTABottomSection'; // Import new CTAB
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
-const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
-const nextSuggestionResponse = "Based on their interest in new cabinets, you could suggest a premium wood finish or smart storage solutions to upsell.";
-const followUpQuestionsResponse = "Here are some follow-up questions: 1. What's your budget for the new lighting? 2. Are there any specific cabinet styles you prefer? 3. What's your ideal timeline for project completion?";
+const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
+const nextSuggestionResponse = "Based on their explanation, you could ask about edge cases like immediate invocation or leading edge debouncing.";
+const followUpQuestionsResponse = "Here are some follow-up questions: 1. How would you test this `debounce` function? 2. What are the time and space complexities? 3. Can you implement a `throttle` function as well?";
 
 const cyclingWords = ["Interviews.", "Sales calls.", "Homework.", "Meetings.", "Really everything."];
 
@@ -72,7 +72,7 @@ const LandingPage = () => {
       setTypewriterKey(prev => prev + 1);
       await new Promise(resolve => setTimeout(resolve, 7000)); // Wait for initial text to type and be visible
 
-      // 1. Move to "What do I say next?" button
+      // 1. Move to "What should I say next?" button
       const nextButton = buttonPositions.whatToSayNext!;
       setMousePosition({
         x: nextButton.left + nextButton.width / 2,
@@ -80,7 +80,7 @@ const LandingPage = () => {
       });
       await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
 
-      // 2. Click "What do I say next?"
+      // 2. Click "What should I say next?"
       setIsClicking(true);
       setCurrentAiResponse(nextSuggestionResponse);
       setTypewriterKey(prev => prev + 1);
