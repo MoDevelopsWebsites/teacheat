@@ -3,16 +3,21 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage"; // Import the new LandingPage
+import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
 import Settings from "./pages/Settings";
-import Pricing from "./pages/Pricing"; // Import the new Pricing page
+import Pricing from "./pages/Pricing";
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 const queryClient = new QueryClient();
+
+// Initialize Stripe outside of the component to avoid re-creating it on re-renders
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -21,18 +26,19 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <SessionContextProvider>
-          <Routes>
-            <Route path="/" element={<LandingPage />} /> {/* Set LandingPage as the default route */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/pricing" element={<Pricing />} /> {/* Add the Pricing page route */}
-            {/* Authenticated routes wrapped by Layout */}
-            <Route element={<Layout />}>
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Elements stripe={stripePromise}>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route element={<Layout />}>
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/settings" element={<Settings />} />
+              </Route>
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Elements>
         </SessionContextProvider>
       </BrowserRouter>
     </TooltipProvider>

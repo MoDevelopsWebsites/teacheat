@@ -17,7 +17,10 @@ interface PricingCardProps {
   buttonIcon?: React.ReactNode;
   isPopular?: boolean;
   isEnterprise?: boolean;
-  // Removed priceId and onSubscribe props
+  priceId: string | null;
+  onSubscribe: (priceId: string | null) => void;
+  isSubmitting: boolean;
+  disabled?: boolean;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -31,15 +34,18 @@ const PricingCard: React.FC<PricingCardProps> = ({
   buttonIcon,
   isPopular = false,
   isEnterprise = false,
-  // Removed priceId and onSubscribe from destructuring
+  priceId,
+  onSubscribe,
+  isSubmitting,
+  disabled = false,
 }) => {
   const handleButtonClick = () => {
     if (isEnterprise) {
-      // Handle "Talk to sales" or other enterprise specific action
       console.log("Enterprise plan: Talk to sales clicked.");
-      // You might navigate to a contact form or open a modal here
+    } else if (priceId) {
+      onSubscribe(priceId);
     } else {
-      // For other plans, we'll just log for now or show a generic message
+      // For free plan or plans without a priceId, just log or navigate
       console.log(`Button clicked for ${title} plan.`);
     }
   };
@@ -47,8 +53,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
   return (
     <Card className={cn(
       "relative flex flex-col p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg",
-      isPopular && "border-2 border-blue-500 shadow-xl", // Highlight for popular plan
-      isEnterprise && "col-span-1 md:col-span-1" // Ensure enterprise takes full width on mobile, but 1/3 on desktop
+      isPopular && "border-2 border-blue-500 shadow-xl",
+      isEnterprise && "col-span-1 md:col-span-1"
     )}>
       {isPopular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
@@ -83,7 +89,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
           )}
           variant={buttonVariant}
           onClick={handleButtonClick}
-          // Removed disabled prop logic related to priceId
+          disabled={disabled || (isSubmitting && priceId !== null)}
         >
           {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-5 w-5 mr-2", buttonIcon.props.className) })}
           {buttonText}

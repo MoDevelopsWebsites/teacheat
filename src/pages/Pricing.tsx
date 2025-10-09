@@ -6,12 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Apple, ChevronDown, Bot } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
-import PricingFeatureTable from '@/components/PricingFeatureTable';
+import PricingFeatureTable from '@/components/Pricing/PricingFeatureTable';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
 
-// Removed Stripe Publishable Key constant
+const VITE_STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
 // Data for pricing cards
 const pricingPlans = {
@@ -30,7 +31,7 @@ const pricingPlans = {
       buttonIcon: <Apple />,
       buttonVariant: "default",
       isPopular: false,
-      // Removed priceId
+      priceId: null,
     },
     {
       title: "Pro",
@@ -46,7 +47,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
-      // Removed priceId
+      priceId: "price_1Pj234567890abcdef", // Placeholder: Replace with your actual Stripe Price ID for monthly Pro
     },
     {
       title: "Enterprise",
@@ -63,7 +64,7 @@ const pricingPlans = {
       buttonText: "Talk to sales",
       buttonVariant: "default",
       isEnterprise: true,
-      // Removed priceId
+      priceId: null,
     },
   ],
   annually: [
@@ -81,7 +82,7 @@ const pricingPlans = {
       buttonIcon: <Apple />,
       buttonVariant: "default",
       isPopular: false,
-      // Removed priceId
+      priceId: null,
     },
     {
       title: "Pro",
@@ -97,7 +98,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
-      // Removed priceId
+      priceId: "price_1Pj234567890ghijkl", // Placeholder: Replace with your actual Stripe Price ID for annual Pro
     },
     {
       title: "Enterprise",
@@ -114,12 +115,12 @@ const pricingPlans = {
       buttonText: "Talk to sales",
       buttonVariant: "default",
       isEnterprise: true,
-      // Removed priceId
+      priceId: null,
     },
   ],
 };
 
-// Data for feature table
+// Data for feature table (this part was not removed, so it should be the same)
 const featureTableData = [
   {
     name: "Features",
@@ -153,11 +154,39 @@ const featureTableData = [
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
-  // Removed isSubmitting state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
 
   const currentPlans = pricingPlans[billingCycle];
 
-  // Removed handleSubscribe function
+  const handleSubscribe = async (priceId: string | null) => {
+    if (!stripe || !elements || !priceId) {
+      showError("Stripe is not initialized or price ID is missing.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // In a real application, you would create a checkout session on your backend
+      // and then redirect the user to Stripe Checkout.
+      // For this example, we'll simulate a successful subscription.
+      showSuccess(`Attempting to subscribe to plan with price ID: ${priceId}`);
+      // Simulate API call to create checkout session
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      showSuccess("Subscription initiated! (Simulated)");
+      // In a real app, you'd get a session ID and redirect:
+      // const { error } = await stripe.redirectToCheckout({ sessionId: 'YOUR_SESSION_ID' });
+      // if (error) {
+      //   showError(error.message);
+      // }
+    } catch (error: any) {
+      console.error("Subscription error:", error);
+      showError(`Subscription failed: ${error.message || "An unexpected error occurred."}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-pricing flex flex-col items-center py-16 px-4 text-pricing-text-primary">
@@ -206,8 +235,10 @@ const Pricing = () => {
           <PricingCard
             key={index}
             {...plan}
-            // Removed onSubscribe prop
-            // Removed buttonText and disabled props related to isSubmitting
+            onSubscribe={handleSubscribe}
+            isSubmitting={isSubmitting}
+            buttonText={isSubmitting && plan.priceId ? "Processing..." : plan.buttonText}
+            disabled={isSubmitting && plan.priceId !== null}
           />
         ))}
       </div>
