@@ -77,7 +77,9 @@ const Layout: React.FC = () => {
   const sidebarContent = (
     <div className="flex h-full flex-col bg-sidebar p-4 text-sidebar-foreground">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-sidebar-foreground">Teacheat AI</h2>
+        <Link to="/" className="text-xl font-bold text-sidebar-foreground hover:text-sidebar-foreground/80 transition-colors">
+          <h2>Teacheat AI</h2>
+        </Link>
         {!isMobile && (
           <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
             <PlusCircle className="h-5 w-5" />
@@ -88,6 +90,7 @@ const Layout: React.FC = () => {
       <div className="flex-grow space-y-2">
         <NavLink to="/chat" icon={<MessageSquare className="h-5 w-5" />} label="Chat" onClick={() => isMobile && setIsSheetOpen(false)} />
         <NavLink to="/settings" icon={<Settings className="h-5 w-5" />} label="Settings" onClick={() => isMobile && setIsSheetOpen(false)} />
+        <NavLink to="/pricing" icon={<UserIcon className="h-5 w-5" />} label="Pricing" onClick={() => isMobile && setIsSheetOpen(false)} />
         
         <Separator className="my-4 bg-sidebar-border" />
         <h3 className="text-sm font-semibold text-sidebar-foreground/80 mb-2">Recent Chats</h3>
@@ -134,7 +137,9 @@ const Layout: React.FC = () => {
               {sidebarContent}
             </SheetContent>
           </Sheet>
-          <h1 className="text-lg font-semibold">Teacheat AI</h1>
+          <Link to="/" className="text-lg font-semibold hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+            <h1>Teacheat AI</h1>
+          </Link>
           <div className="w-10"></div> {/* Spacer for alignment */}
         </header>
         <main className="flex-grow overflow-auto">
