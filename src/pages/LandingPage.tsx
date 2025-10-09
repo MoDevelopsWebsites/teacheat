@@ -16,6 +16,7 @@ import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
 import FAQSection from '@/components/FAQSection';
 import CTABottomSection from '@/components/CTABottomSection';
+import Header from '@/components/Header'; // Import the new Header component
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -146,17 +147,7 @@ const LandingPage = () => {
       <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
 
       {/* Header */}
-      <header className="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10">
-        <div className="flex items-center space-x-2">
-          <div className="font-bold text-xl text-landing-logo-text">Teacheat</div>
-        </div>
-        <nav className="flex space-x-6 text-sm font-medium text-landing-text-primary/80">
-          <Link to="/pricing" className="hover:text-landing-text-primary">Pricing</Link>
-          <Link to="#" className="hover:text-landing-text-primary">Enterprise</Link>
-          <Link to="#" className="hover:text-landing-text-primary">Careers</Link>
-          <Link to="#" className="hover:text-landing-text-primary">Blog</Link>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
