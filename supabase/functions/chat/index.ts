@@ -15,6 +15,8 @@ serve(async (req) => {
   console.log('Incoming request:', req.method, req.url);
   const requestHeaders = Object.fromEntries(req.headers.entries());
   console.log('Request headers:', requestHeaders);
+  console.log('Request bodyUsed:', req.bodyUsed); // Check if the body stream has been consumed
+  console.log('Content-Length header:', req.headers.get('Content-Length')); // Check the content length
 
   const supabaseClient = createClient(
     Deno.env.get('SUPABASE_URL') ?? '',
@@ -35,9 +37,8 @@ serve(async (req) => {
   }
 
   let prompt;
-  let requestBodyText = '';
+  let rawBodyContent = ''; // To store the raw body if parsing fails
   try {
-    // Check if Content-Type is application/json
     const contentType = req.headers.get('Content-Type');
     if (!contentType || !contentType.includes('application/json')) {
       console.error('Invalid Content-Type header:', contentType);
@@ -55,13 +56,13 @@ serve(async (req) => {
     console.error('JSON parsing error in Edge Function:', jsonError);
     // If JSON parsing fails, try to read the raw body as text for debugging
     try {
-      requestBodyText = await req.text();
-      console.error('Raw request body on JSON parse failure:', requestBodyText);
+      rawBodyContent = await req.text(); // This will consume the body if not already consumed
+      console.error('Raw request body on JSON parse failure:', rawBodyContent);
     } catch (textError) {
-      console.error('Failed to read raw request body as text:', textError);
+      console.error('Failed to read raw request body as text after JSON parse failure:', textError);
     }
-    return new Response(JSON.stringify({ 
-      error: `Failed to parse request body as JSON: ${jsonError.message}. Raw body: "${requestBodyText}".` 
+    return new Response(JSON.stringify({
+      error: `Failed to parse request body as JSON: ${jsonError.message}. Raw body content: "${rawBodyContent}".`
     }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
