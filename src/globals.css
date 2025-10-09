@@ -78,6 +78,21 @@
     --landing-cta-floating-bg: 0 0% 100%; /* White */
     --landing-cta-floating-border: 214.3 31.8% 91.4%; /* Light grey */
     --landing-cta-floating-text: 222.2 84% 4.9%; /* Dark blue-black */
+
+    /* Pricing Page Colors */
+    --pricing-bg: 210 20% 98%; /* Very light blue-grey */
+    --pricing-card-bg: 0 0% 100%;
+    --pricing-card-border: 214.3 31.8% 91.4%;
+    --pricing-text-primary: 222.2 84% 4.9%;
+    --pricing-text-secondary: 215.4 16.3% 46.9%;
+    --pricing-button-default-bg: 217.2 91.2% 59.8%; /* Blue */
+    --pricing-button-default-fg: 0 0% 100%;
+    --pricing-toggle-bg: 210 40% 96.1%; /* Muted light grey */
+    --pricing-toggle-active-bg: 0 0% 100%;
+    --pricing-toggle-active-fg: 222.2 47.4% 11.2%;
+    --pricing-feature-check: 142.1 76.2% 36.3%; /* Green checkmark */
+    --pricing-feature-cross: 0 84.2% 60.2%; /* Red cross */
+    --pricing-feature-coming-soon: 215.4 16.3% 46.9%; /* Grey for coming soon */
   }
 
   .dark {
@@ -152,6 +167,21 @@
     --landing-cta-floating-bg: 222.2 84% 4.9%; /* Dark background */
     --landing-cta-floating-border: 217.2 32.6% 17.5%; /* Dark grey */
     --landing-cta-floating-text: 210 40% 98%; /* Light text */
+
+    /* Pricing Page Dark Mode Colors */
+    --pricing-bg: 222.2 84% 4.9%; /* Dark background */
+    --pricing-card-bg: 217.2 32.6% 17.5%; /* Dark card background */
+    --pricing-card-border: 217.2 32.6% 17.5%; /* Dark border */
+    --pricing-text-primary: 210 40% 98%; /* Light text */
+    --pricing-text-secondary: 215 20.2% 65.1%; /* Lighter grey */
+    --pricing-button-default-bg: 217.2 91.2% 59.8%; /* Blue */
+    --pricing-button-default-fg: 0 0% 100%;
+    --pricing-toggle-bg: 217.2 32.6% 17.5%; /* Dark muted grey */
+    --pricing-toggle-active-bg: 222.2 84% 4.9%; /* Dark background */
+    --pricing-toggle-active-fg: 210 40% 98%; /* Light text */
+    --pricing-feature-check: 142.1 76.2% 36.3%; /* Green checkmark */
+    --pricing-feature-cross: 0 62.8% 30.6%; /* Darker red cross */
+    --pricing-feature-coming-soon: 215 20.2% 65.1%; /* Light grey for coming soon */
   }
 }
 

@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
 import Settings from "./pages/Settings";
+import Pricing from "./pages/Pricing"; // Import the new Pricing page
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<LandingPage />} /> {/* Set LandingPage as the default route */}
             <Route path="/login" element={<Login />} />
+            <Route path="/pricing" element={<Pricing />} /> {/* Add the Pricing page route */}
             {/* Authenticated routes wrapped by Layout */}
             <Route element={<Layout />}>
               <Route path="/chat" element={<Chat />} />

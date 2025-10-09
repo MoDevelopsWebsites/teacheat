@@ -148,6 +148,33 @@ export default {
             muted: "hsl(var(--undetectable-text-muted))",
           },
         },
+        pricing: {
+          DEFAULT: "hsl(var(--pricing-bg))",
+          card: {
+            DEFAULT: "hsl(var(--pricing-card-bg))",
+            border: "hsl(var(--pricing-card-border))",
+          },
+          text: {
+            primary: "hsl(var(--pricing-text-primary))",
+            secondary: "hsl(var(--pricing-text-secondary))",
+          },
+          button: {
+            DEFAULT: "hsl(var(--pricing-button-default-bg))",
+            foreground: "hsl(var(--pricing-button-default-fg))",
+          },
+          toggle: {
+            DEFAULT: "hsl(var(--pricing-toggle-bg))",
+            active: {
+              DEFAULT: "hsl(var(--pricing-toggle-active-bg))",
+              foreground: "hsl(var(--pricing-toggle-active-fg))",
+            },
+          },
+          feature: {
+            check: "hsl(var(--pricing-feature-check))",
+            cross: "hsl(var(--pricing-feature-cross))",
+            "coming-soon": "hsl(var(--pricing-feature-coming-soon))",
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
