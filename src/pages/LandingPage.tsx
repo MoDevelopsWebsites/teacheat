@@ -188,14 +188,14 @@ const LandingPage = () => {
         <div className="grid md:grid-cols-2 gap-12 mb-24">
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
-            <p className="text-lg text-landing-text-primary/80 mb-8">
+            <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
               Teacheat listens to your meetings in the background and takes real-time notes without joining.
             </p>
             <MeetingSettingsCard />
           </div>
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
-            <p className="text-lg text-landing-text-primary/80 mb-8">
+            <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
               Teacheat responds with context of what's happening in a conversation and what's on your screen.
             </p>
             <RealtimeAnswersCard />
