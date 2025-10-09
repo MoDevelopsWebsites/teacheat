@@ -14,7 +14,7 @@ import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
-import { useTypewriter } => '@/hooks/use-typewriter';
+import { useTypewriter } from '@/hooks/use-typewriter'; // Corrected '=>' to 'from'
 import { cn } from '@/lib/utils';
 
 const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
@@ -192,7 +192,7 @@ const LandingPage = () => {
           </div>
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
-            <p className="text-lg text-landing-text-primary/80 mb-8">
+            <p className className="text-lg text-landing-text-primary/80 mb-8">
               Teacheat responds with context of what's happening in a conversation and what's on your screen.
             </p>
             <RealtimeAnswersCard />
@@ -272,7 +272,7 @@ const LandingPage = () => {
         <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
         <img src="/calendar-icon.svg" alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
         <img src="/video-camera-icon.svg" alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
-        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, 50%) rotate(20deg)' }} />
+        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
         <img src="/incognito-icon.svg" alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
 
 
