@@ -29,13 +29,12 @@ const LandingPage = () => {
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
 
-  // Destructure currentText directly without aliasing
-  const { currentText, isTypingComplete: meetingsTextComplete } = useTypewriter({
-    words: ["Meetings."],
+  // Typewriter for the cycling words in the "It's time to cheat" section
+  const { currentText } = useTypewriter({
+    words: ["Interviews.", "Sales calls.", "Homework.", "Meetings.", "Really everything."],
     speed: 150,
     delay: 1000,
-    loop: false,
-    revealImage: true, // Enable image reveal for this text
+    loop: true, // Loop continuously through the words
     key: 1, // Unique key for this typewriter instance
   });
 
@@ -192,10 +191,7 @@ const LandingPage = () => {
           </h2>
           <p className="text-5xl md:text-7xl font-extrabold text-gray-300 dark:text-gray-700 leading-tight">
             Interviews. Sales calls. Homework. {' '}
-            <span className={cn(
-              "inline-block",
-              meetingsTextComplete && "text-fill-image" // Apply image fill when typing is complete
-            )}>
+            <span className="inline-block bg-gradient-to-r from-landing-button-gradient-start to-landing-button-gradient-end bg-clip-text text-transparent">
               {currentText}
             </span>
             .
