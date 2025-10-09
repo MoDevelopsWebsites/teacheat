@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Apple, Settings } from 'lucide-react';
+import { Apple } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
 import MeetingWindowMockup from '@/components/MeetingWindowMockup';
 import FloatingMouseCursor from '@/components/FloatingMouseCursor';
@@ -195,7 +195,7 @@ const LandingPage = () => {
               "inline-block",
               meetingsTextComplete && "text-fill-image" // Apply image fill when typing is complete
             )}>
-              {animatedMeetingsText}
+              {animatedMeetingsText.currentText}
             </span>
             .
             <br />
