@@ -7,6 +7,7 @@ interface UseTypewriterOptions {
   speed?: number; // Typing speed in ms per character
   delay?: number; // Delay before starting next word/phrase
   loop?: boolean; // Whether to loop through words
+  key?: number; // Optional key to reset the animation
 }
 
 export const useTypewriter = ({
@@ -14,10 +15,18 @@ export const useTypewriter = ({
   speed = 100,
   delay = 1500,
   loop = true,
+  key = 0, // Default key to 0
 }: UseTypewriterOptions) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Reset state when the key prop changes
+  useEffect(() => {
+    setCurrentWordIndex(0);
+    setCurrentText('');
+    setIsDeleting(false);
+  }, [key]);
 
   useEffect(() => {
     // Guard clause to prevent errors if words array is empty or index is invalid
@@ -61,7 +70,7 @@ export const useTypewriter = ({
     }
 
     return () => clearTimeout(timer);
-  }, [currentWordIndex, currentText, isDeleting, words, speed, delay, loop]);
+  }, [currentWordIndex, currentText, isDeleting, words, speed, delay, loop, key]); // Add key to dependencies
 
   return currentText;
 };
