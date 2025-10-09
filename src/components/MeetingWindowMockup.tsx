@@ -60,7 +60,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       {/* Simulated macOS Wallpaper Background */}
       <div className="absolute inset-0">
         <img
-          src={import.meta.env.BASE_URL + "macos-15-wallpaper-1.jpg"} // Updated to new filename
+          src={import.meta.env.BASE_URL + "sequoia.jpg"} // Updated to the new 'sequoia.jpg' filename
           alt="macOS Sequoia Wallpaper"
           className="w-full h-full object-cover"
         />
