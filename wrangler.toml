@@ -1,0 +1,3 @@
+name = "dyad-app"
+pages_build_output_dir = "./dist"
+pages_build_command = "pnpm run build"
