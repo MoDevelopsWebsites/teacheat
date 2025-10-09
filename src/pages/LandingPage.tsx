@@ -14,7 +14,7 @@ import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
-import { useTypewriter } from '@/hooks/use-typewriter';
+import { useTypewriter } => '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
 const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
@@ -153,7 +153,7 @@ const LandingPage = () => {
         <img src="/calendar-icon.svg" alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-landing-text-primary font-display">
-          <span className="text-5xl md:text-6xl">#1</span> AI assistant <br /> for meetings
+          <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
         </h1>
         <p className="text-lg md:text-xl text-landing-text-primary/80 mb-10 max-w-2xl">
           Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
