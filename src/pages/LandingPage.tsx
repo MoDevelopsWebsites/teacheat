@@ -4,12 +4,22 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowUp, ArrowDown, Settings, Sparkles, Apple, Monitor, Cookie } from 'lucide-react'; // Changed Windows to Monitor
+import { ArrowUp, ArrowDown, Settings, Sparkles, Apple, Monitor, Cookie } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
+import { useTypewriter } from '@/hooks/use-typewriter'; // Import the new hook
 
 const LandingPage = () => {
   const { session, isLoading } = useSession();
   const navigate = useNavigate();
+
+  const questions = [
+    "When's the last time you froze in a meeting?",
+    "Write an algorithm to merge K sorted lists",
+    "Explain quantum entanglement in simple terms",
+    "What are the key differences between React and Angular?",
+  ];
+
+  const animatedQuestion = useTypewriter({ words: questions, speed: 70, delay: 2000, loop: true });
 
   useEffect(() => {
     if (!isLoading && session) {
@@ -70,10 +80,10 @@ const LandingPage = () => {
           Teacheat is an undetectable desktop app that gives you the answers you didn't study for in every meeting and conversation.
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-          <Button className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+          <Button className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md animate-float animate-pulse-shadow">
             <Apple className="h-5 w-5 mr-2" /> Get for Mac
           </Button>
-          <Button className="bg-landing-button-windows text-landing-button-windows-foreground hover:bg-landing-button-windows/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+          <Button className="bg-landing-button-windows text-landing-button-windows-foreground hover:bg-landing-button-windows/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md animate-float animate-pulse-shadow">
             <Monitor className="h-5 w-5 mr-2" /> Get for Windows
           </Button>
         </div>
@@ -85,9 +95,8 @@ const LandingPage = () => {
           <Sparkles className="h-5 w-5 mr-2 text-landing-icon-color" />
           <p className="font-semibold">Question: "Why would I even use Teacheat?"</p>
         </div>
-        <ul className="list-disc list-inside text-landing-text-primary/70 space-y-2 text-sm pl-4">
-          <li>When's the last time you froze in a meeting?</li>
-          <li>Write an algorithm to merge K sorted lists</li>
+        <ul className="list-disc list-inside text-landing-text-primary/70 space-y-2 text-sm pl-4 min-h-[48px]"> {/* Added min-h to prevent layout shift */}
+          <li>{animatedQuestion}</li>
         </ul>
         <p className="text-sm text-landing-text-primary/60 mt-6">
           Suggestion: Scroll down to see Teacheat in action.
