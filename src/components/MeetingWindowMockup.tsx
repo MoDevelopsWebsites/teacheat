@@ -76,7 +76,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
             <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
           </div>
-          <div className="flex items-center space-x-2 text-white text-sm">
+          <div className="flex items-center space-x-2 text-gray-200 text-sm"> {/* Changed text-white to text-gray-200 */}
             <span className="font-semibold">Meeting with Client</span>
           </div>
           <div className="flex space-x-2">
