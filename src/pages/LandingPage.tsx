@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowUp, ArrowDown, Settings, Sparkles, Apple, Windows, Cookie } from 'lucide-react';
+import { ArrowUp, ArrowDown, Settings, Sparkles, Apple, Monitor, Cookie } from 'lucide-react'; // Changed Windows to Monitor
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
 
 const LandingPage = () => {
@@ -74,7 +74,7 @@ const LandingPage = () => {
             <Apple className="h-5 w-5 mr-2" /> Get for Mac
           </Button>
           <Button className="bg-landing-button-windows text-landing-button-windows-foreground hover:bg-landing-button-windows/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
-            <Windows className="h-5 w-5 mr-2" /> Get for Windows
+            <Monitor className="h-5 w-5 mr-2" /> Get for Windows
           </Button>
         </div>
       </section>
