@@ -22,8 +22,6 @@ const Index = () => {
   }
 
   if (!session) {
-    // This case should ideally be handled by the SessionContextProvider redirect,
-    // but as a fallback, we can show a message or redirect.
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
         <p className="text-xl text-gray-600 dark:text-gray-400">Please log in to access the app.</p>
@@ -40,9 +38,14 @@ const Index = () => {
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
           Your AI assistant is ready to help you.
         </p>
-        <Button onClick={handleLogout} variant="destructive">
-          Logout
-        </Button>
+        <div className="flex space-x-4 justify-center">
+          <Button onClick={() => navigate('/chat')}>
+            Start Chatting with AI
+          </Button>
+          <Button onClick={handleLogout} variant="destructive">
+            Logout
+          </Button>
+        </div>
       </div>
       <MadeWithDyad />
     </div>
