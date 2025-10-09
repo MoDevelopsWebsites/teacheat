@@ -26,7 +26,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
     const getPositions = () => {
       onButtonPositionsReady({
         whatToSayNext: whatToSayNextRef.current?.getBoundingClientRect() || null,
-        followUpQuestions: followToSayNextRef.current?.getBoundingClientRect() || null,
+        followUpQuestions: followUpQuestionsRef.current?.getBoundingClientRect() || null, // Corrected typo here
       });
     };
 
