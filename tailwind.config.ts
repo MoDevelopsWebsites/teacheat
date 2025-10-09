@@ -62,6 +62,45 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        landing: {
+          background: {
+            start: "hsl(var(--landing-background-start))",
+            end: "hsl(var(--landing-background-end))",
+          },
+          text: {
+            primary: "hsl(var(--landing-text-primary))",
+          },
+          button: {
+            mac: {
+              DEFAULT: "hsl(var(--landing-button-mac))",
+              foreground: "hsl(var(--landing-button-mac-foreground))",
+            },
+            windows: {
+              DEFAULT: "hsl(var(--landing-button-windows))",
+              foreground: "hsl(var(--landing-button-windows-foreground))",
+            },
+            cta: {
+              DEFAULT: "hsl(var(--landing-button-cta))",
+              foreground: "hsl(var(--landing-button-cta-foreground))",
+            },
+          },
+          card: {
+            background: "hsl(var(--landing-card-background))",
+            border: "hsl(var(--landing-card-border))",
+          },
+          cookie: {
+            background: "hsl(var(--landing-cookie-background))",
+            foreground: "hsl(var(--landing-cookie-foreground))",
+          },
+          icon: {
+            DEFAULT: "hsl(var(--landing-icon-color))",
+          },
+          logo: {
+            text: "hsl(var(--landing-logo-text))",
+            bg: "hsl(var(--landing-logo-bg))",
+            fg: "hsl(var(--landing-logo-fg))",
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

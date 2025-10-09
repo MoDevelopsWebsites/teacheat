@@ -42,6 +42,25 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* New Landing Page Colors */
+    --landing-background-start: 220 30% 98%; /* Light blue-grey */
+    --landing-background-end: 0 0% 100%; /* White */
+    --landing-text-primary: 220 20% 15%; /* Dark blue-black */
+    --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac */
+    --landing-button-mac-foreground: 0 0% 100%;
+    --landing-button-windows: 220 10% 20%; /* Dark grey for Windows */
+    --landing-button-windows-foreground: 0 0% 100%;
+    --landing-button-cta: 220 20% 15%; /* Dark blue for Get Started */
+    --landing-button-cta-foreground: 0 0% 100%;
+    --landing-card-background: 0 0% 100%;
+    --landing-card-border: 214.3 31.8% 91.4%;
+    --landing-cookie-background: 220 20% 15%; /* Dark blue for cookie banner */
+    --landing-cookie-foreground: 0 0% 100%;
+    --landing-icon-color: 215.4 16.3% 46.9%; /* Grey for floating icons */
+    --landing-logo-text: 220 20% 15%; /* Dark blue for Teacheat logo text */
+    --landing-logo-bg: 220 20% 15%; /* Dark blue for Teacheat logo background */
+    --landing-logo-fg: 0 0% 100%; /* White for Teacheat logo foreground */
   }
 
   .dark {
@@ -80,6 +99,25 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* New Landing Page Dark Mode Colors */
+    --landing-background-start: 222.2 84% 4.9%;
+    --landing-background-end: 222.2 84% 4.9%;
+    --landing-text-primary: 210 40% 98%;
+    --landing-button-mac: 217.2 91.2% 59.8%;
+    --landing-button-mac-foreground: 0 0% 100%;
+    --landing-button-windows: 217.2 32.6% 17.5%;
+    --landing-button-windows-foreground: 210 40% 98%;
+    --landing-button-cta: 210 40% 98%;
+    --landing-button-cta-foreground: 222.2 47.4% 11.2%;
+    --landing-card-background: 222.2 84% 4.9%;
+    --landing-card-border: 217.2 32.6% 17.5%;
+    --landing-cookie-background: 217.2 32.6% 17.5%;
+    --landing-cookie-foreground: 210 40% 98%;
+    --landing-icon-color: 215 20.2% 65.1%;
+    --landing-logo-text: 210 40% 98%;
+    --landing-logo-bg: 210 40% 98%;
+    --landing-logo-fg: 222.2 47.4% 11.2%;
   }
 }
 
