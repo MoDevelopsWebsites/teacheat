@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react'; // Import useState
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowUp, ArrowDown, Settings, Sparkles, Apple, Monitor, Cookie } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
-import { useTypewriter } from '@/hooks/use-typewriter'; // Import the new hook
+import { useTypewriter } from '@/hooks/use-typewriter';
 
 const LandingPage = () => {
   const { session, isLoading } = useSession();
   const navigate = useNavigate();
+  const [showCookieBanner, setShowCookieBanner] = useState(true); // State for cookie banner visibility
 
   const questions = [
     "When's the last time you froze in a meeting?",
@@ -26,6 +27,12 @@ const LandingPage = () => {
       navigate('/chat'); // Redirect to chat if authenticated
     }
   }, [session, isLoading, navigate]);
+
+  const handleAcceptCookies = () => {
+    setShowCookieBanner(false);
+    // In a real application, you would also set a cookie here
+    // e.g., localStorage.setItem('cookiesAccepted', 'true');
+  };
 
   if (isLoading) {
     return (
@@ -58,16 +65,16 @@ const LandingPage = () => {
       </header>
 
       {/* Floating Icons */}
-      <div className="absolute top-24 left-24 p-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
+      <div className="absolute top-24 left-24 p-4 bg-blue-100/50 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
         <ArrowUp className="h-6 w-6 text-landing-icon-color" />
       </div>
-      <div className="absolute top-24 right-24 p-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
+      <div className="absolute top-24 right-24 p-4 bg-blue-100/50 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
         <Settings className="h-6 w-6 text-landing-icon-color" />
       </div>
-      <div className="absolute bottom-24 left-24 p-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
+      <div className="absolute bottom-24 left-24 p-4 bg-blue-100/50 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
         <ArrowDown className="h-6 w-6 text-landing-icon-color" />
       </div>
-      <div className="absolute bottom-24 right-24 p-4 bg-white/50 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
+      <div className="absolute bottom-24 right-24 p-4 bg-blue-100/50 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 hidden lg:block">
         <Sparkles className="h-6 w-6 text-landing-icon-color" />
       </div>
 
@@ -95,7 +102,7 @@ const LandingPage = () => {
           <Sparkles className="h-5 w-5 mr-2 text-landing-icon-color" />
           <p className="font-semibold">Question: "Why would I even use Teacheat?"</p>
         </div>
-        <ul className="list-disc list-inside text-landing-text-primary/70 space-y-2 text-sm pl-4 min-h-[48px]"> {/* Added min-h to prevent layout shift */}
+        <ul className="list-disc list-inside text-landing-text-primary/70 space-y-2 text-sm pl-4 min-h-[48px]">
           <li>{animatedQuestion}</li>
         </ul>
         <p className="text-sm text-landing-text-primary/60 mt-6">
@@ -111,20 +118,22 @@ const LandingPage = () => {
       </Card>
 
       {/* Cookie Banner */}
-      <div className="fixed bottom-0 left-0 right-0 bg-landing-cookie-background text-landing-cookie-foreground p-4 flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 z-20">
-        <div className="flex items-center space-x-2 text-sm">
-          <Cookie className="h-5 w-5" />
-          <p>We use cookies to enhance your experience, analyze our traffic, and provide personalized content. <Link to="#" className="underline hover:text-landing-button-mac">Cookie preferences</Link></p>
+      {showCookieBanner && (
+        <div className="fixed bottom-0 left-0 right-0 bg-landing-cookie-background text-landing-cookie-foreground p-4 flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 z-20">
+          <div className="flex items-center space-x-2 text-sm">
+            <Cookie className="h-5 w-5" />
+            <p>We use cookies to enhance your experience, analyze our traffic, and provide personalized content. <Link to="#" className="underline hover:text-landing-button-mac">Cookie preferences</Link></p>
+          </div>
+          <div className="flex space-x-2">
+            <Button variant="ghost" className="text-landing-cookie-foreground hover:bg-landing-cookie-background/80 border border-landing-cookie-foreground/50 rounded-lg px-4 py-2 text-sm">
+              Reject non-essential
+            </Button>
+            <Button onClick={handleAcceptCookies} className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-4 py-2 text-sm">
+              Accept all cookies
+            </Button>
+          </div>
         </div>
-        <div className="flex space-x-2">
-          <Button variant="ghost" className="text-landing-cookie-foreground hover:bg-landing-cookie-background/80 border border-landing-cookie-foreground/50 rounded-lg px-4 py-2 text-sm">
-            Reject non-essential
-          </Button>
-          <Button className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-4 py-2 text-sm">
-            Accept all cookies
-          </Button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
