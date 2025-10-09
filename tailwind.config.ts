@@ -210,6 +210,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 8s ease-in-out infinite",
       },
+      boxShadow: {
+        'button-glow-default': '0 0 5px rgba(59, 130, 246, 0.2)', // Subtle default glow (blue-500)
+        'button-glow-hover': '0 0 20px rgba(59, 130, 246, 0.6)', // More pronounced on hover
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

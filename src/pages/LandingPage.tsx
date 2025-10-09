@@ -165,7 +165,7 @@ const LandingPage = () => {
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
           <Button
-            className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
+            className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-default hover:shadow-button-glow-hover"
             onClick={handleGetStartedClick}
           >
             <Apple className="h-5 w-5 mr-2" /> Get Started
