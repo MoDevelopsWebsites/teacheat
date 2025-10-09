@@ -43,24 +43,17 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* New Landing Page Colors */
-    --landing-background-start: 220 30% 98%; /* Light blue-grey */
+    /* New Landing Page Colors (based on screenshot) */
+    --landing-background-start: 210 60% 90%; /* Lighter blue */
     --landing-background-end: 0 0% 100%; /* White */
-    --landing-text-primary: 220 20% 15%; /* Dark blue-black */
-    --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac */
+    --landing-text-primary: 222.2 84% 4.9%; /* Dark blue-black */
+    --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac button */
     --landing-button-mac-foreground: 0 0% 100%;
-    --landing-button-windows: 220 10% 20%; /* Dark grey for Windows */
-    --landing-button-windows-foreground: 0 0% 100%;
-    --landing-button-cta: 220 20% 15%; /* Dark blue for Get Started */
-    --landing-button-cta-foreground: 0 0% 100%;
-    --landing-card-background: 0 0% 100%;
-    --landing-card-border: 214.3 31.8% 91.4%;
-    --landing-cookie-background: 220 20% 15%; /* Dark blue for cookie banner */
-    --landing-cookie-foreground: 0 0% 100%;
-    --landing-icon-color: 215.4 16.3% 46.9%; /* Grey for floating icons */
-    --landing-logo-text: 220 20% 15%; /* Dark blue for Teacheat logo text */
-    --landing-logo-bg: 220 20% 15%; /* Dark blue for Teacheat logo background */
-    --landing-logo-fg: 0 0% 100%; /* White for Teacheat logo foreground */
+    --landing-button-cta: 220 20% 15%; /* Not used in new design, but keeping for consistency */
+    --landing-button-cta-foreground: 0 0% 100%; /* Not used in new design */
+    --landing-card-background: 0 0% 100%; /* Not used in new design */
+    --landing-card-border: 214.3 31.8% 91.4%; /* Not used in new design */
+    --landing-logo-text: 222.2 84% 4.9%; /* Dark blue for Teacheat logo text */
   }
 
   .dark {
@@ -100,24 +93,17 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* New Landing Page Dark Mode Colors */
-    --landing-background-start: 222.2 84% 4.9%;
-    --landing-background-end: 222.2 84% 4.9%;
-    --landing-text-primary: 210 40% 98%;
-    --landing-button-mac: 217.2 91.2% 59.8%;
+    /* New Landing Page Dark Mode Colors (based on screenshot) */
+    --landing-background-start: 222.2 84% 4.9%; /* Dark background */
+    --landing-background-end: 222.2 84% 4.9%; /* Dark background */
+    --landing-text-primary: 210 40% 98%; /* Light text */
+    --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac button */
     --landing-button-mac-foreground: 0 0% 100%;
-    --landing-button-windows: 217.2 32.6% 17.5%;
-    --landing-button-windows-foreground: 210 40% 98%;
-    --landing-button-cta: 210 40% 98%;
-    --landing-button-cta-foreground: 222.2 47.4% 11.2%;
-    --landing-card-background: 222.2 84% 4.9%;
-    --landing-card-border: 217.2 32.6% 17.5%;
-    --landing-cookie-background: 217.2 32.6% 17.5%;
-    --landing-cookie-foreground: 210 40% 98%;
-    --landing-icon-color: 215 20.2% 65.1%;
-    --landing-logo-text: 210 40% 98%;
-    --landing-logo-bg: 210 40% 98%;
-    --landing-logo-fg: 222.2 47.4% 11.2%;
+    --landing-button-cta: 210 40% 98%; /* Not used in new design */
+    --landing-button-cta-foreground: 222.2 47.4% 11.2%; /* Not used in new design */
+    --landing-card-background: 222.2 84% 4.9%; /* Not used in new design */
+    --landing-card-border: 217.2 32.6% 17.5%; /* Not used in new design */
+    --landing-logo-text: 210 40% 98%; /* Light text for Teacheat logo */
   }
 }
 
@@ -131,22 +117,4 @@
   }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes pulse-shadow {
-  0% { box-shadow: 0 0 0px rgba(var(--landing-button-mac), 0.4); }
-  50% { box-shadow: 0 0 10px rgba(var(--landing-button-mac), 0.7); }
-  100% { box-shadow: 0 0 0px rgba(var(--landing-button-mac), 0.4); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-pulse-shadow {
-  animation: pulse-shadow 3s ease-in-out infinite;
-}
+/* Removed float and pulse-shadow animations as they are not in the new design */
