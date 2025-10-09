@@ -121,4 +121,14 @@
   }
 }
 
+/* Custom class for text with image background */
+.text-fill-image {
+  background-image: url('/placeholder.svg'); /* Placeholder image */
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* Removed float and pulse-shadow animations as they are not in the new design */

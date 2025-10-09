@@ -1,0 +1,56 @@
+"use client";
+
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Command, CornerDownLeft } from 'lucide-react';
+
+const RealtimeAnswersCard: React.FC = () => {
+  const backgroundWords = [
+    "talk about code.", "How do you", "What's your", "component state,", "I use the", "role-based access control.",
+    "closely with designers and", "GraphQL backend.", "top", "react testing", "data", "amid", "simple setups.",
+    "to writing tests?", "jest, comp", "follow", "levels-unit", "build", "do you", "react", "component", "state",
+    "I use the", "role-based", "access", "control", "closely", "with", "designers", "and", "GraphQL", "backend",
+    "top", "react", "testing", "data", "amid", "simple", "setups", "to", "writing", "tests", "jest", "comp",
+    "follow", "levels", "unit", "build", "do", "you", "react", "component", "state", "I", "use", "the", "role-based",
+    "access", "control", "closely", "with", "designers", "and", "GraphQL", "backend", "top", "react", "testing",
+    "data", "amid", "simple", "setups", "to", "writing", "tests", "jest", "comp", "follow", "levels", "unit",
+    "build", "do", "you", "react", "component", "state", "I", "use", "the", "role-based", "access", "control",
+  ];
+
+  return (
+    <Card className="relative w-full max-w-md h-64 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-800 flex items-center justify-center">
+      {/* Blurred background text */}
+      <div className="absolute inset-0 p-4 text-gray-300 dark:text-gray-700 text-xs font-mono opacity-50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-100 to-gray-200 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 opacity-80 z-10"></div>
+        <div className="absolute inset-0 z-0" style={{
+          transform: 'rotate(-15deg) scale(1.2)',
+          whiteSpace: 'nowrap',
+          lineHeight: '1.8',
+          top: '-50%',
+          left: '-50%',
+          width: '200%',
+          height: '200%',
+        }}>
+          {backgroundWords.map((word, i) => (
+            <span key={i} className="inline-block mx-2 my-1 text-gray-300 dark:text-gray-700 opacity-70">
+              {word}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Command + Return keys */}
+      <CardContent className="relative z-20 flex items-center justify-center p-0 space-x-2">
+        <div className="flex items-center justify-center w-28 h-16 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-sm font-semibold">
+          <Command className="h-4 w-4 mr-1" /> command
+        </div>
+        <span className="text-gray-700 dark:text-gray-300 text-lg font-bold">+</span>
+        <div className="flex items-center justify-center w-28 h-16 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-sm font-semibold">
+          <CornerDownLeft className="h-4 w-4 mr-1" /> return
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default RealtimeAnswersCard;

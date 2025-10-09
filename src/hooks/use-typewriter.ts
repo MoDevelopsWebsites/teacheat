@@ -8,6 +8,7 @@ interface UseTypewriterOptions {
   delay?: number; // Delay before starting next word/phrase
   loop?: boolean; // Whether to loop through words
   key?: number; // Optional key to reset the animation
+  revealImage?: boolean; // New option to enable image reveal effect
 }
 
 export const useTypewriter = ({
@@ -16,16 +17,19 @@ export const useTypewriter = ({
   delay = 1500,
   loop = true,
   key = 0, // Default key to 0
+  revealImage = false, // Default to false
 }: UseTypewriterOptions) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isTypingComplete, setIsTypingComplete] = useState(false); // New state for revealImage
 
   // Reset state when the key prop changes
   useEffect(() => {
     setCurrentWordIndex(0);
     setCurrentText('');
     setIsDeleting(false);
+    setIsTypingComplete(false); // Reset for revealImage
   }, [key]);
 
   useEffect(() => {
@@ -52,10 +56,17 @@ export const useTypewriter = ({
 
     if (!isDeleting && currentText === currentFullWord) {
       // Finished typing, start deleting after a delay
+      if (revealImage) {
+        setIsTypingComplete(true); // Mark typing as complete for reveal effect
+        // If revealImage is true, we don't delete, just stay on the full word
+        // The animation will effectively stop here until key changes or loop is true
+        if (!loop) return; 
+      }
       timer = setTimeout(() => setIsDeleting(true), delay);
     } else if (isDeleting && currentText === '') {
       // Finished deleting, move to next word after a delay
       setIsDeleting(false);
+      setIsTypingComplete(false); // Reset for revealImage
       setCurrentWordIndex((prev) => (loop ? (prev + 1) % words.length : prev + 1));
       if (!loop && currentWordIndex === words.length - 1) {
         // If not looping and last word, stop
@@ -70,7 +81,7 @@ export const useTypewriter = ({
     }
 
     return () => clearTimeout(timer);
-  }, [currentWordIndex, currentText, isDeleting, words, speed, delay, loop, key]); // Add key to dependencies
+  }, [currentWordIndex, currentText, isDeleting, words, speed, delay, loop, key, revealImage]); // Add revealImage to dependencies
 
-  return currentText;
+  return { currentText, isTypingComplete };
 };

@@ -3,10 +3,14 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Apple } from 'lucide-react';
+import { Apple, Settings } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
 import MeetingWindowMockup from '@/components/MeetingWindowMockup';
 import FloatingMouseCursor from '@/components/FloatingMouseCursor';
+import MeetingSettingsCard from '@/components/MeetingSettingsCard';
+import RealtimeAnswersCard from '@/components/RealtimeAnswersCard';
+import { useTypewriter } from '@/hooks/use-typewriter';
+import { cn } from '@/lib/utils';
 
 const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
 const nextSuggestionResponse = "Based on their interest in new cabinets, you could suggest a premium wood finish or smart storage solutions to upsell.";
@@ -24,6 +28,15 @@ const LandingPage = () => {
     whatToSayNext: DOMRect | null;
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
+
+  const { currentText: animatedMeetingsText, isTypingComplete: meetingsTextComplete } = useTypewriter({
+    words: ["Meetings."],
+    speed: 150,
+    delay: 1000,
+    loop: false,
+    revealImage: true, // Enable image reveal for this text
+    key: 1, // Unique key for this typewriter instance
+  });
 
   useEffect(() => {
     if (!isLoading && session) {
@@ -151,6 +164,52 @@ const LandingPage = () => {
           onButtonPositionsReady={handleButtonPositionsReady}
         />
       </div>
+
+      {/* Features Section */}
+      <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
+        <div className="grid md:grid-cols-2 gap-12 mb-24">
+          <div>
+            <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
+            <p className="text-lg text-landing-text-primary/80 mb-8">
+              Cluely listens to your meetings in the background and takes real-time notes without joining.
+            </p>
+            <MeetingSettingsCard />
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
+            <p className="text-lg text-landing-text-primary/80 mb-8">
+              Cluely responds with context of what's happening in a conversation and what's on your screen.
+            </p>
+            <RealtimeAnswersCard />
+          </div>
+        </div>
+
+        {/* Call to Action Text */}
+        <div className="text-center py-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
+            It's time to cheat
+          </h2>
+          <p className="text-5xl md:text-7xl font-extrabold text-gray-300 dark:text-gray-700 leading-tight">
+            Interviews. Sales calls. Homework. {' '}
+            <span className={cn(
+              "inline-block",
+              meetingsTextComplete && "text-fill-image" // Apply image fill when typing is complete
+            )}>
+              {animatedMeetingsText}
+            </span>
+            .
+            <br />
+            Really everything.
+          </p>
+        </div>
+
+        {/* Bottom Get for Mac Button */}
+        <div className="flex justify-center mt-16 pb-24">
+          <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+            <Apple className="h-5 w-5 mr-2" /> Get for Mac
+          </Button>
+        </div>
+      </section>
 
       {/* Floating Mouse Cursor */}
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
