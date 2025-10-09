@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Mic, Volume2, Waves, Wifi, Settings } from 'lucide-react'; // Added Settings here
+import { CheckCircle2, Mic, Volume2, Waves, Wifi, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SettingItemProps {
@@ -10,10 +10,15 @@ interface SettingItemProps {
   label: string;
   status: string;
   checked: boolean;
+  className?: string; // Added className prop
 }
 
-const SettingItem: React.FC<SettingItemProps> = ({ icon, label, status, checked }) => (
-  <div className="flex flex-col items-center text-center relative">
+const SettingItem: React.FC<SettingItemProps> = ({ icon, label, status, checked, className }) => (
+  <div className={cn(
+    "flex flex-col items-center text-center relative",
+    "cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 active:shadow-inner", // Added interactive classes
+    className
+  )}>
     <div className="relative w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700">
       {icon}
       {checked && (
