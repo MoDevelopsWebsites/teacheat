@@ -47,14 +47,14 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
       {/* Simulated Video Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 opacity-70 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center"> {/* Removed bg-gradient and opacity from here */}
         <video
           autoPlay
           loop
           muted
           playsInline
           src="/Smart Young Woman Video Conference Interview.mp4"
-          className="w-full h-full object-cover opacity-60" // Reduced opacity to make text more readable
+          className="w-full h-full object-cover opacity-60" // Video itself has opacity
         />
       </div>
 
