@@ -95,7 +95,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
               <div className="flex items-center text-sm font-semibold text-gray-200">
                 <Search className="h-4 w-4 mr-2 text-gray-400" /> Searched records
               </div>
-              <Button variant="secondary" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-auto">
+              <Button variant="secondary" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-auto" disabled>
                 {getActiveSuggestionText()}
               </Button>
             </CardHeader>
@@ -106,10 +106,10 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
             </CardContent>
             <CardFooter className="p-0 flex flex-col space-y-2">
               <div className="flex space-x-2 w-full">
-                <Button ref={whatToSayNextRef} variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8">
+                <Button ref={whatToSayNextRef} variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8" disabled>
                   <MessageSquareText className="h-3 w-3 mr-1" /> What should I say next?
                 </Button>
-                <Button ref={followUpQuestionsRef} variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8">
+                <Button ref={followUpQuestionsRef} variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8" disabled>
                   <MessageSquareText className="h-3 w-3 mr-1" /> Follow-up questions
                 </Button>
               </div>
@@ -117,6 +117,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
                 <Input
                   placeholder="Ask, ⌘ ⏎ to start typing"
                   className="w-full bg-gray-800 text-gray-200 border-gray-600 placeholder:text-gray-400 pl-10 pr-4 h-10 text-sm"
+                  disabled
                 />
                 <Keyboard className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               </div>
