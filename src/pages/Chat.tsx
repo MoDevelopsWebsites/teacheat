@@ -46,11 +46,20 @@ const Chat = () => {
     setIsLoading(true);
 
     try {
+      const session = await supabase.auth.getSession();
+      const accessToken = session.data.session?.access_token;
+
+      if (!accessToken) {
+        showError('User not authenticated. Please log in.');
+        setIsLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke('chat', {
-        body: { prompt: input },
+        body: JSON.stringify({ prompt: input }), // Explicitly stringify the body
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${await supabase.auth.getSession().then(s => s.data.session?.access_token)}`
+          'Authorization': `Bearer ${accessToken}`
         }
       });
 
