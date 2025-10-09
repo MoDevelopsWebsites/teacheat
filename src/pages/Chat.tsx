@@ -55,47 +55,57 @@ const Chat = () => {
         return;
       }
 
-      const { data, error } = await supabase.functions.invoke('chat', {
-        body: JSON.stringify({ prompt: input }), // Explicitly stringify the body
+      // Construct the URL for the Edge Function
+      const SUPABASE_PROJECT_ID = "kxkqcsxysbcdkveolnrf"; // Your Supabase Project ID
+      const EDGE_FUNCTION_NAME = "chat";
+      const edgeFunctionUrl = `https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${EDGE_FUNCTION_NAME}`;
+
+      const response = await fetch(edgeFunctionUrl, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
-        }
+        },
+        body: JSON.stringify({ prompt: input }),
       });
 
-      if (error) {
-        console.error('Error invoking chat function:', error);
-        showError(`Failed to get AI response: ${error.message}. Please check Supabase Edge Function logs.`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error from Edge Function:', errorData);
+        showError(`Failed to get AI response: ${errorData.error || response.statusText}. Please check Supabase Edge Function logs.`);
         setMessages((prevMessages) => [...prevMessages, {
           id: Date.now().toString() + '-error',
-          text: `Error: ${error.message || 'Could not get a response from the AI.'}`,
-          sender: 'ai',
-          timestamp: new Date(),
-        }]);
-      } else if (data && data.error) { // Check for error returned by the Edge Function
-        console.error('Edge Function returned error:', data.error);
-        showError(`AI response error: ${data.error}. Please check Supabase Edge Function logs.`);
-        setMessages((prevMessages) => [...prevMessages, {
-          id: Date.now().toString() + '-error',
-          text: `Error: ${data.error || 'Could not get a response from the AI.'}`,
+          text: `Error: ${errorData.error || 'Could not get a response from the AI.'}`,
           sender: 'ai',
           timestamp: new Date(),
         }]);
       } else {
-        const aiResponse: Message = {
-          id: Date.now().toString() + '-ai',
-          text: data.response,
-          sender: 'ai',
-          timestamp: new Date(),
-        };
-        setMessages((prevMessages) => [...prevMessages, aiResponse]);
+        const data = await response.json();
+        if (data && data.error) { // Check for error returned by the Edge Function
+          console.error('Edge Function returned error:', data.error);
+          showError(`AI response error: ${data.error}. Please check Supabase Edge Function logs.`);
+          setMessages((prevMessages) => [...prevMessages, {
+            id: Date.now().toString() + '-error',
+            text: `Error: ${data.error || 'Could not get a response from the AI.'}`,
+            sender: 'ai',
+            timestamp: new Date(),
+          }]);
+        } else {
+          const aiResponse: Message = {
+            id: Date.now().toString() + '-ai',
+            text: data.response,
+            sender: 'ai',
+            timestamp: new Date(),
+          };
+          setMessages((prevMessages) => [...prevMessages, aiResponse]);
+        }
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Network or unexpected error:', err);
-      showError('An unexpected error occurred. Please check your connection.');
+      showError(`An unexpected error occurred: ${err.message || 'Please check your connection.'}`);
       setMessages((prevMessages) => [...prevMessages, {
         id: Date.now().toString() + '-catch-error',
-        text: 'Error: An unexpected error occurred.',
+        text: `Error: An unexpected error occurred: ${err.message || ''}`,
         sender: 'ai',
         timestamp: new Date(),
       }]);
