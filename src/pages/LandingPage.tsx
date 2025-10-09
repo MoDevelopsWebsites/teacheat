@@ -25,6 +25,11 @@ const followUpQuestionsResponse = "I'd like to ask some follow-up questions: 1. 
 
 const cyclingWords = ["Interviews.", "Sales calls.", "Homework.", "Meetings.", "Really everything."];
 
+// Helper function to calculate the total duration for typing and holding a response
+const calculateTypingDuration = (text: string, speed: number, delay: number) => {
+  return (text.length * speed) + delay;
+};
+
 const LandingPage = () => {
   const { session, isLoading } = useSession();
   const navigate = useNavigate();
@@ -67,10 +72,13 @@ const LandingPage = () => {
     let animationTimeout: NodeJS.Timeout;
 
     const animateSequence = async () => {
+      const typewriterSpeed = 30; // Matches speed in MeetingWindowMockup
+      const typewriterDelay = 5000; // Matches delay in MeetingWindowMockup
+
       // Start with initial AI response
       setCurrentAiResponse(initialAiResponse);
       setTypewriterKey(prev => prev + 1);
-      await new Promise(resolve => setTimeout(resolve, 7000)); // Wait for initial text to type and be visible
+      await new Promise(resolve => setTimeout(resolve, calculateTypingDuration(initialAiResponse, typewriterSpeed, typewriterDelay)));
 
       // 1. Move to "What should I say next?" button
       const nextButton = buttonPositions.whatToSayNext!;
@@ -78,7 +86,7 @@ const LandingPage = () => {
         x: nextButton.left + nextButton.width / 2,
         y: nextButton.top + nextButton.height / 2,
       });
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Mouse move duration
 
       // 2. Click "What should I say next?"
       setIsClicking(true);
@@ -86,7 +94,7 @@ const LandingPage = () => {
       setTypewriterKey(prev => prev + 1);
       await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
       setIsClicking(false);
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new text to type and be visible
+      await new Promise(resolve => setTimeout(resolve, calculateTypingDuration(nextSuggestionResponse, typewriterSpeed, typewriterDelay)));
 
       // 3. Move to "Follow-up questions" button
       const followUpButton = buttonPositions.followUpQuestions!;
@@ -94,7 +102,7 @@ const LandingPage = () => {
         x: followUpButton.left + followUpButton.width / 2,
         y: followUpButton.top + followUpButton.height / 2,
       });
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Mouse move duration
 
       // 4. Click "Follow-up questions"
       setIsClicking(true);
@@ -102,10 +110,10 @@ const LandingPage = () => {
       setTypewriterKey(prev => prev + 1);
       await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
       setIsClicking(false);
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new text to type and be visible
+      await new Promise(resolve => setTimeout(resolve, calculateTypingDuration(followUpQuestionsResponse, typewriterSpeed, typewriterDelay)));
 
       // Loop the animation
-      animationTimeout = setTimeout(animateSequence, 2000); // Short delay before restarting
+      animationTimeout = setTimeout(animateSequence, 2000); // Short delay before restarting the entire sequence
     };
 
     animationTimeout = setTimeout(animateSequence, 1000); // Initial delay before starting sequence
