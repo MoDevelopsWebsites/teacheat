@@ -13,7 +13,7 @@ import MeetingParticipantsCard from '@/components/MeetingParticipantsCard';
 import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard';
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
-import MeetingRecapCard from '@/components/MeetingRecapCard'; // New import
+import MeetingRecapCard from '@/components/MeetingRecapCard';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -145,8 +145,14 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-landing-text-primary">
+      <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
+        {/* Floating Icons for Hero Section */}
+        <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+        <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
+        <img src="/calendar-icon.svg" alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+
+        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-landing-text-primary font-display">
           #1 AI assistant <br /> for meetings
         </h1>
         <p className="text-lg md:text-xl text-landing-text-primary/80 mb-10 max-w-2xl">

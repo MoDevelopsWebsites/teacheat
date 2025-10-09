@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['"Playfair Display"', 'serif'], // Custom font family for the hero title
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
