@@ -83,11 +83,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
         <Button
           className={cn(
             "w-full text-base font-semibold py-6 rounded-lg",
-            buttonVariant === "default" && "bg-pricing-button-default text-pricing-button-foreground hover:bg-pricing-button-default/90",
+            // Always apply a dark background and light text for the default variant
+            buttonVariant === "default" && "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800",
             buttonVariant === "outline" && "border border-pricing-button-default text-pricing-button-default bg-transparent hover:bg-pricing-button-default/10",
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
-          variant={buttonVariant}
+          // Only pass the variant prop if it's not "default", to avoid shadcn's default variant overriding
+          {...(buttonVariant !== "default" && { variant: buttonVariant })}
           onClick={handleButtonClick}
           disabled={disabled || (isSubmitting && priceId !== null)}
         >

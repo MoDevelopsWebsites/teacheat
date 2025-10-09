@@ -85,8 +85,7 @@
     --pricing-card-border: 214.3 31.8% 91.4%;
     --pricing-text-primary: 222.2 84% 4.9%;
     --pricing-text-secondary: 215.4 16.3% 46.9%;
-    --pricing-button-default-bg: var(--primary); /* Changed to dark blue-black */
-    --pricing-button-default-fg: var(--primary-foreground); /* Changed to off-white */
+    /* Removed --pricing-button-default-bg and --pricing-button-default-fg */
     --pricing-toggle-bg: 210 40% 96.1%; /* Muted light grey */
     --pricing-toggle-active-bg: 0 0% 100%;
     --pricing-toggle-active-fg: 222.2 47.4% 11.2%;
@@ -174,8 +173,7 @@
     --pricing-card-border: 217.2 32.6% 17.5%; /* Dark border */
     --pricing-text-primary: 210 40% 98%; /* Light text */
     --pricing-text-secondary: 215 20.2% 65.1%; /* Lighter grey */
-    --pricing-button-default-bg: var(--background); /* Changed to dark blue-black */
-    --pricing-button-default-fg: var(--foreground); /* Changed to off-white */
+    /* Removed --pricing-button-default-bg and --pricing-button-default-fg */
     --pricing-toggle-bg: 217.2 32.6% 17.5%; /* Dark muted grey */
     --pricing-toggle-active-bg: 222.2 84% 4.9%; /* Dark background */
     --pricing-toggle-active-fg: 210 40% 98%; /* Light text */
