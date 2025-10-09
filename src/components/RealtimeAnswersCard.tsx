@@ -41,11 +41,13 @@ const RealtimeAnswersCard: React.FC = () => {
 
       {/* Command + Return keys */}
       <CardContent className="relative z-20 flex items-center justify-center p-0 space-x-2">
-        <div className="flex items-center justify-center w-28 h-16 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-sm font-semibold">
+        <div className="flex items-center justify-center w-28 h-16 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-sm font-semibold
+                    cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 active:shadow-inner">
           <Command className="h-4 w-4 mr-1" /> command
         </div>
         <span className="text-gray-700 dark:text-gray-300 text-lg font-bold">+</span>
-        <div className="flex items-center justify-center w-28 h-16 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-sm font-semibold">
+        <div className="flex items-center justify-center w-28 h-16 bg-white dark:bg-gray-700 rounded-lg shadow-md border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 text-sm font-semibold
+                    cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 active:shadow-inner">
           <CornerDownLeft className="h-4 w-4 mr-1" /> return
         </div>
       </CardContent>
