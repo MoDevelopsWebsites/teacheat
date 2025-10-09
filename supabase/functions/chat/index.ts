@@ -12,7 +12,10 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  // Initialize Supabase client for auth
+  // Log request details for debugging
+  console.log('Incoming request:', req.method, req.url);
+  console.log('Request headers:', Object.fromEntries(req.headers.entries()));
+
   const supabaseClient = createClient(
     Deno.env.get('SUPABASE_URL') ?? '',
     Deno.env.get('SUPABASE_ANON_KEY') ?? '',
@@ -32,24 +35,37 @@ serve(async (req) => {
     });
   }
 
+  let prompt;
   try {
-    const { prompt } = await req.json();
+    // Attempt to parse the request body as JSON
+    const requestBody = await req.json();
+    prompt = requestBody.prompt;
+    console.log('Parsed request body:', requestBody); // Log the parsed body
+  } catch (jsonError) {
+    console.error('JSON parsing error in Edge Function:', jsonError);
+    // If JSON parsing fails, it's likely an empty or malformed body
+    return new Response(JSON.stringify({ error: `Failed to parse request body as JSON: ${jsonError.message}. Check if body is empty or malformed.` }), {
+      status: 400, // Bad Request
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 
-    if (!prompt) {
-      return new Response(JSON.stringify({ error: 'Prompt is required' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+  if (!prompt) {
+    return new Response(JSON.stringify({ error: 'Prompt is required in the request body' }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 
-    const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
-    if (!openaiApiKey) {
-      return new Response(JSON.stringify({ error: 'OPENAI_API_KEY not set' }), {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+  const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
+  if (!openaiApiKey) {
+    return new Response(JSON.stringify({ error: 'OPENAI_API_KEY not set' }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 
+  try {
     const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -80,7 +96,7 @@ serve(async (req) => {
       status: 200,
     });
   } catch (error) {
-    console.error('Edge Function error:', error);
+    console.error('Edge Function error during OpenAI call:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
