@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom'; // Added useSearchParams
+import { Link, useSearchParams, useNavigate, useLocation } from 'react-router-dom'; // Added useNavigate, useLocation
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Apple, ChevronDown, Bot } from 'lucide-react';
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
+import { useSession } from '@/integrations/supabase/SessionContextProvider'; // Import useSession
 
 const VITE_STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID; // Get from environment variable
@@ -156,9 +157,12 @@ const featureTableData = [
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const stripe = useStripe(); // Keep useStripe for context, though not directly used for redirect
-  const elements = useElements(); // Keep useElements for context
+  const stripe = useStripe();
+  const elements = useElements();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { session, isLoading: isSessionLoading } = useSession(); // Get session and loading state
 
   const currentPlans = pricingPlans[billingCycle];
 
@@ -168,18 +172,38 @@ const Pricing = () => {
 
     if (success) {
       showSuccess("Subscription successful! Welcome to Pro!");
-      // You might want to clear the query params or redirect to a dashboard
-      // navigate('/dashboard');
+      // Clear the query params
+      navigate(location.pathname, { replace: true });
     }
 
     if (canceled) {
       showError("Subscription canceled. You can try again anytime.");
+      // Clear the query params
+      navigate(location.pathname, { replace: true });
     }
-  }, [searchParams]);
+  }, [searchParams, navigate, location.pathname]);
+
+  // Effect to handle automatic subscription after login
+  useEffect(() => {
+    if (!isSessionLoading && session && location.state?.priceId && location.state?.billingCycle) {
+      const { priceId, billingCycle: storedBillingCycle } = location.state;
+      setBillingCycle(storedBillingCycle); // Set the correct billing cycle
+      handleSubscribe(priceId);
+      // Clear the state after processing
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [isSessionLoading, session, location.state, navigate]);
+
 
   const handleSubscribe = async (priceId: string | null) => {
-    if (!priceId) { // No need to check stripe/elements for direct redirect
+    if (!priceId) {
       showError("Price ID is missing.");
+      return;
+    }
+
+    if (!session) {
+      // If not logged in, redirect to login page, passing the intended priceId and billing cycle
+      navigate('/login', { state: { redirectTo: '/pricing', priceId: priceId, billingCycle: billingCycle } });
       return;
     }
 
@@ -200,7 +224,7 @@ const Pricing = () => {
         throw new Error(errorData.error || 'Failed to create checkout session');
       }
 
-      const { sessionUrl } = await response.json(); // Expecting sessionUrl now
+      const { sessionUrl } = await response.json();
 
       if (sessionUrl) {
         window.location.assign(sessionUrl); // Redirect directly to the Stripe Checkout URL
@@ -230,6 +254,7 @@ const Pricing = () => {
         defaultValue="monthly"
         className="mb-16"
         onValueChange={(value) => setBillingCycle(value as 'monthly' | 'annually')}
+        value={billingCycle} // Control the Tabs component with state
       >
         <TabsList className="bg-pricing-toggle p-1 rounded-full">
           <TabsTrigger

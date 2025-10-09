@@ -30,11 +30,11 @@ const App = () => (
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/pricing" element={<Pricing />} /> {/* Moved Pricing here to be public */}
               {/* Routes wrapped by Layout will have the sidebar/header */}
               <Route element={<Layout />}>
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/settings" element={<Settings />} />
-                <Route path="/pricing" element={<Pricing />} /> {/* Moved Pricing here */}
               </Route>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
