@@ -39,7 +39,12 @@ export const useTypewriter = ({
       return;
     }
     if (currentWordIndex >= words.length) {
-      setCurrentWordIndex(0); // Reset index if it somehow goes out of bounds
+      // If not looping and we've gone past the last word, stop.
+      // If looping, reset to 0.
+      if (!loop) {
+        return; // Stop animation if not looping and all words processed
+      }
+      setCurrentWordIndex(0);
       return;
     }
 
@@ -55,12 +60,13 @@ export const useTypewriter = ({
     };
 
     if (!isDeleting && currentText === currentFullWord) {
-      // Finished typing, start deleting after a delay
+      // Finished typing
       if (revealImage) {
         setIsTypingComplete(true); // Mark typing as complete for reveal effect
-        // If revealImage is true, we don't delete, just stay on the full word
-        // The animation will effectively stop here until key changes or loop is true
-        if (!loop) return; 
+        if (!loop) return; // If revealImage and not looping, stop here.
+      }
+      if (!loop && words.length === 1) { // If not looping and only one word, stop after typing it
+        return;
       }
       timer = setTimeout(() => setIsDeleting(true), delay);
     } else if (isDeleting && currentText === '') {
