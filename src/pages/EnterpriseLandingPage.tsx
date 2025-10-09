@@ -39,7 +39,7 @@ const EnterpriseLandingPage: React.FC = () => {
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl">
           Put all your company's knowledge at every rep's fingertips with AI-powered answers and objection handling in any conversation.
         </p>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-end"> {/* Added w-full and justify-end */}
           <Button
             className="bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 rounded-lg px-8 py-3 text-base font-semibold shadow-lg"
             onClick={handleTalkToSalesClick}
@@ -50,7 +50,7 @@ const EnterpriseLandingPage: React.FC = () => {
       </section>
 
       {/* Safari Window Mockup */}
-      <div className="mt-16 mb-24 z-10 w-full flex justify-center px-4">
+      <div className="mt-8 mb-24 z-10 w-full flex justify-center px-4"> {/* Changed mt-16 to mt-8 */}
         <SafariWindowMockup />
       </div>
 
