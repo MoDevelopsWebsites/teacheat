@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const CTABottomSection: React.FC = () => {
   return (
-    <section className="relative w-full py-24 bg-gradient-to-br from-landing-cta-background-start to-landing-cta-background-end text-landing-cta-text-primary"> {/* Removed overflow-hidden */}
+    <section className="relative w-full py-24 bg-gradient-to-br from-landing-cta-background-start to-landing-cta-background-end text-landing-cta-text-primary overflow-hidden"> {/* Re-added overflow-hidden */}
       {/* Floating UI elements */}
       <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-landing-cta-floating-bg rounded-xl shadow-lg border border-landing-cta-floating-border flex items-center justify-center opacity-70 blur-sm z-0" style={{ transform: 'rotate(-15deg)' }}>
         <Command className="h-16 w-16 text-landing-cta-floating-text/50" />
