@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Search, MessageSquareText, Keyboard, MicOff, VideoOff, PhoneOff, X } from 'lucide-react';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
+import sequoiaWallpaper from '/public/sequoia.png'; // Direct import of the image
 
 interface MeetingWindowMockupProps {
   currentAiResponse: string;
@@ -60,7 +61,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       {/* Simulated macOS Wallpaper Background */}
       <div className="absolute inset-0">
         <img
-          src={import.meta.env.BASE_URL + "sequoia.png"} // Updated to the new 'sequoia.png' filename
+          src={sequoiaWallpaper} // Using the directly imported image
           alt="macOS Sequoia Wallpaper"
           className="w-full h-full object-cover"
         />
