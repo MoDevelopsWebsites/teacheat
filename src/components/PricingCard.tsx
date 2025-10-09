@@ -17,6 +17,8 @@ interface PricingCardProps {
   buttonIcon?: React.ReactNode;
   isPopular?: boolean;
   isEnterprise?: boolean;
+  priceId?: string; // New prop for Stripe Price ID
+  onSubscribe?: (priceId: string) => void; // New prop for subscribe action
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -30,7 +32,19 @@ const PricingCard: React.FC<PricingCardProps> = ({
   buttonIcon,
   isPopular = false,
   isEnterprise = false,
+  priceId, // Destructure new prop
+  onSubscribe, // Destructure new prop
 }) => {
+  const handleButtonClick = () => {
+    if (priceId && onSubscribe) {
+      onSubscribe(priceId);
+    } else if (isEnterprise) {
+      // Handle "Talk to sales" or other enterprise specific action
+      console.log("Enterprise plan: Talk to sales clicked.");
+      // You might navigate to a contact form or open a modal here
+    }
+  };
+
   return (
     <Card className={cn(
       "relative flex flex-col p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg",
@@ -69,6 +83,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
           variant={buttonVariant}
+          onClick={handleButtonClick} // Use the new handler
+          disabled={!priceId && !isEnterprise} // Disable if no priceId and not enterprise
         >
           {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-5 w-5 mr-2", buttonIcon.props.className) })}
           {buttonText}

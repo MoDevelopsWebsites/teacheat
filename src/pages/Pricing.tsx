@@ -8,6 +8,12 @@ import { Apple, ChevronDown, Bot } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
 import PricingFeatureTable from '@/components/PricingFeatureTable';
 import { cn } from '@/lib/utils';
+import { loadStripe } from '@stripe/stripe-js';
+import { showSuccess, showError } from '@/utils/toast';
+import { supabase } from '@/integrations/supabase/client';
+
+// Replace with your actual Stripe Publishable Key from your .env file
+const STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
 // Data for pricing cards
 const pricingPlans = {
@@ -26,6 +32,7 @@ const pricingPlans = {
       buttonIcon: <Apple />,
       buttonVariant: "default",
       isPopular: false,
+      priceId: "free_plan_monthly", // Placeholder: Replace with your Stripe Price ID for the free plan (if applicable)
     },
     {
       title: "Pro",
@@ -41,6 +48,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
+      priceId: "price_12345_monthly", // Placeholder: Replace with your Stripe Price ID for Pro Monthly
     },
     {
       title: "Enterprise",
@@ -57,6 +65,7 @@ const pricingPlans = {
       buttonText: "Talk to sales",
       buttonVariant: "default",
       isEnterprise: true,
+      priceId: undefined, // Enterprise typically doesn't have a direct Stripe Price ID for checkout
     },
   ],
   annually: [
@@ -74,6 +83,7 @@ const pricingPlans = {
       buttonIcon: <Apple />,
       buttonVariant: "default",
       isPopular: false,
+      priceId: "free_plan_annually", // Placeholder: Replace with your Stripe Price ID for the free plan (if applicable)
     },
     {
       title: "Pro",
@@ -89,6 +99,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
+      priceId: "price_67890_annually", // Placeholder: Replace with your Stripe Price ID for Pro Annually
     },
     {
       title: "Enterprise",
@@ -105,6 +116,7 @@ const pricingPlans = {
       buttonText: "Talk to sales",
       buttonVariant: "default",
       isEnterprise: true,
+      priceId: undefined,
     },
   ],
 };
@@ -143,8 +155,69 @@ const featureTableData = [
 
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const currentPlans = pricingPlans[billingCycle];
+
+  const handleSubscribe = async (priceId: string) => {
+    if (!STRIPE_PUBLISHABLE_KEY) {
+      showError("Stripe Publishable Key is not set. Please check your .env file.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const stripe = await loadStripe(STRIPE_PUBLISHABLE_KEY);
+
+      if (!stripe) {
+        showError("Failed to load Stripe. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const session = await supabase.auth.getSession();
+      const accessToken = session.data.session?.access_token;
+
+      if (!accessToken) {
+        showError('You must be logged in to subscribe.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Call your Supabase Edge Function to create a checkout session
+      const SUPABASE_PROJECT_ID = "kxkqcsxysbcdkveolnrf"; // Your Supabase Project ID
+      const EDGE_FUNCTION_NAME = "create-checkout-session";
+      const edgeFunctionUrl = `https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${EDGE_FUNCTION_NAME}`;
+
+      const response = await fetch(edgeFunctionUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ priceId }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create Stripe checkout session.');
+      }
+
+      const { sessionId } = await response.json();
+
+      // Redirect to Stripe Checkout
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        showError(error.message || "Failed to redirect to Stripe Checkout.");
+      }
+    } catch (error: any) {
+      console.error("Subscription error:", error);
+      showError(error.message || "An unexpected error occurred during subscription.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-pricing flex flex-col items-center py-16 px-4 text-pricing-text-primary">
@@ -190,7 +263,13 @@ const Pricing = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-24">
         {currentPlans.map((plan, index) => (
-          <PricingCard key={index} {...plan} />
+          <PricingCard
+            key={index}
+            {...plan}
+            onSubscribe={handleSubscribe}
+            buttonText={isSubmitting && plan.priceId === currentPlans.find(p => p.priceId === plan.priceId)?.priceId ? "Processing..." : plan.buttonText}
+            disabled={isSubmitting && plan.priceId !== currentPlans.find(p => p.priceId === plan.priceId)?.priceId}
+          />
         ))}
       </div>
 
