@@ -1,72 +1,53 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MessageSquareText, Keyboard, Mic, MicOff, Video, VideoOff, X } from 'lucide-react';
+import { Search, MessageSquareText, Keyboard, Mic, Video, X } from 'lucide-react';
 import { useTypewriter } from '@/hooks/use-typewriter';
 
-const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
-const nextSuggestionResponse = "Based on their interest in new cabinets, you could suggest a premium wood finish or smart storage solutions to upsell.";
-const followUpQuestionsResponse = "Here are some follow-up questions: 1. What's your budget for the new lighting? 2. Are there any specific cabinet styles you prefer? 3. What's your ideal timeline for project completion?";
+interface MeetingWindowMockupProps {
+  currentAiResponse: string;
+  typewriterKey: number;
+  onButtonPositionsReady: (positions: { whatToSayNext: DOMRect | null; followUpQuestions: DOMRect | null }) => void;
+}
 
-const MeetingWindowMockup: React.FC = () => {
-  const [isMuted, setIsMuted] = useState(true); // true means mic is off, button says "Unmute"
-  const [isVideoOff, setIsVideoOff] = useState(true); // true means video is off, button says "Start Video"
-  const [aiResponseContent, setAiResponseContent] = useState(initialAiResponse);
-  const [showTypingIndicator, setShowTypingIndicator] = useState(false);
-  const [typewriterKey, setTypewriterKey] = useState(0); // Key to reset typewriter animation
+const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
+  currentAiResponse,
+  typewriterKey,
+  onButtonPositionsReady,
+}) => {
+  const whatToSayNextRef = useRef<HTMLButtonElement>(null);
+  const followUpQuestionsRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    // Report button positions once they are rendered
+    const getPositions = () => {
+      onButtonPositionsReady({
+        whatToSayNext: whatToSayNextRef.current?.getBoundingClientRect() || null,
+        followUpQuestions: followUpQuestionsRef.current?.getBoundingClientRect() || null,
+      });
+    };
+
+    // Get positions initially and on window resize
+    getPositions();
+    window.addEventListener('resize', getPositions);
+    return () => window.removeEventListener('resize', getPositions);
+  }, [onButtonPositionsReady]);
 
   const animatedAiResponse = useTypewriter({
-    words: [aiResponseContent],
+    words: [currentAiResponse],
     speed: 30,
     delay: 5000,
     loop: false,
-    key: typewriterKey, // Pass key to reset animation
+    key: typewriterKey,
   });
-
-  const simulateAiThinking = (newContent: string) => {
-    setShowTypingIndicator(true);
-    setAiResponseContent(''); // Clear current text to show typing indicator
-    setTimeout(() => {
-      setAiResponseContent(newContent);
-      setShowTypingIndicator(false);
-      setTypewriterKey(prev => prev + 1); // Increment key to restart typewriter
-    }, 1500); // Simulate AI thinking for 1.5 seconds
-  };
-
-  const handleWhatToSayNext = () => {
-    simulateAiThinking(nextSuggestionResponse);
-  };
-
-  const handleFollowUpQuestions = () => {
-    simulateAiThinking(followUpQuestionsResponse);
-  };
-
-  const handleToggleMic = () => {
-    setIsMuted((prev) => !prev);
-  };
-
-  const handleToggleVideo = () => {
-    setIsVideoOff((prev) => !prev);
-  };
-
-  const handleEndMeeting = () => {
-    // For a mockup, we can reset the state or show a simple message
-    setAiResponseContent(initialAiResponse);
-    setIsMuted(true);
-    setIsVideoOff(true);
-    setShowTypingIndicator(false);
-    setTypewriterKey(prev => prev + 1);
-    // In a real app, this would end the call
-  };
 
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
       {/* Simulated Video Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 opacity-70 flex items-center justify-center">
-        {/* Placeholder for video content - could be an image or actual video */}
         <img src="/placeholder.svg" alt="Meeting participants" className="w-full h-full object-cover opacity-50" />
       </div>
 
@@ -94,21 +75,21 @@ const MeetingWindowMockup: React.FC = () => {
               <div className="flex items-center text-sm font-semibold text-gray-200">
                 <Search className="h-4 w-4 mr-2 text-gray-400" /> Searched records
               </div>
-              <Button variant="secondary" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-auto" onClick={handleWhatToSayNext}>
+              <Button variant="secondary" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-auto">
                 What do I say next?
               </Button>
             </CardHeader>
             <CardContent className="p-0 mb-4">
               <p className="text-sm text-gray-100 leading-relaxed min-h-[40px]">
-                {showTypingIndicator ? <span className="animate-pulse">Typing...</span> : animatedAiResponse}
+                {animatedAiResponse}
               </p>
             </CardContent>
             <CardFooter className="p-0 flex flex-col space-y-2">
               <div className="flex space-x-2 w-full">
-                <Button variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8" onClick={handleWhatToSayNext}>
+                <Button ref={whatToSayNextRef} variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8">
                   <MessageSquareText className="h-3 w-3 mr-1" /> What should I say next?
                 </Button>
-                <Button variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8" onClick={handleFollowUpQuestions}>
+                <Button ref={followUpQuestionsRef} variant="outline" className="flex-grow bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8">
                   <MessageSquareText className="h-3 w-3 mr-1" /> Follow-up questions
                 </Button>
               </div>
@@ -123,17 +104,15 @@ const MeetingWindowMockup: React.FC = () => {
           </Card>
         </div>
 
-        {/* Bottom control bar */}
+        {/* Bottom control bar (static) */}
         <div className="flex justify-center items-center space-x-6 bg-black/70 backdrop-blur-lg rounded-full py-2 px-6 self-center mt-auto">
-          <Button variant="ghost" className="text-white/80 hover:text-white text-sm" onClick={handleToggleMic}>
-            {isMuted ? <MicOff className="h-4 w-4 mr-2" /> : <Mic className="h-4 w-4 mr-2" />}
-            {isMuted ? 'Unmute' : 'Mute'}
+          <Button variant="ghost" className="text-white/80 hover:text-white text-sm">
+            <Mic className="h-4 w-4 mr-2" /> Unmute
           </Button>
-          <Button variant="ghost" className="text-white/80 hover:text-white text-sm" onClick={handleToggleVideo}>
-            {isVideoOff ? <VideoOff className="h-4 w-4 mr-2" /> : <Video className="h-4 w-4 mr-2" />}
-            {isVideoOff ? 'Start Video' : 'Stop Video'}
+          <Button variant="ghost" className="text-white/80 hover:text-white text-sm">
+            <Video className="h-4 w-4 mr-2" /> Start Video
           </Button>
-          <Button variant="destructive" className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full" onClick={handleEndMeeting}>
+          <Button variant="destructive" className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full">
             End
           </Button>
         </div>

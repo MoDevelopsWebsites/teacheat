@@ -1,21 +1,93 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
-import MeetingWindowMockup from '@/components/MeetingWindowMockup'; // Import the new component
+import MeetingWindowMockup from '@/components/MeetingWindowMockup';
+import FloatingMouseCursor from '@/components/FloatingMouseCursor';
+
+const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
+const nextSuggestionResponse = "Based on their interest in new cabinets, you could suggest a premium wood finish or smart storage solutions to upsell.";
+const followUpQuestionsResponse = "Here are some follow-up questions: 1. What's your budget for the new lighting? 2. Are there any specific cabinet styles you prefer? 3. What's your ideal timeline for project completion?";
 
 const LandingPage = () => {
   const { session, isLoading } = useSession();
   const navigate = useNavigate();
+
+  const [currentAiResponse, setCurrentAiResponse] = useState(initialAiResponse);
+  const [typewriterKey, setTypewriterKey] = useState(0); // Key to reset typewriter animation
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isClicking, setIsClicking] = useState(false);
+  const [buttonPositions, setButtonPositions] = useState<{
+    whatToSayNext: DOMRect | null;
+    followUpQuestions: DOMRect | null;
+  }>({ whatToSayNext: null, followUpQuestions: null });
 
   useEffect(() => {
     if (!isLoading && session) {
       navigate('/chat'); // Redirect to chat if authenticated
     }
   }, [session, isLoading, navigate]);
+
+  const handleButtonPositionsReady = useCallback((positions: { whatToSayNext: DOMRect | null; followUpQuestions: DOMRect | null }) => {
+    setButtonPositions(positions);
+  }, []);
+
+  useEffect(() => {
+    if (!buttonPositions.whatToSayNext || !buttonPositions.followUpQuestions) {
+      return; // Wait for button positions to be available
+    }
+
+    let animationTimeout: NodeJS.Timeout;
+
+    const animateSequence = async () => {
+      // Start with initial AI response
+      setCurrentAiResponse(initialAiResponse);
+      setTypewriterKey(prev => prev + 1);
+      await new Promise(resolve => setTimeout(resolve, 7000)); // Wait for initial text to type and be visible
+
+      // 1. Move to "What do I say next?" button
+      const nextButton = buttonPositions.whatToSayNext!;
+      setMousePosition({
+        x: nextButton.left + nextButton.width / 2,
+        y: nextButton.top + nextButton.height / 2,
+      });
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
+
+      // 2. Click "What do I say next?"
+      setIsClicking(true);
+      setCurrentAiResponse(nextSuggestionResponse);
+      setTypewriterKey(prev => prev + 1);
+      await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
+      setIsClicking(false);
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new text to type and be visible
+
+      // 3. Move to "Follow-up questions" button
+      const followUpButton = buttonPositions.followUpQuestions!;
+      setMousePosition({
+        x: followUpButton.left + followUpButton.width / 2,
+        y: followUpButton.top + followUpButton.height / 2,
+      });
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
+
+      // 4. Click "Follow-up questions"
+      setIsClicking(true);
+      setCurrentAiResponse(followUpQuestionsResponse);
+      setTypewriterKey(prev => prev + 1);
+      await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
+      setIsClicking(false);
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new text to type and be visible
+
+      // Loop the animation
+      animationTimeout = setTimeout(animateSequence, 2000); // Short delay before restarting
+    };
+
+    animationTimeout = setTimeout(animateSequence, 1000); // Initial delay before starting sequence
+
+    return () => clearTimeout(animationTimeout);
+  }, [buttonPositions]); // Re-run effect if button positions change
 
   if (isLoading) {
     return (
@@ -33,11 +105,9 @@ const LandingPage = () => {
       <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
       <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
 
-
       {/* Header */}
       <header className="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10">
         <div className="flex items-center space-x-2">
-          {/* Using 'T' for Teacheat as a placeholder for the Cluely logo */}
           <div className="font-bold text-xl text-landing-logo-text">Teacheat</div>
         </div>
         <nav className="flex space-x-6 text-sm font-medium text-landing-text-primary/80">
@@ -63,10 +133,17 @@ const LandingPage = () => {
 
       {/* Meeting Window Mockup */}
       <div className="mt-16 mb-24 z-10">
-        <MeetingWindowMockup />
+        <MeetingWindowMockup
+          currentAiResponse={currentAiResponse}
+          typewriterKey={typewriterKey}
+          onButtonPositionsReady={handleButtonPositionsReady}
+        />
       </div>
 
-      {/* Removed floating icons and cookie banner */}
+      {/* Floating Mouse Cursor */}
+      {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
+        <FloatingMouseCursor x={mousePosition.x} y={mousePosition.y} isClicking={isClicking} />
+      )}
     </div>
   );
 };
