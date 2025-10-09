@@ -62,9 +62,9 @@ serve(async (req) => {
   }
 
   try {
-    // Using Hugging Face Inference API with an open-source model
+    // Using Hugging Face Inference API with a different open-source model
     const hfResponse = await fetch(
-      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2", // Example open-source model
+      "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta", // Switched to Zephyr-7B-beta
       {
         method: 'POST',
         headers: {
