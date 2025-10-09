@@ -62,8 +62,8 @@ serve(async (req) => {
   }
 
   try {
-    // Changed model from gemini-pro to gemini-1.5-flash
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+    // Changed the API endpoint to use the us-central1 region for better model availability
+    const geminiResponse = await fetch(`https://us-central1-generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
