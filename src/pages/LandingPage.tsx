@@ -138,7 +138,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary"> {/* Removed overflow-hidden */}
+    <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary overflow-hidden">
       {/* Floating Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
@@ -161,10 +161,10 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
         {/* Floating Icons for Hero Section */}
-        <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
-        <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
-        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
-        <img src="/calendar-icon.svg" alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+        <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+        <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+        <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
+        <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-landing-text-primary font-display">
           <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
@@ -283,12 +283,12 @@ const LandingPage = () => {
       {/* New Section: Teacheat tells you where you went wrong */}
       <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
         {/* Floating Icons */}
-        <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
-        <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
-        <img src="/calendar-icon.svg" alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
-        <img src="/video-camera-icon.svg" alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
-        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
-        <img src="/incognito-icon.svg" alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
+        <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+        <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+        <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+        <img src={import.meta.env.BASE_URL + "video-camera-icon.svg"} alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
+        <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
+        <img src={import.meta.env.BASE_URL + "incognito-icon.svg"} alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
 
 
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
