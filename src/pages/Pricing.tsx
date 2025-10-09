@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Apple, ChevronDown, Bot } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
-import PricingFeatureTable from '@/components/Pricing/PricingFeatureTable';
+import PricingFeatureTable from '@/components/PricingFeatureTable'; // Corrected import path
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -128,7 +128,7 @@ const featureTableData = [
       { name: "Custom system prompt", starter: true, pro: true, enterprise: true },
       { name: "Pro Responses / day", starter: "Limited", pro: "Unlimited", enterprise: "Unlimited" },
       { name: "Token limit", starter: "Unlimited", pro: "Unlimited", enterprise: "Unlimited" },
-      { name: "Model", starter: "GPT-5, Claude 4", pro: "GPT-5, Claude 4", enterprise: "GPT-5, Claude 4" },
+      { name: "Model", starter: "GPT-5, Claude 4", pro: "GPT-5, Claude 4", enterprise: "Unlimited" },
       { name: "Single sign-on (IDP)", starter: false, pro: false, enterprise: true },
     ],
   },
