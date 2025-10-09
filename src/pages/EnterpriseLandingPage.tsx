@@ -29,12 +29,12 @@ const EnterpriseLandingPage: React.FC = () => {
       <Header className="absolute top-0 left-0 right-0" />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32"> {/* Changed items-center to items-start and text-center to text-left */}
+      <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32">
         <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
           Enterprise
         </p>
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-gray-900 dark:text-gray-100">
-          Imagine everyone knew as much <br className="hidden md:block" /> about your company as you.
+          Imagine everyone knew as much about your company as you. <br className="hidden md:block" />
         </h1>
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl">
           Put all your company's knowledge at every rep's fingertips with AI-powered answers and objection handling in any conversation.
