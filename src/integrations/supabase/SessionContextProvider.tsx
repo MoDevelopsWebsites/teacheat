@@ -24,27 +24,25 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
         setUser(currentSession?.user || null);
         setIsLoading(false);
 
-        if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
-          if (currentSession && location.pathname === '/login') {
-            navigate('/');
-          }
-        } else if (event === 'SIGNED_OUT') {
-          if (location.pathname !== '/login') {
-            navigate('/login');
-          }
+        // If signed in/updated and currently on the login page, redirect to root
+        if ((event === 'SIGNED_IN' || event === 'USER_UPDATED') && currentSession && location.pathname === '/login') {
+          navigate('/');
         }
+        // Removed SIGNED_OUT redirection from here, Layout will handle protected routes
       }
     );
 
+    // Initial session check
     supabase.auth.getSession().then(({ data: { session: initialSession } }) => {
       setSession(initialSession);
       setUser(initialSession?.user || null);
       setIsLoading(false);
-      if (!initialSession && location.pathname !== '/login') {
-        navigate('/login');
-      } else if (initialSession && location.pathname === '/login') {
+
+      // If authenticated and currently on the login page, redirect to root
+      if (initialSession && location.pathname === '/login') {
         navigate('/');
       }
+      // Removed unauthenticated redirection from here, Layout will handle protected routes
     });
 
     return () => subscription.unsubscribe();

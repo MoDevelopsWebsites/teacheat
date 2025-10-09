@@ -42,8 +42,15 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, label, onClick }) => (
 const Layout: React.FC = () => {
   const isMobile = useIsMobile();
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
-  const { user, isLoading } = useSession();
+  const { user, isLoading, session } = useSession();
   const navigate = useNavigate();
+
+  // Redirect unauthenticated users from protected routes to the login page
+  React.useEffect(() => {
+    if (!isLoading && !session) {
+      navigate('/login');
+    }
+  }, [isLoading, session, navigate]);
 
   const handleLogout = async () => {
     try {
@@ -58,6 +65,14 @@ const Layout: React.FC = () => {
       showError("Failed to log out. Please try again.");
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+        <p className="text-xl text-gray-600 dark:text-gray-400">Loading application...</p>
+      </div>
+    );
+  }
 
   const sidebarContent = (
     <div className="flex h-full flex-col bg-sidebar p-4 text-sidebar-foreground">
@@ -104,14 +119,6 @@ const Layout: React.FC = () => {
       </div>
     </div>
   );
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-        <p className="text-xl text-gray-600 dark:text-gray-400">Loading application...</p>
-      </div>
-    );
-  }
 
   if (isMobile) {
     return (
