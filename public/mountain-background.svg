@@ -1,0 +1,8 @@
+<svg width="1920" height="300" viewBox="0 0 1920 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="blurFilter" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+    </filter>
+  </defs>
+  <path d="M0 300 L0 200 C200 150, 400 250, 600 200 C800 150, 1000 250, 1200 200 C1400 150, 1600 250, 1920 200 L1920 300 Z" fill="white" filter="url(#blurFilter)" opacity="0.4"/>
+</svg>

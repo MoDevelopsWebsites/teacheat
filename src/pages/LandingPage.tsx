@@ -14,7 +14,7 @@ import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
-import { useTypewriter } from '@/hooks/use-typewriter'; // Corrected '=>' to 'from'
+import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
 const initialAiResponse = "So just to recap—you need new cabinets and lighting. I'll send you a quote within the hour. Let's do a kickoff call next Wednesday if that works for you?";
@@ -125,11 +125,16 @@ const LandingPage = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
-      {/* Floating Background Elements */}
-      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
-      <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
+      {/* Mountain background */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-[300px] bg-no-repeat bg-bottom bg-contain z-0"
+        style={{ backgroundImage: `url('/mountain-background.svg')` }}
+      ></div>
+      {/* Desktop waves background */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-[400px] bg-no-repeat bg-bottom bg-cover z-0"
+        style={{ backgroundImage: `url('/desktop-waves.svg')` }}
+      ></div>
 
       {/* Header */}
       <header className="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10">
@@ -192,7 +197,7 @@ const LandingPage = () => {
           </div>
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
-            <p className className="text-lg text-landing-text-primary/80 mb-8">
+            <p className="text-lg text-landing-text-primary/80 mb-8">
               Teacheat responds with context of what's happening in a conversation and what's on your screen.
             </p>
             <RealtimeAnswersCard />
@@ -272,7 +277,7 @@ const LandingPage = () => {
         <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
         <img src="/calendar-icon.svg" alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
         <img src="/video-camera-icon.svg" alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
-        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
+        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, 50%) rotate(20deg)' }} />
         <img src="/incognito-icon.svg" alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
 
 

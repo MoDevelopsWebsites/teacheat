@@ -44,8 +44,8 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* New Landing Page Colors (based on screenshot) */
-    --landing-background-start: 210 60% 90%; /* Lighter blue */
-    --landing-background-end: 0 0% 100%; /* White */
+    --landing-background-start: 210 100% 75%; /* Sky blue */
+    --landing-background-end: 210 100% 95%; /* Very light blue, almost white */
     --landing-text-primary: 222.2 84% 4.9%; /* Dark blue-black */
     --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac button */
     --landing-button-mac-foreground: 0 0% 100%;
@@ -156,5 +156,3 @@
   background-clip: text;
   color: transparent;
 }
-
-/* Removed float and pulse-shadow animations as they are not in the new design */
