@@ -209,8 +209,6 @@ const LandingPage = () => {
                 {' '} {/* Add a space between words */}
               </React.Fragment>
             ))}
-            <br />
-            Really everything.
           </p>
         </div>
 
