@@ -56,10 +56,19 @@ const Chat = () => {
 
       if (error) {
         console.error('Error invoking chat function:', error);
-        showError('Failed to get AI response. Please try again.');
+        showError(`Failed to get AI response: ${error.message}. Please check Supabase Edge Function logs.`);
         setMessages((prevMessages) => [...prevMessages, {
           id: Date.now().toString() + '-error',
-          text: 'Error: Could not get a response from the AI.',
+          text: `Error: ${error.message || 'Could not get a response from the AI.'}`,
+          sender: 'ai',
+          timestamp: new Date(),
+        }]);
+      } else if (data && data.error) { // Check for error returned by the Edge Function
+        console.error('Edge Function returned error:', data.error);
+        showError(`AI response error: ${data.error}. Please check Supabase Edge Function logs.`);
+        setMessages((prevMessages) => [...prevMessages, {
+          id: Date.now().toString() + '-error',
+          text: `Error: ${data.error || 'Could not get a response from the AI.'}`,
           sender: 'ai',
           timestamp: new Date(),
         }]);
