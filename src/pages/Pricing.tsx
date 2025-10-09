@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom'; // Added useSearchParams
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Apple, ChevronDown, Bot } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
-import PricingFeatureTable from '@/components/PricingFeatureTable'; // Corrected import path
+import PricingFeatureTable from '@/components/PricingFeatureTable';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 
 const VITE_STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID; // Get from environment variable
 
 // Data for pricing cards
 const pricingPlans = {
@@ -157,8 +158,25 @@ const Pricing = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const [searchParams] = useSearchParams(); // Hook to read URL query parameters
 
   const currentPlans = pricingPlans[billingCycle];
+
+  // Handle Stripe redirect success/cancel
+  useEffect(() => {
+    const success = searchParams.get('success');
+    const canceled = searchParams.get('canceled');
+
+    if (success) {
+      showSuccess("Subscription successful! Welcome to Pro!");
+      // You might want to clear the query params or redirect to a dashboard
+      // navigate('/dashboard');
+    }
+
+    if (canceled) {
+      showError("Subscription canceled. You can try again anytime.");
+    }
+  }, [searchParams]);
 
   const handleSubscribe = async (priceId: string | null) => {
     if (!stripe || !elements || !priceId) {
@@ -168,18 +186,28 @@ const Pricing = () => {
 
     setIsSubmitting(true);
     try {
-      // In a real application, you would create a checkout session on your backend
-      // and then redirect the user to Stripe Checkout.
-      // For this example, we'll simulate a successful subscription.
-      showSuccess(`Attempting to subscribe to plan with price ID: ${priceId}`);
-      // Simulate API call to create checkout session
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      showSuccess("Subscription initiated! (Simulated)");
-      // In a real app, you'd get a session ID and redirect:
-      // const { error } = await stripe.redirectToCheckout({ sessionId: 'YOUR_SESSION_ID' });
-      // if (error) {
-      //   showError(error.message);
-      // }
+      const edgeFunctionUrl = `https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/create-checkout-session`;
+
+      const response = await fetch(edgeFunctionUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to create checkout session');
+      }
+
+      const { sessionId } = await response.json();
+
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        showError(error.message || "Failed to redirect to Stripe Checkout.");
+      }
     } catch (error: any) {
       console.error("Subscription error:", error);
       showError(`Subscription failed: ${error.message || "An unexpected error occurred."}`);
