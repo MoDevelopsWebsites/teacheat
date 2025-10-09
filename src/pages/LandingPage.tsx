@@ -29,7 +29,8 @@ const LandingPage = () => {
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
 
-  const { currentText: animatedMeetingsText, isTypingComplete: meetingsTextComplete } = useTypewriter({
+  // Destructure currentText directly without aliasing
+  const { currentText, isTypingComplete: meetingsTextComplete } = useTypewriter({
     words: ["Meetings."],
     speed: 150,
     delay: 1000,
@@ -195,7 +196,7 @@ const LandingPage = () => {
               "inline-block",
               meetingsTextComplete && "text-fill-image" // Apply image fill when typing is complete
             )}>
-              {animatedMeetingsText.currentText}
+              {currentText}
             </span>
             .
             <br />
