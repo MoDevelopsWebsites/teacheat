@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Apple, ChevronDown, Bot } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
-import PricingFeatureTable from '@/components/Pricing/PricingFeatureTable';
+import PricingFeatureTable from '@/components/PricingFeatureTable'; // Corrected import path
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
