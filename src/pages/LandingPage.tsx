@@ -179,14 +179,14 @@ const LandingPage = () => {
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
             <p className="text-lg text-landing-text-primary/80 mb-8">
-              Cluely listens to your meetings in the background and takes real-time notes without joining.
+              Teacheat listens to your meetings in the background and takes real-time notes without joining.
             </p>
             <MeetingSettingsCard />
           </div>
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
             <p className="text-lg text-landing-text-primary/80 mb-8">
-              Cluely responds with context of what's happening in a conversation and what's on your screen.
+              Teacheat responds with context of what's happening in a conversation and what's on your screen.
             </p>
             <RealtimeAnswersCard />
           </div>
@@ -230,21 +230,21 @@ const LandingPage = () => {
               <MeetingParticipantsCard />
               <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3>
               <p className="text-undetectable-text-secondary max-w-xs mx-auto">
-                Cluely never joins your meetings, so there are no bots and no extra people on the guest list.
+                Teacheat never joins your meetings, so there are no bots and no extra people on the guest list.
               </p>
             </div>
             <div>
               <InvisibleToScreenShareCard />
               <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3>
               <p className="text-undetectable-text-secondary max-w-xs mx-auto">
-                Cluely never shows up in shared screens, recordings, or external meeting tools.
+                Teacheat never shows up in shared screens, recordings, or external meeting tools.
               </p>
             </div>
             <div>
               <NeverInYourWayCard />
               <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3>
               <p className="text-undetectable-text-secondary max-w-xs mx-auto">
-                Cluely appears as a translucent and hideable window over all your other applications.
+                Teacheat appears as a translucent and hideable window over all your other applications.
               </p>
             </div>
           </div>

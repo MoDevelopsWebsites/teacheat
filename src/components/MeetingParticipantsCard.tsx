@@ -57,7 +57,7 @@ const MeetingParticipantsCard: React.FC = () => {
         <Participant name="Holly Gleason" email="holly_gleaso1972@cluely.com" role="Speaker" avatarUrl="/placeholder.svg" />
         <Participant name="Tomas Hansen" email="tomas_hansen@cluely.com" role="Speaker" avatarUrl="/placeholder.svg" />
         <div className="flex items-center justify-center py-2 text-undetectable-text-muted text-sm">
-          <Bot className="h-4 w-4 mr-2" /> Cluely
+          <Bot className="h-4 w-4 mr-2" /> Teacheat
         </div>
       </CardContent>
     </Card>
