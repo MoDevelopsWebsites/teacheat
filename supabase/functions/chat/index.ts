@@ -15,9 +15,6 @@ serve(async (req) => {
   const requestHeaders = Object.fromEntries(req.headers.entries());
   console.log('Request headers:', requestHeaders);
 
-  // We don't need to create a Supabase client here as authentication is handled by the client-side fetch
-  // and the API key is for Gemini, not Supabase.
-
   let prompt;
   let rawBodyContent = '';
   try {
@@ -65,7 +62,8 @@ serve(async (req) => {
   }
 
   try {
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`, {
+    // Changed model from gemini-pro to gemini-1.5-flash
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
