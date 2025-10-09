@@ -4,8 +4,9 @@ import React, { useRef, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MessageSquareText, Keyboard, Mic, Video, X } from 'lucide-react';
+import { Search, MessageSquareText, Keyboard, MicOff, VideoOff, PhoneOff, X } from 'lucide-react'; // Added MicOff, VideoOff, PhoneOff
 import { useTypewriter } from '@/hooks/use-typewriter';
+import { cn } from '@/lib/utils'; // Import cn for conditional class merging
 
 interface MeetingWindowMockupProps {
   currentAiResponse: string;
@@ -59,14 +60,11 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
-      {/* Simulated Video Background */}
-      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-400 to-purple-600 opacity-60">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          src="/Smart Young Woman Video Conference Interview.mp4"
+      {/* Simulated macOS Wallpaper Background */}
+      <div className="absolute inset-0">
+        <img
+          src="/sequioia.webp" // Use the new image
+          alt="macOS Sequoia Wallpaper"
           className="w-full h-full object-cover"
         />
       </div>
@@ -125,16 +123,16 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
           </Card>
         </div>
 
-        {/* Bottom control bar (static) */}
-        <div className="flex justify-center items-center space-x-6 bg-black/70 backdrop-blur-lg rounded-full py-2 px-6 self-center mt-auto">
-          <Button variant="ghost" className="text-white/80 hover:text-white text-sm">
-            <Mic className="h-4 w-4 mr-2" /> Unmute
+        {/* Bottom control bar (macOS style) */}
+        <div className="flex justify-center items-center space-x-2 bg-gray-800/70 backdrop-blur-md rounded-xl py-2 px-4 self-center mt-auto border border-gray-700/50">
+          <Button variant="ghost" size="icon" className="text-white/80 hover:bg-white/20 hover:text-white rounded-md" disabled>
+            <MicOff className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" className="text-white/80 hover:text-white text-sm">
-            <Video className="h-4 w-4 mr-2" /> Start Video
+          <Button variant="ghost" size="icon" className="text-white/80 hover:bg-white/20 hover:text-white rounded-md" disabled>
+            <VideoOff className="h-5 w-5" />
           </Button>
-          <Button variant="destructive" className="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-full">
-            End
+          <Button variant="destructive" size="icon" className="bg-red-500 hover:bg-red-600 text-white rounded-md" disabled>
+            <PhoneOff className="h-5 w-5" />
           </Button>
         </div>
       </div>
