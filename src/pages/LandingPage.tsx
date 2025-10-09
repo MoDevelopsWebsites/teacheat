@@ -42,6 +42,7 @@ const LandingPage = () => {
     whatToSayNext: DOMRect | null;
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
+  const [activeSuggestionType, setActiveSuggestionType] = useState<'whatToSayNext' | 'followUpQuestions' | 'none'>('none'); // New state for active suggestion
 
   // State for cycling words color effect
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -78,6 +79,7 @@ const LandingPage = () => {
       // Start with initial AI response
       setCurrentAiResponse(initialAiResponse);
       setTypewriterKey(prev => prev + 1);
+      setActiveSuggestionType('none'); // No specific suggestion active initially
       await new Promise(resolve => setTimeout(resolve, calculateTypingDuration(initialAiResponse, typewriterSpeed, typewriterDelay)));
 
       // 1. Move to "What should I say next?" button
@@ -92,6 +94,7 @@ const LandingPage = () => {
       setIsClicking(true);
       setCurrentAiResponse(nextSuggestionResponse);
       setTypewriterKey(prev => prev + 1);
+      setActiveSuggestionType('whatToSayNext'); // Set active suggestion type
       await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
       setIsClicking(false);
       await new Promise(resolve => setTimeout(resolve, calculateTypingDuration(nextSuggestionResponse, typewriterSpeed, typewriterDelay)));
@@ -108,6 +111,7 @@ const LandingPage = () => {
       setIsClicking(true);
       setCurrentAiResponse(followUpQuestionsResponse);
       setTypewriterKey(prev => prev + 1);
+      setActiveSuggestionType('followUpQuestions'); // Set active suggestion type
       await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
       setIsClicking(false);
       await new Promise(resolve => setTimeout(resolve, calculateTypingDuration(followUpQuestionsResponse, typewriterSpeed, typewriterDelay)));
@@ -187,6 +191,7 @@ const LandingPage = () => {
           currentAiResponse={currentAiResponse}
           typewriterKey={typewriterKey}
           onButtonPositionsReady={handleButtonPositionsReady}
+          activeSuggestionType={activeSuggestionType} // Pass the new prop
         />
       </div>
 

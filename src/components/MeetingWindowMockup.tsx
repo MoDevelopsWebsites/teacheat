@@ -11,12 +11,14 @@ interface MeetingWindowMockupProps {
   currentAiResponse: string;
   typewriterKey: number;
   onButtonPositionsReady: (positions: { whatToSayNext: DOMRect | null; followUpQuestions: DOMRect | null }) => void;
+  activeSuggestionType: 'whatToSayNext' | 'followUpQuestions' | 'none'; // New prop
 }
 
 const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
   currentAiResponse,
   typewriterKey,
   onButtonPositionsReady,
+  activeSuggestionType, // Destructure new prop
 }) => {
   const whatToSayNextRef = useRef<HTMLButtonElement>(null);
   const followUpQuestionsRef = useRef<HTMLButtonElement>(null);
@@ -26,7 +28,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
     const getPositions = () => {
       onButtonPositionsReady({
         whatToSayNext: whatToSayNextRef.current?.getBoundingClientRect() || null,
-        followUpQuestions: followUpQuestionsRef.current?.getBoundingClientRect() || null, // Corrected typo here
+        followUpQuestions: followUpQuestionsRef.current?.getBoundingClientRect() || null,
       });
     };
 
@@ -43,6 +45,17 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
     loop: false,
     key: typewriterKey,
   });
+
+  const getActiveSuggestionText = () => {
+    switch (activeSuggestionType) {
+      case 'whatToSayNext':
+        return "What to say next";
+      case 'followUpQuestions':
+        return "Follow-up questions";
+      default:
+        return "AI Suggestions";
+    }
+  };
 
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
@@ -75,7 +88,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
           </div>
         </div>
 
-        {/* Main chat/recordings area */}
+        {/* Main chat/records area */}
         <div className="flex-grow flex items-end justify-center p-4">
           <Card className="w-full max-w-xl bg-black/50 backdrop-blur-lg text-white border border-blue-500/50 rounded-xl p-4 shadow-lg">
             <CardHeader className="p-0 pb-2 border-b border-gray-600/50 mb-4 flex-row items-center justify-between">
@@ -83,7 +96,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
                 <Search className="h-4 w-4 mr-2 text-gray-400" /> Searched records
               </div>
               <Button variant="secondary" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-auto">
-                What do I say next?
+                {getActiveSuggestionText()}
               </Button>
             </CardHeader>
             <CardContent className="p-0 mb-4">
