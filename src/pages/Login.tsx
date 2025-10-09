@@ -1,7 +1,7 @@
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { supabase } from '@/integrations/supabase/client';
-import { MadeWithDyad } from '@/components/made-with-dyad';
+
 
 const Login = () => {
   return (
@@ -27,7 +27,7 @@ const Login = () => {
           theme="light" // You can change this to "dark" or dynamically based on theme
         />
       </div>
-      <MadeWithDyad />
+      
     </div>
   );
 };
