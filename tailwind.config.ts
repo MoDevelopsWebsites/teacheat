@@ -83,6 +83,10 @@ export default {
               DEFAULT: "hsl(var(--landing-button-cta))",
               foreground: "hsl(var(--landing-button-cta-foreground))",
             },
+            gradient: {
+              start: "hsl(var(--landing-button-gradient-start))",
+              end: "hsl(var(--landing-button-gradient-end))",
+            },
           },
           card: {
             background: "hsl(var(--landing-card-background))",

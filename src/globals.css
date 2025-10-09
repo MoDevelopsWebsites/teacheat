@@ -54,6 +54,8 @@
     --landing-card-background: 0 0% 100%; /* Not used in new design */
     --landing-card-border: 214.3 31.8% 91.4%; /* Not used in new design */
     --landing-logo-text: 222.2 84% 4.9%; /* Dark blue for Teacheat logo text */
+    --landing-button-gradient-start: 217 91% 65%; /* Lighter blue for gradient start */
+    --landing-button-gradient-end: 217 91% 55%;   /* Darker blue for gradient end */
   }
 
   .dark {
@@ -104,6 +106,8 @@
     --landing-card-background: 222.2 84% 4.9%; /* Not used in new design */
     --landing-card-border: 217.2 32.6% 17.5%; /* Not used in new design */
     --landing-logo-text: 210 40% 98%; /* Light text for Teacheat logo */
+    --landing-button-gradient-start: 217 91% 65%; /* Lighter blue for gradient start */
+    --landing-button-gradient-end: 217 91% 55%;   /* Darker blue for gradient end */
   }
 }
 

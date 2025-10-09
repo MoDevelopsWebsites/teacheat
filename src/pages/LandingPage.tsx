@@ -131,12 +131,11 @@ const LandingPage = () => {
           Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
         </p>
         <div className="flex space-x-4">
-          <Button className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+          <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
             <Apple className="h-5 w-5 mr-2" /> Get for Mac
           </Button>
           <Button
-            variant="outline"
-            className="bg-white text-landing-text-primary border-gray-300 hover:bg-gray-100 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
+            className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
             onClick={handleGetStartedClick}
           >
             Get Started
