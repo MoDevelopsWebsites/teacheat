@@ -16,6 +16,8 @@ const initialAiResponse = "So just to recap—you need new cabinets and lighting
 const nextSuggestionResponse = "Based on their interest in new cabinets, you could suggest a premium wood finish or smart storage solutions to upsell.";
 const followUpQuestionsResponse = "Here are some follow-up questions: 1. What's your budget for the new lighting? 2. Are there any specific cabinet styles you prefer? 3. What's your ideal timeline for project completion?";
 
+const cyclingWords = ["Interviews.", "Sales calls.", "Homework.", "Meetings.", "Really everything."];
+
 const LandingPage = () => {
   const { session, isLoading } = useSession();
   const navigate = useNavigate();
@@ -29,14 +31,16 @@ const LandingPage = () => {
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
 
-  // Typewriter for the cycling words in the "It's time to cheat" section
-  const { currentText } = useTypewriter({
-    words: ["Interviews.", "Sales calls.", "Homework.", "Meetings.", "Really everything."],
-    speed: 150,
-    delay: 1000,
-    loop: true, // Loop continuously through the words
-    key: 1, // Unique key for this typewriter instance
-  });
+  // State for cycling words color effect
+  const [activeWordIndex, setActiveWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveWordIndex((prevIndex) => (prevIndex + 1) % cyclingWords.length);
+    }, 2000); // Change word every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (!isLoading && session) {
@@ -189,12 +193,22 @@ const LandingPage = () => {
           <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
             It's time to cheat
           </h2>
-          <p className="text-5xl md:text-7xl font-extrabold text-gray-300 dark:text-gray-700 leading-tight">
-            Interviews. Sales calls. Homework. {' '}
-            <span className="inline-block bg-gradient-to-r from-landing-button-gradient-start to-landing-button-gradient-end bg-clip-text text-transparent">
-              {currentText}
-            </span>
-            .
+          <p className="text-5xl md:text-7xl font-extrabold leading-tight">
+            {cyclingWords.map((word, index) => (
+              <React.Fragment key={index}>
+                <span
+                  className={cn(
+                    "inline-block transition-colors duration-500",
+                    index === activeWordIndex
+                      ? "bg-gradient-to-r from-landing-button-gradient-start to-landing-button-gradient-end bg-clip-text text-transparent"
+                      : "text-gray-300 dark:text-gray-700"
+                  )}
+                >
+                  {word}
+                </span>
+                {' '} {/* Add a space between words */}
+              </React.Fragment>
+            ))}
             <br />
             Really everything.
           </p>
