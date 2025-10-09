@@ -81,7 +81,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
             </CardHeader>
             <CardContent className="p-0 mb-4">
               <p className="text-sm text-gray-100 leading-relaxed min-h-[40px]">
-                {animatedAiResponse}
+                {animatedAiResponse.currentText}
               </p>
             </CardContent>
             <CardFooter className="p-0 flex flex-col space-y-2">
