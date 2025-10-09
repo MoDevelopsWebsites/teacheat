@@ -107,6 +107,21 @@ export default {
             bg: "hsl(var(--landing-logo-bg))",
             fg: "hsl(var(--landing-logo-fg))",
           },
+          cta: {
+            background: {
+              start: "hsl(var(--landing-cta-background-start))",
+              end: "hsl(var(--landing-cta-background-end))",
+            },
+            text: {
+              primary: "hsl(var(--landing-cta-text-primary))",
+              secondary: "hsl(var(--landing-cta-text-secondary))",
+            },
+            floating: {
+              DEFAULT: "hsl(var(--landing-cta-floating-bg))",
+              border: "hsl(var(--landing-cta-floating-border))",
+              text: "hsl(var(--landing-cta-floating-text))",
+            },
+          },
         },
         undetectable: {
           background: {

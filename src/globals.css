@@ -69,6 +69,15 @@
     --undetectable-text-primary: 222.2 84% 4.9%;
     --undetectable-text-secondary: 215.4 16.3% 46.9%;
     --undetectable-text-muted: 215.4 16.3% 56.9%;
+
+    /* Landing CTA Section Colors */
+    --landing-cta-background-start: 210 60% 98%; /* Light blue-grey */
+    --landing-cta-background-end: 0 0% 100%; /* White */
+    --landing-cta-text-primary: 222.2 84% 4.9%; /* Dark blue-black */
+    --landing-cta-text-secondary: 215.4 16.3% 46.9%; /* Grey */
+    --landing-cta-floating-bg: 0 0% 100%; /* White */
+    --landing-cta-floating-border: 214.3 31.8% 91.4%; /* Light grey */
+    --landing-cta-floating-text: 222.2 84% 4.9%; /* Dark blue-black */
   }
 
   .dark {
@@ -134,6 +143,15 @@
     --undetectable-text-primary: 210 40% 98%;
     --undetectable-text-secondary: 215 20.2% 65.1%;
     --undetectable-text-muted: 215 20.2% 75.1%;
+
+    /* Landing CTA Section Dark Mode Colors */
+    --landing-cta-background-start: 222.2 84% 4.9%; /* Dark background */
+    --landing-cta-background-end: 222.2 84% 4.9%; /* Dark background */
+    --landing-cta-text-primary: 210 40% 98%; /* Light text */
+    --landing-cta-text-secondary: 215 20.2% 65.1%; /* Light grey */
+    --landing-cta-floating-bg: 222.2 84% 4.9%; /* Dark background */
+    --landing-cta-floating-border: 217.2 32.6% 17.5%; /* Dark grey */
+    --landing-cta-floating-text: 210 40% 98%; /* Light text */
   }
 }
 

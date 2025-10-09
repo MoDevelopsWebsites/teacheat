@@ -14,6 +14,8 @@ import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
+import FAQSection from '@/components/FAQSection'; // Import new FAQSection
+import CTABottomSection from '@/components/CTABottomSection'; // Import new CTABottomSection
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -291,12 +293,11 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Bottom Get for Mac Button */}
-      <div className="flex justify-center mt-16 pb-24">
-        <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
-          <Apple className="h-5 w-5 mr-2" /> Get for Mac
-        </Button>
-      </div>
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* Bottom CTA Section */}
+      <CTABottomSection />
 
       {/* Floating Mouse Cursor */}
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
