@@ -53,47 +53,53 @@ serve(async (req) => {
     });
   }
 
-  const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY');
-  if (!anthropicApiKey) {
-    return new Response(JSON.stringify({ error: 'ANTHROPIC_API_KEY not set in Supabase secrets.' }), {
+  const hfApiKey = Deno.env.get('HF_API_KEY');
+  if (!hfApiKey) {
+    return new Response(JSON.stringify({ error: 'HF_API_KEY not set in Supabase secrets.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 
   try {
-    const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': anthropicApiKey,
-        'anthropic-version': '2023-06-01', // Required Anthropic API version
-      },
-      body: JSON.stringify({
-        model: 'claude-3-haiku-20240307', // Using a widely available Claude model
-        max_tokens: 1024,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
+    // Using Hugging Face Inference API with an open-source model
+    const hfResponse = await fetch(
+      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2", // Example open-source model
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${hfApiKey}`,
+        },
+        body: JSON.stringify({
+          inputs: prompt,
+          parameters: {
+            max_new_tokens: 1024,
+            return_full_text: false, // Only return the generated text
+          },
+        }),
+      }
+    );
 
-    if (!anthropicResponse.ok) {
-      const errorData = await anthropicResponse.text();
-      console.error('Anthropic API error:', errorData);
-      return new Response(JSON.stringify({ error: 'Failed to get response from Anthropic', details: errorData }), {
-        status: anthropicResponse.status,
+    if (!hfResponse.ok) {
+      const errorData = await hfResponse.text();
+      console.error('Hugging Face API error:', errorData);
+      return new Response(JSON.stringify({ error: 'Failed to get response from Hugging Face', details: errorData }), {
+        status: hfResponse.status,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const data = await anthropicResponse.json();
-    const aiMessage = data.content[0]?.text || 'No response from AI.';
+    const data = await hfResponse.json();
+    // Hugging Face Inference API returns an array of objects, usually with 'generated_text'
+    const aiMessage = data[0]?.generated_text || 'No response from AI.';
 
     return new Response(JSON.stringify({ response: aiMessage }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     });
   } catch (error) {
-    console.error('Edge Function error during Anthropic call:', error);
+    console.error('Edge Function error during Hugging Face call:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
