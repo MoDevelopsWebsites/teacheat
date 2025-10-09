@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Mic, Volume2, Waves, Wifi } from 'lucide-react';
+import { CheckCircle2, Mic, Volume2, Waves, Wifi, Settings } from 'lucide-react'; // Added Settings here
 import { cn } from '@/lib/utils';
 
 interface SettingItemProps {
