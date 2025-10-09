@@ -12,9 +12,9 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  // Log request details for debugging
   console.log('Incoming request:', req.method, req.url);
-  console.log('Request headers:', Object.fromEntries(req.headers.entries()));
+  const requestHeaders = Object.fromEntries(req.headers.entries());
+  console.log('Request headers:', requestHeaders);
 
   const supabaseClient = createClient(
     Deno.env.get('SUPABASE_URL') ?? '',
@@ -26,7 +26,6 @@ serve(async (req) => {
     }
   );
 
-  // Check if the user is authenticated
   const { data: { user } } = await supabaseClient.auth.getUser();
   if (!user) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
@@ -36,16 +35,35 @@ serve(async (req) => {
   }
 
   let prompt;
+  let requestBodyText = '';
   try {
+    // Check if Content-Type is application/json
+    const contentType = req.headers.get('Content-Type');
+    if (!contentType || !contentType.includes('application/json')) {
+      console.error('Invalid Content-Type header:', contentType);
+      return new Response(JSON.stringify({ error: `Invalid Content-Type header: ${contentType}. Expected application/json.` }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Attempt to parse the request body as JSON
     const requestBody = await req.json();
     prompt = requestBody.prompt;
-    console.log('Parsed request body:', requestBody); // Log the parsed body
+    console.log('Parsed request body:', requestBody);
   } catch (jsonError) {
     console.error('JSON parsing error in Edge Function:', jsonError);
-    // If JSON parsing fails, it's likely an empty or malformed body
-    return new Response(JSON.stringify({ error: `Failed to parse request body as JSON: ${jsonError.message}. Check if body is empty or malformed.` }), {
-      status: 400, // Bad Request
+    // If JSON parsing fails, try to read the raw body as text for debugging
+    try {
+      requestBodyText = await req.text();
+      console.error('Raw request body on JSON parse failure:', requestBodyText);
+    } catch (textError) {
+      console.error('Failed to read raw request body as text:', textError);
+    }
+    return new Response(JSON.stringify({ 
+      error: `Failed to parse request body as JSON: ${jsonError.message}. Raw body: "${requestBodyText}".` 
+    }), {
+      status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
@@ -73,7 +91,7 @@ serve(async (req) => {
         'Authorization': `Bearer ${openaiApiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo', // You can change the model as needed
+        model: 'gpt-3.5-turbo',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 150,
       }),
