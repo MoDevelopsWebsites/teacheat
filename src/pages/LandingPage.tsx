@@ -14,8 +14,8 @@ import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
-import FAQSection from '@/components/FAQSection'; // Import new FAQSection
-import CTABottomSection from '@/components/CTABottomSection'; // Import new CTABottomSection
+import FAQSection from '@/components/FAQSection';
+import CTABottomSection from '@/components/CTABottomSection';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -35,14 +35,14 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const [currentAiResponse, setCurrentAiResponse] = useState(initialAiResponse);
-  const [typewriterKey, setTypewriterKey] = useState(0); // Key to reset typewriter animation
+  const [typewriterKey, setTypewriterKey] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isClicking, setIsClicking] = useState(false);
   const [buttonPositions, setButtonPositions] = useState<{
     whatToSayNext: DOMRect | null;
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
-  const [activeSuggestionType, setActiveSuggestionType] = useState<'whatToSayNext' | 'followUpQuestions' | 'none'>('none'); // New state for active suggestion
+  const [activeSuggestionType, setActiveSuggestionType] = useState<'whatToSayNext' | 'followUpQuestions' | 'none'>('none');
 
   // State for cycling words color effect
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -138,7 +138,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary overflow-hidden">
+    <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary"> {/* Removed overflow-hidden */}
       {/* Floating Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
@@ -191,7 +191,7 @@ const LandingPage = () => {
           currentAiResponse={currentAiResponse}
           typewriterKey={typewriterKey}
           onButtonPositionsReady={handleButtonPositionsReady}
-          activeSuggestionType={activeSuggestionType} // Pass the new prop
+          activeSuggestionType={activeSuggestionType}
         />
       </div>
 
@@ -232,7 +232,7 @@ const LandingPage = () => {
                 >
                   {word}
                 </span>
-                {' '} {/* Add a space between words */}
+                {' '}
               </React.Fragment>
             ))}
           </p>
@@ -281,7 +281,7 @@ const LandingPage = () => {
       </section>
 
       {/* New Section: Teacheat tells you where you went wrong */}
-      <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary overflow-hidden">
+      <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
         {/* Floating Icons */}
         <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
         <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
