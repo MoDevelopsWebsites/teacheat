@@ -48,7 +48,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
-      priceId: "YOUR_MONTHLY_PRO_PRICE_ID", // <--- REPLACE THIS WITH YOUR ACTUAL STRIPE MONTHLY PRO PRICE ID
+      priceId: "price_1SGHowJGz5CboiG8FNzIDFz1", // Updated with provided monthly Pro Price ID
     },
     {
       title: "Enterprise",
@@ -99,7 +99,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
-      priceId: "YOUR_ANNUAL_PRO_PRICE_ID", // <--- REPLACE THIS WITH YOUR ACTUAL STRIPE ANNUAL PRO PRICE ID
+      priceId: "price_1SGHqOJGz5CboiG8uBtvQ6he", // Updated with provided annual Pro Price ID
     },
     {
       title: "Enterprise",
