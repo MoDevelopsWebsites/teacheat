@@ -46,9 +46,13 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
-      {/* Simulated Video Background */}
+      {/* Simulated Video Background with realistic image */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 opacity-70 flex items-center justify-center">
-        <img src="/placeholder.svg" alt="Meeting participants" className="w-full h-full object-cover opacity-50" />
+        <img 
+          src="/meeting-background.png" 
+          alt="Meeting participants" 
+          className="w-full h-full object-cover opacity-60" // Reduced opacity to make text more readable
+        />
       </div>
 
       {/* Overlay Content */}
@@ -70,7 +74,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
         {/* Main chat/recordings area */}
         <div className="flex-grow flex items-end justify-center p-4">
-          <Card className="w-full max-w-xl bg-black/70 backdrop-blur-lg text-white border-none rounded-xl p-4 shadow-lg">
+          <Card className="w-full max-w-xl bg-black/80 backdrop-blur-lg text-white border border-blue-500/50 rounded-xl p-4 shadow-lg"> {/* Enhanced card background and border */}
             <CardHeader className="p-0 pb-2 border-b border-gray-600/50 mb-4 flex-row items-center justify-between">
               <div className="flex items-center text-sm font-semibold text-gray-200">
                 <Search className="h-4 w-4 mr-2 text-gray-400" /> Searched records
@@ -80,7 +84,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
               </Button>
             </CardHeader>
             <CardContent className="p-0 mb-4">
-              <p className="text-sm text-gray-100 leading-relaxed min-h-[40px]">
+              <p className="text-lg font-bold text-white leading-relaxed min-h-[40px] text-shadow-md"> {/* Enhanced text styling */}
                 {animatedAiResponse.currentText}
               </p>
             </CardContent>
