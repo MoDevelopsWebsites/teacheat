@@ -62,7 +62,7 @@ const Layout: React.FC = () => {
   const sidebarContent = (
     <div className="flex h-full flex-col bg-sidebar p-4 text-sidebar-foreground">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-sidebar-primary-foreground">Teacheat AI</h2>
+        <h2 className="text-xl font-bold text-sidebar-foreground">Teacheat AI</h2>
         {!isMobile && (
           <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
             <PlusCircle className="h-5 w-5" />
@@ -90,7 +90,7 @@ const Layout: React.FC = () => {
                 </AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-sidebar-foreground">{user.email}</span> {/* Changed text color here */}
+                <span className="text-sm font-medium text-sidebar-foreground">{user.email}</span>
                 <span className="text-xs text-sidebar-foreground/70">User</span>
               </div>
             </div>
