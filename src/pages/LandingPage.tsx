@@ -20,8 +20,8 @@ import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
-const nextSuggestionResponse = "Based on their explanation, you could ask about edge cases like immediate invocation or leading edge debouncing.";
-const followUpQuestionsResponse = "Here are some follow-up questions: 1. How would you test this `debounce` function? 2. What are the time and space complexities? 3. Can you implement a `throttle` function as well?";
+const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
+const followUpQuestionsResponse = "I'd like to ask some follow-up questions: 1. How would you test this `debounce` function to ensure its correctness? 2. What are the time and space complexities of your implementation? 3. Could you also implement a `throttle` function and explain the differences?";
 
 const cyclingWords = ["Interviews.", "Sales calls.", "Homework.", "Meetings.", "Really everything."];
 
