@@ -46,7 +46,8 @@ serve(async (req) => {
       allow_promotion_codes: true,
     });
 
-    return new Response(JSON.stringify({ sessionId: session.id }), {
+    // Return the session URL instead of just the ID
+    return new Response(JSON.stringify({ sessionUrl: session.url }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     });

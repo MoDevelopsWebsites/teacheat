@@ -156,13 +156,12 @@ const featureTableData = [
 const Pricing = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const stripe = useStripe();
-  const elements = useElements();
-  const [searchParams] = useSearchParams(); // Hook to read URL query parameters
+  const stripe = useStripe(); // Keep useStripe for context, though not directly used for redirect
+  const elements = useElements(); // Keep useElements for context
+  const [searchParams] = useSearchParams();
 
   const currentPlans = pricingPlans[billingCycle];
 
-  // Handle Stripe redirect success/cancel
   useEffect(() => {
     const success = searchParams.get('success');
     const canceled = searchParams.get('canceled');
@@ -179,8 +178,8 @@ const Pricing = () => {
   }, [searchParams]);
 
   const handleSubscribe = async (priceId: string | null) => {
-    if (!stripe || !elements || !priceId) {
-      showError("Stripe is not initialized or price ID is missing.");
+    if (!priceId) { // No need to check stripe/elements for direct redirect
+      showError("Price ID is missing.");
       return;
     }
 
@@ -201,12 +200,12 @@ const Pricing = () => {
         throw new Error(errorData.error || 'Failed to create checkout session');
       }
 
-      const { sessionId } = await response.json();
+      const { sessionUrl } = await response.json(); // Expecting sessionUrl now
 
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-
-      if (error) {
-        showError(error.message || "Failed to redirect to Stripe Checkout.");
+      if (sessionUrl) {
+        window.location.assign(sessionUrl); // Redirect directly to the Stripe Checkout URL
+      } else {
+        throw new Error('Stripe Checkout Session URL not received.');
       }
     } catch (error: any) {
       console.error("Subscription error:", error);
