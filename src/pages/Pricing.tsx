@@ -48,7 +48,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
-      priceId: "price_1Pj234567890abcdef", // Placeholder: Replace with your actual Stripe Price ID for monthly Pro
+      priceId: "YOUR_MONTHLY_PRO_PRICE_ID", // <--- REPLACE THIS WITH YOUR ACTUAL STRIPE MONTHLY PRO PRICE ID
     },
     {
       title: "Enterprise",
@@ -99,7 +99,7 @@ const pricingPlans = {
       buttonText: "Subscribe",
       buttonVariant: "default",
       isPopular: true,
-      priceId: "price_1Pj234567890ghijkl", // Placeholder: Replace with your actual Stripe Price ID for annual Pro
+      priceId: "YOUR_ANNUAL_PRO_PRICE_ID", // <--- REPLACE THIS WITH YOUR ACTUAL STRIPE ANNUAL PRO PRICE ID
     },
     {
       title: "Enterprise",
