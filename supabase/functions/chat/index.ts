@@ -62,7 +62,6 @@ serve(async (req) => {
   }
 
   try {
-    // Changed the API endpoint to use the us-central1 region for better model availability
     const geminiResponse = await fetch(`https://us-central1-generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
       headers: {
@@ -74,7 +73,7 @@ serve(async (req) => {
     });
 
     if (!geminiResponse.ok) {
-      const errorData = await geminiResponse.json();
+      const errorData = await geminiResponse.text(); // Read as text to catch non-JSON errors
       console.error('Gemini API error:', errorData);
       return new Response(JSON.stringify({ error: 'Failed to get response from Gemini', details: errorData }), {
         status: geminiResponse.status,
@@ -91,6 +90,15 @@ serve(async (req) => {
     });
   } catch (error) {
     console.error('Edge Function error during Gemini call:', error);
+    // If the error is a SyntaxError from .json(), log the raw response if available
+    if (error instanceof SyntaxError && error.message.includes('JSON')) {
+      try {
+        const rawResponse = await req.text(); // This might be the original request body, not the Gemini response
+        console.error('Raw Gemini response on JSON parse failure (might be request body):', rawResponse);
+      } catch (textError) {
+        console.error('Failed to read raw response text after JSON parse failure:', textError);
+      }
+    }
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
