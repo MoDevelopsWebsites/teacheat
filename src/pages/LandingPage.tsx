@@ -89,6 +89,10 @@ const LandingPage = () => {
     return () => clearTimeout(animationTimeout);
   }, [buttonPositions]); // Re-run effect if button positions change
 
+  const handleGetStartedClick = () => {
+    navigate('/login');
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-landing-background-start to-landing-background-end">
@@ -126,9 +130,18 @@ const LandingPage = () => {
         <p className="text-lg md:text-xl text-landing-text-primary/80 mb-10 max-w-2xl">
           Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
         </p>
-        <Button className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
-          <Apple className="h-5 w-5 mr-2" /> Get for Mac
-        </Button>
+        <div className="flex space-x-4">
+          <Button className="bg-landing-button-mac text-landing-button-mac-foreground hover:bg-landing-button-mac/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+            <Apple className="h-5 w-5 mr-2" /> Get for Mac
+          </Button>
+          <Button
+            variant="outline"
+            className="bg-white text-landing-text-primary border-gray-300 hover:bg-gray-100 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
+            onClick={handleGetStartedClick}
+          >
+            Get Started
+          </Button>
+        </div>
       </section>
 
       {/* Meeting Window Mockup */}

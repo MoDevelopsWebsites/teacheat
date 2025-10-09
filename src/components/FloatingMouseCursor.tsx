@@ -23,7 +23,7 @@ const FloatingMouseCursor: React.FC<FloatingMouseCursorProps> = ({ x, y, isClick
         transform: 'translate(-50%, -50%)', // Center the cursor on the coordinates
       }}
     >
-      <MousePointerClick className="h-8 w-8 text-blue-500 drop-shadow-lg" />
+      <MousePointerClick className="h-8 w-8 text-black drop-shadow-lg" />
     </div>
   );
 };
