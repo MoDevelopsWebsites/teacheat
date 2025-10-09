@@ -1,0 +1,8 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" y="8" width="40" height="36" rx="8" fill="#F44336"/>
+<rect x="4" y="8" width="40" height="10" rx="4" fill="#D32F2F"/>
+<path d="M12 4V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+<path d="M36 4V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+<text x="24" y="28" fontFamily="Arial" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">JUNE</text>
+<text x="24" y="40" fontFamily="Arial" fontSize="18" fontWeight="bold" fill="white" textAnchor="middle">23</text>
+</svg>

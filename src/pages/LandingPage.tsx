@@ -9,10 +9,11 @@ import MeetingWindowMockup from '@/components/MeetingWindowMockup';
 import FloatingMouseCursor from '@/components/FloatingMouseCursor';
 import MeetingSettingsCard from '@/components/MeetingSettingsCard';
 import RealtimeAnswersCard from '@/components/RealtimeAnswersCard';
-import MeetingParticipantsCard from '@/components/MeetingParticipantsCard'; // New import
-import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'; // New import
-import NeverInYourWayCard from '@/components/NeverInYourWayCard'; // New import
-import MeetingPlatformLogos from '@/components/MeetingPlatformLogos'; // New import
+import MeetingParticipantsCard from '@/components/MeetingParticipantsCard';
+import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard';
+import NeverInYourWayCard from '@/components/NeverInYourWayCard';
+import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
+import MeetingRecapCard from '@/components/MeetingRecapCard'; // New import
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -254,6 +255,32 @@ const LandingPage = () => {
               Works with every meeting platform
             </p>
             <MeetingPlatformLogos />
+          </div>
+        </div>
+      </section>
+
+      {/* New Section: Teacheat tells you where you went wrong */}
+      <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary overflow-hidden">
+        {/* Floating Icons */}
+        <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+        <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+        <img src="/calendar-icon.svg" alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+        <img src="/video-camera-icon.svg" alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
+        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, 50%) rotate(20deg)' }} />
+        <img src="/incognito-icon.svg" alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
+
+
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <p className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">You mess up way more than you think</p>
+          <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-16">
+            Teacheat tells you where <br /> you went wrong
+          </h2>
+          <p className="text-lg md:text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto">
+            After every call, Teacheat tells you how to improve, whether you're interviewing for a job, selling a product, working on an assignment, or just chatting.
+          </p>
+
+          <div className="flex justify-center">
+            <MeetingRecapCard />
           </div>
         </div>
       </section>
