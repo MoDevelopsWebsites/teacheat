@@ -53,45 +53,47 @@ serve(async (req) => {
     });
   }
 
-  const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
-  if (!openaiApiKey) {
-    return new Response(JSON.stringify({ error: 'OPENAI_API_KEY not set in Supabase secrets.' }), {
+  const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY');
+  if (!anthropicApiKey) {
+    return new Response(JSON.stringify({ error: 'ANTHROPIC_API_KEY not set in Supabase secrets.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 
   try {
-    const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openaiApiKey}`,
+        'x-api-key': anthropicApiKey,
+        'anthropic-version': '2023-06-01', // Required Anthropic API version
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo', // Using a widely available OpenAI model
+        model: 'claude-3-haiku-20240307', // Using a widely available Claude model
+        max_tokens: 1024,
         messages: [{ role: 'user', content: prompt }],
       }),
     });
 
-    if (!openaiResponse.ok) {
-      const errorData = await openaiResponse.text();
-      console.error('OpenAI API error:', errorData);
-      return new Response(JSON.stringify({ error: 'Failed to get response from OpenAI', details: errorData }), {
-        status: openaiResponse.status,
+    if (!anthropicResponse.ok) {
+      const errorData = await anthropicResponse.text();
+      console.error('Anthropic API error:', errorData);
+      return new Response(JSON.stringify({ error: 'Failed to get response from Anthropic', details: errorData }), {
+        status: anthropicResponse.status,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const data = await openaiResponse.json();
-    const aiMessage = data.choices[0]?.message?.content || 'No response from AI.';
+    const data = await anthropicResponse.json();
+    const aiMessage = data.content[0]?.text || 'No response from AI.';
 
     return new Response(JSON.stringify({ response: aiMessage }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     });
   } catch (error) {
-    console.error('Edge Function error during OpenAI call:', error);
+    console.error('Edge Function error during Anthropic call:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
