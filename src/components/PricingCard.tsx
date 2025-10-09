@@ -17,8 +17,7 @@ interface PricingCardProps {
   buttonIcon?: React.ReactNode;
   isPopular?: boolean;
   isEnterprise?: boolean;
-  priceId?: string; // New prop for Stripe Price ID
-  onSubscribe?: (priceId: string) => void; // New prop for subscribe action
+  // Removed priceId and onSubscribe props
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -32,16 +31,16 @@ const PricingCard: React.FC<PricingCardProps> = ({
   buttonIcon,
   isPopular = false,
   isEnterprise = false,
-  priceId, // Destructure new prop
-  onSubscribe, // Destructure new prop
+  // Removed priceId and onSubscribe from destructuring
 }) => {
   const handleButtonClick = () => {
-    if (priceId && onSubscribe) {
-      onSubscribe(priceId);
-    } else if (isEnterprise) {
+    if (isEnterprise) {
       // Handle "Talk to sales" or other enterprise specific action
       console.log("Enterprise plan: Talk to sales clicked.");
       // You might navigate to a contact form or open a modal here
+    } else {
+      // For other plans, we'll just log for now or show a generic message
+      console.log(`Button clicked for ${title} plan.`);
     }
   };
 
@@ -83,8 +82,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
           variant={buttonVariant}
-          onClick={handleButtonClick} // Use the new handler
-          disabled={!priceId && !isEnterprise} // Disable if no priceId and not enterprise
+          onClick={handleButtonClick}
+          // Removed disabled prop logic related to priceId
         >
           {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-5 w-5 mr-2", buttonIcon.props.className) })}
           {buttonText}
