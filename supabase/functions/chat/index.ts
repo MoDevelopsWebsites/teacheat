@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,29 +14,12 @@ serve(async (req) => {
   console.log('Incoming request:', req.method, req.url);
   const requestHeaders = Object.fromEntries(req.headers.entries());
   console.log('Request headers:', requestHeaders);
-  console.log('Request bodyUsed:', req.bodyUsed); // Check if the body stream has been consumed
-  console.log('Content-Length header:', req.headers.get('Content-Length')); // Check the content length
 
-  const supabaseClient = createClient(
-    Deno.env.get('SUPABASE_URL') ?? '',
-    Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-    {
-      global: {
-        headers: { Authorization: req.headers.get('Authorization')! },
-      },
-    }
-  );
-
-  const { data: { user } } = await supabaseClient.auth.getUser();
-  if (!user) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
-  }
+  // We don't need to create a Supabase client here as authentication is handled by the client-side fetch
+  // and the API key is for Gemini, not Supabase.
 
   let prompt;
-  let rawBodyContent = ''; // To store the raw body if parsing fails
+  let rawBodyContent = '';
   try {
     const contentType = req.headers.get('Content-Type');
     if (!contentType || !contentType.includes('application/json')) {
@@ -48,15 +30,13 @@ serve(async (req) => {
       });
     }
 
-    // Attempt to parse the request body as JSON
     const requestBody = await req.json();
     prompt = requestBody.prompt;
     console.log('Parsed request body:', requestBody);
   } catch (jsonError) {
     console.error('JSON parsing error in Edge Function:', jsonError);
-    // If JSON parsing fails, try to read the raw body as text for debugging
     try {
-      rawBodyContent = await req.text(); // This will consume the body if not already consumed
+      rawBodyContent = await req.text();
       console.error('Raw request body on JSON parse failure:', rawBodyContent);
     } catch (textError) {
       console.error('Failed to read raw request body as text after JSON parse failure:', textError);
@@ -76,46 +56,43 @@ serve(async (req) => {
     });
   }
 
-  const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
-  if (!openaiApiKey) {
-    return new Response(JSON.stringify({ error: 'OPENAI_API_KEY not set' }), {
+  const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
+  if (!geminiApiKey) {
+    return new Response(JSON.stringify({ error: 'GEMINI_API_KEY not set in Supabase secrets.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 
   try {
-    const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openaiApiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: prompt }],
-        max_tokens: 150,
+        contents: [{ parts: [{ text: prompt }] }],
       }),
     });
 
-    if (!openaiResponse.ok) {
-      const errorData = await openaiResponse.json();
-      console.error('OpenAI API error:', errorData);
-      return new Response(JSON.stringify({ error: 'Failed to get response from OpenAI', details: errorData }), {
-        status: openaiResponse.status,
+    if (!geminiResponse.ok) {
+      const errorData = await geminiResponse.json();
+      console.error('Gemini API error:', errorData);
+      return new Response(JSON.stringify({ error: 'Failed to get response from Gemini', details: errorData }), {
+        status: geminiResponse.status,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const data = await openaiResponse.json();
-    const aiMessage = data.choices[0]?.message?.content || 'No response from AI.';
+    const data = await geminiResponse.json();
+    const aiMessage = data.candidates[0]?.content?.parts[0]?.text || 'No response from AI.';
 
     return new Response(JSON.stringify({ response: aiMessage }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     });
   } catch (error) {
-    console.error('Edge Function error during OpenAI call:', error);
+    console.error('Edge Function error during Gemini call:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
