@@ -4,28 +4,27 @@ import React, { useRef, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, MessageSquareText, Keyboard, MicOff, VideoOff, PhoneOff, X } from 'lucide-react'; // Added MicOff, VideoOff, PhoneOff
+import { Search, MessageSquareText, Keyboard, MicOff, VideoOff, PhoneOff, X } from 'lucide-react';
 import { useTypewriter } from '@/hooks/use-typewriter';
-import { cn } from '@/lib/utils'; // Import cn for conditional class merging
+import { cn } from '@/lib/utils';
 
 interface MeetingWindowMockupProps {
   currentAiResponse: string;
   typewriterKey: number;
   onButtonPositionsReady: (positions: { whatToSayNext: DOMRect | null; followUpQuestions: DOMRect | null }) => void;
-  activeSuggestionType: 'whatToSayNext' | 'followUpQuestions' | 'none'; // New prop
+  activeSuggestionType: 'whatToSayNext' | 'followUpQuestions' | 'none';
 }
 
 const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
   currentAiResponse,
   typewriterKey,
   onButtonPositionsReady,
-  activeSuggestionType, // Destructure new prop
+  activeSuggestionType,
 }) => {
   const whatToSayNextRef = useRef<HTMLButtonElement>(null);
   const followUpQuestionsRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    // Report button positions once they are rendered
     const getPositions = () => {
       onButtonPositionsReady({
         whatToSayNext: whatToSayNextRef.current?.getBoundingClientRect() || null,
@@ -33,7 +32,6 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       });
     };
 
-    // Get positions initially and on window resize
     getPositions();
     window.addEventListener('resize', getPositions);
     return () => window.removeEventListener('resize', getPositions);
@@ -52,7 +50,6 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       case 'whatToSayNext':
         return "What to say next";
       case 'followUpQuestions':
-        return "Follow-up questions";
       default:
         return "AI Suggestions";
     }
@@ -63,7 +60,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       {/* Simulated macOS Wallpaper Background */}
       <div className="absolute inset-0">
         <img
-          src={import.meta.env.BASE_URL + "macOS 15 Wallpaper 1.jpg"} // Use BASE_URL for robust pathing
+          src={import.meta.env.BASE_URL + "macos-15-wallpaper-1.jpg"} // Updated to new filename
           alt="macOS Sequoia Wallpaper"
           className="w-full h-full object-cover"
         />
