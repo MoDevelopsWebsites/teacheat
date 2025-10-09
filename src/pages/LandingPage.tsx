@@ -151,7 +151,7 @@ const LandingPage = () => {
           <div className="font-bold text-xl text-landing-logo-text">Teacheat</div>
         </div>
         <nav className="flex space-x-6 text-sm font-medium text-landing-text-primary/80">
-          <Link to="#" className="hover:text-landing-text-primary">Pricing</Link>
+          <Link to="/pricing" className="hover:text-landing-text-primary">Pricing</Link>
           <Link to="#" className="hover:text-landing-text-primary">Enterprise</Link>
           <Link to="#" className="hover:text-landing-text-primary">Careers</Link>
           <Link to="#" className="hover:text-landing-text-primary">Blog</Link>
