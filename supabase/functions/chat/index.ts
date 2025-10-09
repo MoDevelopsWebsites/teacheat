@@ -62,9 +62,9 @@ serve(async (req) => {
   }
 
   try {
-    // Using Hugging Face Inference API with a different open-source model
+    // Using Hugging Face Inference API with the generic 'gpt2' model
     const hfResponse = await fetch(
-      "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta", // Switched to Zephyr-7B-beta
+      "https://api-inference.huggingface.co/models/gpt2", // Switched to gpt2 for testing
       {
         method: 'POST',
         headers: {
@@ -74,8 +74,8 @@ serve(async (req) => {
         body: JSON.stringify({
           inputs: prompt,
           parameters: {
-            max_new_tokens: 1024,
-            return_full_text: false, // Only return the generated text
+            max_new_tokens: 100, // Reduced for quicker response with gpt2
+            return_full_text: false,
           },
         }),
       }
@@ -91,7 +91,6 @@ serve(async (req) => {
     }
 
     const data = await hfResponse.json();
-    // Hugging Face Inference API returns an array of objects, usually with 'generated_text'
     const aiMessage = data[0]?.generated_text || 'No response from AI.';
 
     return new Response(JSON.stringify({ response: aiMessage }), {
