@@ -14,8 +14,8 @@ import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
 import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
 import MeetingRecapCard from '@/components/MeetingRecapCard';
-import FAQSection from '@/components/FAQSection'; // Import new FAQSection
-import CTABottomSection from '@/components/CTABottomSection'; // Import new CTABottomSection
+import FAQSection from '@/components/FAQSection';
+import CTABottomSection from '@/components/CTABottomSection';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -30,7 +30,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const [currentAiResponse, setCurrentAiResponse] = useState(initialAiResponse);
-  const [typewriterKey, setTypewriterKey] = useState(0); // Key to reset typewriter animation
+  const [typewriterKey, setTypewriterKey] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isClicking, setIsClicking] = useState(false);
   const [buttonPositions, setButtonPositions] = useState<{
@@ -38,20 +38,19 @@ const LandingPage = () => {
     followUpQuestions: DOMRect | null;
   }>({ whatToSayNext: null, followUpQuestions: null });
 
-  // State for cycling words color effect
   const [activeWordIndex, setActiveWordIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveWordIndex((prevIndex) => (prevIndex + 1) % cyclingWords.length);
-    }, 2000); // Change word every 2 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (!isLoading && session) {
-      navigate('/chat'); // Redirect to chat if authenticated
+      navigate('/chat');
     }
   }, [session, isLoading, navigate]);
 
@@ -61,57 +60,51 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (!buttonPositions.whatToSayNext || !buttonPositions.followUpQuestions) {
-      return; // Wait for button positions to be available
+      return;
     }
 
     let animationTimeout: NodeJS.Timeout;
 
     const animateSequence = async () => {
-      // Start with initial AI response
       setCurrentAiResponse(initialAiResponse);
       setTypewriterKey(prev => prev + 1);
-      await new Promise(resolve => setTimeout(resolve, 7000)); // Wait for initial text to type and be visible
+      await new Promise(resolve => setTimeout(resolve, 7000));
 
-      // 1. Move to "What do I say next?" button
       const nextButton = buttonPositions.whatToSayNext!;
       setMousePosition({
         x: nextButton.left + nextButton.width / 2,
         y: nextButton.top + nextButton.height / 2,
       });
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // 2. Click "What do I say next?"
       setIsClicking(true);
       setCurrentAiResponse(nextSuggestionResponse);
       setTypewriterKey(prev => prev + 1);
-      await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
+      await new Promise(resolve => setTimeout(resolve, 300));
       setIsClicking(false);
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new text to type and be visible
+      await new Promise(resolve => setTimeout(resolve, 5000));
 
-      // 3. Move to "Follow-up questions" button
       const followUpButton = buttonPositions.followUpQuestions!;
       setMousePosition({
         x: followUpButton.left + followUpButton.width / 2,
         y: followUpButton.top + followUpButton.height / 2,
       });
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Move duration
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // 4. Click "Follow-up questions"
       setIsClicking(true);
       setCurrentAiResponse(followUpQuestionsResponse);
       setTypewriterKey(prev => prev + 1);
-      await new Promise(resolve => setTimeout(resolve, 300)); // Click duration
+      await new Promise(resolve => setTimeout(resolve, 300));
       setIsClicking(false);
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for new text to type and be visible
+      await new Promise(resolve => setTimeout(resolve, 5000));
 
-      // Loop the animation
-      animationTimeout = setTimeout(animateSequence, 2000); // Short delay before restarting
+      animationTimeout = setTimeout(animateSequence, 2000);
     };
 
-    animationTimeout = setTimeout(animateSequence, 1000); // Initial delay before starting sequence
+    animationTimeout = setTimeout(animateSequence, 1000);
 
     return () => clearTimeout(animationTimeout);
-  }, [buttonPositions]); // Re-run effect if button positions change
+  }, [buttonPositions]);
 
   const handleGetStartedClick = () => {
     navigate('/login');
@@ -126,7 +119,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary overflow-hidden">
+    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
       {/* Floating Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
@@ -219,7 +212,7 @@ const LandingPage = () => {
                 >
                   {word}
                 </span>
-                {' '} {/* Add a space between words */}
+                {' '}
               </React.Fragment>
             ))}
           </p>
