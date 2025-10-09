@@ -125,6 +125,17 @@ const LandingPage = () => {
 
   return (
     <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary overflow-hidden">
+      {/* Background Image Container with Blur and Fade */}
+      <div
+        className="absolute top-0 left-0 w-full h-[800px] bg-cover bg-center z-0"
+        style={{
+          backgroundImage: `url('/Snowy Mountain Sunset.jpg')`,
+          filter: 'blur(4px)', // Slight blur
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade effect
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
+        }}
+      ></div>
+
       {/* Floating Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
@@ -172,7 +183,7 @@ const LandingPage = () => {
       </section>
 
       {/* Meeting Window Mockup */}
-      <div className="mt-16 mb-24 z-10">
+      <div className="mt-[-100px] mb-24 z-10"> {/* Adjust mt- value to control overlap */}
         <MeetingWindowMockup
           currentAiResponse={currentAiResponse}
           typewriterKey={typewriterKey}
@@ -181,7 +192,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
+      <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10 bg-white dark:bg-gray-900">
         <div className="grid md:grid-cols-2 gap-12 mb-24">
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
@@ -292,7 +303,7 @@ const LandingPage = () => {
       </section>
 
       {/* Bottom Get for Mac Button */}
-      <div className="flex justify-center mt-16 pb-24">
+      <div className="flex justify-center mt-16 pb-24 bg-white dark:bg-gray-900">
         <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
           <Apple className="h-5 w-5 mr-2" /> Get for Mac
         </Button>
