@@ -20,6 +20,16 @@ export const useTypewriter = ({
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    // Guard clause to prevent errors if words array is empty or index is invalid
+    if (!words || words.length === 0) {
+      setCurrentText('');
+      return;
+    }
+    if (currentWordIndex >= words.length) {
+      setCurrentWordIndex(0); // Reset index if it somehow goes out of bounds
+      return;
+    }
+
     let timer: NodeJS.Timeout;
     const currentFullWord = words[currentWordIndex];
 
