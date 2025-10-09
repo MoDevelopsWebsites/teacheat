@@ -53,53 +53,45 @@ serve(async (req) => {
     });
   }
 
-  const geminiApiKey = Deno.env.get('GEMINI_API_KEY');
-  if (!geminiApiKey) {
-    return new Response(JSON.stringify({ error: 'GEMINI_API_KEY not set in Supabase secrets.' }), {
+  const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
+  if (!openaiApiKey) {
+    return new Response(JSON.stringify({ error: 'OPENAI_API_KEY not set in Supabase secrets.' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 
   try {
-    // Changed the model to 'gemini-pro' for broader availability and support
-    const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`, {
+    const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${openaiApiKey}`,
       },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
+        model: 'gpt-3.5-turbo', // Using a widely available OpenAI model
+        messages: [{ role: 'user', content: prompt }],
       }),
     });
 
-    if (!geminiResponse.ok) {
-      const errorData = await geminiResponse.text(); // Read as text to catch non-JSON errors
-      console.error('Gemini API error:', errorData);
-      return new Response(JSON.stringify({ error: 'Failed to get response from Gemini', details: errorData }), {
-        status: geminiResponse.status,
+    if (!openaiResponse.ok) {
+      const errorData = await openaiResponse.text();
+      console.error('OpenAI API error:', errorData);
+      return new Response(JSON.stringify({ error: 'Failed to get response from OpenAI', details: errorData }), {
+        status: openaiResponse.status,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const data = await geminiResponse.json();
-    const aiMessage = data.candidates[0]?.content?.parts[0]?.text || 'No response from AI.';
+    const data = await openaiResponse.json();
+    const aiMessage = data.choices[0]?.message?.content || 'No response from AI.';
 
     return new Response(JSON.stringify({ response: aiMessage }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
     });
   } catch (error) {
-    console.error('Edge Function error during Gemini call:', error);
-    // If the error is a SyntaxError from .json(), log the raw response if available
-    if (error instanceof SyntaxError && error.message.includes('JSON')) {
-      try {
-        const rawResponse = await req.text(); // This might be the original request body, not the Gemini response
-        console.error('Raw Gemini response on JSON parse failure (might be request body):', rawResponse);
-      } catch (textError) {
-        console.error('Failed to read raw response text after JSON parse failure:', textError);
-      }
-    }
+    console.error('Edge Function error during OpenAI call:', error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
