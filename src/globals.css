@@ -56,6 +56,19 @@
     --landing-logo-text: 222.2 84% 4.9%; /* Dark blue for Teacheat logo text */
     --landing-button-gradient-start: 217 91% 65%; /* Lighter blue for gradient start */
     --landing-button-gradient-end: 217 91% 55%;   /* Darker blue for gradient end */
+
+    /* Undetectable Section Colors */
+    --undetectable-background-start: 210 60% 98%; /* Very light blue */
+    --undetectable-background-end: 0 0% 100%; /* White */
+    --undetectable-card-background: 0 0% 100%;
+    --undetectable-card-border: 214.3 31.8% 91.4%;
+    --undetectable-badge-visible-bg: 142.1 76.2% 36.3%; /* Green */
+    --undetectable-badge-visible-fg: 0 0% 100%;
+    --undetectable-badge-invisible-bg: 215.4 16.3% 46.9%; /* Dark grey */
+    --undetectable-badge-invisible-fg: 0 0% 100%;
+    --undetectable-text-primary: 222.2 84% 4.9%;
+    --undetectable-text-secondary: 215.4 16.3% 46.9%;
+    --undetectable-text-muted: 215.4 16.3% 56.9%;
   }
 
   .dark {
@@ -108,6 +121,19 @@
     --landing-logo-text: 210 40% 98%; /* Light text for Teacheat logo */
     --landing-button-gradient-start: 217 91% 65%; /* Lighter blue for gradient start */
     --landing-button-gradient-end: 217 91% 55%;   /* Darker blue for gradient end */
+
+    /* Undetectable Section Dark Mode Colors */
+    --undetectable-background-start: 222.2 84% 4.9%;
+    --undetectable-background-end: 222.2 84% 4.9%;
+    --undetectable-card-background: 222.2 84% 4.9%;
+    --undetectable-card-border: 217.2 32.6% 17.5%;
+    --undetectable-badge-visible-bg: 142.1 76.2% 36.3%; /* Green */
+    --undetectable-badge-visible-fg: 0 0% 100%;
+    --undetectable-badge-invisible-bg: 215.4 16.3% 46.9%; /* Dark grey */
+    --undetectable-badge-invisible-fg: 0 0% 100%;
+    --undetectable-text-primary: 210 40% 98%;
+    --undetectable-text-secondary: 215 20.2% 65.1%;
+    --undetectable-text-muted: 215 20.2% 75.1%;
   }
 }
 

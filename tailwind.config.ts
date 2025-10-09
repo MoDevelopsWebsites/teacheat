@@ -105,6 +105,31 @@ export default {
             fg: "hsl(var(--landing-logo-fg))",
           },
         },
+        undetectable: {
+          background: {
+            start: "hsl(var(--undetectable-background-start))",
+            end: "hsl(var(--undetectable-background-end))",
+          },
+          card: {
+            background: "hsl(var(--undetectable-card-background))",
+            border: "hsl(var(--undetectable-card-border))",
+          },
+          badge: {
+            visible: {
+              DEFAULT: "hsl(var(--undetectable-badge-visible-bg))",
+              foreground: "hsl(var(--undetectable-badge-visible-fg))",
+            },
+            invisible: {
+              DEFAULT: "hsl(var(--undetectable-badge-invisible-bg))",
+              foreground: "hsl(var(--undetectable-badge-invisible-fg))",
+            },
+          },
+          text: {
+            primary: "hsl(var(--undetectable-text-primary))",
+            secondary: "hsl(var(--undetectable-text-secondary))",
+            muted: "hsl(var(--undetectable-text-muted))",
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

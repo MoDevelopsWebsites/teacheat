@@ -9,6 +9,10 @@ import MeetingWindowMockup from '@/components/MeetingWindowMockup';
 import FloatingMouseCursor from '@/components/FloatingMouseCursor';
 import MeetingSettingsCard from '@/components/MeetingSettingsCard';
 import RealtimeAnswersCard from '@/components/RealtimeAnswersCard';
+import MeetingParticipantsCard from '@/components/MeetingParticipantsCard'; // New import
+import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard'; // New import
+import NeverInYourWayCard from '@/components/NeverInYourWayCard'; // New import
+import MeetingPlatformLogos from '@/components/MeetingPlatformLogos'; // New import
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -211,14 +215,55 @@ const LandingPage = () => {
             ))}
           </p>
         </div>
+      </section>
 
-        {/* Bottom Get for Mac Button */}
-        <div className="flex justify-center mt-16 pb-24">
-          <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
-            <Apple className="h-5 w-5 mr-2" /> Get for Mac
-          </Button>
+      {/* Undetectable Section */}
+      <section className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
+          <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
+            Poof. Completely undetectable to every software.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-24">
+            <div>
+              <MeetingParticipantsCard />
+              <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3>
+              <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                Cluely never joins your meetings, so there are no bots and no extra people on the guest list.
+              </p>
+            </div>
+            <div>
+              <InvisibleToScreenShareCard />
+              <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3>
+              <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                Cluely never shows up in shared screens, recordings, or external meeting tools.
+              </p>
+            </div>
+            <div>
+              <NeverInYourWayCard />
+              <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3>
+              <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                Cluely appears as a translucent and hideable window over all your other applications.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-16">
+            <p className="text-sm font-semibold text-undetectable-text-muted uppercase tracking-wider mb-8">
+              Works with every meeting platform
+            </p>
+            <MeetingPlatformLogos />
+          </div>
         </div>
       </section>
+
+      {/* Bottom Get for Mac Button */}
+      <div className="flex justify-center mt-16 pb-24">
+        <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+          <Apple className="h-5 w-5 mr-2" /> Get for Mac
+        </Button>
+      </div>
 
       {/* Floating Mouse Cursor */}
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
