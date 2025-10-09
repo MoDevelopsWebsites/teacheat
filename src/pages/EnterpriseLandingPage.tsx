@@ -4,23 +4,20 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import Header from '@/components/Header';
-import SafariWindowMockup from '@/components/SafariWindowMockup';
+import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup'; // Updated import
 import { useNavigate } from 'react-router-dom';
 
 const EnterpriseLandingPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleTalkToSalesClick = () => {
-    // This could navigate to a contact form or an external sales page
     console.log("Talk to sales clicked!");
-    // For now, let's navigate to the pricing page with the enterprise plan selected
     navigate('/pricing', { state: { defaultPlan: 'enterprise' } });
   };
 
   const handleGetForMacClick = () => {
-    // This could navigate to a download page or login/signup
     console.log("Get for Mac clicked!");
-    navigate('/login'); // Assuming 'Get for Mac' leads to login/signup
+    navigate('/login');
   };
 
   return (
@@ -39,7 +36,7 @@ const EnterpriseLandingPage: React.FC = () => {
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl">
           Put all your company's knowledge at every rep's fingertips with AI-powered answers and objection handling in any conversation.
         </p>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-end"> {/* Added w-full and justify-end */}
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-start"> {/* Changed justify-end to justify-start */}
           <Button
             className="bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 rounded-lg px-8 py-3 text-base font-semibold shadow-lg"
             onClick={handleTalkToSalesClick}
@@ -49,13 +46,13 @@ const EnterpriseLandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Safari Window Mockup */}
-      <div className="mt-8 mb-24 z-10 w-full flex justify-center px-4"> {/* Changed mt-16 to mt-8 */}
-        <SafariWindowMockup />
+      {/* Desktop with Safari Mockup */}
+      <div className="mt-8 mb-24 z-10 w-full flex justify-center px-4">
+        <DesktopWithSafariMockup /> {/* Updated component name */}
       </div>
 
       {/* Placeholder for other sections if needed */}
-      <div className="h-48"></div> {/* Just some space at the bottom */}
+      <div className="h-48"></div>
     </div>
   );
 };
