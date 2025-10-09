@@ -90,7 +90,7 @@ const Layout: React.FC = () => {
                 </AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-sidebar-primary-foreground">{user.email}</span>
+                <span className="text-sm font-medium text-sidebar-foreground">{user.email}</span> {/* Changed text color here */}
                 <span className="text-xs text-sidebar-foreground/70">User</span>
               </div>
             </div>
