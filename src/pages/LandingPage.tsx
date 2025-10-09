@@ -124,60 +124,63 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
-      {/* Mountain background */}
-      <div
-        className="absolute bottom-0 left-0 w-full h-[300px] bg-no-repeat bg-bottom bg-contain z-0"
-        style={{ backgroundImage: `url('/mountain-background.svg')` }}
-      ></div>
-      {/* Desktop waves background */}
-      <div
-        className="absolute bottom-0 left-0 w-full h-[400px] bg-no-repeat bg-bottom bg-cover z-0"
-        style={{ backgroundImage: `url('/desktop-waves.svg')` }}
-      ></div>
+    <div className="relative flex flex-col items-center min-h-screen bg-background text-landing-text-primary overflow-hidden">
+      {/* Top Blue Background Section */}
+      <div className="relative w-full pb-24 bg-gradient-to-b from-landing-background-start to-landing-background-end flex flex-col items-center">
+        {/* Mountain background */}
+        <div
+          className="absolute bottom-0 left-0 w-full h-[300px] bg-no-repeat bg-bottom bg-contain z-0"
+          style={{ backgroundImage: `url('/mountain-background.svg')` }}
+        ></div>
+        {/* Desktop waves background */}
+        <div
+          className="absolute bottom-0 left-0 w-full h-[400px] bg-no-repeat bg-bottom bg-cover z-0"
+          style={{ backgroundImage: `url('/desktop-waves.svg')` }}
+        ></div>
 
-      {/* Header */}
-      <header className="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10">
-        <div className="flex items-center space-x-2">
-          <div className="font-bold text-xl text-landing-logo-text">Teacheat</div>
-        </div>
-        <nav className="flex space-x-6 text-sm font-medium text-landing-text-primary/80">
-          <Link to="#" className="hover:text-landing-text-primary">Pricing</Link>
-          <Link to="#" className="hover:text-landing-text-primary">Enterprise</Link>
-          <Link to="#" className="hover:text-landing-text-primary">Careers</Link>
-          <Link to="#" className="hover:text-landing-text-primary">Blog</Link>
-        </nav>
-      </header>
+        {/* Header */}
+        <header className="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10">
+          <div className="flex items-center space-x-2">
+            <div className="font-bold text-xl text-landing-logo-text">Teacheat</div>
+          </div>
+          <nav className="flex space-x-6 text-sm font-medium text-landing-text-primary/80">
+            <Link to="#" className="hover:text-landing-text-primary">Pricing</Link>
+            <Link to="#" className="hover:text-landing-text-primary">Enterprise</Link>
+            <Link to="#" className="hover:text-landing-text-primary">Careers</Link>
+            <Link to="#" className="hover:text-landing-text-primary">Blog</Link>
+          </nav>
+        </header>
 
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
-        {/* Floating Icons for Hero Section */}
-        <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
-        <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
-        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
-        <img src="/calendar-icon.svg" alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+        {/* Hero Section */}
+        <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
+          {/* Floating Icons for Hero Section */}
+          <img src="/chat-bubble-icon.svg" alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+          <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+          <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
+          <img src="/calendar-icon.svg" alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-landing-text-primary font-display">
-          <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
-        </h1>
-        <p className="text-lg md:text-xl text-landing-text-primary/80 mb-10 max-w-2xl">
-          Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
-        </p>
-        <div className="flex space-x-4">
-          <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
-            <Apple className="h-5 w-5 mr-2" /> Get for Mac
-          </Button>
-          <Button
-            className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
-            onClick={handleGetStartedClick}
-          >
-            Get Started
-          </Button>
-        </div>
-      </section>
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-landing-text-primary font-display">
+            <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
+          </h1>
+          <p className="text-lg md:text-xl text-landing-text-primary/80 mb-10 max-w-2xl">
+            Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
+          </p>
+          <div className="flex space-x-4">
+            <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
+              <Apple className="h-5 w-5 mr-2" /> Get for Mac
+            </Button>
+            <Button
+              className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
+              onClick={handleGetStartedClick}
+            >
+              Get Started
+            </Button>
+          </div>
+        </section>
+      </div> {/* End of Top Blue Background Section */}
 
-      {/* Meeting Window Mockup */}
-      <div className="mt-16 mb-24 z-10">
+      {/* Meeting Window Mockup - This should overlap the blue section slightly */}
+      <div className="mt-[-100px] mb-24 z-10"> {/* Adjust mt- value to control overlap */}
         <MeetingWindowMockup
           currentAiResponse={currentAiResponse}
           typewriterKey={typewriterKey}
@@ -186,7 +189,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
+      <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10 bg-white dark:bg-gray-900">
         <div className="grid md:grid-cols-2 gap-12 mb-24">
           <div>
             <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
@@ -277,7 +280,7 @@ const LandingPage = () => {
         <img src="/magnifying-glass-icon.svg" alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
         <img src="/calendar-icon.svg" alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
         <img src="/video-camera-icon.svg" alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
-        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, 50%) rotate(20deg)' }} />
+        <img src="/notes-icon.svg" alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
         <img src="/incognito-icon.svg" alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
 
 
@@ -297,7 +300,7 @@ const LandingPage = () => {
       </section>
 
       {/* Bottom Get for Mac Button */}
-      <div className="flex justify-center mt-16 pb-24">
+      <div className="flex justify-center mt-16 pb-24 bg-white dark:bg-gray-900">
         <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-start/90 hover:to-landing-button-gradient-end/90 rounded-lg px-8 py-3 text-base font-semibold shadow-md">
           <Apple className="h-5 w-5 mr-2" /> Get for Mac
         </Button>
