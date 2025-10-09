@@ -56,7 +56,7 @@ const Chat = () => {
       }
 
       // Construct the URL for the Edge Function
-      const SUPABASE_PROJECT_ID = "kxkqcsxysbcdkveolnrf"; // Your Supabase Project ID
+      const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID; // Get from environment variable
       const EDGE_FUNCTION_NAME = "chat";
       const edgeFunctionUrl = `https://${SUPABASE_PROJECT_ID}.supabase.co/functions/v1/${EDGE_FUNCTION_NAME}`;
 
