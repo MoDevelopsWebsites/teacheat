@@ -55,10 +55,10 @@
     --landing-logo-text: 222.2 84% 4.9%; /* Dark blue for Teacheat logo text */
     
     /* Updated Mac Button Gradient */
-    --landing-button-gradient-start: 210 100% 85%; /* Light blue */
-    --landing-button-gradient-end: 0 0% 100%;   /* White */
-    --landing-button-gradient-hover-start: 210 100% 80%; /* Slightly darker blue on hover */
-    --landing-button-gradient-hover-end: 0 0% 95%;   /* Slightly off-white on hover */
+    --landing-button-gradient-start: 210 100% 75%; /* Darker light blue */
+    --landing-button-gradient-end: 0 0% 90%;   /* Darker white */
+    --landing-button-gradient-hover-start: 210 100% 70%; /* Slightly darker blue on hover */
+    --landing-button-gradient-hover-end: 0 0% 85%;   /* Slightly off-white on hover */
 
     /* Undetectable Section Colors */
     --undetectable-background-start: 210 60% 98%; /* Very light blue */
@@ -146,10 +146,10 @@
     --landing-logo-text: 210 40% 98%; /* Light text for Teacheat logo */
 
     /* Updated Mac Button Gradient Dark Mode */
-    --landing-button-gradient-start: 210 100% 85%; /* Light blue */
-    --landing-button-gradient-end: 0 0% 100%;   /* White */
-    --landing-button-gradient-hover-start: 210 100% 80%; /* Slightly darker blue on hover */
-    --landing-button-gradient-hover-end: 0 0% 95%;   /* Slightly off-white on hover */
+    --landing-button-gradient-start: 210 100% 75%; /* Darker light blue */
+    --landing-button-gradient-end: 0 0% 90%;   /* Darker white */
+    --landing-button-gradient-hover-start: 210 100% 70%; /* Slightly darker blue on hover */
+    --landing-button-gradient-hover-end: 0 0% 85%;   /* Slightly off-white on hover */
 
     /* Undetectable Section Dark Mode Colors */
     --undetectable-background-start: 222.2 84% 4.9%;
