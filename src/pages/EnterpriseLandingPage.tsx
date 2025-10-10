@@ -1,15 +1,32 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer'; // Import the Footer component
-import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup'; // Updated import
+import Footer from '@/components/Footer';
+import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup';
 import { useNavigate } from 'react-router-dom';
+import { cn } from '@/lib/utils'; // Import cn for conditional class merging
 
 const EnterpriseLandingPage: React.FC = () => {
   const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) { // Adjust scroll threshold as needed
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleTalkToSalesClick = () => {
     console.log("Talk to sales clicked!");
@@ -33,8 +50,14 @@ const EnterpriseLandingPage: React.FC = () => {
         }}
       ></div>
 
-      {/* Header */}
-      <Header isLandingPageHeader={true} className="absolute top-0 left-0 right-0" />
+      {/* Header - now fixed and conditionally blurred */}
+      <Header
+        isLandingPageHeader={true}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled && "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+        )}
+      />
 
       {/* Hero Section */}
       <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32 flex-grow"> {/* Added flex-grow */}
