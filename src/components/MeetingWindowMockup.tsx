@@ -76,7 +76,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
             <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
           </div>
-          <div className="flex items-center space-x-2 text-gray-500 text-sm"> {/* Changed text-gray-200 to text-gray-500 */}
+          <div className="flex items-center space-x-2 text-gray-500 text-sm">
             <span className="font-semibold">Meeting with Client</span>
           </div>
           <div className="flex space-x-2">
@@ -86,17 +86,17 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
         {/* Main chat/records area */}
         <div className="flex-grow flex items-end justify-center p-4">
-          <Card className="w-full max-w-xl bg-black/50 backdrop-blur-lg text-white border border-blue-500/50 rounded-xl p-4 shadow-lg">
+          <Card className="w-full max-w-xl bg-uiLightBlue dark:bg-uiDarkBlue backdrop-blur-lg text-gray-800 dark:text-gray-200 border border-blue-500/50 rounded-xl p-4 shadow-lg">
             <CardHeader className="p-0 pb-2 border-b border-gray-600/50 mb-4 flex-row items-center justify-between">
-              <div className="flex items-center text-sm font-semibold text-gray-200">
-                <Search className="h-4 w-4 mr-2 text-gray-400" /> Searched records
+              <div className="flex items-center text-sm font-semibold text-gray-800 dark:text-gray-200">
+                <Search className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" /> Searched records
               </div>
               <Button variant="secondary" size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 h-auto" disabled>
                 {getActiveSuggestionText()}
               </Button>
             </CardHeader>
             <CardContent className="p-0 mb-4">
-              <p className="text-lg font-bold text-white leading-relaxed min-h-[40px]">
+              <p className="text-lg font-bold leading-relaxed min-h-[40px]">
                 {animatedAiResponse.currentText}
               </p>
             </CardContent>

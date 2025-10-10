@@ -32,7 +32,7 @@ const SettingItem: React.FC<SettingItemProps> = ({ icon, label, status, checked,
 
 const MeetingSettingsCard: React.FC = () => {
   return (
-    <Card className="w-full max-w-md bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800">
+    <Card className="w-full max-w-md bg-uiLightBlue dark:bg-uiDarkBlue rounded-xl shadow-lg border border-gray-200 dark:border-gray-800">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center text-lg font-semibold text-gray-900 dark:text-white">
           <Settings className="h-5 w-5 mr-2 text-gray-600 dark:text-gray-400" /> Settings
