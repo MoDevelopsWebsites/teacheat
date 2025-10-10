@@ -144,7 +144,7 @@ const LandingPage = () => {
       <div
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL + "mountain2.jpg"})`, // Changed to mountain2.jpg
+          backgroundImage: `url(${import.meta.env.BASE_URL + "mountain2.jpg"})`,
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
         }}
@@ -167,10 +167,10 @@ const LandingPage = () => {
         <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
         <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-        <h1 className="text-5xl md:text-6xl leading-tight mb-6 text-white">
+        <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6 text-white font-display">
           <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
         </h1>
-        <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl">
+        <p className="text-lg md:text-xl text-white/80 font-normal mb-10 max-w-2xl">
           Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
