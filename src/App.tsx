@@ -15,7 +15,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
-import { loadStripe } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js'; // Corrected import for loadStripe
 import { Elements } from '@stripe/react-stripe-js';
 
 const queryClient = new QueryClient();
