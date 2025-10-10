@@ -12,8 +12,9 @@ const Founders: React.FC = () => {
   return (
     <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
       {/* Mountain Background Image with Fade */}
+      {/* Increased height to 900px */}
       <div
-        className="absolute top-0 left-0 w-full h-[900px] bg-cover bg-center z-0" {/* Increased height to 900px */}
+        className="absolute top-0 left-0 w-full h-[900px] bg-cover bg-center z-0"
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using wallpaper9.jpeg for Founders page
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Adjusted to match LandingPage fade
