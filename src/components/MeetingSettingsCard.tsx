@@ -19,7 +19,7 @@ const SettingItem: React.FC<SettingItemProps> = ({ icon, label, status, checked,
     "cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 active:shadow-inner", // Added interactive classes
     className
   )}>
-    <div className="relative w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700">
+    <div className="relative w-16 h-16 bg-uiLightBlue dark:bg-uiDarkBlue rounded-xl flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700">
       {icon}
       {checked && (
         <CheckCircle2 className="absolute -top-2 -right-2 h-6 w-6 text-blue-500 bg-white dark:bg-gray-900 rounded-full" fill="currentColor" />

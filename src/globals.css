@@ -98,6 +98,10 @@
     --pricing-feature-check: 142.1 76.2% 36.3%; /* Green checkmark */
     --pricing-feature-cross: 0 84.2% 60.2%; /* Red cross */
     --pricing-feature-coming-soon: 215.4 16.3% 46.9%; /* Grey for coming soon */
+
+    /* New UI Blue Colors */
+    --ui-light-blue-bg: 210 100% 95%; /* Very light blue */
+    --ui-dark-blue-bg: 210 100% 85%; /* Slightly darker light blue */
   }
 
   .dark {
@@ -192,6 +196,10 @@
     --pricing-feature-check: 142.1 76.2% 36.3%; /* Green checkmark */
     --pricing-feature-cross: 0 62.8% 30.6%; /* Darker red cross */
     --pricing-feature-coming-soon: 215 20.2% 65.1%; /* Light grey for coming soon */
+
+    /* New UI Blue Colors Dark Mode */
+    --ui-light-blue-bg: 217.2 32.6% 17.5%; /* Dark gray */
+    --ui-dark-blue-bg: 217.2 32.6% 10%; /* Even darker gray */
   }
 }
 

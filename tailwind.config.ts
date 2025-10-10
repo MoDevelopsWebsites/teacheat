@@ -183,6 +183,12 @@ export default {
             "coming-soon": "hsl(var(--pricing-feature-coming-soon))",
           },
         },
+        uiLightBlue: { // New color for light bluish backgrounds
+          DEFAULT: "hsl(var(--ui-light-blue-bg))",
+        },
+        uiDarkBlue: { // New color for darker bluish backgrounds (for dark mode consistency)
+          DEFAULT: "hsl(var(--ui-dark-blue-bg))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
