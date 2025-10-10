@@ -23,7 +23,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
   activeSuggestionType,
 }) => {
   const whatToSayNextRef = useRef<HTMLButtonElement>(null);
-  const followUpQuestionsRef = useRef<HTMLButtonElement>(null);
+  const followUpQuestionsRef = useRef<HTMLButtonButtonElement>(null);
 
   useEffect(() => {
     const getPositions = () => {
@@ -58,10 +58,12 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
-      {/* Simulated macOS Wallpaper Background - now a solid color */}
-      <div className="absolute inset-0 bg-uiLightBlue dark:bg-uiDarkBlue">
-        {/* The background image is removed, replaced by solid color */}
-      </div>
+      {/* Simulated macOS Wallpaper Background */}
+      <img
+        src={import.meta.env.BASE_URL + "wallpaper.jpg"}
+        alt="Meeting Background Wallpaper"
+        className="absolute inset-0 w-full h-full object-cover opacity-80"
+      />
 
       {/* Overlay Content */}
       <div className="absolute inset-0 flex flex-col p-4">
