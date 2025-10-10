@@ -72,7 +72,7 @@ const DesktopWithSafariMockup: React.FC<DesktopWithSafariMockupProps> = ({ class
             <AnimatedInput
               phrases={phrases}
               placeholder="Loading AI insights..."
-              className="w-full pl-12 pr-4 py-3 rounded-full bg-white/50 border border-white/50 text-gray-800 placeholder:text-gray-600 text-base shadow-lg"
+              className="w-full pl-12 pr-4 py-3 rounded-full bg-gray-900/70 border border-blue-500 text-white placeholder:text-gray-300 text-base shadow-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent"
             />
           </div>
         </div>
