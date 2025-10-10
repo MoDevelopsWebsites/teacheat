@@ -43,13 +43,16 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   return (
     <header className={cn("w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10", className)}>
       <div className="flex items-center space-x-12">
-        <Link to="/" className={cn("flex items-center space-x-2 font-bold text-xl transition-colors", isLandingPageHeader ? "text-white" : "text-landing-text-primary")}>
+        <Link to="/" className={cn("relative flex items-center font-bold text-xl transition-colors", isLandingPageHeader ? "text-white" : "text-landing-text-primary")}>
           <img
-            src={import.meta.env.BASE_URL + "teacheat-logo.png"}
+            src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
             alt="Teacheat Logo"
-            className={cn("h-8 w-8", isLandingPageHeader ? "filter invert" : "")} // Increased size to h-8 w-8
+            className={cn(
+              "absolute -top-6 right-0 h-10 w-10 transform rotate-12", // Positioned above "eat"
+              isLandingPageHeader ? "filter invert" : "" // Invert color for dark background
+            )}
           />
-          <span>Teacheat</span>
+          <span className="mr-2">Teacheat</span> {/* Added mr-2 for spacing */}
         </Link>
         <nav className="flex items-center space-x-2 text-sm font-medium">
           <Link to="/pricing" className={navLinkClasses}>Pricing</Link>
