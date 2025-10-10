@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } => 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
@@ -146,7 +146,7 @@ const LandingPage = () => {
       <div
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper4.jpg"})`, // Reverted to wallpaper4.jpg
+          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper6.jpg"})`, // Changed to wallpaper6.jpg
           maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)', // Adjusted for smoother fade
           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)', // For Webkit browsers
           opacity: 0.7, // Reduced opacity
