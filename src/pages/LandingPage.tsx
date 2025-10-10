@@ -170,7 +170,7 @@ const LandingPage = () => {
         <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6 text-white font-display">
           <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
         </h1>
-        <p className="text-lg md:text-xl text-white/80 font-normal mb-10 max-w-2xl">
+        <p className="text-lg md:text-xl text-white font-normal mb-10 max-w-2xl">
           Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
