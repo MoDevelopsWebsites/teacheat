@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   // Base classes for navigation items to give them a button-like shape
   const navItemBaseClasses = "px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200";
 
-  // Classes for navigation links (Pricing, Enterprise, Careers, Blog)
+  // Classes for navigation links (Pricing, Enterprise, Founders, Blog)
   const navLinkClasses = cn(
     navItemBaseClasses,
     isLandingPageHeader
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
         <nav className="flex items-center space-x-2 text-sm font-medium">
           <Link to="/pricing" className={navLinkClasses}>Pricing</Link>
           <Link to="/enterprise" className={navLinkClasses}>Enterprise</Link>
-          <Link to="#" className={navLinkClasses}>Careers</Link>
+          <Link to="/founders" className={navLinkClasses}>Founders</Link> {/* Changed from Careers to Founders */}
           <Link to="#" className={navLinkClasses}>Blog</Link>
         </nav>
       </div>
