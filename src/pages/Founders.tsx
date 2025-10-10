@@ -16,8 +16,8 @@ const Founders: React.FC = () => {
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using wallpaper9.jpeg for Founders page
-          maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)', // Adjusted for smoother fade
-          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)', // For Webkit browsers
+          maskImage: 'linear-gradient(to bottom, black 50%, transparent 90%)', // Adjusted for smoother fade
+          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 90%)', // For Webkit browsers
           opacity: 0.7, // Reduced opacity
           filter: 'blur(4px)', // Increased blur effect
         }}
@@ -29,7 +29,7 @@ const Founders: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
       <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
 
-      <Header isLandingPageHeader={true} /> {/* Added isLandingPageHeader prop for white text */}
+      <Header isLandingPageHeader={true} />
 
       {/* Hero Section */}
       <section className="relative w-full py-24 md:py-32 text-center flex flex-col items-center justify-center flex-grow z-10">
