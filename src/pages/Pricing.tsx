@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Apple, ChevronDown, Bot } from 'lucide-react';
+import { Apple, ChevronDown } from 'lucide-react'; // Removed Bot import
 import PricingCard from '@/components/PricingCard';
 import PricingFeatureTable from '@/components/PricingFeatureTable';
 import Header from '@/components/Header';
@@ -14,6 +14,7 @@ import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
+import TeacheatLogo from '@/components/TeacheatLogo'; // Added TeacheatLogo import
 
 const VITE_STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID;
@@ -242,7 +243,7 @@ const Pricing = () => {
       <main className="flex-grow flex flex-col items-center py-12 px-4 text-pricing-text-primary sm:py-16">
         <div className="text-center mb-12 mt-20 sm:mt-24 sm:mb-16">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center">
-            Join the future of AI-powered productivity. <Bot className="h-10 w-10 sm:h-12 sm:w-12 mx-0 sm:mx-2 text-blue-500 mt-2 sm:mt-0" />
+            Join the future of AI-powered productivity. <TeacheatLogo className="h-10 w-10 sm:h-12 sm:w-12 mx-0 sm:mx-2 text-blue-500 mt-2 sm:mt-0" />
           </h1>
           <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
             Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
