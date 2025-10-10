@@ -34,8 +34,8 @@ const NeverInYourWayCard: React.FC = () => {
           {images.map((src, index) => (
             <div key={index} className="relative w-full h-full bg-gray-200 dark:bg-gray-700 rounded-md overflow-hidden">
               <img src={src} alt={`Gallery image ${index + 1}`} className="w-full h-full object-cover" />
-              {index === 0 && ( // Example for a badge on one image
-                <div className="absolute top-0.5 left-0.5 bg-black/50 text-white text-[0.6rem] px-0.5 rounded sm:top-1 sm:left-1 sm:text-xs sm:px-1">18</div> {/* Adjusted size/padding/text for mobile */}
+              {index === 0 && ( /* Example for a badge on one image */
+                <div className="absolute top-0.5 left-0.5 bg-black/50 text-white text-[0.6rem] px-0.5 rounded sm:top-1 sm:left-1 sm:text-xs sm:px-1">18</div>
               )}
             </div>
           ))}
