@@ -10,10 +10,12 @@ import Login from "./pages/Login";
 import Chat from "./pages/Chat";
 import Settings from "./pages/Settings";
 import Pricing from "./pages/Pricing";
-import EnterpriseLandingPage from "./pages/EnterpriseLandingPage"; // Import new page
+import EnterpriseLandingPage from "./pages/EnterpriseLandingPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy"; // Import new page
+import TermsOfService from "./pages/TermsOfService"; // Import new page
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
-import { loadStripe } from '@stripe/stripe-js'; // Corrected import path for loadStripe
+import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 const queryClient = new QueryClient();
@@ -33,7 +35,9 @@ const App = () => (
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/pricing" element={<Pricing />} />
-              <Route path="/enterprise" element={<EnterpriseLandingPage />} /> {/* New Enterprise route */}
+              <Route path="/enterprise" element={<EnterpriseLandingPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} /> {/* New Privacy Policy route */}
+              <Route path="/terms-of-service" element={<TermsOfService />} /> {/* New Terms of Service route */}
               {/* Routes wrapped by Layout will have the sidebar/header */}
               <Route element={<Layout />}>
                 <Route path="/chat" element={<Chat />} />

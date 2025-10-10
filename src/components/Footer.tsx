@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { X, Github, Instagram } from 'lucide-react'; // Removed Discord
+import { X, Github, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -42,8 +42,8 @@ const Footer: React.FC = () => {
 
         <div className="flex flex-col space-y-2">
           <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Legal</h3>
-          <Link to="#" className="text-sm hover:underline">Privacy Policy</Link>
-          <Link to="#" className="text-sm hover:underline">Terms of Service</Link>
+          <Link to="/privacy-policy" className="text-sm hover:underline">Privacy Policy</Link>
+          <Link to="/terms-of-service" className="text-sm hover:underline">Terms of Service</Link>
         </div>
       </div>
 
@@ -54,7 +54,6 @@ const Footer: React.FC = () => {
           <Link to="#" aria-label="X (Twitter)" className="hover:text-gray-700 dark:hover:text-gray-200">
             <X className="h-5 w-5" />
           </Link>
-          {/* Removed Discord icon */}
           <Link to="#" aria-label="Instagram" className="hover:text-gray-700 dark:hover:text-gray-200">
             <Instagram className="h-5 w-5" />
           </Link>
