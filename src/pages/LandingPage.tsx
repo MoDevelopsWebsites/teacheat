@@ -146,7 +146,7 @@ const LandingPage = () => {
       <div
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper3.jpg"})`, // Changed to wallpaper3.jpg
+          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper6.jpg"})`, // Changed to wallpaper6.jpg
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
           opacity: 0.7, // Reduced opacity
