@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { Link, useNavigate } => 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
