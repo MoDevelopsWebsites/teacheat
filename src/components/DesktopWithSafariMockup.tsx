@@ -21,12 +21,14 @@ const DesktopWithSafariMockup: React.FC<DesktopWithSafariMockupProps> = ({ class
   ];
 
   const dockIcons = [
-    { src: import.meta.env.BASE_URL + "zoom-logo.svg", alt: "Zoom" },
-    { src: import.meta.env.BASE_URL + "slack-logo.svg", alt: "Slack" },
-    { src: import.meta.env.BASE_URL + "webex-logo.svg", alt: "Webex" },
-    { src: import.meta.env.BASE_URL + "microsoft-teams-logo.svg", alt: "Microsoft Teams" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "App 1" }, // Generic app icon
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "App 2" }, // Generic app icon
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Finder" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Safari" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Mail" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Messages" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Calendar" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Photos" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "App Store" },
+    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Settings" },
   ];
 
   return (
