@@ -75,20 +75,28 @@ export default {
           },
           button: {
             mac: {
-              DEFAULT: "hsl(var(--landing-button-mac))",
               foreground: "hsl(var(--landing-button-mac-foreground))",
-            },
-            windows: {
-              DEFAULT: "hsl(var(--landing-button-windows))",
-              foreground: "hsl(var(--landing-button-windows-foreground))",
-            },
-            cta: {
-              DEFAULT: "hsl(var(--landing-button-cta))",
-              foreground: "hsl(var(--landing-button-cta-foreground))",
             },
             gradient: {
               start: "hsl(var(--landing-button-gradient-start))",
               end: "hsl(var(--landing-button-gradient-end))",
+              "hover-start": "hsl(var(--landing-button-gradient-hover-start))",
+              "hover-end": "hsl(var(--landing-button-gradient-hover-end))",
+            },
+            cta: {
+              background: {
+                start: "hsl(var(--landing-cta-background-start))",
+                end: "hsl(var(--landing-cta-background-end))",
+              },
+              text: {
+                primary: "hsl(var(--landing-cta-text-primary))",
+                secondary: "hsl(var(--landing-cta-text-secondary))",
+              },
+              floating: {
+                DEFAULT: "hsl(var(--landing-cta-floating-bg))",
+                border: "hsl(var(--landing-cta-floating-border))",
+                text: "hsl(var(--landing-cta-floating-text))",
+              },
             },
           },
           card: {

@@ -21,6 +21,7 @@ interface PricingCardProps {
   onSubscribe: (priceId: string | null) => void;
   isSubmitting: boolean;
   disabled?: boolean;
+  isMacButton?: boolean; // New prop
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -38,6 +39,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   onSubscribe,
   isSubmitting,
   disabled = false,
+  isMacButton = false, // Default to false
 }) => {
   const handleButtonClick = () => {
     if (isEnterprise) {
@@ -83,8 +85,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
         <Button
           className={cn(
             "w-full text-base font-semibold py-6 rounded-lg",
-            // Always apply a dark background and light text for the default variant
-            buttonVariant === "default" && "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800",
+            // Apply Mac button gradient if isMacButton is true
+            isMacButton && "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover",
+            // Existing default variant styles, but only if not a Mac button
+            !isMacButton && buttonVariant === "default" && "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800",
             buttonVariant === "outline" && "border border-pricing-button-default text-pricing-button-default bg-transparent hover:bg-pricing-button-default/10",
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}

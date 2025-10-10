@@ -47,15 +47,18 @@
     --landing-background-start: 210 100% 75%; /* Sky blue */
     --landing-background-end: 210 100% 95%; /* Very light blue, almost white */
     --landing-text-primary: 222.2 84% 4.9%; /* Dark blue-black */
-    --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac button */
     --landing-button-mac-foreground: 0 0% 100%;
     --landing-button-cta: 220 20% 15%; /* Not used in new design, but keeping for consistency */
     --landing-button-cta-foreground: 0 0% 100%; /* Not used in new design */
     --landing-card-background: 0 0% 100%; /* Not used in new design */
     --landing-card-border: 214.3 31.8% 91.4%; /* Not used in new design */
     --landing-logo-text: 222.2 84% 4.9%; /* Dark blue for Teacheat logo text */
-    --landing-button-gradient-start: 217 91% 65%; /* Lighter blue for gradient start */
-    --landing-button-gradient-end: 217 91% 55%;   /* Darker blue for gradient end */
+    
+    /* Updated Mac Button Gradient */
+    --landing-button-gradient-start: 210 100% 85%; /* Light blue */
+    --landing-button-gradient-end: 0 0% 100%;   /* White */
+    --landing-button-gradient-hover-start: 210 100% 80%; /* Slightly darker blue on hover */
+    --landing-button-gradient-hover-end: 0 0% 95%;   /* Slightly off-white on hover */
 
     /* Undetectable Section Colors */
     --undetectable-background-start: 210 60% 98%; /* Very light blue */
@@ -135,15 +138,18 @@
     --landing-background-start: 222.2 84% 4.9%; /* Dark background */
     --landing-background-end: 222.2 84% 4.9%; /* Dark background */
     --landing-text-primary: 210 40% 98%; /* Light text */
-    --landing-button-mac: 217.2 91.2% 59.8%; /* Vibrant blue for Mac button */
     --landing-button-mac-foreground: 0 0% 100%;
     --landing-button-cta: 210 40% 98%; /* Not used in new design */
     --landing-button-cta-foreground: 222.2 47.4% 11.2%; /* Not used in new design */
     --landing-card-background: 222.2 84% 4.9%; /* Not used in new design */
     --landing-card-border: 217.2 32.6% 17.5%; /* Not used in new design */
     --landing-logo-text: 210 40% 98%; /* Light text for Teacheat logo */
-    --landing-button-gradient-start: 217 91% 65%; /* Lighter blue for gradient start */
-    --landing-button-gradient-end: 217 91% 55%;   /* Darker blue for gradient end */
+
+    /* Updated Mac Button Gradient Dark Mode */
+    --landing-button-gradient-start: 210 100% 85%; /* Light blue */
+    --landing-button-gradient-end: 0 0% 100%;   /* White */
+    --landing-button-gradient-hover-start: 210 100% 80%; /* Slightly darker blue on hover */
+    --landing-button-gradient-hover-end: 0 0% 95%;   /* Slightly off-white on hover */
 
     /* Undetectable Section Dark Mode Colors */
     --undetectable-background-start: 222.2 84% 4.9%;

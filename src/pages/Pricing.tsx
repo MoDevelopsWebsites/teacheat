@@ -35,6 +35,7 @@ const pricingPlans = {
       buttonVariant: "default",
       isPopular: false,
       priceId: null,
+      isMacButton: true, // Added for the Mac button styling
     },
     {
       title: "Pro",
@@ -86,6 +87,7 @@ const pricingPlans = {
       buttonVariant: "default",
       isPopular: false,
       priceId: null,
+      isMacButton: true, // Added for the Mac button styling
     },
     {
       title: "Pro",
