@@ -26,13 +26,13 @@ interface HeaderProps {
 
 // Helper component for list items within dropdowns
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { title: string; icon?: React.ReactNode; } // Added icon prop
+  React.ElementRef<typeof Link>, // Changed to Link element type
+  React.ComponentPropsWithoutRef<typeof Link> & { title: string; icon?: React.ReactNode; } // Changed to Link props
 >(({ className, title, children, icon, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link // Changed from <a> to Link
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -47,7 +47,7 @@ const ListItem = React.forwardRef<
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
@@ -87,9 +87,9 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
-                      <a
+                      <Link // Changed from <a> to Link
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/pricing"
+                        to="/pricing" // Changed href to to
                       >
                         <div className="mb-2 mt-4 text-lg font-medium">
                           Teacheat Pricing
@@ -97,16 +97,16 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                         <p className="text-sm leading-tight text-muted-foreground">
                           Find the perfect plan for your needs, from free to enterprise.
                         </p>
-                      </a>
+                      </Link>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/pricing" title="Starter" icon={<DollarSign className="h-4 w-4" />}>
+                  <ListItem to="/pricing" title="Starter" icon={<DollarSign className="h-4 w-4" />}> {/* Changed href to to */}
                     Limited AI responses, unlimited notetaking.
                   </ListItem>
-                  <ListItem href="/pricing" title="Pro" icon={<Star className="h-4 w-4" />}>
+                  <ListItem to="/pricing" title="Pro" icon={<Star className="h-4 w-4" />}> {/* Changed href to to */}
                     Unlimited AI, advanced models, priority support.
                   </ListItem>
-                  <ListItem href="/pricing" title="Enterprise" icon={<Building className="h-4 w-4" />}>
+                  <ListItem to="/pricing" title="Enterprise" icon={<Building className="h-4 w-4" />}> {/* Changed href to to */}
                     Custom solutions for teams, advanced analytics.
                   </ListItem>
                 </ul>
@@ -116,16 +116,16 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
               <NavigationMenuTrigger className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>Enterprise</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="/enterprise" title="Sales Teams" icon={<Briefcase className="h-4 w-4" />}>
+                  <ListItem to="/enterprise" title="Sales Teams" icon={<Briefcase className="h-4 w-4" />}> {/* Changed href to to */}
                     Close deals faster with AI-powered insights.
                   </ListItem>
-                  <ListItem href="/enterprise" title="Marketing Teams" icon={<Megaphone className="h-4 w-4" />}>
+                  <ListItem to="/enterprise" title="Marketing Teams" icon={<Megaphone className="h-4 w-4" />}> {/* Changed href to to */}
                     Understand customer needs and optimize campaigns.
                   </ListItem>
-                  <ListItem href="/enterprise" title="Support Teams" icon={<LifeBuoy className="h-4 w-4" />}>
+                  <ListItem to="/enterprise" title="Support Teams" icon={<LifeBuoy className="h-4 w-4" />}> {/* Changed href to to */}
                     Improve customer satisfaction with instant answers.
                   </ListItem>
-                  <ListItem href="/enterprise" title="Custom Solutions" icon={<Settings className="h-4 w-4" />}>
+                  <ListItem to="/enterprise" title="Custom Solutions" icon={<Settings className="h-4 w-4" />}> {/* Changed href to to */}
                     Tailored AI solutions for unique business needs.
                   </ListItem>
                 </ul>
