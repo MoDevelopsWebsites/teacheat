@@ -121,7 +121,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-white dark:bg-gray-900">
       <Card className="flex flex-col flex-grow w-full h-full shadow-lg rounded-none border-none">
         <CardHeader className="border-b p-4">
           <CardTitle className="text-2xl font-semibold text-center">Teacheat AI Assistant</CardTitle>
