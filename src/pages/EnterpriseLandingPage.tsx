@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import DesktopWithSafariMockup from '@/components/Desktop/DesktopWithSafariMockup'; // Corrected import path
+import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup'; // Corrected import path
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils'; // Import cn for conditional class merging
 
