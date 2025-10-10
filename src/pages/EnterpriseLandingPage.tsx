@@ -42,7 +42,7 @@ const EnterpriseLandingPage: React.FC = () => {
     <div className="relative flex flex-col min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-gray-900 dark:text-gray-100 overflow-hidden"> {/* Removed items-center */}
       {/* Mountain Background Image with Fade (Enterprise specific) */}
       <div
-        className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
+        className="absolute top-0 left-0 w-full h-[400px] sm:h-[500px] md:h-[600px] bg-cover bg-center z-0" // Adjusted height for mobile
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper4.jpg"})`, // New wallpaper
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
@@ -63,19 +63,19 @@ const EnterpriseLandingPage: React.FC = () => {
 
       <main className="flex-grow flex flex-col items-center"> {/* Added main, flex-grow, items-center */}
         {/* Hero Section */}
-        <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32"> {/* Hero Section, removed flex-grow */}
-          <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-white/80 mb-4">
+        <section className="relative flex flex-col items-start text-left px-4 py-12 max-w-5xl z-10 mt-20 md:mt-32"> {/* Adjusted padding and margin for mobile */}
+          <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-white/80 mb-2 sm:mb-4"> {/* Adjusted margin for mobile */}
             Enterprise
           </p>
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 sm:mb-6 text-white"> {/* Adjusted text sizes for mobile */}
             Imagine everyone knew as much about your company as you. <br className="hidden md:block" />
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl">
+          <p className="text-base md:text-lg lg:text-xl text-white/90 mb-6 sm:mb-10 max-w-2xl"> {/* Adjusted text sizes and margin for mobile */}
             Put all your company's knowledge at every rep's fingertips with AI-powered answers and objection handling in any conversation.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-start">
             <Button
-              className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
+              className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-6 py-2.5 text-base font-semibold shadow-button-glow-hover sm:px-8 sm:py-3" // Adjusted padding for mobile
               onClick={handleTalkToSalesClick}
             >
               Talk to sales
@@ -84,11 +84,11 @@ const EnterpriseLandingPage: React.FC = () => {
         </section>
 
         {/* Desktop with Safari Mockup */}
-        <div className="mt-8 mb-24 z-10 w-full flex justify-center px-4">
+        <div className="mt-8 mb-16 sm:mb-24 z-10 w-full flex justify-center px-4"> {/* Adjusted margin and padding for mobile */}
           <DesktopWithSafariMockup />
         </div>
 
-        <div className="h-48"></div> {/* Placeholder for other sections if needed */}
+        <div className="h-24 sm:h-48"></div> {/* Placeholder for other sections if needed */}
       </main>
       <Footer /> {/* Add Footer here */}
     </div>

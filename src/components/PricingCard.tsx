@@ -54,7 +54,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
   return (
     <Card className={cn(
-      "relative flex flex-col p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg",
+      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg", {/* Adjusted padding for mobile */}
       isPopular && "border-2 border-blue-500 shadow-xl",
       isEnterprise && "col-span-1 md:col-span-1"
     )}>
@@ -63,16 +63,16 @@ const PricingCard: React.FC<PricingCardProps> = ({
           Most Popular
         </div>
       )}
-      <CardHeader className="p-0 pb-4">
-        <CardTitle className="text-2xl font-bold text-pricing-text-primary mb-2">{title}</CardTitle>
-        <p className="text-5xl font-extrabold text-pricing-text-primary">
+      <CardHeader className="p-0 pb-3 sm:pb-4"> {/* Adjusted padding for mobile */}
+        <CardTitle className="text-xl sm:text-2xl font-bold text-pricing-text-primary mb-1 sm:mb-2">{title}</CardTitle> {/* Adjusted text size for mobile */}
+        <p className="text-4xl sm:text-5xl font-extrabold text-pricing-text-primary"> {/* Adjusted text size for mobile */}
           {price}
-          {priceSuffix && <span className="text-lg font-medium text-pricing-text-secondary"> {priceSuffix}</span>}
+          {priceSuffix && <span className="text-base sm:text-lg font-medium text-pricing-text-secondary"> {priceSuffix}</span>} {/* Adjusted text size for mobile */}
         </p>
-        <p className="text-sm text-pricing-text-secondary mt-2">{description}</p>
+        <p className="text-xs sm:text-sm text-pricing-text-secondary mt-1 sm:mt-2">{description}</p> {/* Adjusted text size for mobile */}
       </CardHeader>
-      <CardContent className="flex-grow p-0 py-6 border-y border-pricing-card-border/50 my-4">
-        <ul className="space-y-3">
+      <CardContent className="flex-grow p-0 py-4 sm:py-6 border-y border-pricing-card-border/50 my-2 sm:my-4"> {/* Adjusted padding/margin for mobile */}
+        <ul className="space-y-2 sm:space-y-3"> {/* Adjusted spacing for mobile */}
           {features.map((feature, index) => (
             <li key={index} className="flex items-center text-pricing-text-primary text-sm">
               <Check className="h-4 w-4 text-pricing-feature-check mr-2 flex-shrink-0" />
@@ -81,10 +81,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
           ))}
         </ul>
       </CardContent>
-      <CardFooter className="p-0 pt-4">
+      <CardFooter className="p-0 pt-3 sm:pt-4"> {/* Adjusted padding for mobile */}
         <Button
           className={cn(
-            "w-full text-base font-semibold py-6 rounded-lg",
+            "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg", {/* Adjusted padding/text size for mobile */}
             // Apply Mac button gradient if isMacButton is true
             isMacButton && "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover",
             // Existing default variant styles, but only if not a Mac button
@@ -97,9 +97,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
           onClick={handleButtonClick}
           disabled={disabled || (isSubmitting && priceId !== null)}
         >
-          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-5 w-5 mr-2", buttonIcon.props.className) })}
+          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })} {/* Adjusted icon size for mobile */}
           {buttonText}
-          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-4 w-4 ml-2" />}
+          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />} {/* Adjusted icon size for mobile */}
         </Button>
       </CardFooter>
     </Card>

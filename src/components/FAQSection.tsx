@@ -37,17 +37,17 @@ const FAQSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full max-w-3xl mx-auto px-6 py-16 z-10 bg-white dark:bg-gray-900">
-      <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-12 text-center text-landing-text-primary">
+    <section className="w-full max-w-3xl mx-auto px-4 py-12 sm:px-6 sm:py-16 z-10 bg-white dark:bg-gray-900"> {/* Adjusted padding for mobile */}
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-8 sm:mb-12 text-center text-landing-text-primary"> {/* Adjusted text sizes and margin for mobile */}
         Frequently asked questions
       </h2>
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq, index) => (
           <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200 dark:border-gray-700">
-            <AccordionTrigger className="text-lg font-medium text-landing-text-primary hover:no-underline py-4">
+            <AccordionTrigger className="text-base sm:text-lg font-medium text-landing-text-primary hover:no-underline py-3 sm:py-4"> {/* Adjusted text size and padding for mobile */}
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-base text-gray-700 dark:text-gray-300 pb-4">
+            <AccordionContent className="text-sm sm:text-base text-gray-700 dark:text-gray-300 pb-3 sm:pb-4"> {/* Adjusted text size and padding for mobile */}
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

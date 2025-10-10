@@ -20,16 +20,16 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <div className="absolute top-8 left-8">
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8"> {/* Adjusted position for mobile */}
         <AuthLogo />
       </div>
 
-      <main className="flex-grow flex flex-col items-center justify-center px-4 py-16">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16"> {/* Adjusted padding for mobile */}
         <div className="w-full max-w-md text-center">
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4"> {/* Adjusted text sizes for mobile */}
             Unlock your meeting potential with Teacheat.
           </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-6 sm:mb-8"> {/* Adjusted text sizes and margin for mobile */}
             By signing up, I agree to the <Link to="/privacy-policy" className="underline hover:text-blue-600">Teacheat Privacy Policy</Link> and <Link to="/terms-of-service" className="underline hover:text-blue-600">Terms of Service</Link>.
           </p>
 
@@ -61,8 +61,8 @@ const Login = () => {
                       borderRadiusInput: '0.375rem', // rounded-md
                     },
                     space: {
-                      buttonPadding: '12px 16px', // px-4 py-3 equivalent
-                      inputPadding: '12px 16px', // px-4 py-3 equivalent
+                      buttonPadding: '10px 14px', // Adjusted padding for mobile
+                      inputPadding: '10px 14px', // Adjusted padding for mobile
                     }
                   },
                 },
@@ -73,7 +73,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-2xl mx-auto"> {/* Adjusted margin and gap for mobile */}
             {features.map((feature, index) => (
               <div key={index} className="flex items-start text-left space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />

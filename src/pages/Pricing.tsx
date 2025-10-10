@@ -246,10 +246,10 @@ const Pricing = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900"> {/* Removed items-center and py-16 */}
       <Header className="absolute top-0 left-0 right-0" /> {/* Add the Header component */}
-      <main className="flex-grow flex flex-col items-center py-16 px-4 text-pricing-text-primary"> {/* Added main, flex-grow, items-center, px-4, py-16 */}
-        <div className="text-center mb-16 mt-24"> {/* Removed flex-grow, mt-24 is fine for spacing from header */}
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 flex items-center justify-center">
-            Join the future of AI-powered productivity. <Bot className="h-12 w-12 mx-2 text-blue-500" />
+      <main className="flex-grow flex flex-col items-center py-12 px-4 text-pricing-text-primary sm:py-16"> {/* Adjusted padding for mobile */}
+        <div className="text-center mb-12 mt-20 sm:mt-24 sm:mb-16"> {/* Adjusted margin for mobile */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center"> {/* Adjusted text sizes and flex for mobile */}
+            Join the future of AI-powered productivity. <Bot className="h-10 w-10 sm:h-12 sm:w-12 mx-0 sm:mx-2 text-blue-500 mt-2 sm:mt-0" /> {/* Adjusted icon size and margin for mobile */}
           </h1>
           <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
             Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
@@ -258,7 +258,7 @@ const Pricing = () => {
 
         <Tabs
           defaultValue="monthly"
-          className="mb-16"
+          className="mb-12 sm:mb-16"
           onValueChange={(value) => setBillingCycle(value as 'monthly' | 'annually')}
           value={billingCycle} // Control the Tabs component with state
         >
@@ -266,7 +266,7 @@ const Pricing = () => {
             <TabsTrigger
               value="monthly"
               className={cn(
-                "px-6 py-2 rounded-full text-base font-medium transition-all",
+                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all", {/* Adjusted padding/text size for mobile */}
                 billingCycle === 'monthly'
                   ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
                   : "text-pricing-text-secondary hover:text-pricing-text-primary"
@@ -277,7 +277,7 @@ const Pricing = () => {
             <TabsTrigger
               value="annually"
               className={cn(
-                "px-6 py-2 rounded-full text-base font-medium transition-all",
+                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all", {/* Adjusted padding/text size for mobile */}
                 billingCycle === 'annually'
                   ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
                   : "text-pricing-text-secondary hover:text-pricing-text-primary"
@@ -288,7 +288,7 @@ const Pricing = () => {
           </TabsList>
         </Tabs>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl w-full mb-16 sm:mb-24 px-4"> {/* Adjusted gap and padding for mobile */}
           {currentPlans.map((plan, index) => (
             <PricingCard
               key={index}

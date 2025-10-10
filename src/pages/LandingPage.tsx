@@ -175,11 +175,11 @@ const LandingPage = () => {
           <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-          <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6 text-white font-display">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display"> {/* Adjusted text sizes */}
             <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
           </h1>
-          <p className="text-lg md:text-xl text-white font-normal mb-10 max-w-2xl">
-            Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
+          <p className="text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl"> {/* Adjusted text sizes */}
+            Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
             <Button
@@ -192,7 +192,7 @@ const LandingPage = () => {
         </section>
 
         {/* Meeting Window Mockup */}
-        <div className="mt-16 mb-24 z-10">
+        <div className="mt-16 mb-24 z-10 w-full px-4 flex justify-center"> {/* Added w-full px-4 flex justify-center */}
           <MeetingWindowMockup
             currentAiResponse={currentAiResponse}
             typewriterKey={typewriterKey}
@@ -203,17 +203,17 @@ const LandingPage = () => {
 
         {/* Features Section */}
         <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
-          <div className="grid md:grid-cols-2 gap-12 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24"> {/* Adjusted grid for mobile */}
             <div>
-              <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
-              <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
+              <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Records your meetings</h2> {/* Adjusted text sizes */}
+              <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm"> {/* Adjusted text sizes */}
                 Teacheat listens to your meetings in the background and takes real-time notes without joining.
               </p>
               <MeetingSettingsCard />
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
-              <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
+              <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2> {/* Adjusted text sizes */}
+              <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm"> {/* Adjusted text sizes */}
                 Teacheat responds with context of what's happening in a conversation and what's on your screen.
               </p>
               <RealtimeAnswersCard />
@@ -222,10 +222,10 @@ const LandingPage = () => {
 
           {/* Call to Action Text */}
           <div className="text-center py-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8"> {/* Adjusted text sizes */}
               It's time to cheat
             </h2>
-            <p className="text-5xl md:text-7xl font-extrabold leading-tight">
+            <p className="text-5xl md:text-7xl font-extrabold leading-tight"> {/* Adjusted text sizes */}
               {cyclingWords.map((word, index) => (
                 <React.Fragment key={index}>
                   <span
@@ -249,28 +249,28 @@ const LandingPage = () => {
         <section className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
-            <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
+            <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16"> {/* Adjusted text sizes */}
               Poof. Completely undetectable to every software.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24"> {/* Adjusted grid for mobile */}
               <div>
                 <MeetingParticipantsCard />
-                <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3>
+                <h3 className="text-xl md:text-2xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3> {/* Adjusted text sizes */}
                 <p className="text-undetectable-text-secondary max-w-xs mx-auto">
                   Teacheat never joins your meetings, so there are no bots and no extra people on the guest list.
                 </p>
               </div>
               <div>
                 <InvisibleToScreenShareCard />
-                <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3>
+                <h3 className="text-xl md:text-2xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3> {/* Adjusted text sizes */}
                 <p className="text-undetectable-text-secondary max-w-xs mx-auto">
                   Teacheat never shows up in shared screens, recordings, or external meeting tools.
                 </p>
               </div>
               <div>
                 <NeverInYourWayCard />
-                <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3>
+                <h3 className="text-xl md:text-2xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3> {/* Adjusted text sizes */}
                 <p className="text-undetectable-text-secondary max-w-xs mx-auto">
                   Teacheat appears as a translucent and hideable window over all your other applications.
                 </p>
@@ -300,14 +300,14 @@ const LandingPage = () => {
 
           <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
             <p className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">You mess up way more than you think</p>
-            <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-16">
+            <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-16"> {/* Adjusted text sizes */}
               Teacheat tells you where <br /> you went wrong
             </h2>
-            <p className="text-lg md:text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto"> {/* Adjusted text sizes */}
               After every call, Teacheat tells you how to improve, whether you're interviewing for a job, selling a product, working on an assignment, or just chatting.
             </p>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center w-full px-4"> {/* Added w-full px-4 */}
               <MeetingRecapCard />
             </div>
           </div>

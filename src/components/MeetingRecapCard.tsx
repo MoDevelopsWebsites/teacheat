@@ -11,16 +11,16 @@ import { cn } from '@/lib/utils';
 
 const MeetingRecapCard: React.FC = () => {
   return (
-    <Card className="relative w-full max-w-5xl md:h-[600px] h-auto bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row overflow-hidden">
+    <Card className="relative w-full max-w-5xl h-auto md:h-[600px] bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row overflow-hidden">
       {/* Left Sidebar */}
       <div className="w-full md:w-64 bg-gray-50 dark:bg-gray-800 md:border-r border-gray-200 dark:border-gray-700 flex flex-col p-4">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 md:mb-6"> {/* Adjusted margin for mobile */}
           <div className="flex items-center space-x-2 text-gray-900 dark:text-white">
             <span className="font-bold text-lg">Teacheat</span>
             <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           </div>
         </div>
-        <div className="relative mb-6">
+        <div className="relative mb-4 md:mb-6"> {/* Adjusted margin for mobile */}
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
           <Input placeholder="Search" className="pl-10 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white" />
         </div>
@@ -38,18 +38,18 @@ const MeetingRecapCard: React.FC = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-grow flex flex-col p-6 overflow-y-auto">
-        <div className="flex items-center mb-6">
+      <div className="flex-grow flex flex-col p-4 md:p-6 overflow-y-auto"> {/* Adjusted padding for mobile */}
+        <div className="flex items-center mb-4 md:mb-6"> {/* Adjusted margin for mobile */}
           <Button variant="ghost" className="text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
             <ArrowLeft className="h-4 w-4 mr-2" /> Back
           </Button>
         </div>
 
-        <CardHeader className="p-0 mb-6">
-          <CardTitle className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <CardHeader className="p-0 mb-4 md:mb-6"> {/* Adjusted margin for mobile */}
+          <CardTitle className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1 md:mb-2"> {/* Adjusted text sizes for mobile */}
             Parent-tutor consultation on educational services
           </CardTitle>
-          <div className="flex flex-wrap items-center gap-2 md:space-x-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-400"> {/* Adjusted spacing for mobile */}
             <div className="flex items-center">
               <MessageSquareText className="h-4 w-4 mr-1 text-blue-500" /> Meeting
             </div>
@@ -65,35 +65,35 @@ const MeetingRecapCard: React.FC = () => {
           </div>
         </CardHeader>
 
-        <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"> {/* Adjusted grid and gap for mobile */}
           {/* Left Column: Summary & Action Items */}
-          <div className="col-span-2 flex flex-col">
+          <div className="col-span-1 md:col-span-2 flex flex-col"> {/* Adjusted col-span for mobile */}
             <div className="flex flex-wrap gap-4 mb-4">
               <div className="flex flex-col">
                 <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Times used</span>
-                <span className="text-2xl font-bold text-gray-900 dark:text-white">2</span>
+                <span className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">2</span> {/* Adjusted text sizes for mobile */}
               </div>
               <div className="flex flex-col">
                 <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Missed opportunities</span>
-                <span className="text-2xl font-bold text-gray-900 dark:text-white">6</span>
+                <span className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">6</span> {/* Adjusted text sizes for mobile */}
               </div>
             </div>
 
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Summary</h3>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1 mb-6">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-2">Summary</h3> {/* Adjusted text sizes for mobile */}
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1 mb-4 md:mb-6"> {/* Adjusted margin for mobile */}
               <li>Mrs. Rivera seeks <span className="font-semibold">tutoring for her first-grade daughter, Mia</span>, who struggles with early reading and phonics.</li>
               <li>The assistant highlighted their personalized, high-quality tutoring with <span className="font-semibold">experienced tutors</span>, session recordings, and support tools.</li>
               <li>Mrs. Rivera's concerns about online tutoring were eased by explaining the interactive, <span className="font-semibold">engaging session format</span>.</li>
             </ul>
 
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Action items</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-2">Action items</h3> {/* Adjusted text sizes for mobile */}
             <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm space-y-1">
               <li>Send Mrs. Rivera the intake form, pricing information, and short videos</li>
             </ul>
           </div>
 
           {/* Right Column: Usage & Missed Opportunities */}
-          <div className="col-span-1 md:border-l border-gray-200 dark:border-gray-700 md:pl-6 pt-6 md:pt-0 flex flex-col">
+          <div className="col-span-1 md:border-l border-gray-200 dark:border-gray-700 md:pl-6 pt-4 md:pt-0 flex flex-col"> {/* Adjusted padding for mobile */}
             <div className="flex border-b border-gray-200 dark:border-gray-700 mb-4">
               <Button variant="ghost" className="rounded-none border-b-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-semibold pb-2 -mb-px">
                 Usage
