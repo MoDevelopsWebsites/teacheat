@@ -232,7 +232,7 @@ const LandingPage = () => {
                     className={cn(
                       "inline-block transition-colors duration-500",
                       index === activeWordIndex
-                        ? "bg-gradient-to-r from-landing-button-gradient-start to-landing-button-gradient-end bg-clip-text text-transparent"
+                        ? "text-blue-600" // Changed to solid blue color
                         : "text-gray-300 dark:text-gray-700"
                     )}
                   >
