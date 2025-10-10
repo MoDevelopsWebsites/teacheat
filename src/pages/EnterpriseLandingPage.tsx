@@ -4,6 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer'; // Import the Footer component
 import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup'; // Updated import
 import { useNavigate } from 'react-router-dom';
 
@@ -36,7 +37,7 @@ const EnterpriseLandingPage: React.FC = () => {
       <Header isLandingPageHeader={true} className="absolute top-0 left-0 right-0" />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32">
+      <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32 flex-grow"> {/* Added flex-grow */}
         <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-white/80 mb-4">
           Enterprise
         </p>
@@ -63,6 +64,7 @@ const EnterpriseLandingPage: React.FC = () => {
 
       {/* Placeholder for other sections if needed */}
       <div className="h-48"></div>
+      <Footer /> {/* Add Footer here */}
     </div>
   );
 };

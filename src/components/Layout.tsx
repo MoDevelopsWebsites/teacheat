@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { useSession } from "@/integrations/supabase/SessionContextProvider";
 import { supabase } from "@/integrations/supabase/client";
 import { showSuccess, showError } from "@/utils/toast";
+import Footer from "./Footer"; // Import the Footer component
 
 interface NavLinkProps {
   to: string;
@@ -77,8 +78,13 @@ const Layout: React.FC = () => {
   const sidebarContent = (
     <div className="flex h-full flex-col bg-sidebar p-4 text-sidebar-foreground">
       <div className="flex items-center justify-between mb-6">
-        <Link to="/" className="text-xl font-bold text-sidebar-foreground hover:text-sidebar-foreground/80 transition-colors">
-          <h2>Teacheat AI</h2>
+        <Link to="/" className="relative flex items-center font-bold text-xl text-sidebar-foreground hover:text-sidebar-foreground/80 transition-colors">
+          <img
+            src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
+            alt="Teacheat Logo"
+            className="absolute -top-6 right-0 h-10 w-10 transform rotate-12 dark:filter dark:invert"
+          />
+          <span className="mr-2">Teacheat</span>
         </Link>
         {!isMobile && (
           <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
@@ -137,14 +143,20 @@ const Layout: React.FC = () => {
               {sidebarContent}
             </SheetContent>
           </Sheet>
-          <Link to="/" className="text-lg font-semibold hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-            <h1>Teacheat AI</h1>
+          <Link to="/" className="relative flex items-center font-bold text-xl hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+            <img
+              src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
+              alt="Teacheat Logo"
+              className="absolute -top-6 right-0 h-10 w-10 transform rotate-12 dark:filter dark:invert"
+            />
+            <span className="mr-2">Teacheat</span>
           </Link>
           <div className="w-10"></div> {/* Spacer for alignment */}
         </header>
         <main className="flex-grow overflow-auto">
           <Outlet />
         </main>
+        <Footer /> {/* Add Footer here for mobile layout */}
       </div>
     );
   }
@@ -159,9 +171,12 @@ const Layout: React.FC = () => {
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={80}>
-        <main className="flex-grow overflow-auto h-full">
-          <Outlet />
-        </main>
+        <div className="flex flex-col min-h-screen"> {/* Added flex-col and min-h-screen */}
+          <main className="flex-grow overflow-auto">
+            <Outlet />
+          </main>
+          <Footer /> {/* Add Footer here for desktop layout */}
+        </div>
       </ResizablePanel>
     </ResizablePanelGroup>
   );

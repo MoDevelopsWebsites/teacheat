@@ -8,6 +8,7 @@ import { Apple, ChevronDown, Bot } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
 import PricingFeatureTable from '@/components/PricingFeatureTable';
 import Header from '@/components/Header'; // Import the new Header component
+import Footer from '@/components/Footer'; // Import the Footer component
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -245,7 +246,7 @@ const Pricing = () => {
   return (
     <div className="min-h-screen flex flex-col items-center py-16 px-4 text-pricing-text-primary bg-white dark:bg-gray-900">
       <Header className="absolute top-0 left-0 right-0" /> {/* Add the Header component */}
-      <div className="text-center mb-16 mt-24"> {/* Added mt-24 to push content down from header */}
+      <div className="text-center mb-16 mt-24 flex-grow"> {/* Added mt-24 and flex-grow */}
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 flex items-center justify-center">
           Join the future of AI-powered productivity. <Bot className="h-12 w-12 mx-2 text-blue-500" />
         </h1>
@@ -300,6 +301,7 @@ const Pricing = () => {
       </div>
 
       <PricingFeatureTable data={featureTableData} />
+      <Footer /> {/* Add Footer here */}
     </div>
   );
 };

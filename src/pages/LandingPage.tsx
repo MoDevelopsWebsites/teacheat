@@ -18,6 +18,7 @@ import FAQSection from '@/components/FAQSection';
 import CTABottomSection from '@/components/CTABottomSection';
 import Header from '@/components/Header'; // Import the new Header component
 import FloatingGetStartedButton from '@/components/FloatingGetStartedButton'; // Import the new floating button
+import Footer from '@/components/Footer'; // Import the Footer component
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -318,6 +319,7 @@ const LandingPage = () => {
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
         <FloatingMouseCursor x={mousePosition.x} y={mousePosition.y} isClicking={isClicking} />
       )}
+      <Footer /> {/* Add Footer here */}
     </div>
   );
 };
