@@ -11,6 +11,7 @@ import Chat from "./pages/Chat";
 import Settings from "./pages/Settings";
 import Pricing from "./pages/Pricing";
 import EnterpriseLandingPage from "./pages/EnterpriseLandingPage";
+import Founders from "./pages/Founders"; // Import the Founders page
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/Layout";
@@ -36,6 +37,7 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/enterprise" element={<EnterpriseLandingPage />} />
+              <Route path="/founders" element={<Founders />} /> {/* Add the Founders route */}
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               {/* Routes wrapped by Layout will have the sidebar/header */}
