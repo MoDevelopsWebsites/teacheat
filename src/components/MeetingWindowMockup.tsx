@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Search, MessageSquareText, Keyboard, MicOff, VideoOff, PhoneOff, X } from 'lucide-react';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
-import placeholderImage from '/public/placeholder.svg'; // Import placeholder image
+// Removed placeholderImage import as it's no longer used for the background
 
 interface MeetingWindowMockupProps {
   currentAiResponse: string;
@@ -58,13 +58,9 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
   return (
     <div className="relative w-[90vw] max-w-[1000px] aspect-video rounded-xl shadow-2xl overflow-hidden border border-gray-300/50 backdrop-blur-lg">
-      {/* Simulated macOS Wallpaper Background */}
-      <div className="absolute inset-0">
-        <img
-          src={placeholderImage} // Using the placeholder image
-          alt="Placeholder Image"
-          className="w-full h-full object-cover"
-        />
+      {/* Simulated macOS Wallpaper Background - now a solid color */}
+      <div className="absolute inset-0 bg-uiLightBlue dark:bg-uiDarkBlue">
+        {/* The background image is removed, replaced by solid color */}
       </div>
 
       {/* Overlay Content */}
