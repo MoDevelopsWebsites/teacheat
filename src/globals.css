@@ -211,6 +211,11 @@
   body {
     @apply bg-[hsl(var(--global-background))] dark:bg-[hsl(var(--global-background))] text-foreground overflow-x-hidden; /* Added overflow-x-hidden */
   }
+
+  /* Make the favicon white */
+  link[rel="icon"] {
+    filter: invert(100%) brightness(200%);
+  }
 }
 
 /* Custom class for text with image background */
