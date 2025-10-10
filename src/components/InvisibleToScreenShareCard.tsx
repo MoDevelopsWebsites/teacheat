@@ -76,7 +76,7 @@ async function fetchUserData(userId: string) {
         <div className="flex-grow flex text-[0.6rem] sm:text-xs font-mono bg-gray-50 dark:bg-gray-900 text-undetectable-text-primary overflow-auto"> {/* Adjusted text size for mobile */}
           <div className="w-6 sm:w-8 text-right pr-1 sm:pr-2 py-1 sm:py-2 text-undetectable-text-muted border-r border-undetectable-card-border"> {/* Adjusted width/padding for mobile */}
             {Array.from({ length: codeSnippet.split('\n').length }, (_, i) => i + 1).map(num => (
-              <div key={num} className="h-[14px] sm:h-[18px] leading-[14px] sm:leading-[18px]">{num}</div> {/* Adjusted line height for mobile */}
+              <div key={num} className="h-[14px] sm:h-[18px] leading-[14px] sm:leading-[18px]">{num}</div>
             ))}
           </div>
           <pre className="flex-grow p-1 sm:p-2"> {/* Adjusted padding for mobile */}
