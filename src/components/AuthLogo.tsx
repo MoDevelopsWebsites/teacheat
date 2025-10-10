@@ -14,7 +14,7 @@ const AuthLogo: React.FC<AuthLogoProps> = ({ className }) => {
       <img
         src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
         alt="Teacheat Logo"
-        className="absolute -top-5 right-0 h-8 w-8 sm:-top-6 sm:h-10 sm:w-10 transform rotate-12 dark:filter dark:invert" {/* Adjusted size/position for mobile */}
+        className="absolute -top-5 right-0 h-8 w-8 sm:-top-6 sm:h-10 sm:w-10 transform rotate-12 dark:filter dark:invert" /* Adjusted size/position for mobile */
       />
       <span className="mr-2">Teacheat</span>
     </Link>
