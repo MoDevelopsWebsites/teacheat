@@ -10,21 +10,33 @@ import { cn } from '@/lib/utils';
 
 const Founders: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+      {/* Mountain Background Image with Fade */}
+      <div
+        className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using the new wallpaper9.jpeg
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
+          opacity: 0.7, // Reduced opacity
+          filter: 'blur(4px)', // Increased blur effect
+        }}
+      ></div>
+
+      {/* Floating Background Elements (copied from LandingPage) */}
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
+      <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
+
       <Header />
 
       {/* Hero Section */}
       <section className="relative w-full py-24 md:py-32 text-center flex flex-col items-center justify-center flex-grow z-10">
-        {/* Floating Background Elements */}
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
-        <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
-
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-landing-text-primary animate-fade-in-up">
+        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white animate-fade-in-up"> {/* Changed text color to white */}
           Meet Our Visionary
         </h1>
-        <p className="text-lg md:text-xl text-landing-text-primary/80 max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-500">
+        <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-500"> {/* Changed text color to white/80 */}
           The mind behind Teacheat, dedicated to revolutionizing productivity with AI.
         </p>
       </section>
