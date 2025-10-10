@@ -150,7 +150,7 @@ const LandingPage = () => {
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
           opacity: 0.7, // Reduced opacity
-          filter: 'blur(2px)', // Added blur effect
+          filter: 'blur(4px)', // Increased blur effect
         }}
       ></div>
 
