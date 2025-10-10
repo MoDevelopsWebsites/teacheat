@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button'; // Keep Button for potential future CTAs or if needed in profile section
+import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Founders: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 50) { // Adjust scroll threshold as needed
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -33,7 +33,7 @@ const Founders: React.FC = () => {
     <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-gray-900 dark:text-gray-100 overflow-hidden">
       {/* Mountain Background Image with Fade */}
       <div
-        className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0" // Using h-[600px] as in EnterpriseLandingPage
+        className="absolute top-0 left-0 w-full h-[900px] bg-cover bg-center z-0" // Increased height to 900px for more fade room
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using wallpaper9.jpeg
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Consistent fade
@@ -42,6 +42,12 @@ const Founders: React.FC = () => {
           filter: 'blur(4px)',
         }}
       ></div>
+
+      {/* Floating Background Elements (from previous Founders.tsx) */}
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
+      <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
 
       {/* Header - fixed and conditionally blurred */}
       <Header
