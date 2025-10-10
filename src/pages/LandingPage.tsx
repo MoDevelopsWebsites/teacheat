@@ -12,7 +12,7 @@ import RealtimeAnswersCard from '@/components/RealtimeAnswersCard';
 import MeetingParticipantsCard from '@/components/MeetingParticipantsCard';
 import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard';
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
-import MeetingPlatformLogos from '@/components/MeetingPlatformLogos';
+import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Import the new component
 import MeetingRecapCard from '@/components/MeetingRecapCard';
 import FAQSection from '@/components/FAQSection';
 import CTABottomSection from '@/components/CTABottomSection';
@@ -281,7 +281,8 @@ const LandingPage = () => {
               <p className="text-sm font-semibold text-undetectable-text-muted uppercase tracking-wider mb-8">
                 Works with every meeting platform
               </p>
-              <MeetingPlatformLogos />
+              {/* Replaced MeetingPlatformLogos with InfiniteMovingLogos */}
+              <InfiniteMovingLogos />
             </div>
           </div>
         </section>
