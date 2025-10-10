@@ -21,7 +21,7 @@ const defaultLogos = [
 export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
   items = defaultLogos,
   direction = "left",
-  speed = "normal",
+  speed = "fast", // Changed default speed from "normal" to "fast"
   pauseOnHover = true,
   className,
 }) => {
