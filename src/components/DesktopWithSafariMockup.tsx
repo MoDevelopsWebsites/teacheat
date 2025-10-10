@@ -21,14 +21,9 @@ const DesktopWithSafariMockup: React.FC<DesktopWithSafariMockupProps> = ({ class
   ];
 
   const dockIcons = [
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Finder" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Safari" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Mail" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Messages" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Calendar" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Photos" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "App Store" },
-    { src: import.meta.env.BASE_URL + "placeholder.svg", alt: "Settings" },
+    { src: import.meta.env.BASE_URL + "google.png", alt: "Google Chrome" },
+    { src: import.meta.env.BASE_URL + "zoom.webp", alt: "Zoom" },
+    { src: import.meta.env.BASE_URL + "recycle.jpg", alt: "Recycle Bin" },
   ];
 
   return (
