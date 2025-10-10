@@ -247,10 +247,10 @@ const Pricing = () => {
       <Header className="absolute top-0 left-0 right-0" /> {/* Add the Header component */}
       <div className="text-center mb-16 mt-24"> {/* Added mt-24 to push content down from header */}
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 flex items-center justify-center">
-          Start <Bot className="h-12 w-12 mx-2 text-blue-500" /> for free.
+          Join the future of AI-powered productivity. <Bot className="h-12 w-12 mx-2 text-blue-500" />
         </h1>
         <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
-          Whether you're using Teacheat for meetings, homework, sales calls, or just curious, it's free to use.
+          Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
         </p>
       </div>
 
