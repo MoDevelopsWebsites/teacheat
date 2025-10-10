@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
     navItemBaseClasses,
     isLandingPageHeader
       ? "text-white hover:bg-white/20 hover:shadow-lg hover:shadow-white/70 hover:scale-105"
-      : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-300/70 dark:hover:shadow-gray-700/70 hover:scale-105"
+      : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-landing-text-primary hover:shadow-lg hover:shadow-gray-300/70 dark:hover:shadow-gray-700/70 hover:scale-105"
   );
 
   return (
@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
           <img
             src={import.meta.env.BASE_URL + "teacheat-logo.png"}
             alt="Teacheat Logo"
-            className={cn("h-6 w-6", isLandingPageHeader ? "filter invert" : "")} // Invert color for dark background
+            className={cn("h-8 w-8", isLandingPageHeader ? "filter invert" : "")} // Increased size to h-8 w-8
           />
           <span>Teacheat</span>
         </Link>
