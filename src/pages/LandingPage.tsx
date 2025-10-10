@@ -141,7 +141,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+    <div className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden"> {/* Removed items-center */}
       {/* Mountain Background Image with Fade */}
       <div
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
@@ -166,156 +166,158 @@ const LandingPage = () => {
       {/* Floating Get Started Button */}
       <FloatingGetStartedButton />
 
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
-        {/* Floating Icons for Hero Section */}
-        <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
-        <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
-        <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
-        <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+      <main className="flex-grow flex flex-col items-center"> {/* Added main, flex-grow, items-center */}
+        {/* Hero Section */}
+        <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
+          {/* Floating Icons for Hero Section */}
+          <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+          <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+          <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
+          <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-        <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6 text-white font-display">
-          <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
-        </h1>
-        <p className="text-lg md:text-xl text-white font-normal mb-10 max-w-2xl">
-          Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
-        </p>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
-          <Button
-            className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
-            onClick={handleGetStartedClick}
-          >
-            <Apple className="h-5 w-5 mr-2" /> Get Started
-          </Button>
-        </div>
-      </section>
-
-      {/* Meeting Window Mockup */}
-      <div className="mt-16 mb-24 z-10">
-        <MeetingWindowMockup
-          currentAiResponse={currentAiResponse}
-          typewriterKey={typewriterKey}
-          onButtonPositionsReady={handleButtonPositionsReady}
-          activeSuggestionType={activeSuggestionType}
-        />
-      </div>
-
-      {/* Features Section */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
-        <div className="grid md:grid-cols-2 gap-12 mb-24">
-          <div>
-            <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
-            <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
-              Teacheat listens to your meetings in the background and takes real-time notes without joining.
-            </p>
-            <MeetingSettingsCard />
-          </div>
-          <div>
-            <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
-            <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
-              Teacheat responds with context of what's happening in a conversation and what's on your screen.
-            </p>
-            <RealtimeAnswersCard />
-          </div>
-        </div>
-
-        {/* Call to Action Text */}
-        <div className="text-center py-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
-            It's time to cheat
-          </h2>
-          <p className="text-5xl md:text-7xl font-extrabold leading-tight">
-            {cyclingWords.map((word, index) => (
-              <React.Fragment key={index}>
-                <span
-                  className={cn(
-                    "inline-block transition-colors duration-500",
-                    index === activeWordIndex
-                      ? "bg-gradient-to-r from-landing-button-gradient-start to-landing-button-gradient-end bg-clip-text text-transparent"
-                      : "text-gray-300 dark:text-gray-700"
-                  )}
-                >
-                  {word}
-                </span>
-                {' '}
-              </React.Fragment>
-            ))}
+          <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6 text-white font-display">
+            <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
+          </h1>
+          <p className="text-lg md:text-xl text-white font-normal mb-10 max-w-2xl">
+            Takes perfect notes, answers questions in real-time, and <br /> makes you the most prepared person on every call.
           </p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"> {/* Adjusted for mobile */}
+            <Button
+              className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
+              onClick={handleGetStartedClick}
+            >
+              <Apple className="h-5 w-5 mr-2" /> Get Started
+            </Button>
+          </div>
+        </section>
+
+        {/* Meeting Window Mockup */}
+        <div className="mt-16 mb-24 z-10">
+          <MeetingWindowMockup
+            currentAiResponse={currentAiResponse}
+            typewriterKey={typewriterKey}
+            onButtonPositionsReady={handleButtonPositionsReady}
+            activeSuggestionType={activeSuggestionType}
+          />
         </div>
-      </section>
 
-      {/* Undetectable Section */}
-      <section className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
-          <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
-            Poof. Completely undetectable to every software.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
+        {/* Features Section */}
+        <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
+          <div className="grid md:grid-cols-2 gap-12 mb-24">
             <div>
-              <MeetingParticipantsCard />
-              <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3>
-              <p className="text-undetectable-text-secondary max-w-xs mx-auto">
-                Teacheat never joins your meetings, so there are no bots and no extra people on the guest list.
+              <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
+              <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
+                Teacheat listens to your meetings in the background and takes real-time notes without joining.
               </p>
+              <MeetingSettingsCard />
             </div>
             <div>
-              <InvisibleToScreenShareCard />
-              <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3>
-              <p className="text-undetectable-text-secondary max-w-xs mx-auto">
-                Teacheat never shows up in shared screens, recordings, or external meeting tools.
+              <h2 className="text-3xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
+              <p className="text-lg text-landing-text-primary/80 mb-8 max-w-sm"> {/* Added max-w-sm */}
+                Teacheat responds with context of what's happening in a conversation and what's on your screen.
               </p>
-            </div>
-            <div>
-              <NeverInYourWayCard />
-              <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3>
-              <p className="text-undetectable-text-secondary max-w-xs mx-auto">
-                Teacheat appears as a translucent and hideable window over all your other applications.
-              </p>
+              <RealtimeAnswersCard />
             </div>
           </div>
 
-          <div className="mt-16">
-            <p className="text-sm font-semibold text-undetectable-text-muted uppercase tracking-wider mb-8">
-              Works with every meeting platform
+          {/* Call to Action Text */}
+          <div className="text-center py-16">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
+              It's time to cheat
+            </h2>
+            <p className="text-5xl md:text-7xl font-extrabold leading-tight">
+              {cyclingWords.map((word, index) => (
+                <React.Fragment key={index}>
+                  <span
+                    className={cn(
+                      "inline-block transition-colors duration-500",
+                      index === activeWordIndex
+                        ? "bg-gradient-to-r from-landing-button-gradient-start to-landing-button-gradient-end bg-clip-text text-transparent"
+                        : "text-gray-300 dark:text-gray-700"
+                    )}
+                  >
+                    {word}
+                  </span>
+                  {' '}
+                </React.Fragment>
+              ))}
             </p>
-            <MeetingPlatformLogos />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* New Section: Teacheat tells you where you went wrong */}
-      <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
-        {/* Floating Icons */}
-        <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
-        <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
-        <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
-        <img src={import.meta.env.BASE_URL + "video-camera-icon.svg"} alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
-        <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
-        <img src={import.meta.env.BASE_URL + "incognito-icon.svg"} alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
+        {/* Undetectable Section */}
+        <section className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
+            <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
+              Poof. Completely undetectable to every software.
+            </p>
 
+            <div className="grid md:grid-cols-3 gap-8 mb-24">
+              <div>
+                <MeetingParticipantsCard />
+                <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3>
+                <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                  Teacheat never joins your meetings, so there are no bots and no extra people on the guest list.
+                </p>
+              </div>
+              <div>
+                <InvisibleToScreenShareCard />
+                <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3>
+                <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                  Teacheat never shows up in shared screens, recordings, or external meeting tools.
+                </p>
+              </div>
+              <div>
+                <NeverInYourWayCard />
+                <h3 className="text-xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3>
+                <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                  Teacheat appears as a translucent and hideable window over all your other applications.
+                </p>
+              </div>
+            </div>
 
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          <p className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">You mess up way more than you think</p>
-          <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-16">
-            Teacheat tells you where <br /> you went wrong
-          </h2>
-          <p className="text-lg md:text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto">
-            After every call, Teacheat tells you how to improve, whether you're interviewing for a job, selling a product, working on an assignment, or just chatting.
-          </p>
-
-          <div className="flex justify-center">
-            <MeetingRecapCard />
+            <div className="mt-16">
+              <p className="text-sm font-semibold text-undetectable-text-muted uppercase tracking-wider mb-8">
+                Works with every meeting platform
+              </p>
+              <MeetingPlatformLogos />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <FAQSection />
+        {/* New Section: Teacheat tells you where you went wrong */}
+        <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
+          {/* Floating Icons */}
+          <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+          <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+          <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
+          <img src={import.meta.env.BASE_URL + "video-camera-icon.svg"} alt="Video camera" className="absolute bottom-1/4 right-1/3 w-14 h-14 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, 50%) rotate(-10deg)' }} />
+          <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/3 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-9000" style={{ transform: 'translate(-50%, -50%) rotate(20deg)' }} />
+          <img src={import.meta.env.BASE_URL + "incognito-icon.svg"} alt="Incognito" className="absolute top-1/3 right-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-11000" style={{ transform: 'translate(50%, -50%) rotate(-5deg)' }} />
 
-      {/* Bottom CTA Section */}
-      <CTABottomSection />
+
+          <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <p className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">You mess up way more than you think</p>
+            <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-16">
+              Teacheat tells you where <br /> you went wrong
+            </h2>
+            <p className="text-lg md:text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto">
+              After every call, Teacheat tells you how to improve, whether you're interviewing for a job, selling a product, working on an assignment, or just chatting.
+            </p>
+
+            <div className="flex justify-center">
+              <MeetingRecapCard />
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <FAQSection />
+
+        {/* Bottom CTA Section */}
+        <CTABottomSection />
+      </main>
 
       {/* Floating Mouse Cursor */}
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (

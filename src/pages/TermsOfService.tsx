@@ -7,8 +7,8 @@ import Footer from '@/components/Footer';
 const TermsOfService: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-16 max-w-4xl">
+      <Header className="absolute top-0 left-0 right-0" /> {/* Make header absolute */}
+      <main className="flex-grow container mx-auto px-4 py-16 max-w-4xl mt-24"> {/* Add mt-24 to main */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-12">Terms of Service</h1>
 
         <section className="mb-8">

@@ -2,7 +2,6 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header'; // Import the Header component
-import Footer from '@/components/Footer'; // Import the Footer component
 
 
 const Login = () => {
@@ -30,7 +29,7 @@ const Login = () => {
           theme="light" // You can change this to "dark" or dynamically based on theme
         />
       </div>
-      <Footer /> {/* Add Footer here */}
+      {/* Footer removed from here */}
     </div>
   );
 };

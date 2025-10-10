@@ -244,63 +244,65 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-16 px-4 text-pricing-text-primary bg-white dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900"> {/* Removed items-center and py-16 */}
       <Header className="absolute top-0 left-0 right-0" /> {/* Add the Header component */}
-      <div className="text-center mb-16 mt-24 flex-grow"> {/* Added mt-24 and flex-grow */}
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 flex items-center justify-center">
-          Join the future of AI-powered productivity. <Bot className="h-12 w-12 mx-2 text-blue-500" />
-        </h1>
-        <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
-          Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
-        </p>
-      </div>
+      <main className="flex-grow flex flex-col items-center py-16 px-4 text-pricing-text-primary"> {/* Added main, flex-grow, items-center, px-4, py-16 */}
+        <div className="text-center mb-16 mt-24"> {/* Removed flex-grow, mt-24 is fine for spacing from header */}
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 flex items-center justify-center">
+            Join the future of AI-powered productivity. <Bot className="h-12 w-12 mx-2 text-blue-500" />
+          </h1>
+          <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
+            Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
+          </p>
+        </div>
 
-      <Tabs
-        defaultValue="monthly"
-        className="mb-16"
-        onValueChange={(value) => setBillingCycle(value as 'monthly' | 'annually')}
-        value={billingCycle} // Control the Tabs component with state
-      >
-        <TabsList className="bg-pricing-toggle p-1 rounded-full">
-          <TabsTrigger
-            value="monthly"
-            className={cn(
-              "px-6 py-2 rounded-full text-base font-medium transition-all",
-              billingCycle === 'monthly'
-                ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
-                : "text-pricing-text-secondary hover:text-pricing-text-primary"
-            )}
-          >
-            Monthly
-          </TabsTrigger>
-          <TabsTrigger
-            value="annually"
-            className={cn(
-              "px-6 py-2 rounded-full text-base font-medium transition-all",
-              billingCycle === 'annually'
-                ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
-                : "text-pricing-text-secondary hover:text-pricing-text-primary"
-            )}
-          >
-            Annually
-          </TabsTrigger>
-        </TabsList>
-      </Tabs>
+        <Tabs
+          defaultValue="monthly"
+          className="mb-16"
+          onValueChange={(value) => setBillingCycle(value as 'monthly' | 'annually')}
+          value={billingCycle} // Control the Tabs component with state
+        >
+          <TabsList className="bg-pricing-toggle p-1 rounded-full">
+            <TabsTrigger
+              value="monthly"
+              className={cn(
+                "px-6 py-2 rounded-full text-base font-medium transition-all",
+                billingCycle === 'monthly'
+                  ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
+                  : "text-pricing-text-secondary hover:text-pricing-text-primary"
+              )}
+            >
+              Monthly
+            </TabsTrigger>
+            <TabsTrigger
+              value="annually"
+              className={cn(
+                "px-6 py-2 rounded-full text-base font-medium transition-all",
+                billingCycle === 'annually'
+                  ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
+                  : "text-pricing-text-secondary hover:text-pricing-text-primary"
+              )}
+            >
+              Annually
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-24">
-        {currentPlans.map((plan, index) => (
-          <PricingCard
-            key={index}
-            {...plan}
-            onSubscribe={handleSubscribe}
-            isSubmitting={isSubmitting}
-            buttonText={isSubmitting && plan.priceId ? "Processing..." : plan.buttonText}
-            disabled={isSubmitting && plan.priceId !== null}
-          />
-        ))}
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full mb-24">
+          {currentPlans.map((plan, index) => (
+            <PricingCard
+              key={index}
+              {...plan}
+              onSubscribe={handleSubscribe}
+              isSubmitting={isSubmitting}
+              buttonText={isSubmitting && plan.priceId ? "Processing..." : plan.buttonText}
+              disabled={isSubmitting && plan.priceId !== null}
+            />
+          ))}
+        </div>
 
-      <PricingFeatureTable data={featureTableData} />
+        <PricingFeatureTable data={featureTableData} />
+      </main>
       <Footer /> {/* Add Footer here */}
     </div>
   );

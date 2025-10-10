@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from '@/components/Header'; // Import the Header component
-import Footer from '@/components/Footer'; // Import the Footer component
+
 
 const NotFound = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ const NotFound = () => {
           Return to Home
         </a>
       </div>
-      <Footer /> {/* Add Footer here */}
+      {/* Footer removed from here */}
     </div>
   );
 };
