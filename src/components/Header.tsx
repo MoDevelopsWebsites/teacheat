@@ -200,6 +200,22 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                   <NavigationMenuTrigger className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>Enterprise</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {/* NEW: Main link to Enterprise page */}
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                            to="/enterprise"
+                          >
+                            <div className="mb-2 mt-4 text-lg font-medium">
+                              Teacheat for Enterprise
+                            </div>
+                            <p className="text-sm leading-tight text-muted-foreground">
+                              Discover custom solutions for your business needs.
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
                       <ListItem to="/enterprise" title="Sales Teams" icon={<Briefcase className="h-4 w-4" />}>
                         Close deals faster with AI-powered insights.
                       </ListItem>
