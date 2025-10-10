@@ -22,7 +22,7 @@ const SettingItem: React.FC<SettingItemProps> = ({ icon, label, status, checked,
     <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-uiLightBlue dark:bg-uiDarkBlue rounded-xl flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-700"> {/* Adjusted size for mobile */}
       {icon}
       {checked && (
-        <CheckCircle2 className="absolute -top-2 -right-2 h-5 w-5 sm:h-6 sm:w-6 text-blue-500 bg-white dark:bg-gray-900 rounded-full" fill="currentColor" /> {/* Adjusted size for mobile */}
+        <CheckCircle2 className="absolute -top-2 -right-2 h-5 w-5 sm:h-6 sm:w-6 text-blue-500 bg-white dark:bg-gray-900 rounded-full" fill="currentColor" /> /* Adjusted size for mobile */
       )}
     </div>
     <p className="mt-2 text-sm font-medium text-gray-800 dark:text-gray-200">{label}</p>
