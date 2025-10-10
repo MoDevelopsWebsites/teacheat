@@ -42,7 +42,7 @@ const EnterpriseLandingPage: React.FC = () => {
     <div className="relative flex flex-col min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-gray-900 dark:text-gray-100 overflow-hidden"> {/* Removed items-center */}
       {/* Mountain Background Image with Fade (Enterprise specific) */}
       <div
-        className="absolute top-0 left-0 w-full h-[400px] sm:h-[500px] md:h-[600px] bg-cover bg-center z-0" // Adjusted height for mobile
+        className="absolute top-0 left-0 w-full h-screen bg-cover bg-center z-0" // Changed h-[400px] sm:h-[500px] md:h-[600px] to h-screen
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper4.jpg"})`, // New wallpaper
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom

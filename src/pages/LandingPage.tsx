@@ -144,7 +144,7 @@ const LandingPage = () => {
     <div className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden"> {/* Removed items-center */}
       {/* Mountain Background Image with Fade */}
       <div
-        className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
+        className="absolute top-0 left-0 w-full h-screen bg-cover bg-center z-0" // Changed h-[600px] to h-screen
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper8.jpg"})`, // Changed to wallpaper8.jpg
           maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)', // Adjusted for smoother fade
@@ -155,7 +155,7 @@ const LandingPage = () => {
       ></div>
 
       {/* Floating Background Elements */}
-      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
+      <div className="absolute top-1/4 left-1/4 w-24 h-24 sm:w-32 sm:h-32 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
       <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
       <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
