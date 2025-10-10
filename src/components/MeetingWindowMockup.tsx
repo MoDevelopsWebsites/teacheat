@@ -98,17 +98,17 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
             </CardContent>
             <CardFooter className="p-0 flex flex-col space-y-2">
               <div className="flex space-x-2 w-full">
-                <Button ref={whatToSayNextRef} variant="outline" className="flex-grow bg-uiDarkBlue text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8" disabled>
+                <Button ref={whatToSayNextRef} variant="outline" className="flex-grow bg-gray-800 text-gray-100 border-gray-600 hover:bg-gray-700 text-xs h-8" disabled>
                   <MessageSquareText className="h-3 w-3 mr-1" /> What should I say next?
                 </Button>
-                <Button ref={followUpQuestionsRef} variant="outline" className="flex-grow bg-uiDarkBlue text-gray-200 border-gray-600 hover:bg-gray-700 text-xs h-8" disabled>
+                <Button ref={followUpQuestionsRef} variant="outline" className="flex-grow bg-gray-800 text-gray-100 border-gray-600 hover:bg-gray-700 text-xs h-8" disabled>
                   <MessageSquareText className="h-3 w-3 mr-1" /> Follow-up questions
                 </Button>
               </div>
               <div className="relative w-full">
                 <Input
                   placeholder="Ask, ⌘ ⏎ to start typing"
-                  className="w-full bg-uiDarkBlue text-gray-200 border-gray-600 placeholder:text-gray-400 pl-10 pr-4 h-10 text-sm"
+                  className="w-full bg-gray-800 text-gray-100 border-gray-600 placeholder:text-gray-400 pl-10 pr-4 h-10 text-sm"
                   disabled
                 />
                 <Keyboard className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
