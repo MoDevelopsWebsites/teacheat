@@ -1,45 +1,69 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button'; // Keep Button for potential future CTAs or if needed in profile section
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useNavigate } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Sparkles, Code, Rocket, Lightbulb } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const Founders: React.FC = () => {
+  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-gray-900 dark:text-gray-100 overflow-hidden">
       {/* Mountain Background Image with Fade */}
-      {/* Increased height to 900px */}
       <div
-        className="absolute top-0 left-0 w-full h-[900px] bg-cover bg-center z-0"
+        className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0" // Using h-[600px] as in EnterpriseLandingPage
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using wallpaper9.jpeg for Founders page
-          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Adjusted to match LandingPage fade
-          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
-          opacity: 0.7, // Reduced opacity
-          filter: 'blur(4px)', // Increased blur effect
+          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using wallpaper9.jpeg
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Consistent fade
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+          opacity: 0.7,
+          filter: 'blur(4px)',
         }}
       ></div>
 
-      {/* Floating Background Elements (copied from LandingPage) */}
-      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
-      <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
-
-      <Header isLandingPageHeader={true} />
+      {/* Header - fixed and conditionally blurred */}
+      <Header
+        isLandingPageHeader={true}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled && "bg-black/10 backdrop-blur-md shadow-md"
+        )}
+      />
 
       {/* Hero Section */}
-      <section className="relative w-full py-24 md:py-32 text-center flex flex-col items-center justify-center flex-grow z-10">
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white animate-fade-in-up">
+      <section className="relative flex flex-col items-start text-left px-4 py-16 max-w-5xl z-10 mt-24 md:mt-32 flex-grow">
+        <p className="text-sm md:text-base font-semibold uppercase tracking-wider text-white/80 mb-4">
+          Our Story
+        </p>
+        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white">
           Meet Our Visionary
         </h1>
-        <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-500">
+        <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl">
           The mind behind Teacheat, dedicated to revolutionizing productivity with AI.
         </p>
+        {/* Removed buttons from hero section */}
       </section>
 
       {/* Muhammad's Profile Section */}
