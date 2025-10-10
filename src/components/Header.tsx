@@ -28,16 +28,16 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   const navLinkClasses = cn(
     navItemBaseClasses,
     isLandingPageHeader
-      ? "text-white/80 hover:bg-white/10 hover:text-white hover:shadow-md hover:shadow-white/30"
-      : "text-landing-text-primary/80 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-landing-text-primary hover:shadow-md hover:shadow-gray-300/30 dark:hover:shadow-gray-700/30"
+      ? "text-white/80 hover:bg-white/20 hover:text-white hover:shadow-lg hover:shadow-white/50 hover:scale-105"
+      : "text-landing-text-primary/80 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-landing-text-primary hover:shadow-lg hover:shadow-gray-300/50 dark:hover:shadow-gray-700/50 hover:scale-105"
   );
 
   // Classes for the Login button
   const loginButtonClasses = cn(
     navItemBaseClasses,
     isLandingPageHeader
-      ? "text-white hover:bg-white/10 hover:shadow-md hover:shadow-white/30"
-      : "text-landing-text-primary hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-md hover:shadow-gray-300/30 dark:hover:shadow-gray-700/30"
+      ? "text-white hover:bg-white/20 hover:shadow-lg hover:shadow-white/50 hover:scale-105"
+      : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-300/50 dark:hover:shadow-gray-700/50 hover:scale-105"
   );
 
   return (
