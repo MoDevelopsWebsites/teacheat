@@ -149,6 +149,8 @@ const LandingPage = () => {
           backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper3.jpg"})`, // Changed to wallpaper3.jpg
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
+          opacity: 0.7, // Reduced opacity
+          filter: 'blur(2px)', // Added blur effect
         }}
       ></div>
 
