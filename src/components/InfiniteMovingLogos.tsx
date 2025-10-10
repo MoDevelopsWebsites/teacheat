@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
 interface InfiniteMovingLogosProps {
-  items?: { src: string; alt: string }[];
+  items?: { src: string; alt: string; label: string }[]; // Added label to item interface
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
@@ -12,10 +12,10 @@ interface InfiniteMovingLogosProps {
 }
 
 const defaultLogos = [
-  { src: import.meta.env.BASE_URL + "microsoft-teams-logo.svg", alt: "Microsoft Teams" },
-  { src: import.meta.env.BASE_URL + "webex-logo.svg", alt: "Webex" },
-  { src: import.meta.env.BASE_URL + "slack-logo.svg", alt: "Slack" },
-  { src: import.meta.env.BASE_URL + "zoom-logo.svg", alt: "Zoom" },
+  { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
+  { src: import.meta.env.BASE_URL + "webex.png", alt: "Webex Logo", label: "Webex" },
+  { src: import.meta.env.BASE_URL + "slack.png", alt: "Slack Logo", label: "Slack" },
+  { src: import.meta.env.BASE_URL + "zoomm.png", alt: "Zoom Logo", label: "Zoom" },
 ];
 
 export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
@@ -85,10 +85,11 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[150px] max-w-full relative flex-shrink-0 px-4 py-2 md:w-[200px]"
+            className="w-[200px] max-w-full relative flex-shrink-0 px-4 py-2 md:w-[250px] flex items-center space-x-3" // Added flex and space-x for logo and text
             key={item.alt + idx}
           >
-            <img src={item.src} alt={item.alt} className="h-10 md:h-12 w-full object-contain opacity-70 grayscale hover:grayscale-0 transition-all duration-300" />
+            <img src={item.src} alt={item.alt} className="h-10 md:h-12 w-auto object-contain opacity-70 grayscale hover:grayscale-0 transition-all duration-300" />
+            <span className="text-lg font-medium text-undetectable-text-primary">{item.label}</span> {/* Display the label */}
           </li>
         ))}
       </ul>
