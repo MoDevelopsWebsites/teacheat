@@ -44,8 +44,8 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* New Landing Page Colors (based on screenshot) */
-    --landing-background-start: 210 100% 75%; /* Sky blue */
-    --landing-background-end: 210 100% 95%; /* Very light blue, almost white */
+    --landing-background-start: 210 60% 98%; /* Very subtle light blue */
+    --landing-background-end: 0 0% 100%; /* Pure white */
     --landing-text-primary: 222.2 84% 4.9%; /* Dark blue-black */
     --landing-button-mac-foreground: 0 0% 100%;
     --landing-button-cta: 220 20% 15%; /* Not used in new design, but keeping for consistency */
@@ -135,8 +135,8 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* New Landing Page Dark Mode Colors (based on screenshot) */
-    --landing-background-start: 222.2 84% 4.9%; /* Dark background */
-    --landing-background-end: 222.2 84% 4.9%; /* Dark background */
+    --landing-background-start: 222.2 84% 8%; /* Slightly lighter dark blue */
+    --landing-background-end: 222.2 84% 4.9%; /* Current dark background */
     --landing-text-primary: 210 40% 98%; /* Light text */
     --landing-button-mac-foreground: 0 0% 100%;
     --landing-button-cta: 210 40% 98%; /* Not used in new design */
@@ -195,7 +195,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-b from-landing-background-start to-landing-background-end text-foreground;
   }
 }
 

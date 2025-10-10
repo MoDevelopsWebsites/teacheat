@@ -21,7 +21,7 @@ const EnterpriseLandingPage: React.FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-950 text-gray-900 dark:text-gray-100 overflow-hidden">
+    <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-br from-landing-background-start to-landing-background-end text-gray-900 dark:text-gray-100 overflow-hidden">
       {/* Header */}
       <Header className="absolute top-0 left-0 right-0" />
 

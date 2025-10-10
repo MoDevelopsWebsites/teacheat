@@ -243,7 +243,7 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pricing flex flex-col items-center py-16 px-4 text-pricing-text-primary">
+    <div className="min-h-screen flex flex-col items-center py-16 px-4 text-pricing-text-primary">
       <Header className="absolute top-0 left-0 right-0" /> {/* Add the Header component */}
       <div className="text-center mb-16 mt-24"> {/* Added mt-24 to push content down from header */}
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 flex items-center justify-center">
