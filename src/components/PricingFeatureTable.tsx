@@ -23,9 +23,9 @@ interface PricingFeatureTableProps {
 const PricingFeatureTable: React.FC<PricingFeatureTableProps> = ({ data }) => {
   const renderFeatureValue = (value: boolean | string) => {
     if (typeof value === 'boolean') {
-      return value ? <Check className="h-4 w-4 text-pricing-feature-check" /> : <X className="h-4 w-4 text-pricing-feature-cross" />; {/* Adjusted icon size for mobile */}
+      return value ? <Check className="h-4 w-4 text-pricing-feature-check" /> : <X className="h-4 w-4 text-pricing-feature-cross" />; /* Adjusted icon size for mobile */
     }
-    return <span className="text-pricing-feature-coming-soon text-xs">{value}</span>; {/* Adjusted text size for mobile */}
+    return <span className="text-pricing-feature-coming-soon text-xs">{value}</span>; /* Adjusted text size for mobile */
   };
 
   return (
@@ -52,8 +52,8 @@ const PricingFeatureTable: React.FC<PricingFeatureTableProps> = ({ data }) => {
                   <tr key={featureIndex} className="border-t border-pricing-card-border/50">
                     <td className="p-3 sm:p-4 text-pricing-text-primary text-sm">{feature.name}</td> {/* Adjusted padding/text size for mobile */}
                     <td className="p-3 sm:p-4 text-center">{renderFeatureValue(feature.starter)}</td> {/* Adjusted padding for mobile */}
-                    <td className="p-3 sm:p-4 text-center">{renderFeatureValue(feature.pro)}</td> {/* Adjusted padding for mobile */}
-                    <td className="p-3 sm:p-4 text-center">{renderFeatureValue(feature.enterprise)}</td> {/* Adjusted padding for mobile */}
+                    <td className="p-3 sm:p-4 text-center">{renderFeatureValue(feature.pro)}</td> /* Adjusted padding for mobile */
+                    <td className="p-3 sm:p-4 text-center">{renderFeatureValue(feature.enterprise)}</td> /* Adjusted padding for mobile */
                   </tr>
                 ))}
               </React.Fragment>

@@ -54,7 +54,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
   return (
     <Card className={cn(
-      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg", {/* Adjusted padding for mobile */}
+      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg", /* Adjusted padding for mobile */
       isPopular && "border-2 border-blue-500 shadow-xl",
       isEnterprise && "col-span-1 md:col-span-1"
     )}>
@@ -84,7 +84,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
       <CardFooter className="p-0 pt-3 sm:pt-4"> {/* Adjusted padding for mobile */}
         <Button
           className={cn(
-            "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg", {/* Adjusted padding/text size for mobile */}
+            "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg", /* Adjusted padding/text size for mobile */
             // Apply Mac button gradient if isMacButton is true
             isMacButton && "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover",
             // Existing default variant styles, but only if not a Mac button
@@ -97,9 +97,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
           onClick={handleButtonClick}
           disabled={disabled || (isSubmitting && priceId !== null)}
         >
-          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })} {/* Adjusted icon size for mobile */}
+          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })} /* Adjusted icon size for mobile */
           {buttonText}
-          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />} {/* Adjusted icon size for mobile */}
+          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />} /* Adjusted icon size for mobile */
         </Button>
       </CardFooter>
     </Card>

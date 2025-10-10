@@ -110,7 +110,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
               <div className="relative w-full">
                 <Input
                   placeholder="Ask, ⌘ ⏎ to start typing"
-                  className="w-full bg-gray-800 text-gray-100 border-gray-600 placeholder:text-gray-400 pl-8 sm:pl-10 pr-2 sm:pr-4 h-8 sm:h-10 text-xs sm:text-sm" {/* Adjusted padding/height/text size for mobile */}
+                  className="w-full bg-gray-800 text-gray-100 border-gray-600 placeholder:text-gray-400 pl-8 sm:pl-10 pr-2 sm:pr-4 h-8 sm:h-10 text-xs sm:text-sm" /* Adjusted padding/height/text size for mobile */
                   disabled
                 />
                 <Keyboard className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 h-3 w-3 sm:h-4 sm:w-4 text-gray-400" /> {/* Adjusted icon size/position for mobile */}

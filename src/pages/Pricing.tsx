@@ -266,7 +266,7 @@ const Pricing = () => {
             <TabsTrigger
               value="monthly"
               className={cn(
-                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all", {/* Adjusted padding/text size for mobile */}
+                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all", /* Adjusted padding/text size for mobile */
                 billingCycle === 'monthly'
                   ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
                   : "text-pricing-text-secondary hover:text-pricing-text-primary"
@@ -277,7 +277,7 @@ const Pricing = () => {
             <TabsTrigger
               value="annually"
               className={cn(
-                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all", {/* Adjusted padding/text size for mobile */}
+                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all", /* Adjusted padding/text size for mobile */
                 billingCycle === 'annually'
                   ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
                   : "text-pricing-text-secondary hover:text-pricing-text-primary"

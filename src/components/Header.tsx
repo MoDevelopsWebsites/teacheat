@@ -159,13 +159,13 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
       <div className="flex items-center space-x-2 md:space-x-4"> {/* Adjusted spacing for mobile */}
         <Button
           variant="ghost"
-          className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700", "px-3 py-1 h-auto text-sm md:px-4 md:py-2")} {/* Adjusted button padding/height */}
+          className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700", "px-3 py-1 h-auto text-sm md:px-4 md:py-2")} /* Adjusted button padding/height */
           onClick={handleLoginClick}
         >
           Login
         </Button>
         <Button
-          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-3 py-1 h-auto text-sm font-semibold shadow-md md:px-4 md:py-2" {/* Adjusted button padding/height */}
+          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-3 py-1 h-auto text-sm font-semibold shadow-md md:px-4 md:py-2" /* Adjusted button padding/height */
           onClick={handleSignUpClick}
         >
           Sign up

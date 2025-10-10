@@ -62,7 +62,7 @@ async function fetchUserData(userId: string) {
               <input
                 type="text"
                 placeholder="Search..."
-                className="pl-6 pr-1.5 py-0.5 text-[0.6rem] sm:text-xs rounded-md bg-gray-100 dark:bg-gray-700 border border-undetectable-card-border focus:outline-none focus:ring-1 focus:ring-blue-500" {/* Adjusted padding/text size for mobile */}
+                className="pl-6 pr-1.5 py-0.5 text-[0.6rem] sm:text-xs rounded-md bg-gray-100 dark:bg-gray-700 border border-undetectable-card-border focus:outline-none focus:ring-1 focus:ring-blue-500" /* Adjusted padding/text size for mobile */
               />
             </div>
           </div>

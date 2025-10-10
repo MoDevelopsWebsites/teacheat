@@ -40,25 +40,25 @@ const MeetingSettingsCard: React.FC = () => {
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-4 p-4 sm:gap-6 sm:p-6"> {/* Adjusted gap and padding for mobile */}
         <SettingItem
-          icon={<Mic className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} {/* Adjusted icon size for mobile */}
+          icon={<Mic className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} /* Adjusted icon size for mobile */
           label="Microphone"
           status="Connected"
           checked={true}
         />
         <SettingItem
-          icon={<Volume2 className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} {/* Adjusted icon size for mobile */}
+          icon={<Volume2 className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} /* Adjusted icon size for mobile */
           label="System Audio"
           status="Streaming"
           checked={true}
         />
         <SettingItem
-          icon={<Waves className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} {/* Adjusted icon size for mobile */}
+          icon={<Waves className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} /* Adjusted icon size for mobile */
           label="Voice Events"
           status="Capturing"
           checked={true}
         />
         <SettingItem
-          icon={<Wifi className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} {/* Adjusted icon size for mobile */}
+          icon={<Wifi className="h-7 w-7 sm:h-8 sm:w-8 text-blue-500" />} /* Adjusted icon size for mobile */
           label="Network"
           status="Active"
           checked={true}
