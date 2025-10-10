@@ -17,6 +17,7 @@ import MeetingRecapCard from '@/components/MeetingRecapCard';
 import FAQSection from '@/components/FAQSection';
 import CTABottomSection from '@/components/CTABottomSection';
 import Header from '@/components/Header'; // Import the new Header component
+import FloatingGetStartedButton from '@/components/FloatingGetStartedButton'; // Import the new floating button
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 
@@ -158,6 +159,9 @@ const LandingPage = () => {
 
       {/* Header */}
       <Header isLandingPageHeader={true} />
+
+      {/* Floating Get Started Button */}
+      <FloatingGetStartedButton />
 
       {/* Hero Section */}
       <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
