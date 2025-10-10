@@ -29,14 +29,14 @@ const Founders: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-pink-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-4000 z-0"></div>
       <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
 
-      <Header />
+      <Header isLandingPageHeader={true} /> {/* Added isLandingPageHeader prop for white text */}
 
       {/* Hero Section */}
       <section className="relative w-full py-24 md:py-32 text-center flex flex-col items-center justify-center flex-grow z-10">
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white animate-fade-in-up"> {/* Changed text color to white */}
+        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-white animate-fade-in-up">
           Meet Our Visionary
         </h1>
-        <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-500"> {/* Changed text color to white/80 */}
+        <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-12 animate-fade-in-up animation-delay-500">
           The mind behind Teacheat, dedicated to revolutionizing productivity with AI.
         </p>
       </section>
