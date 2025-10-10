@@ -21,7 +21,7 @@ interface PricingCardProps {
   onSubscribe: (priceId: string | null) => void;
   isSubmitting: boolean;
   disabled?: boolean;
-  isMacButton?: boolean; // New prop
+  isMacButton?: boolean;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -39,7 +39,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   onSubscribe,
   isSubmitting,
   disabled = false,
-  isMacButton = false, // Default to false
+  isMacButton = false,
 }) => {
   const handleButtonClick = () => {
     if (isEnterprise) {
@@ -47,14 +47,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
     } else if (priceId) {
       onSubscribe(priceId);
     } else {
-      // For free plan or plans without a priceId, just log or navigate
       console.log(`Button clicked for ${title} plan.`);
     }
   };
 
   return (
     <Card className={cn(
-      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg", /* Adjusted padding for mobile */
+      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg",
       isPopular && "border-2 border-blue-500 shadow-xl",
       isEnterprise && "col-span-1 md:col-span-1"
     )}>
@@ -63,16 +62,16 @@ const PricingCard: React.FC<PricingCardProps> = ({
           Most Popular
         </div>
       )}
-      <CardHeader className="p-0 pb-3 sm:pb-4"> {/* Adjusted padding for mobile */}
-        <CardTitle className="text-xl sm:text-2xl font-bold text-pricing-text-primary mb-1 sm:mb-2">{title}</CardTitle> {/* Adjusted text size for mobile */}
-        <p className="text-4xl sm:text-5xl font-extrabold text-pricing-text-primary"> {/* Adjusted text size for mobile */}
+      <CardHeader className="p-0 pb-3 sm:pb-4">
+        <CardTitle className="text-xl sm:text-2xl font-bold text-pricing-text-primary mb-1 sm:mb-2">{title}</CardTitle>
+        <p className="text-4xl sm:text-5xl font-extrabold text-pricing-text-primary">
           {price}
-          {priceSuffix && <span className="text-base sm:text-lg font-medium text-pricing-text-secondary"> {priceSuffix}</span>} {/* Adjusted text size for mobile */}
+          {priceSuffix && <span className="text-base sm:text-lg font-medium text-pricing-text-secondary"> {priceSuffix}</span>}
         </p>
-        <p className="text-xs sm:text-sm text-pricing-text-secondary mt-1 sm:mt-2">{description}</p> {/* Adjusted text size for mobile */}
+        <p className="text-xs sm:text-sm text-pricing-text-secondary mt-1 sm:mt-2">{description}</p>
       </CardHeader>
-      <CardContent className="flex-grow p-0 py-4 sm:py-6 border-y border-pricing-card-border/50 my-2 sm:my-4"> {/* Adjusted padding/margin for mobile */}
-        <ul className="space-y-2 sm:space-y-3"> {/* Adjusted spacing for mobile */}
+      <CardContent className="flex-grow p-0 py-4 sm:py-6 border-y border-pricing-card-border/50 my-2 sm:my-4">
+        <ul className="space-y-2 sm:space-y-3">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center text-pricing-text-primary text-sm">
               <Check className="h-4 w-4 text-pricing-feature-check mr-2 flex-shrink-0" />
@@ -81,25 +80,22 @@ const PricingCard: React.FC<PricingCardProps> = ({
           ))}
         </ul>
       </CardContent>
-      <CardFooter className="p-0 pt-3 sm:pt-4"> {/* Adjusted padding for mobile */}
+      <CardFooter className="p-0 pt-3 sm:pt-4">
         <Button
           className={cn(
-            "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg", /* Adjusted padding/text size for mobile */
-            // Apply Mac button gradient if isMacButton is true
+            "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg",
             isMacButton && "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover",
-            // Existing default variant styles, but only if not a Mac button
             !isMacButton && buttonVariant === "default" && "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800",
             buttonVariant === "outline" && "border border-pricing-button-default text-pricing-button-default bg-transparent hover:bg-pricing-button-default/10",
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
-          // Only pass the variant prop if it's not "default", to avoid shadcn's default variant overriding
           {...(buttonVariant !== "default" && { variant: buttonVariant })}
           onClick={handleButtonClick}
           disabled={disabled || (isSubmitting && priceId !== null)}
         >
-          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })} /* Adjusted icon size for mobile */
+          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })}
           {buttonText}
-          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />} /* Adjusted icon size for mobile */
+          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />}
         </Button>
       </CardFooter>
     </Card>

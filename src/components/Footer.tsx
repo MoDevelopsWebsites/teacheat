@@ -11,7 +11,6 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-12 px-6 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
-        {/* Logo Section */}
         <div className="col-span-1 md:col-span-2 flex flex-col items-start">
           <Link to="/" className="relative flex items-center font-bold text-xl text-gray-900 dark:text-white mb-4">
             <img
@@ -27,7 +26,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Navigation Columns */}
         <div className="flex flex-col space-y-2">
           <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Enterprise</h3>
           <Link to="/enterprise" className="text-sm hover:underline">Enterprise</Link>
@@ -46,7 +44,6 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Section */}
       <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 dark:text-gray-400">
         <p>&copy; {currentYear} Teacheat. All rights reserved.</p>
         <div className="flex space-x-4 mt-4 md:mt-0">

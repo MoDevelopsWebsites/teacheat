@@ -15,12 +15,12 @@ const FloatingMouseCursor: React.FC<FloatingMouseCursorProps> = ({ x, y, isClick
     <div
       className={cn(
         "absolute z-50 transition-all duration-700 ease-in-out pointer-events-none",
-        isClicking && "scale-90 opacity-70" // Simple click animation
+        isClicking && "scale-90 opacity-70"
       )}
       style={{
         left: x,
         top: y,
-        transform: 'translate(-50%, -50%)', // Center the cursor on the coordinates
+        transform: 'translate(-50%, -50%)',
       }}
     >
       <MousePointerClick className="h-8 w-8 text-black drop-shadow-lg" />

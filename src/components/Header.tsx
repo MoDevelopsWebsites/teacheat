@@ -15,26 +15,25 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import {
-  DollarSign, Star, Building, // Icons for Pricing
-  Briefcase, Megaphone, LifeBuoy, Settings, // Icons for Enterprise
-  Menu // Icon for mobile hamburger menu
-} from 'lucide-react'; // Import lucide-react icons
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // Import Sheet components
+  DollarSign, Star, Building,
+  Briefcase, Megaphone, LifeBuoy, Settings,
+  Menu
+} from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface HeaderProps {
   className?: string;
   isLandingPageHeader?: boolean;
 }
 
-// Helper component for list items within dropdowns
 const ListItem = React.forwardRef<
-  React.ElementRef<typeof Link>, // Changed to Link element type
-  React.ComponentPropsWithoutRef<typeof Link> & { title: string; icon?: React.ReactNode; } // Changed to Link props
+  React.ElementRef<typeof Link>,
+  React.ComponentPropsWithoutRef<typeof Link> & { title: string; icon?: React.ReactNode; }
 >(({ className, title, children, icon, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <Link // Changed from <a> to Link
+        <Link
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -42,8 +41,8 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="flex items-center text-sm font-medium leading-none"> {/* Flex container for icon and title */}
-            {icon && <span className="mr-2 text-muted-foreground">{icon}</span>} {/* Render icon if provided */}
+          <div className="flex items-center text-sm font-medium leading-none">
+            {icon && <span className="mr-2 text-muted-foreground">{icon}</span>}
             {title}
           </div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -56,22 +55,22 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
-const MOBILE_BREAKPOINT = 768; // Define mobile breakpoint
+const MOBILE_BREAKPOINT = 768;
 
 const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(false); // State to track mobile status
-  const [isSheetOpen, setIsSheetOpen] = useState(false); // State for mobile sheet
+  const [isMobile, setIsMobile] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     };
 
-    checkMobile(); // Initial check
-    window.addEventListener('resize', checkMobile); // Listen for resize events
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile); // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const handleLoginClick = () => {
@@ -85,7 +84,6 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   return (
     <header className={cn("w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-50", className)}>
       {isMobile ? (
-        // Mobile header layout with Sheet (hamburger menu)
         <>
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
@@ -146,10 +144,9 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
             />
             <span className="mr-2">Teacheat</span>
           </Link>
-          <div className="w-10"></div> {/* Spacer for alignment */}
+          <div className="w-10"></div>
         </>
       ) : (
-        // Desktop header layout (existing)
         <>
           <div className="flex items-center space-x-4 md:space-x-12">
             <Link to="/" className={cn("relative flex items-center font-bold text-xl transition-colors", isLandingPageHeader ? "text-white" : "text-landing-text-primary")}>
@@ -168,7 +165,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
                     className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
-                    onClick={() => navigate('/pricing')} // Added onClick for direct navigation
+                    onClick={() => navigate('/pricing')}
                   >
                     Pricing
                   </NavigationMenuTrigger>
@@ -204,13 +201,12 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
                     className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
-                    onClick={() => navigate('/enterprise')} // Added onClick for direct navigation
+                    onClick={() => navigate('/enterprise')}
                   >
                     Enterprise
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {/* NEW: Main link to Enterprise page */}
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <Link

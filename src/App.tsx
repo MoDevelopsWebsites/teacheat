@@ -15,12 +15,11 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/react-stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 const queryClient = new QueryClient();
 
-// Initialize Stripe outside of the component to avoid re-creating it on re-renders
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const App = () => (
@@ -38,12 +37,10 @@ const App = () => (
               <Route path="/enterprise" element={<EnterpriseLandingPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
-              {/* Routes wrapped by Layout will have the sidebar/header */}
               <Route element={<Layout />}>
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/settings" element={<Settings />} />
               </Route>
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Elements>

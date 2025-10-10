@@ -21,7 +21,7 @@ const defaultLogos = [
 export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
   items = defaultLogos,
   direction = "left",
-  speed = "fast", // Changed default speed from "normal" to "fast"
+  speed = "fast",
   pauseOnHover = true,
   className,
 }) => {
@@ -29,32 +29,29 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
   const scrollerRef = useRef<HTMLUListElement>(null);
   const [start, setStart] = useState(false);
   const [totalWidthToScroll, setTotalWidthToScroll] = useState(0);
-  const hasDuplicated = useRef(false); // Use a ref to track if duplication has already occurred
+  const hasDuplicated = useRef(false);
 
   const addAnimation = useCallback(() => {
     if (containerRef.current && scrollerRef.current) {
-      // Only duplicate if not already duplicated
       if (!hasDuplicated.current) {
         const scrollerContent = Array.from(scrollerRef.current.children);
         
         let calculatedWidth = 0;
         scrollerContent.forEach((item, index) => {
           calculatedWidth += item.getBoundingClientRect().width;
-          // Add gap for all but the last item in the original set (gap-8 is 32px)
           if (index < scrollerContent.length - 1) {
-            calculatedWidth += 32; 
+            calculatedWidth += 32;
           }
         });
         setTotalWidthToScroll(calculatedWidth);
 
-        // Duplicate items
         scrollerContent.forEach((item) => {
           const duplicatedItem = item.cloneNode(true);
           if (scrollerRef.current) {
             scrollerRef.current.appendChild(duplicatedItem);
           }
         });
-        hasDuplicated.current = true; // Mark as duplicated
+        hasDuplicated.current = true;
       }
 
       containerRef.current.style.setProperty(
@@ -68,16 +65,14 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
 
       setStart(true);
     }
-  }, [direction, speed]); // Dependencies for useCallback
+  }, [direction, speed]);
 
   useEffect(() => {
-    // This effect should only run once on mount to set up the animation
-    // and duplicate items.
     const timeoutId = setTimeout(() => {
       addAnimation();
-    }, 100); // Delay to ensure DOM elements are rendered and have their correct width
+    }, 100);
     return () => clearTimeout(timeoutId);
-  }, [addAnimation]); // Only re-run if addAnimation itself changes (which it won't with static deps)
+  }, [addAnimation]);
 
   return (
     <div
@@ -105,7 +100,6 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
           </li>
         ))}
       </ul>
-      {/* Inline style for keyframes */}
       <style>{`
         @keyframes scroll {
           to {

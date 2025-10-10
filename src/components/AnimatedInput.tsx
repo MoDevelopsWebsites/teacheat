@@ -27,20 +27,16 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({ phrases, className, place
     };
 
     if (!isDeleting && displayedText.length < currentPhrase.length) {
-      // Typing
-      timer = setTimeout(type, 50); // Typing speed (reduced from 100)
+      timer = setTimeout(type, 50);
     } else if (!isDeleting && displayedText.length === currentPhrase.length) {
-      // Pause at end of typing
-      timer = setTimeout(() => setIsDeleting(true), 1000); // Pause duration (reduced from 2000)
+      timer = setTimeout(() => setIsDeleting(true), 1000);
     } else if (isDeleting && displayedText.length > 0) {
-      // Deleting
-      timer = setTimeout(erase, 25); // Deleting speed (reduced from 50)
+      timer = setTimeout(erase, 25);
     } else if (isDeleting && displayedText.length === 0) {
-      // Pause at end of deleting, then move to next phrase
       timer = setTimeout(() => {
         setIsDeleting(false);
         setCurrentPhraseIndex(prev => (prev + 1) % phrases.length);
-      }, 250); // Pause before next phrase (reduced from 500)
+      }, 250);
     }
 
     return () => clearTimeout(timer);

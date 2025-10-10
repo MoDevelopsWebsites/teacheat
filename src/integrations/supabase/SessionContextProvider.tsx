@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from './client';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface SessionContextType {
   session: Session | null;
@@ -16,7 +16,7 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation(); // Use useLocation to access state
+  const location = useLocation();
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -26,25 +26,21 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
         setIsLoading(false);
 
         if ((event === 'SIGNED_IN' || event === 'USER_UPDATED') && currentSession) {
-          // Check if there's a redirectTo path in the state
           const redirectTo = location.state?.redirectTo;
           if (redirectTo) {
             navigate(redirectTo, { state: { priceId: location.state.priceId, billingCycle: location.state.billingCycle }, replace: true });
           } else if (location.pathname === '/login') {
-            navigate('/'); // Default redirect to home if no specific path
+            navigate('/');
           }
         }
-        // Removed SIGNED_OUT redirection from here, Layout will handle protected routes
       }
     );
 
-    // Initial session check
     supabase.auth.getSession().then(({ data: { session: initialSession } }) => {
       setSession(initialSession);
       setUser(initialSession?.user || null);
       setIsLoading(false);
 
-      // If authenticated and currently on the login page, redirect to root
       if (initialSession && location.pathname === '/login') {
         const redirectTo = location.state?.redirectTo;
         if (redirectTo) {
@@ -53,11 +49,10 @@ export const SessionContextProvider: React.FC<{ children: React.ReactNode }> = (
           navigate('/');
         }
       }
-      // Removed unauthenticated redirection from here, Layout will handle protected routes
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate, location.pathname, location.state]); // Add location.state to dependencies
+  }, [navigate, location.pathname, location.state]);
 
   return (
     <SessionContext.Provider value={{ session, user, isLoading }}>

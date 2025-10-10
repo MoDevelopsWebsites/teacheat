@@ -14,7 +14,6 @@ const Settings = () => {
           <p className="text-gray-600 dark:text-gray-400">
             This is the settings page. More options will be available here soon!
           </p>
-          {/* Future settings options can go here */}
         </CardContent>
       </Card>
     </div>

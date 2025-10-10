@@ -11,7 +11,6 @@ const FloatingGetStartedButton: React.FC = () => {
   const navigate = useNavigate();
 
   const handleScroll = () => {
-    // Show button after scrolling down 200px
     if (window.scrollY > 200) {
       setIsVisible(true);
     } else {
