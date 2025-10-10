@@ -58,30 +58,6 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
     navigate('/login');
   };
 
-  // Base classes for navigation items to give them a button-like shape
-  const navItemBaseClasses = "px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200";
-
-  // Classes for navigation links (Blog)
-  const navLinkClasses = cn(
-    navItemBaseClasses,
-    isLandingPageHeader
-      ? "text-white/80 hover:bg-white/20 hover:text-white hover:shadow-lg hover:shadow-white/70 hover:scale-105"
-      : "text-landing-text-primary/80 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-landing-text-primary hover:shadow-lg hover:shadow-gray-300/70 dark:hover:shadow-gray-700/70 hover:scale-105"
-  );
-
-  // Classes for the Login button
-  const loginButtonClasses = cn(
-    navItemBaseClasses,
-    isLandingPageHeader
-      ? "text-white hover:bg-white/20 hover:shadow-lg hover:shadow-white/70 hover:scale-105"
-      : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-landing-text-primary hover:shadow-lg hover:shadow-gray-300/70 dark:hover:shadow-gray-700/70 hover:scale-105"
-  );
-
-  // Dynamic text color for NavigationMenuTrigger
-  const triggerTextColorClass = isLandingPageHeader ? "text-white/80 hover:text-white" : "text-landing-text-primary/80 hover:text-landing-text-primary";
-  const triggerHoverBgClass = isLandingPageHeader ? "hover:bg-white/20" : "hover:bg-gray-200 dark:hover:bg-gray-700";
-
-
   return (
     <header className={cn("w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-50", className)}>
       <div className="flex items-center space-x-12">
@@ -99,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className={cn(triggerTextColorClass, triggerHoverBgClass)}>Pricing</NavigationMenuTrigger>
+              <NavigationMenuTrigger className={cn(navigationMenuTriggerStyle(), isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>Pricing</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
@@ -130,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className={cn(triggerTextColorClass, triggerHoverBgClass)}>Enterprise</NavigationMenuTrigger>
+              <NavigationMenuTrigger className={cn(navigationMenuTriggerStyle(), isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>Enterprise</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   <ListItem href="/enterprise" title="Sales Teams">
@@ -149,18 +125,18 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to="#" className={cn(navigationMenuTriggerStyle(), navLinkClasses)}>
+              <Link to="#" className={cn(navigationMenuTriggerStyle(), isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>
                 Blog
               </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
-          <NavigationMenuViewport /> {/* Add the viewport here */}
+          <NavigationMenuViewport />
         </NavigationMenu>
       </div>
       <div className="flex items-center space-x-4">
         <Button
           variant="ghost"
-          className={loginButtonClasses}
+          className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
           onClick={handleLoginClick}
         >
           Login
