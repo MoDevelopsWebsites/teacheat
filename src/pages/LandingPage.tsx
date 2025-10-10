@@ -157,7 +157,7 @@ const LandingPage = () => {
       <div className="absolute bottom-1/4 left-1/3 w-40 h-40 bg-green-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-6000 z-0"></div>
 
       {/* Header */}
-      <Header variant="landing" />
+      <Header />
 
       {/* Hero Section */}
       <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
