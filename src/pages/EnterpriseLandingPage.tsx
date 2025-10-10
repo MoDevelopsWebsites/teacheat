@@ -36,9 +36,9 @@ const EnterpriseLandingPage: React.FC = () => {
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl">
           Put all your company's knowledge at every rep's fingertips with AI-powered answers and objection handling in any conversation.
         </p>
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-start"> {/* Changed justify-end to justify-start */}
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full justify-start">
           <Button
-            className="bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 rounded-lg px-8 py-3 text-base font-semibold shadow-lg"
+            className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
             onClick={handleTalkToSalesClick}
           >
             Talk to sales
@@ -48,7 +48,7 @@ const EnterpriseLandingPage: React.FC = () => {
 
       {/* Desktop with Safari Mockup */}
       <div className="mt-8 mb-24 z-10 w-full flex justify-center px-4">
-        <DesktopWithSafariMockup /> {/* Updated component name */}
+        <DesktopWithSafariMockup />
       </div>
 
       {/* Placeholder for other sections if needed */}
