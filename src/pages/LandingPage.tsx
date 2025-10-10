@@ -140,6 +140,16 @@ const LandingPage = () => {
 
   return (
     <div className="relative flex flex-col items-center min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+      {/* Mountain Background Image with Fade */}
+      <div
+        className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL + "mountain.jpg"})`,
+          maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
+          WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
+        }}
+      ></div>
+
       {/* Floating Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float z-0"></div>
       <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float animation-delay-2000 z-0"></div>
