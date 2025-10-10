@@ -15,7 +15,7 @@ const Founders: React.FC = () => {
       <div
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using the new wallpaper9.jpeg
+          backgroundImage: `url(${import.meta.env.BASE_URL + "wallpaper9.jpeg"})`, // Using wallpaper9.jpeg for Founders page
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
           opacity: 0.7, // Reduced opacity
