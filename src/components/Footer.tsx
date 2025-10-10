@@ -32,7 +32,6 @@ const Footer: React.FC = () => {
           <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Enterprise</h3>
           <Link to="/enterprise" className="text-sm hover:underline">Enterprise</Link>
           <Link to="/pricing" className="text-sm hover:underline">Pricing</Link>
-          <Link to="/founders" className="text-sm hover:underline">Founders</Link> {/* Added Founders link */}
         </div>
 
         <div className="flex flex-col space-y-2">
