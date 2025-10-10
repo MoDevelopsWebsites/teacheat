@@ -13,7 +13,6 @@ import Pricing from "./pages/Pricing";
 import EnterpriseLandingPage from "./pages/EnterpriseLandingPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import Founders from "./pages/Founders"; // Import the new Founders page
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
 import { loadStripe } from '@stripe/stripe-js';
@@ -39,7 +38,6 @@ const App = () => (
               <Route path="/enterprise" element={<EnterpriseLandingPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/founders" element={<Founders />} /> {/* New Founders route */}
               {/* Routes wrapped by Layout will have the sidebar/header */}
               <Route element={<Layout />}>
                 <Route path="/chat" element={<Chat />} />

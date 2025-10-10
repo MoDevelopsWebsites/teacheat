@@ -36,7 +36,6 @@ const Footer: React.FC = () => {
 
         <div className="flex flex-col space-y-2">
           <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Resources</h3>
-          <Link to="/founders" className="text-sm hover:underline">Founders</Link> {/* Changed from Careers to Founders */}
           <Link to="#" className="text-sm hover:underline">Blog</Link>
         </div>
 
