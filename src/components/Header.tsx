@@ -21,27 +21,42 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
     navigate('/login');
   };
 
-  const textColorClass = isLandingPageHeader ? "text-white" : "text-landing-text-primary";
-  const navLinkColorClass = isLandingPageHeader ? "text-white/80 hover:text-white" : "text-landing-text-primary/80 hover:text-landing-text-primary";
-  const loginButtonClass = isLandingPageHeader ? "text-white hover:bg-white/10" : "text-landing-text-primary hover:bg-gray-100 dark:hover:bg-gray-800";
+  // Base classes for navigation items to give them a button-like shape
+  const navItemBaseClasses = "px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200";
+
+  // Classes for navigation links (Pricing, Enterprise, Careers, Blog)
+  const navLinkClasses = cn(
+    navItemBaseClasses,
+    isLandingPageHeader
+      ? "text-white/80 hover:bg-white/10 hover:text-white hover:shadow-md hover:shadow-white/30"
+      : "text-landing-text-primary/80 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-landing-text-primary hover:shadow-md hover:shadow-gray-300/30 dark:hover:shadow-gray-700/30"
+  );
+
+  // Classes for the Login button
+  const loginButtonClasses = cn(
+    navItemBaseClasses,
+    isLandingPageHeader
+      ? "text-white hover:bg-white/10 hover:shadow-md hover:shadow-white/30"
+      : "text-landing-text-primary hover:bg-gray-100 dark:hover:bg-gray-800 hover:shadow-md hover:shadow-gray-300/30 dark:hover:shadow-gray-700/30"
+  );
 
   return (
     <header className={cn("w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10", className)}>
       <div className="flex items-center space-x-12">
-        <Link to="/" className={cn("font-bold text-xl transition-colors", textColorClass)}>
+        <Link to="/" className={cn("font-bold text-xl transition-colors", isLandingPageHeader ? "text-white" : "text-landing-text-primary")}>
           Teacheat
         </Link>
-        <nav className="flex items-center space-x-6 text-sm font-medium">
-          <Link to="/pricing" className={navLinkColorClass}>Pricing</Link>
-          <Link to="/enterprise" className={navLinkColorClass}>Enterprise</Link>
-          <Link to="#" className={navLinkColorClass}>Careers</Link>
-          <Link to="#" className={navLinkColorClass}>Blog</Link>
+        <nav className="flex items-center space-x-2 text-sm font-medium"> {/* Adjusted space-x for button-like links */}
+          <Link to="/pricing" className={navLinkClasses}>Pricing</Link>
+          <Link to="/enterprise" className={navLinkClasses}>Enterprise</Link>
+          <Link to="#" className={navLinkClasses}>Careers</Link>
+          <Link to="#" className={navLinkClasses}>Blog</Link>
         </nav>
       </div>
       <div className="flex items-center space-x-4">
         <Button
           variant="ghost"
-          className={cn("px-4 py-2 text-sm font-semibold", loginButtonClass)}
+          className={loginButtonClasses}
           onClick={handleLoginClick}
         >
           Login
