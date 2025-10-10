@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Apple } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup';
+import DesktopWithSafariMockup from '@/components/Desktop/DesktopWithSafariMockup'; // Corrected import path
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils'; // Import cn for conditional class merging
 
@@ -55,7 +55,7 @@ const EnterpriseLandingPage: React.FC = () => {
         isLandingPageHeader={true}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled && "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+          scrolled && "bg-black/10 backdrop-blur-md shadow-md" // Changed background to a subtle transparent black
         )}
       />
 
