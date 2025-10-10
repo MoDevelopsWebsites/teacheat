@@ -14,6 +14,10 @@ import {
   navigationMenuTriggerStyle,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import {
+  DollarSign, Star, Building, // Icons for Pricing
+  Briefcase, Megaphone, LifeBuoy, Settings // Icons for Enterprise
+} from 'lucide-react'; // Import lucide-react icons
 
 interface HeaderProps {
   className?: string;
@@ -23,8 +27,8 @@ interface HeaderProps {
 // Helper component for list items within dropdowns
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { title: string; }
->(({ className, title, children, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<"a"> & { title: string; icon?: React.ReactNode; } // Added icon prop
+>(({ className, title, children, icon, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -36,7 +40,10 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="flex items-center text-sm font-medium leading-none"> {/* Flex container for icon and title */}
+            {icon && <span className="mr-2 text-muted-foreground">{icon}</span>} {/* Render icon if provided */}
+            {title}
+          </div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
@@ -93,13 +100,13 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/pricing" title="Starter">
+                  <ListItem href="/pricing" title="Starter" icon={<DollarSign className="h-4 w-4" />}>
                     Limited AI responses, unlimited notetaking.
                   </ListItem>
-                  <ListItem href="/pricing" title="Pro">
+                  <ListItem href="/pricing" title="Pro" icon={<Star className="h-4 w-4" />}>
                     Unlimited AI, advanced models, priority support.
                   </ListItem>
-                  <ListItem href="/pricing" title="Enterprise">
+                  <ListItem href="/pricing" title="Enterprise" icon={<Building className="h-4 w-4" />}>
                     Custom solutions for teams, advanced analytics.
                   </ListItem>
                 </ul>
@@ -109,16 +116,16 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
               <NavigationMenuTrigger className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>Enterprise</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <ListItem href="/enterprise" title="Sales Teams">
+                  <ListItem href="/enterprise" title="Sales Teams" icon={<Briefcase className="h-4 w-4" />}>
                     Close deals faster with AI-powered insights.
                   </ListItem>
-                  <ListItem href="/enterprise" title="Marketing Teams">
+                  <ListItem href="/enterprise" title="Marketing Teams" icon={<Megaphone className="h-4 w-4" />}>
                     Understand customer needs and optimize campaigns.
                   </ListItem>
-                  <ListItem href="/enterprise" title="Support Teams">
+                  <ListItem href="/enterprise" title="Support Teams" icon={<LifeBuoy className="h-4 w-4" />}>
                     Improve customer satisfaction with instant answers.
                   </ListItem>
-                  <ListItem href="/enterprise" title="Custom Solutions">
+                  <ListItem href="/enterprise" title="Custom Solutions" icon={<Settings className="h-4 w-4" />}>
                     Tailored AI solutions for unique business needs.
                   </ListItem>
                 </ul>
