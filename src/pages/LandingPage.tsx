@@ -144,7 +144,7 @@ const LandingPage = () => {
       <div
         className="absolute top-0 left-0 w-full h-[600px] bg-cover bg-center z-0"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL + "mountain.jpg"})`,
+          backgroundImage: `url(${import.meta.env.BASE_URL + "mountain2.jpg"})`, // Changed to mountain2.jpg
           maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Fade to bottom
           WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // For Webkit browsers
         }}
@@ -294,7 +294,7 @@ const LandingPage = () => {
           <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-16">
             Teacheat tells you where <br /> you went wrong
           </h2>
-          <p className="text-lg md:text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto">
+          <p className="text-lg md::text-xl text-landing-text-primary/80 mb-16 max-w-3xl mx-auto">
             After every call, Teacheat tells you how to improve, whether you're interviewing for a job, selling a product, working on an assignment, or just chatting.
           </p>
 
