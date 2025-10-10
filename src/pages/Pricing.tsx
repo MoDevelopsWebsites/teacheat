@@ -31,12 +31,12 @@ const pricingPlans = {
         "Customize instructions & upload files",
         "Ask AI about all your past meetings",
       ],
-      buttonText: "Get for Mac",
-      buttonIcon: <Apple />,
+      buttonText: "Get Started", // Changed from "Get for Mac"
+      buttonIcon: undefined, // Removed Apple icon
       buttonVariant: "default",
       isPopular: false,
       priceId: null,
-      isMacButton: true, // Added for the Mac button styling
+      isMacButton: false, // Changed to false
     },
     {
       title: "Pro",
@@ -83,12 +83,12 @@ const pricingPlans = {
         "Customize instructions & upload files",
         "Ask AI about all your past meetings",
       ],
-      buttonText: "Get for Mac",
-      buttonIcon: <Apple />,
+      buttonText: "Get Started", // Changed from "Get for Mac"
+      buttonIcon: undefined, // Removed Apple icon
       buttonVariant: "default",
       isPopular: false,
       priceId: null,
-      isMacButton: true, // Added for the Mac button styling
+      isMacButton: false, // Changed to false
     },
     {
       title: "Pro",

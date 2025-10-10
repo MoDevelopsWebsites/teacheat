@@ -27,7 +27,7 @@ const CTABottomSection: React.FC = () => {
           Try Teacheat on your next meeting today.
         </p>
         <Button className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-6 py-2.5 sm:px-8 sm:py-3 text-base font-semibold shadow-button-glow-hover"> {/* Adjusted padding for mobile */}
-          <Apple className="h-5 w-5 mr-2" /> Get for Mac
+          Get Started
         </Button>
       </div>
     </section>
