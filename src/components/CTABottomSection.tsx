@@ -14,9 +14,7 @@ const CTABottomSection: React.FC = () => {
       <div className="absolute bottom-1/3 right-1/4 w-24 h-24 sm:w-32 sm:h-32 bg-landing-cta-floating-bg rounded-xl shadow-lg border border-landing-cta-floating-border flex items-center justify-center opacity-70 blur-sm z-0" style={{ transform: 'rotate(10deg)' }}>
         <CornerDownLeft className="h-12 w-12 sm:h-16 sm:w-16 text-landing-cta-floating-text/50" />
       </div>
-      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 px-4 py-2 sm:px-6 sm:py-3 bg-gray-800 text-white text-xs sm:text-sm rounded-full shadow-md opacity-80 z-0">
-        Record Entire Screen
-      </div>
+      {/* Removed the "Record Entire Screen" floating element */}
 
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4 sm:mb-6 text-landing-cta-text-primary">
