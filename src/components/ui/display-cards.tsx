@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface DisplayCardProps {
   icon: React.ReactNode;
@@ -13,7 +14,7 @@ interface DisplayCardProps {
 }
 
 // DisplayCard component defines the visual structure of a single card
-const DisplayCard: React.FC<DisplayCardProps> = ({
+const DisplayCard: React.FC<DisplayCardProps> = ({ // Removed Omit<..., 'className'>
   icon,
   title,
   description,
@@ -40,7 +41,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
 };
 
 interface DisplayCardsProps {
-  cards: (DisplayCardProps & { className?: string })[];
+  cards: (DisplayCardProps & { className?: string })[]; // Re-added className to card type for the wrapper
 }
 
 // DisplayCards component manages the layout and animation of multiple DisplayCard instances
@@ -48,9 +49,13 @@ const DisplayCards: React.FC<DisplayCardsProps> = ({ cards }) => {
   return (
     <div className="grid h-[300px] w-full grid-cols-1 grid-rows-1 place-items-center">
       {cards.map((card, index) => (
-        <div // Reverted to div
+        <motion.div // Wrap each card with motion.div for animation
           key={index}
-          className={card.className}
+          initial={{ opacity: 0, y: 50 }} // Start invisible and slightly below
+          whileInView={{ opacity: 1, y: 0 }} // Animate to visible and original position when in view
+          viewport={{ once: true, amount: 0.5 }} // Trigger animation once when 50% of the element is visible
+          transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }} // Smooth transition with staggered delay
+          className={card.className} // Apply the stacking/positioning className here
         >
           <DisplayCard
             icon={card.icon}
@@ -59,8 +64,9 @@ const DisplayCards: React.FC<DisplayCardsProps> = ({ cards }) => {
             date={card.date}
             iconClassName={card.iconClassName}
             titleClassName={card.titleClassName}
+            // className is no longer passed directly to DisplayCard, it's for the motion.div wrapper
           />
-        </div>
+        </motion.div>
       ))}
     </div>
   );
