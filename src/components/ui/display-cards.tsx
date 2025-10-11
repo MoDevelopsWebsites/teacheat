@@ -2,7 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 interface DisplayCardProps {
   icon: React.ReactNode;
@@ -11,10 +11,11 @@ interface DisplayCardProps {
   date: string;
   iconClassName?: string;
   titleClassName?: string;
+  className?: string; // This className is for the stacking/positioning, not the card's intrinsic style
 }
 
 // DisplayCard component defines the visual structure of a single card
-const DisplayCard: React.FC<DisplayCardProps> = ({ // Removed Omit<..., 'className'>
+const DisplayCard: React.FC<Omit<DisplayCardProps, 'className'>> = ({
   icon,
   title,
   description,
@@ -41,7 +42,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ // Removed Omit<..., 'classNa
 };
 
 interface DisplayCardsProps {
-  cards: (DisplayCardProps & { className?: string })[]; // Re-added className to card type for the wrapper
+  cards: DisplayCardProps[];
 }
 
 // DisplayCards component manages the layout and animation of multiple DisplayCard instances
@@ -64,7 +65,6 @@ const DisplayCards: React.FC<DisplayCardsProps> = ({ cards }) => {
             date={card.date}
             iconClassName={card.iconClassName}
             titleClassName={card.titleClassName}
-            // className is no longer passed directly to DisplayCard, it's for the motion.div wrapper
           />
         </motion.div>
       ))}
