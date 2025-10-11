@@ -3,12 +3,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Apple } from 'lucide-react';
+import { Apple, Mic, MessageSquareText, Sparkles, FileText, EyeOff } from 'lucide-react'; // Added Mic, MessageSquareText, FileText, EyeOff icons
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
 import MeetingWindowMockup from '@/components/MeetingWindowMockup';
 import FloatingMouseCursor from '@/components/FloatingMouseCursor';
-import MeetingSettingsCard from '@/components/MeetingSettingsCard';
-import RealtimeAnswersCard from '@/components/RealtimeAnswersCard';
+import MeetingSettingsCard from '@/components/MeetingSettingsCard'; // Keep for reference if needed, but will be replaced
+import RealtimeAnswersCard from '@/components/RealtimeAnswersCard'; // Keep for reference if needed, but will be replaced
 import MeetingParticipantsCard from '@/components/MeetingParticipantsCard';
 import InvisibleToScreenShareCard from '@/components/InvisibleToScreenShareCard';
 import NeverInYourWayCard from '@/components/NeverInYourWayCard';
@@ -22,6 +22,7 @@ import Footer from '@/components/Footer';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 import { DisplayCardsDemo } from '@/components/DisplayCardsDemo'; // Import DisplayCardsDemo
+import FeatureDisplayCard from '@/components/FeatureDisplayCard'; // Import new FeatureDisplayCard
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -194,34 +195,35 @@ const LandingPage = () => {
               <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
                 Teacheat listens to your meetings in the background and takes real-time notes without joining.
               </p>
-              <MeetingSettingsCard />
+              <FeatureDisplayCard
+                icon={<Mic className="size-4 text-blue-300" />}
+                title="Seamless Recording"
+                description="Capture every detail, invisibly."
+                iconClassName="text-blue-500"
+                titleClassName="text-blue-500"
+              />
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
               <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
                 Teacheat responds with context of what's happening in a conversation and what's on your screen.
               </p>
-              <RealtimeAnswersCard />
+              <FeatureDisplayCard
+                icon={<Sparkles className="size-4 text-blue-300" />}
+                title="Instant AI Insights"
+                description="Get smart suggestions, live."
+                iconClassName="text-blue-500"
+                titleClassName="text-blue-500"
+              />
             </div>
           </div>
 
-          {/* New section to showcase DisplayCardsDemo */}
-          <section className="w-full py-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
-              Explore Features
-            </h2>
-            <p className="text-lg md:text-xl text-landing-text-primary/80 mb-12 max-w-2xl mx-auto">
-              A glimpse into what Teacheat can do for you.
-            </p>
-            <DisplayCardsDemo />
-          </section>
-
-
+          {/* Moved DisplayCardsDemo here */}
           <div className="text-center py-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
               It's time to cheat
             </h2>
-            <p className="text-5xl md:text-7xl font-extrabold leading-tight">
+            <p className="text-5xl md:text-7xl font-extrabold leading-tight mb-12"> {/* Added mb-12 for spacing */}
               {cyclingWords.map((word, index) => (
                 <React.Fragment key={index}>
                   <span
@@ -238,6 +240,7 @@ const LandingPage = () => {
                 </React.Fragment>
               ))}
             </p>
+            <DisplayCardsDemo /> {/* DisplayCardsDemo moved here */}
           </div>
         </section>
 
