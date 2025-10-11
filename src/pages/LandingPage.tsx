@@ -21,6 +21,7 @@ import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
 import Footer from '@/components/Footer';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
+import { DisplayCardsDemo } from '@/components/DisplayCardsDemo'; // Import DisplayCardsDemo
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -203,6 +204,18 @@ const LandingPage = () => {
               <RealtimeAnswersCard />
             </div>
           </div>
+
+          {/* New section to showcase DisplayCardsDemo */}
+          <section className="w-full py-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
+              Explore Features
+            </h2>
+            <p className="text-lg md:text-xl text-landing-text-primary/80 mb-12 max-w-2xl mx-auto">
+              A glimpse into what Teacheat can do for you.
+            </p>
+            <DisplayCardsDemo />
+          </section>
+
 
           <div className="text-center py-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
