@@ -245,12 +245,13 @@ export default function PricingSection6() {
         }}
       />
 
-      <div className="grid md:grid-cols-4 max-w-6xl gap-4 py-6 mx-auto px-4"> {/* Changed to md:grid-cols-4 and added px-4 */}
+      <div className="grid md:grid-cols-4 max-w-6xl gap-4 py-6 mx-auto px-4">
         {plans.map((plan, index) => (
+          // Adjusted animationNum for 4 cards
           <TimelineContent
             key={plan.name}
             as="div"
-            animationNum={2 + index} {/* Adjusted animationNum for 4 cards */}
+            animationNum={2 + index}
             timelineRef={pricingRef}
             customVariants={revealVariants}
           >
