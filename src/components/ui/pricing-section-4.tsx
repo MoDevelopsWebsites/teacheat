@@ -5,7 +5,7 @@ import { TimelineContent } from "@/components/ui/timeline-animation";
 import {VerticalCutReveal} from "@/components/ui/vertical-cut-reveal";
 import { cn } from "@/lib/utils";
 import NumberFlow from "@number-flow/react";
-import { motion } from "framer-motion"; // Changed from "motion/react" to "framer-motion"
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 
 const plans = [
@@ -37,7 +37,7 @@ const plans = [
       "Everything in Starter, plus:",
       "Advanced checklists",
       "Custom fields",
-      "Serverless functions", // Corrected typo from Servedless
+      "Serverless functions",
     ],
   },
   {
@@ -67,12 +67,12 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
 
   return (
     <div className="flex justify-center">
-      <div className="relative z-10 mx-auto flex w-fit rounded-full bg-neutral-900 border border-gray-700 p-1">
+      <div className="relative z-10 mx-auto flex w-fit rounded-full bg-gray-100 border border-gray-300 p-1"> {/* Light mode background and border */}
         <button
           onClick={() => handleSwitch("0")}
           className={cn(
             "relative z-10 w-fit h-10  rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors",
-            selected === "0" ? "text-white" : "text-gray-200",
+            selected === "0" ? "text-white" : "text-gray-700", // Darker text for light mode
           )}
         >
           {selected === "0" && (
@@ -89,7 +89,7 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
           onClick={() => handleSwitch("1")}
           className={cn(
             "relative z-10 w-fit h-10 flex-shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors",
-            selected === "1" ? "text-white" : "text-gray-200",
+            selected === "1" ? "text-white" : "text-gray-700", // Darker text for light mode
           )}
         >
           {selected === "1" && (
@@ -132,7 +132,7 @@ export default function PricingSection6() {
 
   return (
     <div
-      className="w-full mx-auto relative bg-black overflow-x-hidden" // Removed min-h-screen here
+      className="w-full mx-auto relative bg-white overflow-x-hidden" // Changed to bg-white for light mode
       ref={pricingRef}
     >
       <TimelineContent
@@ -141,12 +141,12 @@ export default function PricingSection6() {
         customVariants={revealVariants}
         className="absolute top-0  h-96 w-screen overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] "
       >
-        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff2c_1px,transparent_1px),linear-gradient(to_bottom,#3a3a3a01_1px,transparent_1px)] bg-[size:70px_80px] "></div>
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#0000001a_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:70px_80px] "></div> {/* Lighter grid lines */}
         <SparklesComp
           density={1800}
           direction="bottom"
           speed={1}
-          color="#FFFFFF"
+          color="hsl(var(--sparkles-color))" // Use CSS variable for sparkles color
           className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
         />
       </TimelineContent>
@@ -160,7 +160,7 @@ export default function PricingSection6() {
           <div
             className="absolute left-[-568px] right-[-568px] top-0 h-[2053px] flex-none rounded-full"
             style={{
-              border: "200px solid #3131f5",
+              border: "200px solid #a0c4ff", // Lighter blue border for blur effect
               filter: "blur(92px)",
               WebkitFilter: "blur(92px)",
             }}
@@ -170,7 +170,7 @@ export default function PricingSection6() {
           <div
             className="absolute left-[-568px] right-[-568px] top-0 h-[2053px] flex-none rounded-full"
             style={{
-              border: "200px solid #3131f5",
+              border: "200px solid #a0c4ff", // Lighter blue border for blur effect
               filter: "blur(92px)",
               WebkitFilter: "blur(92px)",
             }}
@@ -181,7 +181,7 @@ export default function PricingSection6() {
       </TimelineContent>
 
       <article className="text-center mb-6 pt-32 max-w-3xl mx-auto space-y-2 relative z-50">
-        <h2 className="text-4xl font-medium text-white">
+        <h2 className="text-4xl font-medium text-gray-900"> {/* Darker text for light mode */}
           <VerticalCutReveal
             splitBy="words"
             staggerDuration={0.15}
@@ -192,7 +192,7 @@ export default function PricingSection6() {
               type: "spring",
               stiffness: 250,
               damping: 40,
-              delay: 0, // First element
+              delay: 0,
             }}
           >
             Plans that works best for your
@@ -204,7 +204,7 @@ export default function PricingSection6() {
           animationNum={0}
           timelineRef={pricingRef}
           customVariants={revealVariants}
-          className="text-gray-300"
+          className="text-gray-700" // Darker text for light mode
         >
           Trusted by millions, We help teams all around the world, Explore which
           option is right for you.
@@ -224,8 +224,8 @@ export default function PricingSection6() {
         className="absolute top-0 left-[10%] right-[10%] w-[80%] h-full z-0"
         style={{
           backgroundImage: `
-        radial-gradient(circle at center, #206ce8 0%, transparent 70%)
-      `,
+        radial-gradient(circle at center, #e0f2f7 0%, transparent 70%)
+      `, // Lighter radial gradient
           opacity: 0.6,
           mixBlendMode: "multiply",
         }}
@@ -241,10 +241,10 @@ export default function PricingSection6() {
             customVariants={revealVariants}
           >
             <Card
-              className={`relative text-white border-neutral-800 ${
+              className={`relative text-gray-900 border-gray-200 ${ // Darker text, lighter border
                 plan.popular
-                  ? "bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 shadow-[0px_-13px_300px_0px_#0900ff] z-20"
-                  : "bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 z-10"
+                  ? "bg-gradient-to-r from-gray-50 via-white to-gray-50 shadow-[0px_-13px_300px_0px_rgba(9,0,255,0.1)] z-20" // Lighter gradient, subtle blue shadow
+                  : "bg-gradient-to-r from-gray-50 via-white to-gray-50 z-10" // Lighter gradient
               }`}
             >
               <CardHeader className="text-left ">
@@ -262,27 +262,27 @@ export default function PricingSection6() {
                       className="text-4xl font-semibold"
                     />
                   </span>
-                  <span className="text-gray-300 ml-1">
+                  <span className="text-gray-700 ml-1"> {/* Darker text */}
                     /{isYearly ? "year" : "month"}
                   </span>
                 </div>
-                <p className="text-sm text-gray-300 mb-4">{plan.description}</p>
+                <p className="text-sm text-gray-700 mb-4">{plan.description}</p> {/* Darker text */}
               </CardHeader>
 
               <CardContent className="pt-0">
                 <button
                   className={`w-full mb-6 p-4 text-xl rounded-xl ${
                     plan.popular
-                      ? "bg-gradient-to-t from-blue-500 to-blue-600  shadow-lg shadow-blue-800 border border-blue-500 text-white"
+                      ? "bg-gradient-to-t from-blue-500 to-blue-600 shadow-lg shadow-blue-300 border border-blue-500 text-white" // Blue accent, lighter shadow
                       : plan.buttonVariant === "outline"
-                        ? "bg-gradient-to-t from-neutral-950 to-neutral-600  shadow-lg shadow-neutral-900 border border-neutral-800 text-white"
+                        ? "bg-gray-100 shadow-lg shadow-gray-200 border border-gray-300 text-gray-900 hover:bg-gray-200" // Light button, dark text
                         : ""
                   }`}
                 >
                   {plan.buttonText}
                 </button>
 
-                <div className="space-y-3 pt-4 border-t border-neutral-700">
+                <div className="space-y-3 pt-4 border-t border-gray-200"> {/* Lighter border */}
                   <h4 className="font-medium text-base mb-3">
                     {plan.includes[0]}
                   </h4>
@@ -292,8 +292,8 @@ export default function PricingSection6() {
                         key={featureIndex}
                         className="flex items-center gap-2"
                       >
-                        <span className="h-2.5 w-2.5 bg-neutral-500 rounded-full grid place-content-center"></span>
-                        <span className="text-sm text-gray-300">{feature}</span>
+                        <span className="h-2.5 w-2.5 bg-gray-500 rounded-full grid place-content-center"></span> {/* Darker bullet points */}
+                        <span className="text-sm text-gray-700">{feature}</span> {/* Darker text */}
                       </li>
                     ))}
                   </ul>
