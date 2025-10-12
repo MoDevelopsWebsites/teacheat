@@ -7,9 +7,9 @@ import PricingSection6 from '@/components/ui/pricing-section-4';
 
 const Pricing = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900"> {/* Changed bg-black to bg-white and text-white to text-gray-900 */}
       <Header className="absolute top-0 left-0 right-0" />
-      <main className="flex-1"> {/* Changed to flex-1 to allow PricingSection6 to fill available space without extra centering */}
+      <main className="flex-grow flex flex-col items-center justify-center">
         <PricingSection6 />
       </main>
       <Footer />
