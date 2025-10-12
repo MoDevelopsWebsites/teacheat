@@ -10,63 +10,49 @@ import { useRef, useState } from "react";
 
 const plans = [
   {
-    name: "Free",
-    description:
-      "Perfect for individuals to try out Teacheat's core features.",
-    price: 0,
-    yearlyPrice: 0,
-    buttonText: "Sign up for free",
-    buttonVariant: "outline" as const,
-    includes: [
-      "Limited AI responses",
-      "Unlimited notetaking",
-      "Basic support",
-    ],
-  },
-  {
     name: "Starter",
     description:
-      "For individuals and small teams needing more AI power.",
-    price: 19,
-    yearlyPrice: 199,
-    buttonText: "Get Started",
-    buttonVariant: "default" as const,
+      "Great for small businesses and startups looking to get started with AI",
+    price: 12,
+    yearlyPrice: 99,
+    buttonText: "Get started",
+    buttonVariant: "outline" as const,
     includes: [
-      "Everything in Free, plus:",
-      "Unlimited AI responses",
-      "Advanced notetaking features",
-      "Email support",
+      "Free includes:",
+      "Unlimited Cards",
+      "Custom background & stickers",
+      "2-factor authentication",
     ],
   },
   {
-    name: "Pro",
+    name: "Business",
     description:
-      "Ideal for growing teams with higher usage and priority needs.",
-    price: 49,
-    yearlyPrice: 499,
-    buttonText: "Get Started",
+      "Best value for growing businesses that need more advanced features",
+    price: 48,
+    yearlyPrice: 399,
+    buttonText: "Get started",
     buttonVariant: "default" as const,
     popular: true,
     includes: [
       "Everything in Starter, plus:",
-      "Premium AI models",
-      "Team collaboration features",
-      "Priority support",
+      "Advanced checklists",
+      "Custom fields",
+      "Serverless functions",
     ],
   },
   {
     name: "Enterprise",
     description:
-      "Tailored solutions for large organizations with specific requirements.",
-    price: "Custom",
-    yearlyPrice: "Custom",
-    buttonText: "Talk to sales",
+      "Advanced plan with enhanced security and unlimited access for large teams",
+    price: 96,
+    yearlyPrice: 899,
+    buttonText: "Get started",
     buttonVariant: "outline" as const,
     includes: [
-      "Everything in Pro, plus:",
-      "Dedicated account manager",
-      "Custom integrations",
-      "Advanced security & compliance",
+      "Everything in Business, plus:",
+      "Multi-board management",
+      "Multi-board guest",
+      "Attachment permissions",
     ],
   },
 ];
@@ -81,12 +67,12 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
 
   return (
     <div className="flex justify-center">
-      <div className="relative z-10 mx-auto flex w-fit rounded-full bg-gray-100 border border-gray-300 p-1">
+      <div className="relative z-10 mx-auto flex w-fit rounded-full bg-gray-100 border border-gray-300 p-1"> {/* Light mode background and border */}
         <button
           onClick={() => handleSwitch("0")}
           className={cn(
             "relative z-10 w-fit h-10  rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors",
-            selected === "0" ? "text-white" : "text-gray-700",
+            selected === "0" ? "text-white" : "text-gray-700", // Darker text for light mode
           )}
         >
           {selected === "0" && (
@@ -103,7 +89,7 @@ const PricingSwitch = ({ onSwitch }: { onSwitch: (value: string) => void }) => {
           onClick={() => handleSwitch("1")}
           className={cn(
             "relative z-10 w-fit h-10 flex-shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors",
-            selected === "1" ? "text-white" : "text-gray-700",
+            selected === "1" ? "text-white" : "text-gray-700", // Darker text for light mode
           )}
         >
           {selected === "1" && (
@@ -146,7 +132,7 @@ export default function PricingSection6() {
 
   return (
     <div
-      className="w-full mx-auto relative bg-white overflow-x-hidden"
+      className="w-full mx-auto relative bg-white overflow-x-hidden" // Changed to bg-white for light mode
       ref={pricingRef}
     >
       <TimelineContent
@@ -155,12 +141,12 @@ export default function PricingSection6() {
         customVariants={revealVariants}
         className="absolute top-0  h-96 w-screen overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] "
       >
-        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#0000001a_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:70px_80px] "></div>
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#0000001a_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:70px_80px] "></div> {/* Lighter grid lines */}
         <SparklesComp
           density={1800}
           direction="bottom"
           speed={1}
-          color="hsl(var(--sparkles-color))"
+          color="hsl(var(--sparkles-color))" // Use CSS variable for sparkles color
           className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
         />
       </TimelineContent>
@@ -174,7 +160,7 @@ export default function PricingSection6() {
           <div
             className="absolute left-[-568px] right-[-568px] top-0 h-[2053px] flex-none rounded-full"
             style={{
-              border: "200px solid #a0c4ff",
+              border: "200px solid #a0c4ff", // Lighter blue border for blur effect
               filter: "blur(92px)",
               WebkitFilter: "blur(92px)",
             }}
@@ -184,7 +170,7 @@ export default function PricingSection6() {
           <div
             className="absolute left-[-568px] right-[-568px] top-0 h-[2053px] flex-none rounded-full"
             style={{
-              border: "200px solid #a0c4ff",
+              border: "200px solid #a0c4ff", // Lighter blue border for blur effect
               filter: "blur(92px)",
               WebkitFilter: "blur(92px)",
             }}
@@ -195,7 +181,7 @@ export default function PricingSection6() {
       </TimelineContent>
 
       <article className="text-center mb-6 pt-32 max-w-3xl mx-auto space-y-2 relative z-50">
-        <h2 className="text-4xl font-medium text-gray-900">
+        <h2 className="text-4xl font-medium text-gray-900"> {/* Darker text for light mode */}
           <VerticalCutReveal
             splitBy="words"
             staggerDuration={0.15}
@@ -218,7 +204,7 @@ export default function PricingSection6() {
           animationNum={0}
           timelineRef={pricingRef}
           customVariants={revealVariants}
-          className="text-gray-700"
+          className="text-gray-700" // Darker text for light mode
         >
           Trusted by millions, We help teams all around the world, Explore which
           option is right for you.
@@ -239,26 +225,26 @@ export default function PricingSection6() {
         style={{
           backgroundImage: `
         radial-gradient(circle at center, #e0f2f7 0%, transparent 70%)
-      `,
+      `, // Lighter radial gradient
           opacity: 0.6,
           mixBlendMode: "multiply",
         }}
       />
 
-      <div className="grid md:grid-cols-4 max-w-6xl gap-4 py-6 mx-auto px-4"> {/* Changed to md:grid-cols-4 and added px-4 */}
+      <div className="grid md:grid-cols-3 max-w-5xl gap-4 py-6 mx-auto ">
         {plans.map((plan, index) => (
           <TimelineContent
             key={plan.name}
             as="div"
-            animationNum={2 + index} {/* Adjusted animationNum for 4 cards */}
+            animationNum={2 + index}
             timelineRef={pricingRef}
             customVariants={revealVariants}
           >
             <Card
-              className={`relative text-gray-900 border-gray-200 ${
+              className={`relative text-gray-900 border-gray-200 ${ // Darker text, lighter border
                 plan.popular
-                  ? "bg-gradient-to-r from-gray-50 via-white to-gray-50 shadow-[0px_-13px_300px_0px_rgba(9,0,255,0.1)] z-20"
-                  : "bg-gradient-to-r from-gray-50 via-white to-gray-50 z-10"
+                  ? "bg-gradient-to-r from-gray-50 via-white to-gray-50 shadow-[0px_-13px_300px_0px_rgba(9,0,255,0.1)] z-20" // Lighter gradient, subtle blue shadow
+                  : "bg-gradient-to-r from-gray-50 via-white to-gray-50 z-10" // Lighter gradient
               }`}
             >
               <CardHeader className="text-left ">
@@ -267,39 +253,36 @@ export default function PricingSection6() {
                 </div>
                 <div className="flex items-baseline">
                   <span className="text-4xl font-semibold ">
-                    {typeof plan.price === 'number' ? '$' : ''} {/* Only show $ if price is a number */}
+                    $
                     <NumberFlow
                       format={{
                         currency: "USD",
                       }}
-                      value={isYearly && typeof plan.yearlyPrice === 'number' ? plan.yearlyPrice : typeof plan.price === 'number' ? plan.price : 0}
+                      value={isYearly ? plan.yearlyPrice : plan.price}
                       className="text-4xl font-semibold"
                     />
-                    {typeof plan.price !== 'number' && plan.price} {/* Display 'Custom' if price is not a number */}
                   </span>
-                  {typeof plan.price === 'number' && (
-                    <span className="text-gray-700 ml-1">
-                      /{isYearly ? "year" : "month"}
-                    </span>
-                  )}
+                  <span className="text-gray-700 ml-1"> {/* Darker text */}
+                    /{isYearly ? "year" : "month"}
+                  </span>
                 </div>
-                <p className="text-sm text-gray-700 mb-4">{plan.description}</p>
+                <p className="text-sm text-gray-700 mb-4">{plan.description}</p> {/* Darker text */}
               </CardHeader>
 
               <CardContent className="pt-0">
                 <button
                   className={`w-full mb-6 p-4 text-xl rounded-xl ${
                     plan.popular
-                      ? "bg-gradient-to-t from-blue-500 to-blue-600 shadow-lg shadow-blue-300 border border-blue-500 text-white"
+                      ? "bg-gradient-to-t from-blue-500 to-blue-600 shadow-lg shadow-blue-300 border border-blue-500 text-white" // Blue accent, lighter shadow
                       : plan.buttonVariant === "outline"
-                        ? "bg-gray-100 shadow-lg shadow-gray-200 border border-gray-300 text-gray-900 hover:bg-gray-200"
+                        ? "bg-gray-100 shadow-lg shadow-gray-200 border border-gray-300 text-gray-900 hover:bg-gray-200" // Light button, dark text
                         : ""
                   }`}
                 >
                   {plan.buttonText}
                 </button>
 
-                <div className="space-y-3 pt-4 border-t border-gray-200">
+                <div className="space-y-3 pt-4 border-t border-gray-200"> {/* Lighter border */}
                   <h4 className="font-medium text-base mb-3">
                     {plan.includes[0]}
                   </h4>
@@ -309,8 +292,8 @@ export default function PricingSection6() {
                         key={featureIndex}
                         className="flex items-center gap-2"
                       >
-                        <span className="h-2.5 w-2.5 bg-gray-500 rounded-full grid place-content-center"></span>
-                        <span className="text-sm text-gray-700">{feature}</span>
+                        <span className="h-2.5 w-2.5 bg-gray-500 rounded-full grid place-content-center"></span> {/* Darker bullet points */}
+                        <span className="text-sm text-gray-700">{feature}</span> {/* Darker text */}
                       </li>
                     ))}
                   </ul>
