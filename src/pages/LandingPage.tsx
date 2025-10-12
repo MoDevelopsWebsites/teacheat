@@ -19,9 +19,10 @@ import CTABottomSection from '@/components/CTABottomSection';
 import Header from '@/components/Header';
 import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
 import Footer from '@/components/Footer';
-import { useTypewriter } from '@/hooks/use-typewriter';
+import { useTypewriter } => '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 import { DisplayCardsDemo } from '@/components/DisplayCardsDemo';
+import GlitterEffect from '@/components/GlitterEffect'; // Import the new GlitterEffect component
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -157,18 +158,20 @@ const LandingPage = () => {
 
       <main className="flex-grow flex flex-col items-center">
         <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
+          <GlitterEffect /> {/* Glitter effect behind the main text content */}
+
           <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
           <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
           <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[500ms]">
+          <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[500ms] z-10">
             <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms]">
+          <p className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms] z-10">
             Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
           </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms]">
+          <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms] z-10">
             <Button
               className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
               onClick={handleGetStartedClick}

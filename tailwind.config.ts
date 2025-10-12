@@ -222,12 +222,17 @@ export default {
           "0%": { opacity: "0", transform: "translateY(50px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "glitter-pan": { // New keyframe for glitter effect
+          "0%": { backgroundPosition: "0% 0%" },
+          "100%": { backgroundPosition: "100% 100%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 8s ease-in-out infinite",
         "fade-in-up": "fade-in-up 2s ease-out forwards", // New animation
+        "glitter-pan": "glitter-pan 30s linear infinite", // New animation
       },
       boxShadow: {
         'button-glow-default': '0 0 5px rgba(59, 130, 246, 0.2)', // Subtle default glow (blue-500)
