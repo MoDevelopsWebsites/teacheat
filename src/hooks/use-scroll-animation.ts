@@ -26,6 +26,7 @@ export const useScrollAnimation = <T extends HTMLElement>(
           if (entry.isIntersecting && !hasAnimated.current) {
             setTimeout(() => {
               element.classList.add(animationClass);
+              element.classList.remove('opacity-0'); // Remove initial hidden state
             }, delay);
             hasAnimated.current = true;
             observer.unobserve(element); // Stop observing once animated
@@ -43,4 +44,11 @@ export const useScrollAnimation = <T extends HTMLElement>(
       }
     };
   }, [ref, animationClass, threshold, rootMargin, delay]);
+
+  // Add initial opacity-0 to hide the element before animation
+  useEffect(() => {
+    if (ref.current && !hasAnimated.current) {
+      ref.current.classList.add('opacity-0');
+    }
+  }, [ref]);
 };
