@@ -19,7 +19,7 @@ import CTABottomSection from '@/components/CTABottomSection';
 import Header from '@/components/Header';
 import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
 import Footer from '@/components/Footer';
-import { useTypewriter } => '@/hooks/use-typewriter';
+import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 import { DisplayCardsDemo } from '@/components/DisplayCardsDemo';
 import GlitterEffect from '@/components/GlitterEffect'; // Import the new GlitterEffect component
