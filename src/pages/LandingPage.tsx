@@ -162,13 +162,13 @@ const LandingPage = () => {
           <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[200ms]">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[500ms]">
             <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[400ms]">
+          <p className="text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms]">
             Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
           </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[600ms]">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms]">
             <Button
               className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
               onClick={handleGetStartedClick}
@@ -178,7 +178,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <div className="mt-16 mb-24 z-10 w-full px-4 flex justify-center opacity-0 animate-fade-in-up animation-delay-[800ms]">
+        <div className="mt-16 mb-24 z-10 w-full px-4 flex justify-center opacity-0 animate-fade-in-up animation-delay-[2000ms]">
           <MeetingWindowMockup
             currentAiResponse={currentAiResponse}
             typewriterKey={typewriterKey}
