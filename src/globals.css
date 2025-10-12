@@ -102,10 +102,6 @@
     /* New UI Blue Colors */
     --ui-light-blue-bg: 210 100% 95%; /* Very light blue */
     --ui-dark-blue-bg: 210 100% 85%; /* Slightly darker light blue */
-
-    /* New Pricing Section Colors */
-    --gradient-color: 220 80% 60%; /* A vibrant blue */
-    --sparkles-color: 220 80% 60%; /* Matching blue for sparkles */
   }
 
   .dark {
@@ -204,10 +200,6 @@
     /* New UI Blue Colors Dark Mode */
     --ui-light-blue-bg: 217.2 32.6% 17.5%; /* Dark gray */
     --ui-dark-blue-bg: 217.2 32.6% 10%; /* Even darker gray */
-
-    /* New Pricing Section Colors Dark Mode */
-    --gradient-color: 220 80% 60%; /* A vibrant blue */
-    --sparkles-color: 0 0% 100%; /* White for sparkles in dark mode */
   }
 }
 
