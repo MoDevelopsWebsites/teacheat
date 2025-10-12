@@ -218,11 +218,16 @@ export default {
           "50%": { transform: "translateY(0) rotate(0deg)" },
           "75%": { transform: "translateY(10px) rotate(-5deg)" },
         },
+        "fade-in-up": { // New keyframe for fade-in-up animation
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 8s ease-in-out infinite",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards", // New animation
       },
       boxShadow: {
         'button-glow-default': '0 0 5px rgba(59, 130, 246, 0.2)', // Subtle default glow (blue-500)
