@@ -195,13 +195,13 @@ const LandingPage = () => {
           <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-          <h1 ref={heroTextRef} className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display z-10" data-lenis-speed="0.5">
+          <h1 ref={heroTextRef} className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display z-10 opacity-0" data-lenis-speed="0.5">
             <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
           </h1>
-          <p ref={heroParagraphRef} className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl z-10" data-lenis-speed="0.2">
+          <p ref={heroParagraphRef} className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl z-10 opacity-0" data-lenis-speed="0.2">
             Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
           </p>
-          <div ref={heroButtonsRef} className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-10">
+          <div ref={heroButtonsRef} className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-10 opacity-0">
             <Button
               className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
               onClick={handleGetStartedClick}
@@ -211,7 +211,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <div ref={meetingMockupRef} className="mt-16 mb-24 z-10 w-full px-4 flex justify-center">
+        <div ref={meetingMockupRef} className="mt-16 mb-24 z-10 w-full px-4 flex justify-center opacity-0">
           <MeetingWindowMockup
             currentAiResponse={currentAiResponse}
             typewriterKey={typewriterKey}
@@ -222,14 +222,14 @@ const LandingPage = () => {
 
         <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
-            <div ref={recordsSectionRef}>
+            <div ref={recordsSectionRef} className="opacity-0">
               <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
               <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
                 Teacheat listens to your meetings in the background and takes real-time notes without joining.
               </p>
               <MeetingSettingsCard />
             </div>
-            <div ref={answersSectionRef}>
+            <div ref={answersSectionRef} className="opacity-0">
               <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
               <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
                 Teacheat responds with context of what's happening in a conversation and what's on your screen.
@@ -238,7 +238,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div ref={cheatSectionRef} className="text-center py-16">
+          <div ref={cheatSectionRef} className="text-center py-16 opacity-0">
             <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
               It's time to cheat
             </h2>
@@ -263,7 +263,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section ref={undetectableSectionRef} className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
+        <section ref={undetectableSectionRef} className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary opacity-0">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
             <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
@@ -294,7 +294,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div ref={undetectableLogosRef} className="mt-16">
+            <div ref={undetectableLogosRef} className="mt-16 opacity-0">
               <p className="text-sm font-semibold text-undetectable-text-muted uppercase tracking-wider mb-8">
                 Works with every meeting platform
               </p>
@@ -303,7 +303,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section ref={recapSectionRef} className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
+        <section ref={recapSectionRef} className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary opacity-0">
           <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
           <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
@@ -327,9 +327,9 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <FAQSection ref={faqSectionRef} />
+        <FAQSection ref={faqSectionRef} className="opacity-0" />
 
-        <CTABottomSection ref={ctaSectionRef} />
+        <CTABottomSection ref={ctaSectionRef} className="opacity-0" />
       </main>
 
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
