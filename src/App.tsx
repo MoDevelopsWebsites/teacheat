@@ -15,8 +15,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
-import { loadStripe } from '@stripe/stripe-js'; // Corrected import for loadStripe
+import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { LenisProvider } from "./components/LenisProvider"; // Import LenisProvider
 
 const queryClient = new QueryClient();
 
@@ -30,19 +31,21 @@ const App = () => (
       <HashRouter>
         <SessionContextProvider>
           <Elements stripe={stripePromise}>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/enterprise" element={<EnterpriseLandingPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route element={<Layout />}>
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/settings" element={<Settings />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <LenisProvider> {/* Wrap the entire route structure with LenisProvider */}
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/enterprise" element={<EnterpriseLandingPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route element={<Layout />}>
+                  <Route path="/chat" element={<Chat />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </LenisProvider>
           </Elements>
         </SessionContextProvider>
       </HashRouter>
