@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Apple, Mic, MessageSquareText, Sparkles, FileText, EyeOff } from 'lucide-react';
@@ -23,7 +23,6 @@ import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 import { DisplayCardsDemo } from '@/components/DisplayCardsDemo';
 import GlitterEffect from '@/components/GlitterEffect'; // Import the new GlitterEffect component
-import { useScrollAnimation } from '@/hooks/use-scroll-animation'; // Import the new hook
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -50,35 +49,6 @@ const LandingPage = () => {
   const [activeSuggestionType, setActiveSuggestionType] = useState<'whatToSayNext' | 'followUpQuestions' | 'none'>('none');
 
   const [activeWordIndex, setActiveWordIndex] = useState(0);
-
-  // Refs for scroll animations
-  const heroTextRef = useRef<HTMLHeadingElement>(null);
-  const heroParagraphRef = useRef<HTMLParagraphElement>(null);
-  const heroButtonsRef = useRef<HTMLDivElement>(null);
-  const meetingMockupRef = useRef<HTMLDivElement>(null);
-  const recordsSectionRef = useRef<HTMLDivElement>(null);
-  const answersSectionRef = useRef<HTMLDivElement>(null);
-  const cheatSectionRef = useRef<HTMLDivElement>(null);
-  const undetectableSectionRef = useRef<HTMLDivElement>(null);
-  const undetectableLogosRef = useRef<HTMLDivElement>(null);
-  const recapSectionRef = useRef<HTMLDivElement>(null);
-  const faqSectionRef = useRef<HTMLElement>(null);
-  const ctaSectionRef = useRef<HTMLElement>(null);
-
-  // Apply scroll animation hook to elements
-  useScrollAnimation(heroTextRef, 'animate-fade-in-up', { delay: 500 });
-  useScrollAnimation(heroParagraphRef, 'animate-fade-in-up', { delay: 1000 });
-  useScrollAnimation(heroButtonsRef, 'animate-fade-in-up', { delay: 1500 });
-  useScrollAnimation(meetingMockupRef, 'animate-fade-in-up', { delay: 2000 });
-  useScrollAnimation(recordsSectionRef);
-  useScrollAnimation(answersSectionRef);
-  useScrollAnimation(cheatSectionRef);
-  useScrollAnimation(undetectableSectionRef);
-  useScrollAnimation(undetectableLogosRef);
-  useScrollAnimation(recapSectionRef);
-  useScrollAnimation(faqSectionRef);
-  useScrollAnimation(ctaSectionRef);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -195,13 +165,13 @@ const LandingPage = () => {
           <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-          <h1 ref={heroTextRef} className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display z-10" data-lenis-speed="0.5">
+          <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[500ms] z-10" data-lenis-speed="0.5">
             <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
           </h1>
-          <p ref={heroParagraphRef} className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl z-10" data-lenis-speed="0.2">
+          <p className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms] z-10" data-lenis-speed="0.2">
             Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
           </p>
-          <div ref={heroButtonsRef} className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-10">
+          <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms] z-10">
             <Button
               className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
               onClick={handleGetStartedClick}
@@ -211,7 +181,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <div ref={meetingMockupRef} className="mt-16 mb-24 z-10 w-full px-4 flex justify-center">
+        <div className="mt-16 mb-24 z-10 w-full px-4 flex justify-center opacity-0 animate-fade-in-up animation-delay-[2000ms]">
           <MeetingWindowMockup
             currentAiResponse={currentAiResponse}
             typewriterKey={typewriterKey}
@@ -222,23 +192,24 @@ const LandingPage = () => {
 
         <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
-            <div ref={recordsSectionRef}>
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
               <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
                 Teacheat listens to your meetings in the background and takes real-time notes without joining.
               </p>
-              <MeetingSettingsCard />
+              <MeetingSettingsCard /> {/* Reverted to original component */}
             </div>
-            <div ref={answersSectionRef}>
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
               <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
                 Teacheat responds with context of what's happening in a conversation and what's on your screen.
               </p>
-              <RealtimeAnswersCard />
+              <RealtimeAnswersCard /> {/* Reverted to original component */}
             </div>
           </div>
 
-          <div ref={cheatSectionRef} className="text-center py-16">
+          {/* DisplayCardsDemo remains here */}
+          <div className="text-center py-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
               It's time to cheat
             </h2>
@@ -263,7 +234,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section ref={undetectableSectionRef} className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
+        <section className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
             <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
@@ -294,7 +265,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <div ref={undetectableLogosRef} className="mt-16">
+            <div className="mt-16">
               <p className="text-sm font-semibold text-undetectable-text-muted uppercase tracking-wider mb-8">
                 Works with every meeting platform
               </p>
@@ -303,7 +274,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section ref={recapSectionRef} className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
+        <section className="relative w-full py-24 bg-white dark:bg-gray-900 text-landing-text-primary">
           <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute top-16 left-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
           <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/2 left-1/4 w-16 h-16 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
           <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute top-24 right-1/4 w-24 h-24 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
@@ -327,9 +298,9 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <FAQSection ref={faqSectionRef} />
+        <FAQSection />
 
-        <CTABottomSection ref={ctaSectionRef} />
+        <CTABottomSection />
       </main>
 
       {buttonPositions.whatToSayNext && buttonPositions.followUpQuestions && (
