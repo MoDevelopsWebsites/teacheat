@@ -209,7 +209,7 @@ const LandingPage = () => {
           </div>
 
           {/* DisplayCardsDemo remains here */}
-          <div className="text-center py-16">
+          <div className="text-center py-16 z-20"> {/* Added z-20 here */}
             <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
               It's time to cheat
             </h2>
