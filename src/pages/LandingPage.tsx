@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Apple, Mic, MessageSquareText, Sparkles, FileText, EyeOff } from 'lucide-react';
@@ -50,6 +50,7 @@ const LandingPage = () => {
   const [activeSuggestionType, setActiveSuggestionType] = useState<'whatToSayNext' | 'followUpQuestions' | 'none'>('none');
 
   const [activeWordIndex, setActiveWordIndex] = useState(0);
+  const landingPageRef = useRef<HTMLDivElement>(null); // Ref for the main landing page container
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,11 +71,12 @@ const LandingPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!buttonPositions.whatToSayNext || !buttonPositions.followUpQuestions) {
+    if (!buttonPositions.whatToSayNext || !buttonPositions.followUpQuestions || !landingPageRef.current) {
       return;
     }
 
     let animationTimeout: NodeJS.Timeout;
+    const landingPageRect = landingPageRef.current.getBoundingClientRect();
 
     const animateSequence = async () => {
       const typewriterSpeed = 30;
@@ -87,8 +89,8 @@ const LandingPage = () => {
 
       const nextButton = buttonPositions.whatToSayNext!;
       setMousePosition({
-        x: nextButton.left + nextButton.width / 2,
-        y: nextButton.top + nextButton.height / 2,
+        x: (nextButton.left + nextButton.width / 2) - landingPageRect.left,
+        y: (nextButton.top + nextButton.height / 2) - landingPageRect.top,
       });
       await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -102,8 +104,8 @@ const LandingPage = () => {
 
       const followUpButton = buttonPositions.followUpQuestions!;
       setMousePosition({
-        x: followUpButton.left + followUpButton.width / 2,
-        y: followUpButton.top + followUpButton.height / 2,
+        x: (followUpButton.left + followUpButton.width / 2) - landingPageRect.left,
+        y: (followUpButton.top + followUpButton.height / 2) - landingPageRect.top,
       });
       await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -121,7 +123,7 @@ const LandingPage = () => {
     animationTimeout = setTimeout(animateSequence, 1000);
 
     return () => clearTimeout(animationTimeout);
-  }, [buttonPositions]);
+  }, [buttonPositions, landingPageRef]);
 
   const handleGetStartedClick = () => {
     navigate('/login');
@@ -136,7 +138,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+    <div ref={landingPageRef} className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
       <div
         className="absolute top-0 left-0 w-full h-screen bg-cover bg-center z-0"
         style={{
