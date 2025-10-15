@@ -90,7 +90,7 @@ const LandingPage = () => {
       const nextButton = buttonPositions.whatToSayNext!;
       setMousePosition({
         x: (nextButton.left + nextButton.width / 2) - landingPageRect.left,
-        y: (nextButton.top + nextButton.height / 2) - landingPageRect.top,
+        y: (nextButton.top + nextButton.height / 2) - landingPageRect.top - 10, // Adjusted Y coordinate
       });
       await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -105,7 +105,7 @@ const LandingPage = () => {
       const followUpButton = buttonPositions.followUpQuestions!;
       setMousePosition({
         x: (followUpButton.left + followUpButton.width / 2) - landingPageRect.left,
-        y: (followUpButton.top + followUpButton.height / 2) - landingPageRect.top,
+        y: (followUpButton.top + followUpButton.height / 2) - landingPageRect.top - 10, // Adjusted Y coordinate
       });
       await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -248,21 +248,21 @@ const LandingPage = () => {
               <div>
                 <MeetingParticipantsCard />
                 <h3 className="text-xl md:text-2xl font-bold mt-8 mb-2 text-undetectable-text-primary">Doesn't join meetings.</h3>
-                <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                <p className="text-lg text-undetectable-text-secondary max-w-xs mx-auto">
                   Teacheat never joins your meetings, so there are no bots and no extra people on the guest list.
                 </p>
               </div>
               <div>
                 <InvisibleToScreenShareCard />
                 <h3 className="text-xl md:text-2xl font-bold mt-8 mb-2 text-undetectable-text-primary">Invisible to screen share.</h3>
-                <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                <p className="text-lg text-undetectable-text-secondary max-w-xs mx-auto">
                   Teacheat never shows up in shared screens, recordings, or external meeting tools.
                 </p>
               </div>
               <div>
                 <NeverInYourWayCard />
                 <h3 className="text-xl md:text-2xl font-bold mt-8 mb-2 text-undetectable-text-primary">Never in your way.</h3>
-                <p className="text-undetectable-text-secondary max-w-xs mx-auto">
+                <p className="text-lg text-undetectable-text-secondary max-w-xs mx-auto">
                   Teacheat appears as a translucent and hideable window over all your other applications.
                 </p>
               </div>
