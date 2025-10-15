@@ -32,9 +32,14 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       });
     };
 
-    getPositions();
+    // Add a small delay to ensure DOM is fully rendered before getting positions
+    const timeoutId = setTimeout(getPositions, 100);
+
     window.addEventListener('resize', getPositions);
-    return () => window.removeEventListener('resize', getPositions);
+    return () => {
+      clearTimeout(timeoutId); // Clear timeout on unmount
+      window.removeEventListener('resize', getPositions);
+    };
   }, [onButtonPositionsReady]);
 
   const animatedAiResponse = useTypewriter({
