@@ -59,8 +59,9 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
         direction === "left" ? "forwards" : "reverse"
       );
 
+      // Changed "fast" speed from "20s" to "15s"
       const duration =
-        speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s";
+        speed === "fast" ? "15s" : speed === "normal" ? "40s" : "80s";
       containerRef.current.style.setProperty("--animation-duration", duration);
 
       setStart(true);
