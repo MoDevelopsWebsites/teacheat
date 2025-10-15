@@ -226,6 +226,10 @@ export default {
           "0%": { backgroundPosition: "0% 0%" },
           "100%": { backgroundPosition: "100% 100%" },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -233,10 +237,14 @@ export default {
         float: "float 8s ease-in-out infinite",
         "fade-in-up": "fade-in-up 2s ease-out forwards", // New animation
         "glitter-pan": "glitter-pan 30s linear infinite", // New animation
+        marquee: 'marquee var(--duration) linear infinite',
       },
       boxShadow: {
         'button-glow-default': '0 0 5px rgba(59, 130, 246, 0.2)', // Subtle default glow (blue-500)
         'button-glow-hover': '0 0 20px rgba(59, 130, 246, 0.6)', // More pronounced on hover
+      },
+      maxWidth: {
+        container: "1280px",
       },
     },
   },

@@ -23,6 +23,7 @@ import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 import { DisplayCardsDemo } from '@/components/DisplayCardsDemo';
 import GlitterEffect from '@/components/GlitterEffect'; // Import the new GlitterEffect component
+import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo'; // Import the new testimonials demo
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -297,6 +298,8 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
+
+        <TestimonialsSectionDemo /> {/* Testimonials section added here */}
 
         <FAQSection />
 
