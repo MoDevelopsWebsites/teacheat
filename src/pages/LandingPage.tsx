@@ -193,7 +193,7 @@ const LandingPage = () => {
           />
         </div>
 
-        <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10">
+        <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10 bg-gradient-to-b from-landing-background-end to-white dark:to-gray-900">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
