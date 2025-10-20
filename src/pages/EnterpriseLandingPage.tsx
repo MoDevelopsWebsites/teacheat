@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import DesktopWithSafariMockup from '@/components/DesktopWithSafariMockup';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import EnterpriseAnalyticsCard from '@/components/EnterpriseAnalyticsCard'; // Import the new component
 
 const EnterpriseLandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -83,6 +84,49 @@ const EnterpriseLandingPage: React.FC = () => {
         <div className="mt-8 mb-16 sm:mb-24 z-10 w-full flex justify-center px-4">
           <DesktopWithSafariMockup />
         </div>
+
+        {/* New section for Enterprise Analytics */}
+        <section className="w-full py-24 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <p className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">
+              You can't see where your team is messing up
+            </p>
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
+              Understand exactly what your team is doing, and help them <br className="hidden md:block" /> perform better.
+            </h2>
+
+            <div className="flex justify-center w-full px-4 mb-16">
+              <EnterpriseAnalyticsCard />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left mt-16">
+              <div>
+                <h3 className="text-xl font-bold mb-2">AI meeting summaries.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Every meeting neatly summarized — no effort needed.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Usage analytics.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  See when and how reps are using Teacheat effectively across calls.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">AI meeting coaching.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Identify moments where Teacheat could've helped but wasn't used.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Cross-call AI chat.</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Teacheat answers questions across all your meetings using saved context.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <div className="h-24 sm:h-48"></div>
       </main>
