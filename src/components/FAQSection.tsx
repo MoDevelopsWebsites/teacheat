@@ -37,7 +37,7 @@ const FAQSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full max-w-3xl mx-auto px-4 py-12 sm:px-6 sm:py-16 z-10 bg-white dark:bg-gray-900">
+    <section className="w-full px-4 py-12 sm:px-6 sm:py-16 z-10 bg-white dark:bg-gray-900">
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-8 sm:mb-12 text-center text-landing-text-primary">
         Frequently asked questions
       </h2>
