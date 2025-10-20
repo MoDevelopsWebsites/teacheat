@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Search, Calendar, Clock, Trash2, MessageSquareText, CheckCircle2, ArrowLeft, Settings, Zap, SlidersHorizontal, User as UserIcon } from 'lucide-react';
+import { ChevronDown, Search, Calendar, Clock, Trash2, MessageSquareText, CheckCircle2, ArrowLeft, Settings, Zap, SlidersHorizontal, User as UserIcon, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
