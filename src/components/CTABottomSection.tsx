@@ -27,6 +27,9 @@ const CTABottomSection: React.FC = () => {
           Get Started
         </Button>
       </div>
+
+      {/* Gradient overlay for smooth blend with the FAQ section */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
     </section>
   );
 };
