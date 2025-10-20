@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const CTABottomSection: React.FC = () => {
   return (
-    <section className="relative w-full py-16 sm:py-24 bg-gradient-to-br from-landing-cta-background-start to-landing-cta-background-end text-landing-cta-text-primary">
+    <section className="relative w-full py-16 sm:py-24 bg-gradient-to-b from-white dark:from-gray-900 to-landing-cta-background-end text-landing-cta-text-primary">
       <div className="absolute top-1/4 left-1/4 w-24 h-24 sm:w-32 sm:h-32 bg-landing-cta-floating-bg rounded-xl shadow-lg border border-landing-cta-floating-border flex items-center justify-center opacity-70 blur-sm z-0" style={{ transform: 'rotate(-15deg)' }}>
         <Command className="h-12 w-12 sm:h-16 sm:w-16 text-landing-cta-floating-text/50" />
       </div>
@@ -27,9 +27,6 @@ const CTABottomSection: React.FC = () => {
           Get Started
         </Button>
       </div>
-
-      {/* Gradient overlay for smooth blend with the FAQ section */}
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
     </section>
   );
 };
