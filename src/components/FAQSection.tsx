@@ -41,18 +41,20 @@ const FAQSection: React.FC = () => {
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-8 sm:mb-12 text-center text-landing-text-primary">
         Frequently asked questions
       </h2>
-      <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200 dark:border-gray-700">
-            <AccordionTrigger className="text-base sm:text-lg font-medium text-landing-text-primary hover:no-underline py-3 sm:py-4">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-sm sm:text-base text-gray-700 dark:text-gray-300 pb-3 sm:pb-4">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <div className="max-w-3xl mx-auto"> {/* Added div to center the accordion */}
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((faq, index) => (
+            <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200 dark:border-gray-700">
+              <AccordionTrigger className="text-base sm:text-lg font-medium text-landing-text-primary hover:no-underline py-3 sm:py-4">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-sm sm:text-base text-gray-700 dark:text-gray-300 pb-3 sm:pb-4">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     </section>
   );
 };
