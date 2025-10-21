@@ -237,7 +237,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section className="w-full py-24 bg-gradient-to-br from-undetectable-background-start to-undetectable-background-end text-undetectable-text-primary">
+        <section className="w-full py-24 bg-gradient-to-br from-white dark:from-gray-900 to-undetectable-background-end text-undetectable-text-primary">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-blue-600 dark:text-blue-400 text-lg font-semibold mb-2">Completely undetectable</h2>
             <p className="text-4xl md:text-5xl font-extrabold leading-tight mb-16">
