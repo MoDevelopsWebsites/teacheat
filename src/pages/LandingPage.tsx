@@ -21,9 +21,9 @@ import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
 import Footer from '@/components/Footer';
 import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
-import { DisplayCardsDemo } from '@/components/DisplayCardsDemo';
+import { DisplayCardsDemo } = from '@/components/DisplayCardsDemo';
 import GlitterEffect from '@/components/GlitterEffect'; // Import the new GlitterEffect component
-import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo'; // Import the new testimonials demo
+import { TestimonialsSectionDemo } = from '@/components/blocks/TestimonialsSectionDemo'; // Import the new testimonials demo
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -138,7 +138,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div ref={landingPageRef} className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-landing-background-end text-landing-text-primary overflow-hidden">
+    <div ref={landingPageRef} className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-white dark:to-gray-900 text-landing-text-primary overflow-hidden">
       <div
         className="absolute top-0 left-0 w-full h-screen bg-cover bg-center z-0"
         style={{
@@ -194,7 +194,7 @@ const LandingPage = () => {
           />
         </div>
 
-        <section className="w-full py-16 z-10 bg-gradient-to-b from-landing-background-end to-white dark:to-gray-900">
+        <section className="w-full py-16 z-10 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-6"> {/* New wrapper for content */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
               <div>
