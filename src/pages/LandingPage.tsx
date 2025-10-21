@@ -138,7 +138,7 @@ const LandingPage = () => {
   }
 
   return (
-    <div ref={landingPageRef} className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start to-white dark:to-gray-900 text-landing-text-primary overflow-hidden">
+    <div ref={landingPageRef} className="relative flex flex-col min-h-screen bg-gradient-to-b from-landing-background-start via-blue-50/50 to-white dark:to-gray-900 text-landing-text-primary overflow-hidden">
       <div
         className="absolute top-0 left-0 w-full h-screen bg-cover bg-center z-0"
         style={{
