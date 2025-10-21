@@ -160,27 +160,28 @@ const LandingPage = () => {
       <FloatingGetStartedButton />
 
       <main className="flex-grow flex flex-col items-center">
-        <section className="relative flex flex-col items-center text-center px-4 py-16 max-w-4xl z-10 mt-12">
+        <section className="relative flex flex-col items-center text-center w-full px-4 py-16 z-10 mt-12">
           <GlitterEffect /> {/* Glitter effect behind the main text content */}
+          <div className="max-w-4xl mx-auto"> {/* New wrapper for content */}
+            <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
+            <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
+            <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
+            <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
 
-          <img src={import.meta.env.BASE_URL + "chat-bubble-icon.svg"} alt="Chat bubble" className="absolute -top-8 left-1/4 w-10 h-10 opacity-80 z-0 animate-float animation-delay-1000" style={{ transform: 'translate(-50%, -50%) rotate(10deg)' }} />
-          <img src={import.meta.env.BASE_URL + "magnifying-glass-icon.svg"} alt="Magnifying glass" className="absolute top-1/3 -left-16 w-14 h-14 opacity-80 z-0 animate-float animation-delay-3000" style={{ transform: 'translate(-50%, -50%) rotate(-15deg)' }} />
-          <img src={import.meta.env.BASE_URL + "notes-icon.svg"} alt="Notes" className="absolute bottom-1/4 -right-16 w-16 h-16 opacity-80 z-0 animate-float animation-delay-5000" style={{ transform: 'translate(50%, 50%) rotate(20deg)' }} />
-          <img src={import.meta.env.BASE_URL + "calendar-icon.svg"} alt="Calendar" className="absolute -bottom-8 right-1/4 w-12 h-12 opacity-80 z-0 animate-float animation-delay-7000" style={{ transform: 'translate(50%, -50%) rotate(5deg)' }} />
-
-          <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[500ms] z-10" data-lenis-speed="0.5">
-            <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
-          </h1>
-          <p className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms] z-10" data-lenis-speed="0.2">
-            Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
-          </p>
-          <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms] z-10">
-            <Button
-              className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
-              onClick={handleGetStartedClick}
-            >
-              <Apple className="h-5 w-5 mr-2" /> Get Started
-            </Button>
+            <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-normal leading-tight mb-6 text-white font-display opacity-0 animate-fade-in-up animation-delay-[500ms] z-10" data-lenis-speed="0.5">
+              <span className="text-7xl md:text-8xl">#1</span> AI assistant <br /> for meetings
+            </h1>
+            <p className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms] z-10" data-lenis-speed="0.2">
+              Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
+            </p>
+            <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms] z-10">
+              <Button
+                className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
+                onClick={handleGetStartedClick}
+              >
+                <Apple className="h-5 w-5 mr-2" /> Get Started
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -193,47 +194,49 @@ const LandingPage = () => {
           />
         </div>
 
-        <section className="w-full max-w-7xl mx-auto px-6 py-16 z-10 bg-gradient-to-b from-landing-background-end to-white dark:to-gray-900">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
-              <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
-                Teacheat listens to your meetings in the background and takes real-time notes without joining.
-              </p>
-              <MeetingSettingsCard /> {/* Reverted to original component */}
+        <section className="w-full py-16 z-10 bg-gradient-to-b from-landing-background-end to-white dark:to-gray-900">
+          <div className="max-w-7xl mx-auto px-6"> {/* New wrapper for content */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Records your meetings</h2>
+                <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
+                  Teacheat listens to your meetings in the background and takes real-time notes without joining.
+                </p>
+                <MeetingSettingsCard /> {/* Reverted to original component */}
+              </div>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
+                <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
+                  Teacheat responds with context of what's happening in a conversation and what's on your screen.
+                </p>
+                <RealtimeAnswersCard /> {/* Reverted to original component */}
+              </div>
             </div>
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-landing-text-primary mb-4">Answers in real-time</h2>
-              <p className="text-lg md:text-xl text-landing-text-primary/80 mb-8 max-w-sm">
-                Teacheat responds with context of what's happening in a conversation and what's on your screen.
-              </p>
-              <RealtimeAnswersCard /> {/* Reverted to original component */}
-            </div>
-          </div>
 
-          {/* DisplayCardsDemo remains here */}
-          <div className="text-center py-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
-              It's time to cheat
-            </h2>
-            <p className="text-5xl md:text-7xl font-extrabold leading-tight mb-12">
-              {cyclingWords.map((word, index) => (
-                <React.Fragment key={index}>
-                  <span
-                    className={cn(
-                      "inline-block transition-colors duration-500",
-                      index === activeWordIndex
-                        ? "text-blue-600"
-                        : "text-gray-300 dark:text-gray-700"
-                    )}
-                  >
-                    {word}
-                  </span>
-                  {' '}
-                </React.Fragment>
-              ))}
-            </p>
-            <DisplayCardsDemo />
+            {/* DisplayCardsDemo remains here */}
+            <div className="text-center py-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-landing-text-primary mb-8">
+                It's time to cheat
+              </h2>
+              <p className="text-5xl md:text-7xl font-extrabold leading-tight mb-12">
+                {cyclingWords.map((word, index) => (
+                  <React.Fragment key={index}>
+                    <span
+                      className={cn(
+                        "inline-block transition-colors duration-500",
+                        index === activeWordIndex
+                          ? "text-blue-600"
+                          : "text-gray-300 dark:text-gray-700"
+                      )}
+                    >
+                      {word}
+                    </span>
+                    {' '}
+                  </React.Fragment>
+                ))}
+              </p>
+              <DisplayCardsDemo />
+            </div>
           </div>
         </section>
 
