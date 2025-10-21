@@ -174,7 +174,7 @@ const LandingPage = () => {
             <p className="relative text-lg md:text-xl lg:text-2xl text-white font-normal mb-10 max-w-2xl opacity-0 animate-fade-in-up animation-delay-[1000ms] z-10" data-lenis-speed="0.2">
               Takes perfect notes, answers questions in real-time, and <br className="hidden md:block" /> makes you the most prepared person on every call.
             </p>
-            <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms] z-10">
+            <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 opacity-0 animate-fade-in-up animation-delay-[1500ms] z-10 justify-center">
               <Button
                 className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
                 onClick={handleGetStartedClick}
