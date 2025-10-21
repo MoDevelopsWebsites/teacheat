@@ -194,7 +194,7 @@ const LandingPage = () => {
           />
         </div>
 
-        <section className="w-full py-16 z-10 bg-white dark:bg-gray-900">
+        <section className="w-full py-16 z-10"> {/* Removed bg-white dark:bg-gray-900 */}
           <div className="max-w-7xl mx-auto px-6"> {/* New wrapper for content */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-24">
               <div>
