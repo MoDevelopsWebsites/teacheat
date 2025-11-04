@@ -23,7 +23,7 @@ const WaitlistMockup: React.FC = () => {
   return (
     <Card className={cn(
       "relative w-full max-w-5xl h-[500px] bg-white dark:bg-white rounded-xl flex flex-col overflow-hidden",
-      "shadow-[0_4px_15px_rgba(0,0,0,0.08)]", // Very subtle, diffused shadow for lift, no hard border
+      // Removed all shadow classes here
       "transition-all duration-800 ease-out",
       isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
     )}>
