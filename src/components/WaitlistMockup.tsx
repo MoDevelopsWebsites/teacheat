@@ -75,7 +75,7 @@ const WaitlistMockup: React.FC = () => {
         </div>
       </div>
 
-      <CardContent className="flex-grow p-4 bg-gray-50 dark:bg-gray-900 relative"> {/* Added relative for the overlay */}
+      <CardContent className="flex-grow p-4 bg-white dark:bg-white relative"> {/* Changed background to white for both modes */}
         <div className="h-full overflow-y-auto pr-4"> {/* Added pr-4 for scrollbar space */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <MeetingSummaryCard
@@ -113,7 +113,7 @@ const WaitlistMockup: React.FC = () => {
           </div>
         </div>
         {/* Overlay for fade-out effect at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
       </CardContent>
     </Card>
   );
