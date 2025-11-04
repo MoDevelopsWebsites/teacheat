@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Search, X, Plus, Upgrade, User, Calendar, BarChart2, CheckSquare, Clock, List, Grid } from 'lucide-react';
+import { Search, X, Plus, User, Calendar, BarChart2, CheckSquare, Clock, List, Grid, ArrowUpCircle } from 'lucide-react'; // Replaced Upgrade with ArrowUpCircle
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -84,7 +84,7 @@ const WaitlistMockup: React.FC = () => {
         </div>
         <div className="flex items-center space-x-2 ml-auto">
           <Button variant="ghost" className="px-3 py-1 h-auto text-xs font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Upgrade className="h-3 w-3 mr-1" /> Upgrade
+            <ArrowUpCircle className="h-3 w-3 mr-1" /> Upgrade
           </Button>
           <Button className="px-3 py-1 h-auto text-xs font-medium rounded-md bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
             <Plus className="h-3 w-3 mr-1" /> New project
