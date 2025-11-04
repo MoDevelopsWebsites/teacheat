@@ -67,13 +67,13 @@ const Waitlist: React.FC = () => {
           <Input
             type="email"
             placeholder="Your email"
-            className="flex-grow px-4 py-2.5 rounded-full border border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:border-gray-400"
+            className="flex-grow px-4 rounded-full border border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:border-gray-400 h-10"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isLoading}
           />
           <Button
-            className="bg-white text-black rounded-full px-6 py-2.5 h-auto text-base font-medium border border-black hover:bg-gray-50"
+            className="bg-white text-black rounded-full px-6 h-10 text-base font-medium border border-black hover:bg-gray-50"
             onClick={handleJoinWaitlist}
             disabled={isLoading}
           >
