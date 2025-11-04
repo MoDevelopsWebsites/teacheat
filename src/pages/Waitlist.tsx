@@ -55,7 +55,7 @@ const Waitlist: React.FC = () => {
         </div>
 
         {/* Hero Section */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 max-w-4xl font-sans">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight mb-6 max-w-4xl font-sans">
           The future of AI-powered meetings is here.
         </h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl">
