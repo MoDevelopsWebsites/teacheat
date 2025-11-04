@@ -1,26 +1,17 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react'; // Removed useState, useEffect as they are no longer needed for animation
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 const WaitlistMockup: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 500); // Delay for mockup animation after header
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Removed isVisible state and useEffect for animation
 
   return (
     <Card className={cn(
       "relative w-full max-w-5xl h-[500px] bg-white dark:bg-white rounded-xl flex flex-col overflow-hidden",
-      "transition-all duration-800 ease-out",
-      "border-0 ring-0", // Explicitly remove border and ring
-      isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
+      "border-0 ring-0" // Explicitly remove border and ring
+      // Directly applying visible styles, removed conditional classes
     )}>
       <div className="relative w-full h-full">
         <img
