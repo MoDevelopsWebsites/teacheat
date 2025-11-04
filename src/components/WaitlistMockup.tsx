@@ -25,7 +25,7 @@ const WaitlistMockup: React.FC = () => {
         <img
           src={import.meta.env.BASE_URL + "mockup.png"}
           alt="Waitlist Mockup"
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover object-top scale-105"
           style={{
             maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
