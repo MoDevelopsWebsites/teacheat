@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import WaitlistHeader from '@/components/WaitlistHeader';
 import WaitlistMockup from '@/components/WaitlistMockup';
-import UseCasesSection from '@/components/UseCasesSection'; // Import the new component
+import UseCasesSection from '@/components/UseCasesSection';
+import MinimalWaitlistFooter from '@/components/MinimalWaitlistFooter'; // Import the new minimalist footer
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
 
@@ -49,7 +50,7 @@ const Waitlist: React.FC = () => {
       {/* Header */}
       <WaitlistHeader onJoinWaitlist={handleJoinWaitlist} isLoading={isLoading} />
 
-      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-32"> {/* Increased mt to accommodate fixed header */}
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-32">
         {/* Waitlist Count */}
         <div className="mb-12 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-medium">
           600+ people on waitlist
@@ -86,8 +87,11 @@ const Waitlist: React.FC = () => {
         <WaitlistMockup />
       </main>
 
-      {/* New Use Cases Section */}
+      {/* Use Cases Section */}
       <UseCasesSection />
+
+      {/* Minimalist Footer */}
+      <MinimalWaitlistFooter onJoinWaitlist={handleJoinWaitlist} isLoading={isLoading} />
     </div>
   );
 };
