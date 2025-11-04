@@ -102,6 +102,9 @@
     /* New UI Blue Colors */
     --ui-light-blue-bg: 210 100% 95%; /* Very light blue */
     --ui-dark-blue-bg: 210 100% 85%; /* Slightly darker light blue */
+
+    /* New Accent Orange */
+    --accent-orange: 25 95% 53%; /* A vibrant orange */
   }
 
   .dark {
@@ -200,6 +203,9 @@
     /* New UI Blue Colors Dark Mode */
     --ui-light-blue-bg: 217.2 32.6% 17.5%; /* Dark gray */
     --ui-dark-blue-bg: 217.2 32.6% 10%; /* Even darker gray */
+
+    /* New Accent Orange */
+    --accent-orange: 25 95% 53%; /* Same vibrant orange for dark mode */
   }
 }
 

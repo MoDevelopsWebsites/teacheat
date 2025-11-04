@@ -190,6 +190,9 @@ export default {
         uiDarkBlue: { // New color for darker bluish backgrounds (for dark mode consistency)
           DEFAULT: "hsl(var(--ui-dark-blue-bg))",
         },
+        "accent-orange": { // Add this
+          DEFAULT: "hsl(var(--accent-orange))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import WaitlistHeader from '@/components/WaitlistHeader';
 import WaitlistMockup from '@/components/WaitlistMockup';
+import UseCasesSection from '@/components/UseCasesSection'; // Import the new component
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
 
@@ -84,6 +85,9 @@ const Waitlist: React.FC = () => {
         {/* Mockup */}
         <WaitlistMockup />
       </main>
+
+      {/* New Use Cases Section */}
+      <UseCasesSection />
     </div>
   );
 };
