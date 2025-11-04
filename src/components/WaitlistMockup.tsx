@@ -1,51 +1,31 @@
 "use client";
 
-import React from 'react';
-import { Search, X, Plus, User, Calendar, BarChart2, CheckSquare, Clock, List, Grid, ArrowUpCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, X, Plus, User, Calendar, BarChart2, CheckSquare, Clock, List, Grid, ArrowUpCircle, MessageSquareText, Sparkles, FileText, Settings } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'; // Added Avatar and AvatarFallback import
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import MeetingSummaryCard from './MeetingSummaryCard'; // Import the new MeetingSummaryCard
 import { cn } from '@/lib/utils';
 
-interface TaskCardProps {
-  title: string;
-  description: string;
-  statusIcon: React.ReactNode;
-  date: string;
-  isCompleted?: boolean;
-}
-
-const TaskCard: React.FC<TaskCardProps> = ({ title, description, statusIcon, date, isCompleted = false }) => (
-  <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 text-sm shadow-sm">
-    <div className="flex items-center justify-between mb-2">
-      <div className="flex items-center space-x-2">
-        {statusIcon}
-        <span className="font-medium text-gray-900 dark:text-gray-100">{title}</span>
-      </div>
-      <Button variant="ghost" size="icon" className="h-6 w-6 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-        <span className="sr-only">Options</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="8" r="1" />
-          <circle cx="8" cy="3" r="1" />
-          <circle cx="8" cy="13" r="1" />
-        </svg>
-      </Button>
-    </div>
-    <p className="text-gray-600 dark:text-gray-400 mb-3">{description}</p>
-    <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 text-xs">
-      {isCompleted ? <CheckSquare className="h-3 w-3" /> : <Clock className="h-3 w-3" />}
-      <BarChart2 className="h-3 w-3" />
-      <User className="h-3 w-3" />
-      <Calendar className="h-3 w-3" />
-      <span>{date}</span>
-    </div>
-  </Card>
-);
-
 const WaitlistMockup: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 500); // Delay for mockup animation after header
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <Card className="relative w-full max-w-4xl h-[450px] bg-gray-100 dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden">
+    <Card className={cn(
+      "relative w-full max-w-3xl h-[400px] bg-gray-100 dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden",
+      "transition-all duration-800 ease-out",
+      isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
+    )}>
       <div className="flex items-center p-2 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
         <div className="flex space-x-1.5 ml-2">
           <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
@@ -55,7 +35,7 @@ const WaitlistMockup: React.FC = () => {
         <div className="flex-grow flex justify-center items-center relative mx-4">
           <Search className="absolute left-3 h-4 w-4 text-gray-400 dark:text-gray-500" />
           <Input
-            placeholder="Search tasks"
+            placeholder="Search meetings or AI chats..."
             className="w-full max-w-xs pl-10 pr-3 py-1.5 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm"
             readOnly
           />
@@ -68,19 +48,16 @@ const WaitlistMockup: React.FC = () => {
       <div className="flex items-center p-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
         <div className="flex space-x-2 mr-4">
           <Button variant="secondary" className="px-3 py-1 h-auto text-xs font-medium rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600">
-            <Grid className="h-3 w-3 mr-1" /> My projects
+            <List className="h-3 w-3 mr-1" /> All Meetings
           </Button>
           <Button variant="ghost" className="px-3 py-1 h-auto text-xs font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Clock className="h-3 w-3 mr-1" /> Todo
+            <Sparkles className="h-3 w-3 mr-1" /> AI Chats
           </Button>
           <Button variant="ghost" className="px-3 py-1 h-auto text-xs font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <BarChart2 className="h-3 w-3 mr-1" /> In Progress
+            <FileText className="h-3 w-3 mr-1" /> Notes
           </Button>
           <Button variant="ghost" className="px-3 py-1 h-auto text-xs font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <CheckSquare className="h-3 w-3 mr-1" /> Completed
-          </Button>
-          <Button variant="ghost" className="px-3 py-1 h-auto text-xs font-medium rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <X className="h-3 w-3 mr-1" /> Canceled
+            <Settings className="h-3 w-3 mr-1" /> Settings
           </Button>
         </div>
         <div className="flex items-center space-x-2 ml-auto">
@@ -88,7 +65,7 @@ const WaitlistMockup: React.FC = () => {
             <ArrowUpCircle className="h-3 w-3 mr-1" /> Upgrade
           </Button>
           <Button className="px-3 py-1 h-auto text-xs font-medium rounded-md bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-            <Plus className="h-3 w-3 mr-1" /> New project
+            <Plus className="h-3 w-3 mr-1" /> New Meeting
           </Button>
           <Avatar className="h-6 w-6">
             <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
@@ -99,99 +76,39 @@ const WaitlistMockup: React.FC = () => {
       </div>
 
       <CardContent className="flex-grow p-4 bg-gray-50 dark:bg-gray-900 overflow-y-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs font-medium mb-2">
-              <Clock className="h-3 w-3 mr-1" /> Todo
-            </div>
-            <TaskCard
-              title="Lunan - Mobile App Dev"
-              description="Lunan is a full-service app development agency"
-              statusIcon={<Clock className="h-3 w-3 text-gray-500 dark:text-gray-400" />}
-              date="Dec 12"
-            />
-            <TaskCard
-              title="Slane - Web design"
-              description="Slane is a minimalist productivity app for individuals"
-              statusIcon={<Clock className="h-3 w-3 text-gray-500 dark:text-gray-400" />}
-              date="Nov 28"
-            />
-            <TaskCard
-              title="Slane - Web design"
-              description="Slane is a minimalist productivity app for individuals"
-              statusIcon={<Clock className="h-3 w-3 text-gray-500 dark:text-gray-400" />}
-              date="Nov 28"
-            />
-            <Button variant="ghost" className="w-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
-
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs font-medium mb-2">
-              <BarChart2 className="h-3 w-3 mr-1" /> In progress
-            </div>
-            <TaskCard
-              title="Halite - iOS App Design"
-              description="Halite is a cloud storage solution for iOS"
-              statusIcon={<BarChart2 className="h-3 w-3 text-blue-500" />}
-              date="Nov 28"
-            />
-            <TaskCard
-              title="Ponto - UX Research"
-              description="Ponto is a social network for connecting researchers"
-              statusIcon={<BarChart2 className="h-3 w-3 text-blue-500" />}
-              date="Nov 28"
-            />
-            <TaskCard
-              title="Ponto - UX Research"
-              description="Ponto is a social network for connecting researchers"
-              statusIcon={<BarChart2 className="h-3 w-3 text-blue-500" />}
-              date="Nov 28"
-            />
-            <Button variant="ghost" className="w-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
-
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs font-medium mb-2">
-              <CheckSquare className="h-3 w-3 mr-1" /> Completed
-            </div>
-            <TaskCard
-              title="Ponto - UX Research"
-              description="Ponto is a social network for connecting researchers"
-              statusIcon={<CheckSquare className="h-3 w-3 text-green-500" />}
-              date="Oct 01"
-              isCompleted={true}
-            />
-            <TaskCard
-              title="Skara - Backend Infrastructure"
-              description="Skara provides tools for managing backend infrastructure"
-              statusIcon={<CheckSquare className="h-3 w-3 text-green-500" />}
-              date="Oct 01"
-              isCompleted={true}
-            />
-            <Button variant="ghost" className="w-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
-
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center text-gray-500 dark:text-gray-400 text-xs font-medium mb-2">
-              <X className="h-3 w-3 mr-1" /> Canceled
-            </div>
-            <TaskCard
-              title="Skara - Backend Infrastructure"
-              description="Skara provides tools for managing backend infrastructure"
-              statusIcon={<X className="h-3 w-3 text-red-500" />}
-              date="Oct 01"
-              isCompleted={true}
-            />
-            <Button variant="ghost" className="w-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <MeetingSummaryCard
+            title="Client Onboarding Call"
+            summary="AI-generated summary of key discussion points, including client needs for custom integrations and a follow-up on pricing tiers."
+            icon={<MessageSquareText className="h-4 w-4 text-blue-500" />}
+            date="Dec 12"
+            time="10:00 AM"
+            participants={3}
+          />
+          <MeetingSummaryCard
+            title="Team Sync - Q4 Planning"
+            summary="Notes on project milestones, resource allocation, and a new marketing campaign strategy. AI suggested a better approach for competitor analysis."
+            icon={<FileText className="h-4 w-4 text-green-500" />}
+            date="Nov 28"
+            time="02:30 PM"
+            participants={5}
+          />
+          <MeetingSummaryCard
+            title="Interview Prep - Senior Dev"
+            summary="AI provided real-time answers to technical questions and suggested follow-up questions based on candidate's responses. High confidence score."
+            icon={<Sparkles className="h-4 w-4 text-purple-500" />}
+            date="Nov 27"
+            time="01:00 PM"
+            participants={2}
+          />
+          <MeetingSummaryCard
+            title="Sales Demo - Product X"
+            summary="AI helped with objection handling regarding pricing and feature comparisons. Identified key pain points and suggested relevant case studies."
+            icon={<MessageSquareText className="h-4 w-4 text-orange-500" />}
+            date="Nov 26"
+            time="11:00 AM"
+            participants={4}
+          />
         </div>
       </CardContent>
     </Card>

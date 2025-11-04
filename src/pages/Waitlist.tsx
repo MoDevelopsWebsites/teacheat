@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import WaitlistHeader from '@/components/WaitlistHeader'; // Import the new header component
+import WaitlistHeader from '@/components/WaitlistHeader';
 import WaitlistMockup from '@/components/WaitlistMockup';
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
@@ -48,7 +48,7 @@ const Waitlist: React.FC = () => {
       {/* Header */}
       <WaitlistHeader onJoinWaitlist={handleJoinWaitlist} isLoading={isLoading} />
 
-      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-24"> {/* Added mt-24 to push content down */}
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-32"> {/* Increased mt to accommodate fixed header */}
         {/* Waitlist Count */}
         <div className="mb-12 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-medium">
           600+ people on waitlist
@@ -56,10 +56,10 @@ const Waitlist: React.FC = () => {
 
         {/* Hero Section */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 max-w-4xl">
-          The future of productivity is here.
+          The future of AI-powered meetings is here.
         </h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl">
-          Slane is your new intelligent workspace built for founders, teams, and deep thinkers.
+          Teacheat is your intelligent AI assistant, designed to make you the most prepared person on every call, interview, or study session.
         </p>
 
         {/* Email Input and Button */}
