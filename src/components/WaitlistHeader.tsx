@@ -1,29 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
-// Removed Loader2 import as it's no longer needed for the button
+// Removed Loader2 import as it's no longer needed here
 
 interface WaitlistHeaderProps {
   onJoinWaitlist: () => void;
   isLoading: boolean;
+  isHeaderVisible: boolean; // New prop to control visibility and animation
 }
 
-const WaitlistHeader: React.FC<WaitlistHeaderProps> = ({ onJoinWaitlist, isLoading }) => {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
-
-  useEffect(() => {
-    // Delay the entire navbar's wide-opener animation for 2.5 seconds
-    const headerTimer = setTimeout(() => {
-      setIsHeaderVisible(true);
-    }, 2500); // 2.5 seconds delay before the navbar starts opening
-
-    return () => {
-      clearTimeout(headerTimer);
-    };
-  }, []);
+const WaitlistHeader: React.FC<WaitlistHeaderProps> = ({ onJoinWaitlist, isLoading, isHeaderVisible }) => {
+  // Removed internal state and useEffect for header visibility
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8">
@@ -32,7 +22,7 @@ const WaitlistHeader: React.FC<WaitlistHeaderProps> = ({ onJoinWaitlist, isLoadi
         "bg-white/80 backdrop-blur-md border border-gray-200 dark:border-gray-700",
         "w-full max-w-md sm:max-w-lg md:max-w-xl",
         "transition-all duration-700 ease-out", // Smooth transition for animation
-        isHeaderVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0" // Animation states
+        isHeaderVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0" // Animation states controlled by prop
       )}>
         <Link to="/" className="relative flex items-center font-bold text-xl text-gray-900 dark:text-white transition-colors">
           <img
@@ -46,7 +36,7 @@ const WaitlistHeader: React.FC<WaitlistHeaderProps> = ({ onJoinWaitlist, isLoadi
           variant="outline"
           className="border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-full px-4 py-2 h-auto text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800"
           onClick={onJoinWaitlist}
-          disabled={isLoading} // Only disable if the actual waitlist submission is loading
+          disabled={isLoading}
         >
           Join waitlist
         </Button>

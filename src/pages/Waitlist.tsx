@@ -1,19 +1,22 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import WaitlistHeader from '@/components/WaitlistHeader';
 import WaitlistMockup from '@/components/WaitlistMockup';
 import UseCasesSection from '@/components/UseCasesSection';
-import MinimalWaitlistFooter from '@/components/MinimalWaitlistFooter'; // Import the new minimalist footer
+import MinimalWaitlistFooter from '@/components/MinimalWaitlistFooter';
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
+import { Loader2 } from 'lucide-react'; // Import Loader2 here for the loading spinner
 
 const Waitlist: React.FC = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(true); // State to control spinner visibility
+  const [showNavbar, setShowNavbar] = useState(false); // State to control navbar visibility and animation
 
   const handleJoinWaitlist = async () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -45,10 +48,28 @@ const Waitlist: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const loadingTimer = setTimeout(() => {
+      setShowLoadingSpinner(false); // Hide spinner after 2.5 seconds
+      setShowNavbar(true); // Then, trigger navbar animation
+    }, 2500); // 2.5 seconds for the loading spinner
+
+    return () => clearTimeout(loadingTimer);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
-      {/* Header */}
-      <WaitlistHeader onJoinWaitlist={handleJoinWaitlist} isLoading={isLoading} />
+      {/* Conditional rendering for loading spinner or WaitlistHeader */}
+      {showLoadingSpinner && (
+        <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8">
+          <div className="flex items-center justify-center px-6 py-3 rounded-full bg-white/80 backdrop-blur-md border border-gray-200 dark:border-gray-700 w-24 h-10 transition-all duration-300">
+            <Loader2 className="h-5 w-5 animate-spin text-gray-700 dark:text-gray-300" />
+          </div>
+        </div>
+      )}
+      {showNavbar && (
+        <WaitlistHeader onJoinWaitlist={handleJoinWaitlist} isLoading={isLoading} isHeaderVisible={true} />
+      )}
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-32">
         {/* Waitlist Count */}
