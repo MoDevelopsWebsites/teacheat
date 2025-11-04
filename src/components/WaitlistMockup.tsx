@@ -19,6 +19,7 @@ const WaitlistMockup: React.FC = () => {
     <Card className={cn(
       "relative w-full max-w-5xl h-[500px] bg-white dark:bg-white rounded-xl flex flex-col overflow-hidden",
       "transition-all duration-800 ease-out",
+      "border-0 ring-0", // Explicitly remove border and ring
       isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
     )}>
       <div className="relative w-full h-full">
