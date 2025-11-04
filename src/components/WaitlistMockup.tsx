@@ -22,7 +22,7 @@ const WaitlistMockup: React.FC = () => {
 
   return (
     <Card className={cn(
-      "relative w-full max-w-3xl h-[400px] bg-gray-100 dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden",
+      "relative w-full max-w-5xl h-[500px] bg-gray-100 dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden",
       "transition-all duration-800 ease-out",
       isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
     )}>
@@ -75,41 +75,45 @@ const WaitlistMockup: React.FC = () => {
         </div>
       </div>
 
-      <CardContent className="flex-grow p-4 bg-gray-50 dark:bg-gray-900 overflow-y-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <MeetingSummaryCard
-            title="Client Onboarding Call"
-            summary="AI-generated summary of key discussion points, including client needs for custom integrations and a follow-up on pricing tiers."
-            icon={<MessageSquareText className="h-4 w-4 text-blue-500" />}
-            date="Dec 12"
-            time="10:00 AM"
-            participants={3}
-          />
-          <MeetingSummaryCard
-            title="Team Sync - Q4 Planning"
-            summary="Notes on project milestones, resource allocation, and a new marketing campaign strategy. AI suggested a better approach for competitor analysis."
-            icon={<FileText className="h-4 w-4 text-green-500" />}
-            date="Nov 28"
-            time="02:30 PM"
-            participants={5}
-          />
-          <MeetingSummaryCard
-            title="Interview Prep - Senior Dev"
-            summary="AI provided real-time answers to technical questions and suggested follow-up questions based on candidate's responses. High confidence score."
-            icon={<Sparkles className="h-4 w-4 text-purple-500" />}
-            date="Nov 27"
-            time="01:00 PM"
-            participants={2}
-          />
-          <MeetingSummaryCard
-            title="Sales Demo - Product X"
-            summary="AI helped with objection handling regarding pricing and feature comparisons. Identified key pain points and suggested relevant case studies."
-            icon={<MessageSquareText className="h-4 w-4 text-orange-500" />}
-            date="Nov 26"
-            time="11:00 AM"
-            participants={4}
-          />
+      <CardContent className="flex-grow p-4 bg-gray-50 dark:bg-gray-900 relative"> {/* Added relative for the overlay */}
+        <div className="h-full overflow-y-auto pr-4"> {/* Added pr-4 for scrollbar space */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <MeetingSummaryCard
+              title="Client Onboarding Call"
+              summary="AI-generated summary of key discussion points, including client needs for custom integrations and a follow-up on pricing tiers."
+              icon={<MessageSquareText className="h-4 w-4 text-blue-500" />}
+              date="Dec 12"
+              time="10:00 AM"
+              participants={3}
+            />
+            <MeetingSummaryCard
+              title="Team Sync - Q4 Planning"
+              summary="Notes on project milestones, resource allocation, and a new marketing campaign strategy. AI suggested a better approach for competitor analysis."
+              icon={<FileText className="h-4 w-4 text-green-500" />}
+              date="Nov 28"
+              time="02:30 PM"
+              participants={5}
+            />
+            <MeetingSummaryCard
+              title="Interview Prep - Senior Dev"
+              summary="AI provided real-time answers to technical questions and suggested follow-up questions based on candidate's responses. High confidence score."
+              icon={<Sparkles className="h-4 w-4 text-purple-500" />}
+              date="Nov 27"
+              time="01:00 PM"
+              participants={2}
+            />
+            <MeetingSummaryCard
+              title="Sales Demo - Product X"
+              summary="AI helped with objection handling regarding pricing and feature comparisons. Identified key pain points and suggested relevant case studies."
+              icon={<MessageSquareText className="h-4 w-4 text-orange-500" />}
+              date="Nov 26"
+              time="11:00 AM"
+              participants={4}
+            />
+          </div>
         </div>
+        {/* Overlay for fade-out effect at the bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
       </CardContent>
     </Card>
   );
