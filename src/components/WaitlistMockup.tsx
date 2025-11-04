@@ -1,10 +1,11 @@
 "use client";
 
 import React from 'react';
-import { Search, X, Plus, User, Calendar, BarChart2, CheckSquare, Clock, List, Grid, ArrowUpCircle } from 'lucide-react'; // Replaced Upgrade with ArrowUpCircle
+import { Search, X, Plus, User, Calendar, BarChart2, CheckSquare, Clock, List, Grid, ArrowUpCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'; // Added Avatar and AvatarFallback import
 import { cn } from '@/lib/utils';
 
 interface TaskCardProps {
@@ -90,8 +91,9 @@ const WaitlistMockup: React.FC = () => {
             <Plus className="h-3 w-3 mr-1" /> New project
           </Button>
           <Avatar className="h-6 w-6">
-            <span className="sr-only">User Avatar</span>
-            <User className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+              <User className="h-4 w-4" />
+            </AvatarFallback>
           </Avatar>
         </div>
       </div>
