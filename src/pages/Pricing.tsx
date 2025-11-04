@@ -242,7 +242,7 @@ const Pricing = () => {
       <Header className="absolute top-0 left-0 right-0" />
       <main className="flex-grow flex flex-col items-center py-12 px-4 text-pricing-text-primary sm:py-16">
         <div className="text-center mb-12 mt-20 sm:mt-24 sm:mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center font-display"> {/* Added font-display */}
             Join the future of AI-powered productivity. <TeacheatLogo className="h-10 w-10 sm:h-12 sm:w-12 mx-0 sm:mx-2 text-blue-500 mt-2 sm:mt-0" />
           </h1>
           <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
