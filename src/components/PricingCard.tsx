@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Check, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 interface PricingCardProps {
   title: string;
@@ -41,14 +42,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
   disabled = false,
   isMacButton = false,
 }) => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const handleButtonClick = () => {
-    if (isEnterprise) {
-      console.log("Enterprise plan: Talk to sales clicked.");
-    } else if (priceId) {
-      onSubscribe(priceId);
-    } else {
-      console.log(`Button clicked for ${title} plan.`);
-    }
+    // Redirect all pricing card buttons to the waitlist page
+    navigate('/waitlist');
   };
 
   return (
@@ -90,7 +88,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
           {...(buttonVariant !== "default" && { variant: buttonVariant })}
-          onClick={handleButtonClick}
+          onClick={handleButtonClick} // This will now navigate to /waitlist
           disabled={disabled || (isSubmitting && priceId !== null)}
         >
           {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })}
