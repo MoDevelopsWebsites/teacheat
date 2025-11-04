@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-12 px-6 border-t border-gray-200 dark:border-gray-800">
+    <footer className="w-full bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-12 px-6 border-t border-gray-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         <div className="col-span-1 md:col-span-2 flex flex-col items-start">
           <Link to="/" className="relative flex items-center font-bold text-xl text-gray-900 dark:text-white mb-4">
