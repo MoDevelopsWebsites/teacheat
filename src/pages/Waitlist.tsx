@@ -74,7 +74,7 @@ const Waitlist: React.FC = () => {
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-32">
         {/* Waitlist Count */}
         <div className="mb-12 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-medium">
-          600+ people on waitlist
+          First 100 get a free yearly membership!
         </div>
 
         {/* Hero Section */}
