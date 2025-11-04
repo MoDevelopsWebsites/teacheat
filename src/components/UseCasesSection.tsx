@@ -27,8 +27,8 @@ const UseCasesSection: React.FC = () => {
         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
           Teacheat Use Cases
         </p>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-16">
-          One AI assistant, endless ways to <span className="text-blue-600">excel</span><span className="text-accent-orange">.</span>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mb-16">
+          one ai assistant, endless ways to <span className="text-blue-600">excel</span><span className="text-accent-orange">.</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
