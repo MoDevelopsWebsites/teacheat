@@ -31,7 +31,7 @@ const pricingPlans = {
         "Customize instructions & upload files",
         "Ask AI about all your past meetings",
       ],
-      buttonText: "Get Started",
+      buttonText: "Join waitlist", // Changed from "Get Started"
       buttonIcon: undefined,
       buttonVariant: "default",
       isPopular: false,
@@ -83,7 +83,7 @@ const pricingPlans = {
         "Customize instructions & upload files",
         "Ask AI about all your past meetings",
       ],
-      buttonText: "Get Started",
+      buttonText: "Join waitlist", // Changed from "Get Started"
       buttonIcon: undefined,
       buttonVariant: "default",
       isPopular: false,

@@ -23,7 +23,7 @@ import { useTypewriter } from '@/hooks/use-typewriter';
 import { cn } from '@/lib/utils';
 import { DisplayCardsDemo } from '@/components/DisplayCardsDemo';
 import GlitterEffect from '@/components/GlitterEffect'; // Import the new GlitterEffect component
-import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo'; // Import the new testimonials demo
+import { TestimonialsSectionDemo } => '@/components/blocks/TestimonialsSectionDemo'; // Import the new testimonials demo
 
 const initialAiResponse = "Okay, so you've implemented the `debounce` function. Can you walk me through your thought process for handling the `this` context and arguments?";
 const nextSuggestionResponse = "My thought process for handling `this` context involves using `apply` or `call` to explicitly set it, ensuring the original context is preserved. For arguments, I use the spread operator to pass them transparently.";
@@ -125,7 +125,7 @@ const LandingPage = () => {
     return () => clearTimeout(animationTimeout);
   }, [buttonPositions, landingPageRef]);
 
-  const handleGetStartedClick = () => {
+  const handleJoinWaitlistClick = () => {
     navigate('/waitlist'); // Redirect to waitlist
   };
 
@@ -177,9 +177,9 @@ const LandingPage = () => {
             <div className="relative flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-10 justify-center">
               <Button
                 className="bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-8 py-3 text-base font-semibold shadow-button-glow-hover"
-                onClick={handleGetStartedClick}
+                onClick={handleJoinWaitlistClick}
               >
-                <Apple className="h-5 w-5 mr-2" /> Get Started
+                <Apple className="h-5 w-5 mr-2" /> Join waitlist
               </Button>
             </div>
           </div>

@@ -25,7 +25,7 @@ const FloatingGetStartedButton: React.FC = () => {
     };
   }, []);
 
-  const handleGetStartedClick = () => {
+  const handleJoinWaitlistClick = () => {
     navigate('/waitlist'); // Redirect to waitlist
   };
 
@@ -36,9 +36,9 @@ const FloatingGetStartedButton: React.FC = () => {
         "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end rounded-lg px-6 py-2 text-sm font-semibold shadow-button-glow-hover",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       )}
-      onClick={handleGetStartedClick}
+      onClick={handleJoinWaitlistClick}
     >
-      <Apple className="h-4 w-4 mr-2" /> Get Started
+      <Apple className="h-4 w-4 mr-2" /> Join waitlist
     </Button>
   );
 };
