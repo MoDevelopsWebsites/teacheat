@@ -24,10 +24,10 @@ const TaskCard: React.FC<TaskCardProps> = ({ title, description, statusIcon, dat
       </div>
       <Button variant="ghost" size="icon" className="h-6 w-6 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
         <span className="sr-only">Options</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="8" r="1" fill="currentColor"/>
-          <circle cx="8" cy="3" r="1" fill="currentColor"/>
-          <circle cx="8" cy="13" r="1" fill="currentColor"/>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="8" r="1" />
+          <circle cx="8" cy="3" r="1" />
+          <circle cx="8" cy="13" r="1" />
         </svg>
       </Button>
     </div>
