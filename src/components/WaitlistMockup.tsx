@@ -113,7 +113,7 @@ const WaitlistMockup: React.FC = () => {
           </div>
         </div>
         {/* Overlay for fade-out effect at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent pointer-events-none"></div>
       </CardContent>
     </Card>
   );
