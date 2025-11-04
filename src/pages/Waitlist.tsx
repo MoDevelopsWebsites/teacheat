@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import WaitlistLogo from '@/components/WaitlistLogo';
+import WaitlistHeader from '@/components/WaitlistHeader'; // Import the new header component
 import WaitlistMockup from '@/components/WaitlistMockup';
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
@@ -46,19 +46,9 @@ const Waitlist: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
       {/* Header */}
-      <header className="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-10">
-        <WaitlistLogo />
-        <Button
-          variant="outline"
-          className="border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-lg px-4 py-2 h-auto text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800"
-          onClick={handleJoinWaitlist}
-          disabled={isLoading}
-        >
-          Join waitlist
-        </Button>
-      </header>
+      <WaitlistHeader onJoinWaitlist={handleJoinWaitlist} isLoading={isLoading} />
 
-      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-24"> {/* Added mt-24 to push content down */}
         {/* Waitlist Count */}
         <div className="mb-12 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-medium">
           600+ people on waitlist
