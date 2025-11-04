@@ -59,6 +59,7 @@ const WaitlistMockup: React.FC = () => {
   return (
     <Card className={cn(
       "relative w-full max-w-5xl h-[500px] bg-white dark:bg-white rounded-xl flex flex-col overflow-hidden",
+      "opacity-50 backdrop-blur-md", // Added opacity and backdrop-blur
       "transition-all duration-800 ease-out",
       isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
     )}>
