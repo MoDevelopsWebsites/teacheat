@@ -74,11 +74,11 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   }, []);
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate('/waitlist'); // Redirect to waitlist
   };
 
   const handleSignUpClick = () => {
-    navigate('/login');
+    navigate('/waitlist'); // Redirect to waitlist
   };
 
   return (

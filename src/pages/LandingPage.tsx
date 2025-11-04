@@ -126,7 +126,7 @@ const LandingPage = () => {
   }, [buttonPositions, landingPageRef]);
 
   const handleGetStartedClick = () => {
-    navigate('/login');
+    navigate('/waitlist'); // Redirect to waitlist
   };
 
   if (isLoading) {

@@ -34,8 +34,8 @@ const App = () => (
           <Elements stripe={stripePromise}>
             <LenisProvider> {/* Wrap the entire route structure with LenisProvider */}
               <Routes>
-                <Route path="/" element={<Waitlist />} /> {/* New default route */}
-                <Route path="/admin" element={<LandingPage />} /> {/* Old landing page moved to /admin */}
+                <Route path="/" element={<LandingPage />} /> {/* LandingPage is now the default route */}
+                <Route path="/waitlist" element={<Waitlist />} /> {/* Waitlist page moved to /waitlist */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/enterprise" element={<EnterpriseLandingPage />} />

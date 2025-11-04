@@ -26,7 +26,7 @@ const FloatingGetStartedButton: React.FC = () => {
   }, []);
 
   const handleGetStartedClick = () => {
-    navigate('/pricing');
+    navigate('/waitlist'); // Redirect to waitlist
   };
 
   return (
