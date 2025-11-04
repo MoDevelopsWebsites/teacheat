@@ -22,7 +22,8 @@ const WaitlistMockup: React.FC = () => {
 
   return (
     <Card className={cn(
-      "relative w-full max-w-5xl h-[500px] bg-white dark:bg-white rounded-xl shadow-sm border-t border-x border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden",
+      "relative w-full max-w-5xl h-[500px] bg-white dark:bg-white rounded-xl flex flex-col overflow-hidden",
+      "shadow-[0_4px_15px_rgba(0,0,0,0.08)]", // Very subtle, diffused shadow for lift, no hard border
       "transition-all duration-800 ease-out",
       isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-10"
     )}>
@@ -75,8 +76,8 @@ const WaitlistMockup: React.FC = () => {
         </div>
       </div>
 
-      <CardContent className="flex-grow p-4 bg-white dark:bg-white relative"> {/* Changed background to white for both modes */}
-        <div className="h-full overflow-y-auto pr-4"> {/* Added pr-4 for scrollbar space */}
+      <CardContent className="flex-grow p-4 bg-white dark:bg-white relative">
+        <div className="h-full overflow-y-auto pr-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <MeetingSummaryCard
               title="Client Onboarding Call"
@@ -113,7 +114,7 @@ const WaitlistMockup: React.FC = () => {
           </div>
         </div>
         {/* Overlay for fade-out effect at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
       </CardContent>
     </Card>
   );
