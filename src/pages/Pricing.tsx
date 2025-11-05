@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Apple, ChevronDown } from 'lucide-react'; // Removed Bot import
+import { Apple, ChevronDown } from 'lucide-react';
 import PricingCard from '@/components/PricingCard';
 import PricingFeatureTable from '@/components/PricingFeatureTable';
 import Header from '@/components/Header';
@@ -14,7 +14,7 @@ import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
-import TeacheatLogo from '@/components/TeacheatLogo'; // Added TeacheatLogo import
+import TeacheatLogo from '@/components/TeacheatLogo';
 
 const VITE_STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID;
@@ -31,7 +31,7 @@ const pricingPlans = {
         "Customize instructions & upload files",
         "Ask AI about all your past meetings",
       ],
-      buttonText: "Join waitlist", // Changed from "Get Started"
+      buttonText: "Join waitlist",
       buttonIcon: undefined,
       buttonVariant: "default",
       isPopular: false,
@@ -83,7 +83,7 @@ const pricingPlans = {
         "Customize instructions & upload files",
         "Ask AI about all your past meetings",
       ],
-      buttonText: "Join waitlist", // Changed from "Get Started"
+      buttonText: "Join waitlist",
       buttonIcon: undefined,
       buttonVariant: "default",
       isPopular: false,
@@ -238,14 +238,14 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header className="absolute top-0 left-0 right-0" />
-      <main className="flex-grow flex flex-col items-center py-12 px-4 text-pricing-text-primary sm:py-16">
+      <main className="flex-grow flex flex-col items-center py-12 px-4 sm:py-16">
         <div className="text-center mb-12 mt-20 sm:mt-24 sm:mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center font-display"> {/* Added font-display */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center font-display">
             Join the future of AI-powered productivity. <TeacheatLogo className="h-10 w-10 sm:h-12 sm:w-12 mx-0 sm:mx-2 text-blue-500 mt-2 sm:mt-0" />
           </h1>
-          <p className="text-lg md:text-xl text-pricing-text-secondary max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
           </p>
         </div>
@@ -256,14 +256,14 @@ const Pricing = () => {
           onValueChange={(value) => setBillingCycle(value as 'monthly' | 'annually')}
           value={billingCycle}
         >
-          <TabsList className="bg-pricing-toggle p-1 rounded-full">
+          <TabsList className="bg-secondary p-1 rounded-full">
             <TabsTrigger
               value="monthly"
               className={cn(
                 "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all",
                 billingCycle === 'monthly'
-                  ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
-                  : "text-pricing-text-secondary hover:text-pricing-text-primary"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               )}
             >
               Monthly
@@ -273,8 +273,8 @@ const Pricing = () => {
               className={cn(
                 "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all",
                 billingCycle === 'annually'
-                  ? "bg-pricing-toggle-active text-pricing-toggle-active-foreground shadow-sm"
-                  : "text-pricing-text-secondary hover:text-pricing-text-primary"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               )}
             >
               Annually

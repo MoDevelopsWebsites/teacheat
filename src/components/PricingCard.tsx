@@ -51,7 +51,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
   return (
     <Card className={cn(
-      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border border-pricing-card-border bg-pricing-card-bg",
+      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border bg-card text-foreground",
       isPopular && "border-2 border-blue-500 shadow-xl",
       isEnterprise && "col-span-1 md:col-span-1"
     )}>
@@ -61,18 +61,18 @@ const PricingCard: React.FC<PricingCardProps> = ({
         </div>
       )}
       <CardHeader className="p-0 pb-3 sm:pb-4">
-        <CardTitle className="text-xl sm:text-2xl font-bold text-pricing-text-primary mb-1 sm:mb-2">{title}</CardTitle>
-        <p className="text-4xl sm:text-5xl font-extrabold text-pricing-text-primary">
+        <CardTitle className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">{title}</CardTitle>
+        <p className="text-4xl sm:text-5xl font-extrabold">
           {price}
-          {priceSuffix && <span className="text-base sm:text-lg font-medium text-pricing-text-secondary"> {priceSuffix}</span>}
+          {priceSuffix && <span className="text-base sm:text-lg font-medium text-muted-foreground"> {priceSuffix}</span>}
         </p>
-        <p className="text-xs sm:text-sm text-pricing-text-secondary mt-1 sm:mt-2">{description}</p>
+        <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">{description}</p>
       </CardHeader>
-      <CardContent className="flex-grow p-0 py-4 sm:py-6 border-y border-pricing-card-border/50 my-2 sm:my-4">
+      <CardContent className="flex-grow p-0 py-4 sm:py-6 border-y border-border/50 my-2 sm:my-4">
         <ul className="space-y-2 sm:space-y-3">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center text-pricing-text-primary text-sm">
-              <Check className="h-4 w-4 text-pricing-feature-check mr-2 flex-shrink-0" />
+            <li key={index} className="flex items-center text-sm">
+              <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
               {feature}
             </li>
           ))}
@@ -83,8 +83,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
           className={cn(
             "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg",
             isMacButton && "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover",
-            !isMacButton && buttonVariant === "default" && "bg-gray-900 text-white hover:bg-gray-800 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800",
-            buttonVariant === "outline" && "border border-pricing-button-default text-pricing-button-default bg-transparent hover:bg-pricing-button-default/10",
+            !isMacButton && buttonVariant === "default" && "bg-primary text-primary-foreground hover:bg-primary/90",
+            buttonVariant === "outline" && "border border-input text-foreground bg-transparent hover:bg-accent",
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
           {...(buttonVariant !== "default" && { variant: buttonVariant })}
