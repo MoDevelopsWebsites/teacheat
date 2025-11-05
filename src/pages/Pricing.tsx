@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Apple, ChevronDown, Star, Zap, Award, Check } from 'lucide-react'; // Added Star, Zap, Award, Check icons
+import { Apple, ChevronDown, Star, Zap, Award, Check, ChevronRight } from 'lucide-react'; // Added ChevronRight icon
 import PricingCard from '@/components/PricingCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,49 +20,54 @@ const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID;
 const pricingPlans = {
   monthly: [
     {
-      title: "Start",
-      description: "For early-stage founders & small teams\nPerfect if you're just getting started and want a professional design presence without going all-in.",
+      title: "Starter",
+      price: "Free",
+      priceSuffix: "",
+      description: "All essential features.",
       features: [
-        "Custom landing page or 3 key screens (web/app)",
-        "Conversion-focused design system",
-        "Framer or Webflow build (responsive)",
-        "1 round of revisions",
-        "Email & chat support",
+        "Limited AI responses",
+        "Unlimited real-time meeting notetaking",
+        "Customize instructions & upload files",
+        "Ask AI about all your past meetings",
       ],
-      buttonText: "Book a Demo",
-      buttonIcon: <ChevronDown className="h-4 w-4" />, // Using ChevronDown as a right arrow placeholder
+      buttonText: "Join waitlist",
+      buttonIcon: <ChevronRight className="h-4 w-4 ml-2" />, // Using ChevronRight for visual consistency with new design
       isPopular: false,
       priceId: null,
       iconComponent: <Star className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
     {
-      title: "Growth",
-      description: "For funded startups & scaling products\nIdeal for teams ready to grow fast with on-demand design & dev support to ship faster.",
+      title: "Pro",
+      price: "$20",
+      priceSuffix: "/ month",
+      description: "Unlimited access.",
       features: [
-        "Complete website or 5-7 app screens",
-        "UX audit & conversion optimization",
-        "Framer + Webflow development with animations",
-        "Priority support & feedback calls",
-        "2 active design requests at a time",
+        "Everything in Starter, plus...",
+        "Unlimited AI responses",
+        "Unlimited access to latest AI models",
+        "Priority support",
       ],
-      buttonText: "Book a Demo",
-      buttonIcon: <ChevronDown className="h-4 w-4" />,
+      buttonText: "Subscribe",
+      buttonIcon: <ChevronRight className="h-4 w-4 ml-2" />, // Using ChevronRight
       isPopular: true,
       priceId: "price_1SGHowJGz5CboiG8FNzIDFz1", // Original Pro monthly price ID
       iconComponent: <Zap className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
     {
-      title: "Scale",
-      description: "For product-led teams & agencies\nA dedicated design partner for continuous growth, from new features to full product redesigns.",
+      title: "Enterprise",
+      price: "Custom",
+      priceSuffix: "",
+      description: "Custom knowledge for teams.",
       features: [
-        "Unlimited design & development requests",
-        "Dedicated designer + developer",
-        "Strategy & creative direction calls",
-        "Advanced motion & prototype design",
-        "Priority 24h response",
+        "Everything in Pro, plus...",
+        "Post-call coaching and analytics",
+        "RAG knowledge base",
+        "User provisioning & role-based access",
+        "Single sign-on & IDP Integration",
+        "Enterprise security & no data training",
       ],
-      buttonText: "Book a Demo",
-      buttonIcon: <ChevronDown className="h-4 w-4" />,
+      buttonText: "Talk to sales",
+      buttonIcon: <ChevronRight className="h-4 w-4 ml-2" />, // Using ChevronRight
       isEnterprise: true,
       priceId: null,
       iconComponent: <Award className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
@@ -226,10 +231,10 @@ const Pricing = () => {
             Pricing
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-gray-900 dark:text-white font-display">
-            Invest in design that drives results
+            Simple, transparent pricing.
           </h1>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Flexible plans for startups and brands who value strategy, creativity, and seamless execution.
+            Choose the plan that's right for you. No hidden fees, no surprises.
           </p>
         </div>
 
@@ -240,8 +245,8 @@ const Pricing = () => {
             <PricingCard
               key={index}
               title={plan.title}
-              price={plan.price || "$0"} // Placeholder price, will be ignored by user
-              priceSuffix={plan.priceSuffix || "/mo"} // Placeholder suffix
+              price={plan.price}
+              priceSuffix={plan.priceSuffix}
               description={plan.description}
               features={plan.features}
               buttonText={isSubmitting && plan.priceId ? "Processing..." : plan.buttonText}
