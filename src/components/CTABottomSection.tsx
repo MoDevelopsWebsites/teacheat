@@ -4,13 +4,13 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Apple, Command, CornerDownLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const CTABottomSection: React.FC = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleJoinWaitlistClick = () => {
-    navigate('/'); // Redirect to landing page for waitlist
+    navigate('/waitlist'); // Redirect to waitlist page
   };
 
   return (
@@ -21,7 +21,6 @@ const CTABottomSection: React.FC = () => {
       <div className="absolute bottom-1/3 right-1/4 w-24 h-24 sm:w-32 sm:h-32 bg-landing-cta-floating-bg rounded-xl shadow-lg border border-landing-cta-floating-border flex items-center justify-center opacity-70 blur-sm z-0" style={{ transform: 'rotate(10deg)' }}>
         <CornerDownLeft className="h-12 w-12 sm:h-16 sm:w-16 text-landing-cta-floating-text/50" />
       </div>
-      {/* Removed the "Record Entire Screen" floating element */}
 
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4 sm:mb-6 text-landing-cta-text-primary">

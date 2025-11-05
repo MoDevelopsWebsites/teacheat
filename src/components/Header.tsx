@@ -74,15 +74,15 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   }, []);
 
   const handleLoginClick = () => {
-    navigate('/login'); // Redirect to login
+    navigate('/login');
   };
 
   const handleSignUpClick = () => {
-    navigate('/login'); // Redirect to login
+    navigate('/login');
   };
 
   const handleWaitlistClick = () => {
-    navigate('/'); // Redirect to landing page (which has the waitlist)
+    navigate('/waitlist'); // Navigate to the new /waitlist route
   };
 
   // Define common text and hover styles for navigation items

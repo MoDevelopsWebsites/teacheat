@@ -4,22 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
-// Removed Loader2 import as it's no longer needed here
 
 interface WaitlistHeaderProps {
   onJoinWaitlist: () => void;
   isLoading: boolean;
-  // Removed isHeaderVisible prop as it will be managed internally
 }
 
 const WaitlistHeader: React.FC<WaitlistHeaderProps> = ({ onJoinWaitlist, isLoading }) => {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(false); // Internal state for animation
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger the animation shortly after component mounts
     const animationTrigger = setTimeout(() => {
       setIsHeaderVisible(true);
-    }, 100); // Small delay to ensure initial render state is 'false'
+    }, 100);
     return () => clearTimeout(animationTrigger);
   }, []);
 
@@ -29,8 +26,8 @@ const WaitlistHeader: React.FC<WaitlistHeaderProps> = ({ onJoinWaitlist, isLoadi
         "flex items-center justify-between px-6 py-3 rounded-full",
         "bg-white/80 backdrop-blur-md border border-gray-200 dark:border-gray-700",
         "w-full max-w-md sm:max-w-lg md:max-w-xl",
-        "transition-all duration-700 ease-out", // Smooth transition for animation
-        isHeaderVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0" // Animation states controlled by internal state
+        "transition-all duration-700 ease-out",
+        isHeaderVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
       )}>
         <Link to="/" className="relative flex items-center font-bold text-xl text-gray-900 dark:text-white transition-colors">
           <img
