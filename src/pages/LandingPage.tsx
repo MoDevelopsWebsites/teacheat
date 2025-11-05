@@ -54,7 +54,7 @@ const LandingPage = () => {
               className="border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-lg px-8 py-3 text-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800"
               onClick={() => navigate('/waitlist')}
             >
-              <Apple className="h-5 w-5 mr-2" /> Get for Mac
+              <Apple className="h-5 w-5 mr-2" /> Join waitlist
             </Button>
           </div>
         </section>
