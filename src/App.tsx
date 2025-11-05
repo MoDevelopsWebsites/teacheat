@@ -4,8 +4,7 @@ from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import HeroLandingPage from "./pages/HeroLandingPage"; // New default landing page
-import WaitlistPage from "./pages/WaitlistPage"; // Renamed from LandingPage
+import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
@@ -18,7 +17,7 @@ import Layout from "./components/Layout";
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import { LenisProvider } from "./components/LenisProvider";
+import { LenisProvider } from "./components/LenisProvider"; // Import LenisProvider
 
 const queryClient = new QueryClient();
 
@@ -32,10 +31,10 @@ const App = () => (
       <HashRouter>
         <SessionContextProvider>
           <Elements stripe={stripePromise}>
-            <LenisProvider>
+            <LenisProvider> {/* Wrap the entire route structure with LenisProvider */}
               <Routes>
-                <Route path="/" element={<HeroLandingPage />} /> {/* New default landing page */}
-                <Route path="/waitlist" element={<WaitlistPage />} /> {/* Dedicated waitlist page */}
+                <Route path="/" element={<LandingPage />} /> {/* LandingPage is now the default route */}
+                {/* Removed the /waitlist route */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/enterprise" element={<EnterpriseLandingPage />} />

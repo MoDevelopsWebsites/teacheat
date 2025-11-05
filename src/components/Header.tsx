@@ -74,15 +74,15 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   }, []);
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate('/login'); // Redirect to login
   };
 
   const handleSignUpClick = () => {
-    navigate('/login');
+    navigate('/login'); // Redirect to login
   };
 
   const handleWaitlistClick = () => {
-    navigate('/waitlist'); // Navigate to the new WaitlistPage
+    navigate('/'); // Redirect to landing page (which has the waitlist)
   };
 
   // Define common text and hover styles for navigation items
@@ -249,16 +249,18 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                     Blog
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem> {/* New Waitlist Navigation Item */}
-                  <Link to="/waitlist" className={cn(navigationMenuTriggerStyle(), "bg-transparent", navItemClasses)}>
-                    Waitlist
-                  </Link>
-                </NavigationMenuItem>
               </NavigationMenuList>
               <NavigationMenuViewport />
             </NavigationMenu>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
+            <Button
+              variant="ghost"
+              className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+              onClick={handleWaitlistClick}
+            >
+              Waitlist
+            </Button>
             <Button
               variant="ghost"
               className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
