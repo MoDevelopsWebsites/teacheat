@@ -1,11 +1,16 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import LandingPageHeader from '@/components/LandingPageHeader';
-import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos';
-import Footer from '@/components/Footer';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
+import LandingPageHeader from '@/components/LandingPageHeader'; // New header component
+import ScreenshotIllustration from '@/components/ScreenshotIllustration'; // New illustration component
+import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Reusing existing logo carousel
+import { supabase } from '@/integrations/supabase/client';
+import { showSuccess, showError } from '@/utils/toast';
+import { Loader2 } from 'lucide-react'; // For loading spinner
 
 const defaultLogos = [
   { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
@@ -15,104 +20,89 @@ const defaultLogos = [
 ];
 
 const LandingPage = () => {
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  // Removed waitlistCount state and useEffect for fetching count
+
+  const handleJoinWaitlist = async () => {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      showError("Please enter a valid email address.");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { error } = await supabase
+        .from('waitlist_entries')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique violation code
+          showError("This email is already on the waitlist!");
+        } else {
+          throw error;
+        }
+      } else {
+        showSuccess("You've been added to the waitlist!");
+        setEmail('');
+      }
+    } catch (err: any) {
+      console.error("Error joining waitlist:", err.message);
+      showError(`Failed to join waitlist: ${err.message || "An unexpected error occurred."}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
-      <LandingPageHeader />
+      <LandingPageHeader className="absolute top-0 left-0 right-0" />
 
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative w-full py-20 md:py-32 text-center bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-          <div className="max-w-4xl mx-auto px-4">
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-gray-900 dark:text-white font-display">
-              AI assistant for meetings - past or present.
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-              Get instant answers, automate note-taking, and streamline your workflow. Teacheat keeps you organized, calm, and moving forward.
-            </p>
-            <div className="flex justify-center space-x-4">
-              <Link to="/waitlist">
-                <Button className="bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 rounded-md px-8 py-3 text-lg font-medium">
-                  Join the Waitlist
-                </Button>
-              </Link>
-              <Link to="/pricing">
-                <Button variant="outline" className="border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-md px-8 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800">
-                  Learn More
-                </Button>
-              </Link>
-            </div>
+      <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-20 md:mt-24">
+        <div className="max-w-5xl mx-auto">
+          {/* Reverted waitlist message */}
+          <div className="flex items-center justify-center mb-4 text-sm text-gray-600 dark:text-gray-400">
+            First 100 get a free yearly membership!
           </div>
-          {/* Placeholder for some visual element, e.g., a screenshot or illustration */}
-          <div className="mt-16 max-w-6xl mx-auto px-4">
-            <img
-              src={import.meta.env.BASE_URL + "mockup-placeholder.png"} // Placeholder image
-              alt="Product Mockup"
-              className="w-full h-auto rounded-lg shadow-xl border border-gray-200 dark:border-gray-700"
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-gray-900 dark:text-white">
+            AI assistant for meetings - past or present.
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
+            Get instant answers, automate note-taking, and streamline your workflow. Teacheat keeps you organized, calm, and moving forward.
+          </p>
+
+          <div className="flex w-full max-w-md mx-auto space-x-2 mb-4">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-grow px-4 rounded-md border border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:border-gray-400 h-10"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
             />
+            <Button
+              className="bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 rounded-md px-6 h-10 text-base font-medium"
+              onClick={handleJoinWaitlist}
+              disabled={isLoading}
+            >
+              {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Join waitlist"}
+            </Button>
           </div>
-        </section>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-16">
+            *Join for free. No credit card required.
+          </p>
+        </div>
 
-        {/* Logos Section */}
+        <ScreenshotIllustration />
+
         <section className="w-full py-16 bg-white dark:bg-gray-900 text-center">
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-8">
             Trusted by people working at
           </p>
           <InfiniteMovingLogos items={defaultLogos} speed="normal" />
         </section>
-
-        {/* Features Section (Placeholder) */}
-        <section className="py-20 bg-gray-50 dark:bg-gray-800">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white font-display">Key Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Feature One</h3>
-                <p className="text-gray-600 dark:text-gray-400">Brief description of an amazing feature that helps users.</p>
-              </div>
-              <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Feature Two</h3>
-                <p className="text-gray-600 dark:text-gray-400">Another compelling feature that solves a common problem.</p>
-              </div>
-              <div className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Feature Three</h3>
-                <p className="text-gray-600 dark:text-gray-400">A third feature highlighting the product's unique selling points.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials Section (Placeholder) */}
-        <section className="py-20 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white font-display">What Our Users Say</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md">
-                <p className="italic text-gray-700 dark:text-gray-300 mb-4">"This product has transformed my workflow!"</p>
-                <p className="font-semibold text-gray-900 dark:text-white">- Jane Doe</p>
-              </div>
-              <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md">
-                <p className="italic text-gray-700 dark:text-gray-300 mb-4">"Absolutely essential for anyone in my field."</p>
-                <p className="font-semibold text-gray-900 dark:text-white">- John Smith</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Call to Action Section (Placeholder) */}
-        <section className="py-20 bg-gray-900 dark:bg-gray-700 text-white text-center">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-6 font-display">Ready to Get Started?</h2>
-            <p className="text-xl mb-8">Join our waitlist today and experience the future of meeting productivity.</p>
-            <Link to="/waitlist">
-              <Button className="bg-white text-gray-900 hover:bg-gray-200 rounded-md px-8 py-3 text-lg font-medium">
-                Join the Waitlist
-              </Button>
-            </Link>
-          </div>
-        </section>
       </main>
-
-      <Footer />
     </div>
   );
 };
