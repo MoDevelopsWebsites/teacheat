@@ -22,10 +22,10 @@ interface TestimonialCardProps {
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({ author, text, stars = 5, className }) => {
   return (
     <Card className={cn(
-      "flex flex-col p-4 sm:p-6 rounded-xl shadow-md border border-gray-200 bg-white text-foreground min-w-[280px] max-w-[320px] h-auto",
+      "flex flex-col rounded-xl shadow-md border border-gray-200 bg-gray-50 text-foreground min-w-[280px] max-w-[320px] h-auto",
       className
     )}>
-      <CardContent className="p-0 flex flex-col gap-4">
+      <div className="p-4 sm:p-6 flex flex-col gap-4">
         <div className="flex items-center gap-3">
           <Avatar className="h-10 w-10">
             <AvatarImage src={author.avatar} alt={author.name} />
@@ -36,15 +36,18 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ author, text, 
             {author.title && <p className="text-xs text-muted-foreground">{author.title}</p>}
           </div>
         </div>
-        <div className="flex items-center gap-0.5 text-yellow-500">
-          {[...Array(stars)].map((_, i) => (
-            <Star key={i} className="h-4 w-4 fill-current" />
-          ))}
+        {/* This is the new inner white box for stars and text */}
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <div className="flex items-center gap-0.5 text-yellow-500 mb-2">
+            {[...Array(stars)].map((_, i) => (
+              <Star key={i} className="h-4 w-4 fill-current" />
+            ))}
+          </div>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            {text}
+          </p>
         </div>
-        <p className="text-sm text-gray-700 leading-relaxed">
-          {text}
-        </p>
-      </CardContent>
+      </div>
     </Card>
   );
 };
