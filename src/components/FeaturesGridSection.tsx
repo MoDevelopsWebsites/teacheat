@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Code, EyeOff, LayoutDashboard, Filter } from 'lucide-react'; // Added LayoutDashboard and Filter
+import { Code, EyeOff, LayoutDashboard, Filter } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import IllustrativeFeatureCard from './IllustrativeFeatureCard';
 import TextFeatureCard from './TextFeatureCard';
@@ -104,7 +104,7 @@ const FeaturesGridSection: React.FC = () => {
   return (
     <section className="w-full py-16 sm:py-24 bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mb-4">
           Smart features for flawless meetings
         </h2>
         <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-12 sm:mb-16">
