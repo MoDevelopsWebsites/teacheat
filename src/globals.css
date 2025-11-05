@@ -91,6 +91,19 @@
 
     /* New Accent Orange */
     --accent-orange: 25 95% 53%; /* A vibrant orange */
+
+    /* Waitlist CTA Section Colors (based on screenshot) */
+    --waitlist-cta-background: 222.2 84% 4.9%; /* Dark background */
+    --waitlist-cta-text-primary: 210 40% 98%; /* Light text */
+    --waitlist-cta-text-secondary: 215 20.2% 65.1%; /* Light grey */
+    --waitlist-cta-input-background: 217.2 32.6% 17.5%; /* Dark grey input background */
+    --waitlist-cta-input-border: 217.2 32.6% 25%; /* Slightly lighter dark grey border */
+    --waitlist-cta-input-text: 210 40% 98%; /* Light text for input */
+    --waitlist-cta-input-placeholder: 215 20.2% 55.1%; /* Lighter grey placeholder */
+    --waitlist-cta-input-focus: 217.2 91.2% 59.8%; /* Blue focus ring */
+    --waitlist-cta-button-background: 210 40% 98%; /* White button */
+    --waitlist-cta-button-foreground: 222.2 47.4% 11.2%; /* Dark text for button */
+    --waitlist-cta-button-hover: 210 40% 90%; /* Slightly darker white on hover */
   }
 
   .dark {
@@ -178,6 +191,19 @@
 
     /* New Accent Orange */
     --accent-orange: 25 95% 53%; /* Same vibrant orange for dark mode */
+
+    /* Waitlist CTA Section Colors (Dark Mode) */
+    --waitlist-cta-background: 222.2 84% 4.9%; /* Dark background */
+    --waitlist-cta-text-primary: 210 40% 98%; /* Light text */
+    --waitlist-cta-text-secondary: 215 20.2% 65.1%; /* Light grey */
+    --waitlist-cta-input-background: 217.2 32.6% 17.5%; /* Dark grey input background */
+    --waitlist-cta-input-border: 217.2 32.6% 25%; /* Slightly lighter dark grey border */
+    --waitlist-cta-input-text: 210 40% 98%; /* Light text for input */
+    --waitlist-cta-input-placeholder: 215 20.2% 55.1%; /* Lighter grey placeholder */
+    --waitlist-cta-input-focus: 217.2 91.2% 59.8%; /* Blue focus ring */
+    --waitlist-cta-button-background: 210 40% 98%; /* White button */
+    --waitlist-cta-button-foreground: 222.2 47.4% 11.2%; /* Dark text for button */
+    --waitlist-cta-button-hover: 210 40% 90%; /* Slightly darker white on hover */
   }
 }
 
