@@ -85,51 +85,53 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
     navigate('/'); // Redirect to landing page (which has the waitlist)
   };
 
+  // Define common text and hover styles for navigation items
+  const navItemClasses = "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:text-white/80 dark:hover:text-white dark:hover:bg-gray-700";
+  const logoTextClasses = "text-landing-text-primary dark:text-white";
+  const logoImageClasses = "absolute -top-6 right-0 h-10 w-10 transform rotate-12 dark:filter dark:invert";
+
   return (
     <header className={cn("w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-50", className)}>
       {isMobile ? (
         <>
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>
+              <Button variant="ghost" size="icon" className={cn("text-landing-text-primary hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700")}>
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 w-64 bg-background dark:bg-gray-900">
               <div className="flex flex-col h-full p-4">
-                <Link to="/" className={cn("relative flex items-center font-bold text-xl text-landing-text-primary dark:text-white mb-6", isLandingPageHeader ? "text-white" : "text-landing-text-primary")} onClick={() => setIsSheetOpen(false)}>
+                <Link to="/" className={cn("relative flex items-center font-bold text-xl mb-6", logoTextClasses)} onClick={() => setIsSheetOpen(false)}>
                   <img
                     src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
                     alt="Teacheat Logo"
-                    className={cn(
-                      "absolute -top-6 right-0 h-10 w-10 transform rotate-12",
-                      isLandingPageHeader ? "filter invert" : ""
-                    )}
+                    className={logoImageClasses}
                   />
                   <span className="mr-2">Teacheat</span>
                 </Link>
                 <nav className="flex-grow space-y-2">
-                  <Button asChild variant="ghost" className="w-full justify-start text-landing-text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => setIsSheetOpen(false)}>
+                  <Button asChild variant="ghost" className={cn("w-full justify-start", navItemClasses)} onClick={() => setIsSheetOpen(false)}>
                     <Link to="/pricing">Pricing</Link>
                   </Button>
-                  <Button asChild variant="ghost" className="w-full justify-start text-landing-text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => setIsSheetOpen(false)}>
+                  <Button asChild variant="ghost" className={cn("w-full justify-start", navItemClasses)} onClick={() => setIsSheetOpen(false)}>
                     <Link to="/enterprise">Enterprise</Link>
                   </Button>
-                  <Button asChild variant="ghost" className="w-full justify-start text-landing-text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => setIsSheetOpen(false)}>
+                  <Button asChild variant="ghost" className={cn("w-full justify-start", navItemClasses)} onClick={() => setIsSheetOpen(false)}>
                     <Link to="#">Blog</Link>
                   </Button>
                 </nav>
                 <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-col space-y-2">
                   <Button
                     variant="ghost"
-                    className={cn("w-full justify-center", isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
+                    className={cn("w-full justify-center", navItemClasses)}
                     onClick={() => { handleWaitlistClick(); setIsSheetOpen(false); }}
                   >
                     Waitlist
                   </Button>
                   <Button
                     variant="ghost"
-                    className={cn("w-full justify-center", isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
+                    className={cn("w-full justify-center", navItemClasses)}
                     onClick={() => { handleLoginClick(); setIsSheetOpen(false); }}
                   >
                     Login
@@ -144,14 +146,11 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
               </div>
             </SheetContent>
           </Sheet>
-          <Link to="/" className={cn("relative flex items-center font-bold text-xl transition-colors", isLandingPageHeader ? "text-white" : "text-landing-text-primary")}>
+          <Link to="/" className={cn("relative flex items-center font-bold text-xl transition-colors", logoTextClasses)}>
             <img
               src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
               alt="Teacheat Logo"
-              className={cn(
-                "absolute -top-6 right-0 h-10 w-10 transform rotate-12",
-                isLandingPageHeader ? "filter invert" : ""
-              )}
+              className={logoImageClasses}
             />
             <span className="mr-2">Teacheat</span>
           </Link>
@@ -160,14 +159,11 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
       ) : (
         <>
           <div className="flex items-center space-x-4 md:space-x-12">
-            <Link to="/" className={cn("relative flex items-center font-bold text-xl transition-colors", isLandingPageHeader ? "text-white" : "text-landing-text-primary")}>
+            <Link to="/" className={cn("relative flex items-center font-bold text-xl transition-colors", logoTextClasses)}>
               <img
                 src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
                 alt="Teacheat Logo"
-                className={cn(
-                  "absolute -top-6 right-0 h-10 w-10 transform rotate-12",
-                  isLandingPageHeader ? "filter invert" : ""
-                )}
+                className={logoImageClasses}
               />
               <span className="mr-2">Teacheat</span>
             </Link>
@@ -175,7 +171,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent", navItemClasses)}
                     onClick={() => navigate('/pricing')}
                   >
                     Pricing
@@ -211,7 +207,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent", navItemClasses)}
                     onClick={() => navigate('/enterprise')}
                   >
                     Enterprise
@@ -249,7 +245,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link to="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent", isLandingPageHeader ? "text-white/80 hover:text-white hover:bg-white/20" : "text-landing-text-primary/80 hover:text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}>
+                  <Link to="#" className={cn(navigationMenuTriggerStyle(), "bg-transparent", navItemClasses)}>
                     Blog
                   </Link>
                 </NavigationMenuItem>
@@ -260,14 +256,14 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
           <div className="flex items-center space-x-2 md:space-x-4">
             <Button
               variant="ghost"
-              className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700", "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+              className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
               onClick={handleWaitlistClick}
             >
               Waitlist
             </Button>
             <Button
               variant="ghost"
-              className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700", "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+              className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
               onClick={handleLoginClick}
             >
               Login
