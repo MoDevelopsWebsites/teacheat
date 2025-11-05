@@ -12,7 +12,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
   currentAiResponse,
 }) => {
   return (
-    <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden h-full">
+    <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
         <div className="flex items-center space-x-2">
@@ -25,7 +25,7 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
       </div>
 
       {/* Main Content Area */}
-      <div className="flex flex-grow h-full">
+      <div className="flex flex-grow">
         {/* Left: Meeting Participants/Video (simplified) */}
         <div className="w-2/3 bg-gray-100 dark:bg-gray-900 flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm">
           Video Call Area
