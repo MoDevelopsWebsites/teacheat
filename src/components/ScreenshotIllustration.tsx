@@ -49,7 +49,7 @@ const ScreenshotIllustration: React.FC = () => {
       <GridBackground className="absolute inset-0 transform scale-150 rotate-[-15deg] opacity-30" />
 
       {/* Main illustration container */}
-      <div className="absolute w-full h-full flex items-center justify-center">
+      <div className="absolute w-full h-full flex items-center justify-center scale-90 md:scale-100 lg:scale-110"> {/* Added scale for better fit */}
         {/* Screen 1: Bottom-left */}
         <ScreenMockup
           className="w-48 h-32 md:w-64 md:h-40 lg:w-80 lg:h-52 transform rotate-[-15deg] skew-y-[-15deg] translate-x-[-150px] translate-y-[100px] z-10"

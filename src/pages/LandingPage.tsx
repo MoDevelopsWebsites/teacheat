@@ -11,6 +11,7 @@ import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Reusi
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
 import { Loader2 } from 'lucide-react'; // For loading spinner
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'; // Import Avatar components
 
 const defaultLogos = [
   { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
@@ -54,16 +55,41 @@ const LandingPage = () => {
     }
   };
 
+  const profileAvatars = [
+    { src: "/placeholder.svg", fallback: "JD" },
+    { src: "/placeholder.svg", fallback: "AS" },
+    { src: "/placeholder.svg", fallback: "EM" },
+    { src: "/placeholder.svg", fallback: "SK" },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
       <LandingPageHeader className="absolute top-0 left-0 right-0" />
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-20 md:mt-24">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
+        <div className="w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16"> {/* Changed max-w-7xl to w-full */}
           {/* Left Column: Text Content and Logos */}
-          <div className="md:w-1/2 text-left flex flex-col items-center md:items-start">
-            <div className="flex items-center justify-center md:justify-start mb-4 text-sm text-gray-600 dark:text-gray-400">
-              First 100 get a free yearly membership!
+          <div className="md:w-1/2 text-left flex flex-col items-center md:items-start px-4 md:px-0"> {/* Added horizontal padding for smaller screens */}
+            <div className="relative flex items-center justify-center md:justify-start mb-4 text-sm text-gray-600 dark:text-gray-400">
+              {profileAvatars.map((avatar, index) => (
+                <Avatar
+                  key={index}
+                  className={cn(
+                    "h-6 w-6 border-2 border-white dark:border-gray-900 absolute",
+                    index === 0 && "-left-8 z-40",
+                    index === 1 && "-left-12 z-30",
+                    index === 2 && "-left-16 z-20",
+                    index === 3 && "-left-20 z-10",
+                    "opacity-80"
+                  )}
+                >
+                  <img src={avatar.src} alt={avatar.fallback} className="object-cover" />
+                  <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs">
+                    {avatar.fallback}
+                  </AvatarFallback>
+                </Avatar>
+              ))}
+              <span className="ml-4">First 100 get a free yearly membership!</span> {/* Adjusted margin for text */}
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-gray-900 dark:text-white text-center md:text-left">
