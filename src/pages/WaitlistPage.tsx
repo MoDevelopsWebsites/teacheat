@@ -89,7 +89,7 @@ const LandingPage = () => {
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-normal leading-tight mb-4 text-black dark:text-white text-center md:text-left">
-              AI assistant for meetings <br className="hidden sm:block" /> <span className="text-gray-500 dark:text-gray-400">past or present.</span>
+              AI assistant for meetings <br className="hidden sm:block" /> <span className="text-gray-500 dark:text-gray-400">sales calls or interviews.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 dark:text-gray-500 mb-8 max-w-3xl mx-auto md:mx-0 text-center md:text-left">
               Get instant answers, automate note-taking, and streamline your workflow. Teacheat keeps you organized, calm, and moving forward.
