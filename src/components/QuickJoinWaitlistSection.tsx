@@ -62,7 +62,7 @@ const QuickJoinWaitlistSection: React.FC = () => {
       <WaitlistIllustration />
 
       <div className="max-w-3xl mx-auto text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4 sm:mb-6">
+        <h2 className="text-4xl md:text-5xl font-medium leading-tight mb-4 sm:mb-6">
           Join our waitlist for exclusive access.
         </h2>
         <p className="text-lg md:text-xl text-gray-400 mb-8 sm:mb-12">
