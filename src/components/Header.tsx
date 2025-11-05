@@ -17,7 +17,7 @@ import {
 import {
   DollarSign, Star, Building,
   Briefcase, Megaphone, LifeBuoy, Settings,
-  Menu
+  Menu, Apple // Added Apple icon
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   };
 
   const handleWaitlistClick = () => {
-    navigate('/waitlist'); // Navigate to the new /waitlist route
+    navigate('/waitlist'); // Navigate to the /waitlist route
   };
 
   // Define common text and hover styles for navigation items
@@ -255,11 +255,15 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
             <Button
-              variant="ghost"
-              className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+              className={cn(
+                "px-3 py-1 h-auto text-sm md:px-4 md:py-2",
+                isLandingPageHeader
+                  ? "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover"
+                  : navItemClasses
+              )}
               onClick={handleWaitlistClick}
             >
-              Waitlist
+              <Apple className="h-4 w-4 mr-2" /> Waitlist
             </Button>
             <Button
               variant="ghost"

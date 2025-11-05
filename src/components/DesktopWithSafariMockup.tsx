@@ -33,7 +33,7 @@ const DesktopWithSafariMockup: React.FC<DesktopWithSafariMockupProps> = ({ class
       className
     )}>
       <img
-        src={import.meta.env.BASE_URL + "wallpaper5.jpg"}
+        src={import.meta.env.BASE_URL + "wallpaper5.jpg"} // Changed to wallpaper5.jpg
         alt="Desktop Wallpaper"
         className="absolute inset-0 w-full h-full object-cover opacity-80"
       />
