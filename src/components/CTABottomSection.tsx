@@ -10,7 +10,7 @@ const CTABottomSection: React.FC = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleJoinWaitlistClick = () => {
-    navigate('/waitlist'); // Redirect to waitlist
+    navigate('/'); // Redirect to landing page for waitlist
   };
 
   return (

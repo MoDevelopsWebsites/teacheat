@@ -26,7 +26,7 @@ const FloatingGetStartedButton: React.FC = () => {
   }, []);
 
   const handleJoinWaitlistClick = () => {
-    navigate('/waitlist'); // Redirect to waitlist
+    navigate('/'); // Redirect to landing page for waitlist
   };
 
   return (
