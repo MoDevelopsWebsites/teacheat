@@ -26,9 +26,13 @@ const MeetingWindowMockup: React.FC<MeetingWindowMockupProps> = ({
 
       {/* Main Content Area */}
       <div className="flex flex-grow">
-        {/* Left: Meeting Participants/Video (simplified) */}
-        <div className="w-2/3 bg-gray-100 dark:bg-gray-900 flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm">
-          Video Call Area
+        {/* Left: Meeting Participants/Video */}
+        <div className="relative w-2/3 bg-gray-100 dark:bg-gray-900 flex items-center justify-center text-gray-400 dark:text-gray-600 text-sm overflow-hidden">
+          <img
+            src={import.meta.env.BASE_URL + "stunna.jpg"}
+            alt="Video Call Participant"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Right: AI Assistant Panel */}
