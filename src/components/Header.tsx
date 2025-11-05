@@ -310,7 +310,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                       <AvatarFallback className="bg-primary text-primary-foreground text-xs">
                         {user.email ? user.email[0].toUpperCase() : <UserIcon className="h-3 w-3" />}
                       </AvatarFallback>
-                    </Link>
+                    </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
