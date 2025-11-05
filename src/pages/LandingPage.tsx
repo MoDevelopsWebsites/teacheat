@@ -10,7 +10,6 @@ import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos';
 import UseCasesSection from '@/components/UseCasesSection';
 import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo';
 import FAQSection from '@/components/FAQSection';
-import CTABottomSection from '@/components/CTABottomSection';
 import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
 import FeaturesGridSection from '@/components/FeaturesGridSection'; // Import the new component
 import { useNavigate } from 'react-router-dom';
@@ -87,8 +86,7 @@ const LandingPage = () => {
         {/* FAQ Section */}
         <FAQSection />
 
-        {/* CTA Bottom Section */}
-        <CTABottomSection />
+        {/* CTA Bottom Section - REMOVED */}
       </main>
       <Footer />
     </div>
