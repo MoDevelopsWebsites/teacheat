@@ -36,7 +36,7 @@ const LandingPage = () => {
       <main className="flex-grow flex flex-col items-center">
         {/* Hero Section */}
         <section className="relative w-full flex flex-col items-center justify-center text-center px-4 py-12 sm:py-16 mt-20 md:mt-24">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-black dark:text-white max-w-4xl">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight mb-4 text-black dark:text-white max-w-4xl">
             Your AI assistant for every meeting.
           </h1>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">
