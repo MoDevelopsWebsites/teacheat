@@ -22,22 +22,7 @@ const defaultLogos = [
 const LandingPage = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    const fetchWaitlistCount = async () => {
-      const { count, error } = await supabase
-        .from('waitlist_entries')
-        .select('*', { count: 'exact', head: true });
-
-      if (error) {
-        console.error("Error fetching waitlist count:", error.message);
-      } else {
-        setWaitlistCount(count);
-      }
-    };
-    fetchWaitlistCount();
-  }, []);
+  // Removed waitlistCount state and useEffect for fetching count
 
   const handleJoinWaitlist = async () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -60,7 +45,6 @@ const LandingPage = () => {
       } else {
         showSuccess("You've been added to the waitlist!");
         setEmail('');
-        setWaitlistCount(prev => (prev !== null ? prev + 1 : null)); // Increment count
       }
     } catch (err: any) {
       console.error("Error joining waitlist:", err.message);
@@ -76,12 +60,10 @@ const LandingPage = () => {
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-20 md:mt-24">
         <div className="max-w-5xl mx-auto">
-          {waitlistCount !== null && (
-            <div className="flex items-center justify-center mb-4 text-sm text-gray-600 dark:text-gray-400">
-              <span role="img" aria-label="people" className="mr-2">👥</span>
-              {waitlistCount} people on waitlist and counting
-            </div>
-          )}
+          {/* Reverted waitlist message */}
+          <div className="flex items-center justify-center mb-4 text-sm text-gray-600 dark:text-gray-400">
+            First 100 get a free yearly membership!
+          </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-gray-900 dark:text-white">
             AI assistant for meetings - past or present.
