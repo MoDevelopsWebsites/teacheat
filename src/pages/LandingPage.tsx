@@ -56,10 +56,10 @@ const LandingPage = () => {
   };
 
   const profileAvatars = [
-    { src: "/placeholder.svg", fallback: "JD" },
-    { src: "/placeholder.svg", fallback: "AS" },
-    { src: "/placeholder.svg", fallback: "EM" },
-    { src: "/placeholder.svg", fallback: "SK" },
+    { src: "https://randomuser.me/api/portraits/men/32.jpg", fallback: "JD" },
+    { src: "https://randomuser.me/api/portraits/women/44.jpg", fallback: "AS" },
+    { src: "https://randomuser.me/api/portraits/men/78.jpg", fallback: "EM" },
+    { src: "https://randomuser.me/api/portraits/women/21.jpg", fallback: "SK" },
   ];
 
   return (
@@ -70,25 +70,21 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
           {/* Left Column: Text Content and Logos */}
           <div className="md:w-1/2 text-left flex flex-col items-center md:items-start px-4 md:px-0">
-            <div className="relative flex items-center justify-center md:justify-start mb-4 text-sm text-gray-600 dark:text-gray-400">
-              {profileAvatars.map((avatar, index) => (
-                <Avatar
-                  key={index}
-                  className={cn(
-                    "h-6 w-6 border-2 border-white dark:border-gray-900 absolute",
-                    index === 0 && "-left-8 z-40",
-                    index === 1 && "-left-12 z-30",
-                    index === 2 && "-left-16 z-20",
-                    index === 3 && "-left-20 z-10",
-                    "opacity-80"
-                  )}
-                >
-                  <img src={avatar.src} alt={avatar.fallback} className="object-cover" />
-                  <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs">
-                    {avatar.fallback}
-                  </AvatarFallback>
-                </Avatar>
-              ))}
+            {/* Adjusted avatar and text alignment */}
+            <div className="flex items-center mb-4 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex -space-x-2 overflow-hidden"> {/* Container for overlapping avatars */}
+                {profileAvatars.map((avatar, index) => (
+                  <Avatar
+                    key={index}
+                    className="h-6 w-6 border-2 border-white dark:border-gray-900" // Standard size and border, no absolute positioning
+                  >
+                    <img src={avatar.src} alt={avatar.fallback} className="object-cover" />
+                    <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs">
+                      {avatar.fallback}
+                    </AvatarFallback>
+                  </Avatar>
+                ))}
+              </div>
               <span className="ml-4">First 100 get a free yearly membership!</span>
             </div>
 
