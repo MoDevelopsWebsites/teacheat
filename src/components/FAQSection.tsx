@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Plus, Minus } from 'lucide-react'; // Import Plus and Minus icons
 
 const FAQSection: React.FC = () => {
   const faqs = [
@@ -38,17 +39,28 @@ const FAQSection: React.FC = () => {
 
   return (
     <section className="w-full px-4 py-12 sm:px-6 sm:py-16 z-10 bg-white dark:bg-gray-900">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-8 sm:mb-12 text-center text-landing-text-primary">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 text-center text-landing-text-primary">
         Frequently asked questions
       </h2>
-      <div className="max-w-3xl mx-auto"> {/* Added div to center the accordion */}
-        <Accordion type="single" collapsible className="w-full">
+      <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+        Everything you need to know before taking your first step with Teacheat.
+      </p>
+      <div className="max-w-3xl mx-auto">
+        <Accordion type="single" collapsible className="w-full space-y-4"> {/* Added space-y-4 for gap between items */}
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200 dark:border-gray-700">
-              <AccordionTrigger className="text-base sm:text-lg font-medium text-landing-text-primary hover:no-underline py-3 sm:py-4">
-                {faq.question}
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800" // Card styling
+            >
+              <AccordionTrigger className="group flex items-center justify-between p-4 text-base sm:text-lg font-medium text-gray-900 dark:text-white hover:no-underline">
+                <span className="text-left">{faq.question}</span>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-colors duration-200 dark:bg-gray-700 dark:text-gray-300 group-data-[state=open]:bg-gray-200 dark:group-data-[state=open]:bg-gray-600">
+                  <Plus className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:hidden" />
+                  <Minus className="h-5 w-5 transition-transform duration-200 group-data-[state=closed]:hidden" />
+                </div>
               </AccordionTrigger>
-              <AccordionContent className="text-sm sm:text-base text-gray-700 dark:text-gray-300 pb-3 sm:pb-4">
+              <AccordionContent className="px-4 pb-4 text-sm sm:text-base text-gray-700 dark:text-gray-300">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
