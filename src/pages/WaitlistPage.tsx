@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import Header from '@/components/Header'; // Using the standard Header component
-import ProductIllustration from '@/components/ProductIllustration'; // New product illustration component
-import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Reusing existing logo carousel
+import Header from '@/components/Header';
+import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos';
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
-import { Loader2 } from 'lucide-react'; // For loading spinner
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'; // Import Avatar components
+import { Loader2 } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import ProductIllustration from '@/components/ProductIllustration'; // Keep ProductIllustration for this page
 
 const defaultLogos = [
   { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
@@ -20,10 +20,9 @@ const defaultLogos = [
   { src: import.meta.env.BASE_URL + "zoomm.png", alt: "Zoom Logo", label: "Zoom" },
 ];
 
-const LandingPage = () => {
+const WaitlistPage = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // Removed waitlistCount state and useEffect for fetching count
 
   const handleJoinWaitlist = async () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -70,13 +69,12 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
           {/* Left Column: Text Content and Logos */}
           <div className="md:w-1/2 text-left flex flex-col items-center md:items-start px-4 md:px-0">
-            {/* Adjusted avatar and text alignment */}
             <div className="flex items-center mb-4 text-sm text-gray-600 dark:text-gray-400">
-              <div className="flex -space-x-2 overflow-hidden"> {/* Container for overlapping avatars */}
+              <div className="flex -space-x-2 overflow-hidden">
                 {profileAvatars.map((avatar, index) => (
                   <Avatar
                     key={index}
-                    className="h-6 w-6 border-2 border-white dark:border-gray-900" // Standard size and border, no absolute positioning
+                    className="h-6 w-6 border-2 border-white dark:border-gray-900"
                   >
                     <img src={avatar.src} alt={avatar.fallback} className="object-cover" />
                     <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs">
@@ -116,7 +114,6 @@ const LandingPage = () => {
               *Join for free. No credit card required.
             </p>
 
-            {/* Moved "Trusted by people working at" section here */}
             <div className="w-full text-center md:text-left">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-8">
                 Trusted by people working at
@@ -135,4 +132,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default WaitlistPage;

@@ -45,8 +45,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleButtonClick = () => {
-    // Redirect all pricing card buttons to the landing page for waitlist
-    navigate('/');
+    // Redirect all pricing card buttons to the waitlist page
+    navigate('/waitlist');
   };
 
   return (
@@ -88,7 +88,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
             isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
           )}
           {...(buttonVariant !== "default" && { variant: buttonVariant })}
-          onClick={handleButtonClick} // This will now navigate to /
+          onClick={handleButtonClick} // This will now navigate to /waitlist
           disabled={disabled || (isSubmitting && priceId !== null)}
         >
           {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })}
