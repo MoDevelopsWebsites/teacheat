@@ -12,6 +12,7 @@ import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSection
 import FAQSection from '@/components/FAQSection';
 import CTABottomSection from '@/components/CTABottomSection';
 import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
+import FeaturesGridSection from '@/components/FeaturesGridSection'; // Import the new component
 import { useNavigate } from 'react-router-dom';
 
 const defaultLogos = [
@@ -63,6 +64,9 @@ const LandingPage = () => {
         <section className="w-full py-16 sm:py-24">
           <ProductIllustration />
         </section>
+
+        {/* Features Grid Section (New) */}
+        <FeaturesGridSection />
 
         {/* Trusted By Section */}
         <section className="w-full py-12 sm:py-16 bg-gray-50 dark:bg-gray-800">
