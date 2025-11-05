@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import Header from '@/components/Header'; // Using the standard Header component
-import ScreenshotIllustration from '@/components/ScreenshotIllustration'; // New illustration component
+import ProductIllustration from '@/components/ProductIllustration'; // New product illustration component
 import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Reusing existing logo carousel
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
@@ -67,7 +67,7 @@ const LandingPage = () => {
       <Header className="absolute top-0 left-0 right-0" isLandingPageHeader={true} />
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-20 md:mt-24">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16"> {/* Re-added max-w-7xl */}
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
           {/* Left Column: Text Content and Logos */}
           <div className="md:w-1/2 text-left flex flex-col items-center md:items-start px-4 md:px-0">
             <div className="relative flex items-center justify-center md:justify-start mb-4 text-sm text-gray-600 dark:text-gray-400">
@@ -131,7 +131,7 @@ const LandingPage = () => {
 
           {/* Right Column: Illustration */}
           <div className="md:w-1/2 flex justify-center md:justify-end">
-            <ScreenshotIllustration />
+            <ProductIllustration />
           </div>
         </div>
       </main>
