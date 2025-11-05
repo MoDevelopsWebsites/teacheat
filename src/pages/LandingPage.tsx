@@ -66,7 +66,7 @@ const LandingPage = () => {
               First 100 get a free yearly membership!
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 text-gray-900 dark:text-white text-center md:text-left">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-gray-900 dark:text-white text-center md:text-left">
               AI assistant for meetings - past or present.
             </h1>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto md:mx-0 text-center md:text-left">
