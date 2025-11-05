@@ -74,11 +74,15 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   }, []);
 
   const handleLoginClick = () => {
-    navigate('/waitlist'); // Redirect to waitlist
+    navigate('/login'); // Redirect to login
   };
 
   const handleSignUpClick = () => {
-    navigate('/waitlist'); // Redirect to waitlist
+    navigate('/login'); // Redirect to login
+  };
+
+  const handleWaitlistClick = () => {
+    navigate('/'); // Redirect to landing page (which has the waitlist)
   };
 
   return (
@@ -116,6 +120,13 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                   </Button>
                 </nav>
                 <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-col space-y-2">
+                  <Button
+                    variant="ghost"
+                    className={cn("w-full justify-center", isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
+                    onClick={() => { handleWaitlistClick(); setIsSheetOpen(false); }}
+                  >
+                    Waitlist
+                  </Button>
                   <Button
                     variant="ghost"
                     className={cn("w-full justify-center", isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700")}
@@ -247,6 +258,13 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
             </NavigationMenu>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
+            <Button
+              variant="ghost"
+              className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700", "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+              onClick={handleWaitlistClick}
+            >
+              Waitlist
+            </Button>
             <Button
               variant="ghost"
               className={cn(isLandingPageHeader ? "text-white hover:bg-white/20" : "text-landing-text-primary hover:bg-gray-200 dark:hover:bg-gray-700", "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}

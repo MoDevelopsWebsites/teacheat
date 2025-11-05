@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import LandingPageHeader from '@/components/LandingPageHeader'; // New header component
+import Header from '@/components/Header'; // Using the standard Header component
 import ScreenshotIllustration from '@/components/ScreenshotIllustration'; // New illustration component
 import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Reusing existing logo carousel
 import { supabase } from '@/integrations/supabase/client';
@@ -64,12 +64,12 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
-      <LandingPageHeader className="absolute top-0 left-0 right-0" />
+      <Header className="absolute top-0 left-0 right-0" isLandingPageHeader={true} />
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16 text-center mt-20 md:mt-24">
-        <div className="w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16"> {/* Changed max-w-7xl to w-full */}
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16"> {/* Re-added max-w-7xl */}
           {/* Left Column: Text Content and Logos */}
-          <div className="md:w-1/2 text-left flex flex-col items-center md:items-start px-4 md:px-0"> {/* Added horizontal padding for smaller screens */}
+          <div className="md:w-1/2 text-left flex flex-col items-center md:items-start px-4 md:px-0">
             <div className="relative flex items-center justify-center md:justify-start mb-4 text-sm text-gray-600 dark:text-gray-400">
               {profileAvatars.map((avatar, index) => (
                 <Avatar
@@ -89,7 +89,7 @@ const LandingPage = () => {
                   </AvatarFallback>
                 </Avatar>
               ))}
-              <span className="ml-4">First 100 get a free yearly membership!</span> {/* Adjusted margin for text */}
+              <span className="ml-4">First 100 get a free yearly membership!</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-gray-900 dark:text-white text-center md:text-left">
