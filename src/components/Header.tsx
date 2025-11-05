@@ -17,9 +17,21 @@ import {
 import {
   DollarSign, Star, Building,
   Briefcase, Megaphone, LifeBuoy, Settings,
-  Menu
+  Menu, User as UserIcon, LogOut
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useSession } from '@/integrations/supabase/SessionContextProvider';
+import { supabase } from '@/integrations/supabase/client';
+import { showSuccess, showError } from '@/utils/toast';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface HeaderProps {
   className?: string;
@@ -61,6 +73,7 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { user, isLoading: isSessionLoading } = useSession();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -83,6 +96,20 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
 
   const handleWaitlistClick = () => {
     navigate('/waitlist'); // Navigate to the new /waitlist route
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        throw error;
+      }
+      showSuccess("Logged out successfully!");
+      // The Layout component will handle redirection to /login
+    } catch (error: any) {
+      console.error("Logout error:", error.message);
+      showError("Failed to log out. Please try again.");
+    }
   };
 
   // Define common text and hover styles for navigation items
@@ -122,26 +149,47 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
                   </Button>
                 </nav>
                 <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-col space-y-2">
-                  <Button
-                    variant="ghost"
-                    className={cn("w-full justify-center", navItemClasses)}
-                    onClick={() => { handleWaitlistClick(); setIsSheetOpen(false); }}
-                  >
-                    Waitlist
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    className={cn("w-full justify-center", navItemClasses)}
-                    onClick={() => { handleLoginClick(); setIsSheetOpen(false); }}
-                  >
-                    Login
-                  </Button>
-                  <Button
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg font-semibold shadow-md"
-                    onClick={() => { handleSignUpClick(); setIsSheetOpen(false); }}
-                  >
-                    Sign up
-                  </Button>
+                  {!isSessionLoading && user ? (
+                    <>
+                      <Button
+                        variant="ghost"
+                        className={cn("w-full justify-center", navItemClasses)}
+                        onClick={() => { navigate('/settings'); setIsSheetOpen(false); }}
+                      >
+                        <UserIcon className="h-4 w-4 mr-2" /> Profile
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className={cn("w-full justify-center text-destructive hover:bg-destructive/10", navItemClasses)}
+                        onClick={() => { handleLogout(); setIsSheetOpen(false); }}
+                      >
+                        <LogOut className="h-4 w-4 mr-2" /> Logout
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        variant="ghost"
+                        className={cn("w-full justify-center", navItemClasses)}
+                        onClick={() => { handleWaitlistClick(); setIsSheetOpen(false); }}
+                      >
+                        Waitlist
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className={cn("w-full justify-center", navItemClasses)}
+                        onClick={() => { handleLoginClick(); setIsSheetOpen(false); }}
+                      >
+                        Login
+                      </Button>
+                      <Button
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg font-semibold shadow-md"
+                        onClick={() => { handleSignUpClick(); setIsSheetOpen(false); }}
+                      >
+                        Sign up
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </SheetContent>
@@ -254,26 +302,55 @@ const Header: React.FC<HeaderProps> = ({ className, isLandingPageHeader }) => {
             </NavigationMenu>
           </div>
           <div className="flex items-center space-x-2 md:space-x-4">
-            <Button
-              variant="ghost"
-              className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
-              onClick={handleWaitlistClick}
-            >
-              Waitlist
-            </Button>
-            <Button
-              variant="ghost"
-              className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
-              onClick={handleLoginClick}
-            >
-              Login
-            </Button>
-            <Button
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-3 py-1 h-auto text-sm font-semibold shadow-md md:px-4 md:py-2"
-              onClick={handleSignUpClick}
-            >
-              Sign up
-            </Button>
+            {!isSessionLoading && user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2 flex items-center space-x-2")}>
+                    <Avatar className="h-6 w-6">
+                      <AvatarFallback className="bg-primary text-primary-foreground text-xs">
+                        {user.email ? user.email[0].toUpperCase() : <UserIcon className="h-3 w-3" />}
+                      </AvatarFallback>
+                    </Link>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate('/settings')}>
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+                  onClick={handleWaitlistClick}
+                >
+                  Waitlist
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={cn(navItemClasses, "px-3 py-1 h-auto text-sm md:px-4 md:py-2")}
+                  onClick={handleLoginClick}
+                >
+                  Login
+                </Button>
+                <Button
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-3 py-1 h-auto text-sm font-semibold shadow-md md:px-4 md:py-2"
+                  onClick={handleSignUpClick}
+                >
+                  Sign up
+                </Button>
+              </>
+            )}
           </div>
         </>
       )}
