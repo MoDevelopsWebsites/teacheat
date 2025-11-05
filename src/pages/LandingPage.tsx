@@ -11,7 +11,7 @@ import UseCasesSection from '@/components/UseCasesSection';
 import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo';
 import FAQSection from '@/components/FAQSection';
 import FloatingGetStartedButton from '@/components/FloatingGetStartedButton';
-import FeaturesGridSection from '@/components/FeaturesGridSection'; // Import the new component
+import FeaturesGridSection from '@/components/FeaturesGridSection';
 import { useNavigate } from 'react-router-dom';
 
 const defaultLogos = [
@@ -29,11 +29,21 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
-      <Header className="absolute top-0 left-0 right-0" isLandingPageHeader={true} />
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans relative">
+      <Header className="absolute top-0 left-0 right-0 z-20" isLandingPageHeader={true} />
       <FloatingGetStartedButton />
 
-      <main className="flex-grow flex flex-col items-center">
+      {/* Background Image Container */}
+      <div
+        className="absolute top-0 left-0 w-full h-[150vh] z-0 bg-cover bg-center bg-no-repeat opacity-70 transition-opacity duration-500"
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL}images/Light%20Mode%20Wallpaper.png)`,
+          maskImage: `linear-gradient(to bottom, black 80%, transparent 100%)`,
+          WebkitMaskImage: `linear-gradient(to bottom, black 80%, transparent 100%)`, // For Safari compatibility
+        }}
+      ></div>
+
+      <main className="flex-grow flex flex-col items-center relative z-10">
         {/* Hero Section */}
         <section className="relative w-full flex flex-col items-center justify-center text-center px-4 py-12 sm:py-16 mt-20 md:mt-24">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight mb-4 text-black dark:text-white max-w-4xl">
