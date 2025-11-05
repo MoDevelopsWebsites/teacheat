@@ -5,6 +5,7 @@ import MeetingWindowMockup from './MeetingWindowMockup';
 import MeetingSummaryCard from './MeetingSummaryCard'; // Import MeetingSummaryCard
 import TaskCard from './TaskCard'; // Import TaskCard
 import { MessageSquareText, Sparkles } from 'lucide-react'; // Import icons for cards
+import IsometricGridBackground from './IsometricGridBackground'; // Import the new background component
 
 const ProductIllustration: React.FC = () => {
   // Static AI response for the simplified illustration
@@ -12,6 +13,9 @@ const ProductIllustration: React.FC = () => {
 
   return (
     <div className="relative w-full max-w-full h-[700px] md:h-[800px] lg:h-[900px] flex items-center justify-center p-4">
+      {/* Isometric Grid Background */}
+      <IsometricGridBackground className="absolute inset-0" />
+
       {/* Floating Meeting Summary Card (Top Left) */}
       <div className="absolute top-10 left-10 z-10 w-64 transform -rotate-6 animate-float">
         <MeetingSummaryCard
