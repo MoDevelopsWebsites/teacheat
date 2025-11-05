@@ -38,10 +38,11 @@ const LandingPage = () => {
         className="absolute top-0 left-0 w-full h-[150vh] z-0 bg-cover bg-center bg-no-repeat opacity-70 transition-opacity duration-500"
         style={{
           backgroundImage: `url(${import.meta.env.BASE_URL}images/apple-m1-chipset-imac-2021-default-stock-wallpaper-macos-grey-light-mode-30-10-2024-1730341405-hd-wallpaper.jpg)`,
-          maskImage: `linear-gradient(to bottom, black 80%, transparent 100%)`,
-          WebkitMaskImage: `linear-gradient(to bottom, black 80%, transparent 100%)`, // For Safari compatibility
         }}
-      ></div>
+      >
+        {/* Gradient overlay for fade-out effect */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-80% to-white dark:to-gray-900"></div>
+      </div>
 
       <main className="flex-grow flex flex-col items-center relative z-10">
         {/* Hero Section */}
