@@ -53,7 +53,7 @@ const FAQSection: React.FC = () => {
               value={`item-${index}`}
               className="rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800" // Card styling
             >
-              <AccordionTrigger className="group flex items-center justify-between p-4 text-base sm:text-lg font-medium text-gray-900 dark:text-white hover:no-underline">
+              <AccordionTrigger className="group flex items-center justify-between p-4 text-base sm:text-lg font-medium text-gray-900 dark:text-white hover:no-underline [&>svg]:hidden">
                 <span className="text-left">{faq.question}</span>
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-colors duration-200 dark:bg-gray-700 dark:text-gray-300 group-data-[state=open]:bg-gray-200 dark:group-data-[state=open]:bg-gray-600">
                   <Plus className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:hidden" />
