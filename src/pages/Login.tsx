@@ -25,7 +25,7 @@ const Login = () => {
       </div>
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:py-16">
-        <div className="w-full max-w-md text-center">
+        <div className="w-full max-w-xl text-center"> {/* Increased max-w-md to max-w-xl */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4">
             Unlock your meeting potential with Teacheat.
           </h1>
@@ -70,7 +70,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-2xl mx-auto">
+          <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-3xl mx-auto"> {/* Increased max-w-2xl to max-w-3xl */}
             {features.map((feature, index) => (
               <div key={index} className="flex items-start text-left space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />
