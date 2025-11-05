@@ -37,7 +37,7 @@ const LandingPage = () => {
       <div
         className="absolute top-0 left-0 w-full h-[150vh] z-0 bg-cover bg-center bg-no-repeat opacity-70 transition-opacity duration-500"
         style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL}images/Light%20Mode%20Wallpaper.png)`,
+          backgroundImage: `url(${import.meta.env.BASE_URL}images/apple-m1-chipset-imac-2021-default-stock-wallpaper-macos-grey-light-mode-30-10-2024-1730341405-hd-wallpaper.jpg)`,
           maskImage: `linear-gradient(to bottom, black 80%, transparent 100%)`,
           WebkitMaskImage: `linear-gradient(to bottom, black 80%, transparent 100%)`, // For Safari compatibility
         }}
