@@ -14,7 +14,6 @@ import EnterpriseLandingPage from "./pages/EnterpriseLandingPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Layout from "./components/Layout";
-import Waitlist from "./pages/Waitlist"; // Import the new Waitlist page
 import { SessionContextProvider } from "./integrations/supabase/SessionContextProvider";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -35,7 +34,7 @@ const App = () => (
             <LenisProvider> {/* Wrap the entire route structure with LenisProvider */}
               <Routes>
                 <Route path="/" element={<LandingPage />} /> {/* LandingPage is now the default route */}
-                <Route path="/waitlist" element={<Waitlist />} /> {/* Waitlist page moved to /waitlist */}
+                {/* Removed the /waitlist route */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/enterprise" element={<EnterpriseLandingPage />} />
