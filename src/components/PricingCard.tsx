@@ -3,14 +3,14 @@
 import React from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, X, ChevronDown } from 'lucide-react';
+import { Check, X, ChevronRight } from 'lucide-react'; // Changed ChevronDown to ChevronRight
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 
 interface PricingCardProps {
   title: string;
-  price: string;
-  priceSuffix?: string;
+  price: string; // Keeping price prop but user said to ignore content
+  priceSuffix?: string; // Keeping priceSuffix prop
   description: string;
   features: string[];
   buttonText: string;
@@ -22,7 +22,8 @@ interface PricingCardProps {
   onSubscribe: (priceId: string | null) => void;
   isSubmitting: boolean;
   disabled?: boolean;
-  isMacButton?: boolean;
+  isMacButton?: boolean; // Not used in this redesign, but keeping for consistency
+  iconComponent: React.ReactNode; // New prop for the icon at the top
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -40,60 +41,64 @@ const PricingCard: React.FC<PricingCardProps> = ({
   onSubscribe,
   isSubmitting,
   disabled = false,
-  isMacButton = false,
+  iconComponent, // Destructure new prop
 }) => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    // Redirect all pricing card buttons to the waitlist page
-    navigate('/waitlist');
+    if (isEnterprise) {
+      navigate('/enterprise');
+    } else if (priceId) {
+      onSubscribe(priceId);
+    } else { // For Starter plan (no priceId)
+      navigate('/waitlist');
+    }
   };
 
   return (
     <Card className={cn(
-      "relative flex flex-col p-4 sm:p-6 rounded-xl shadow-lg border bg-card text-foreground",
-      isPopular && "border-2 border-blue-500 shadow-xl",
-      isEnterprise && "col-span-1 md:col-span-1"
+      "relative flex flex-col p-6 rounded-xl shadow-lg border border-gray-200 bg-white text-foreground", // Base styling from screenshot
+      isPopular && "border-pricing-popular-badge-bg", // Highlight border for popular card
     )}>
       {isPopular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-pricing-popular-badge-bg text-pricing-popular-badge-fg text-xs font-semibold px-3 py-1 rounded-full">
           Most Popular
         </div>
       )}
-      <CardHeader className="p-0 pb-3 sm:pb-4">
-        <CardTitle className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">{title}</CardTitle>
-        <p className="text-4xl sm:text-5xl font-extrabold">
-          {price}
-          {priceSuffix && <span className="text-base sm:text-lg font-medium text-muted-foreground"> {priceSuffix}</span>}
-        </p>
-        <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">{description}</p>
+      <CardHeader className="p-0 pb-4">
+        <div className="mb-4">
+          {iconComponent}
+        </div>
+        <CardTitle className="text-xl font-bold mb-1 text-gray-900 dark:text-white">{title}</CardTitle>
+        <p className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-line">{description}</p> {/* Added whitespace-pre-line */}
       </CardHeader>
-      <CardContent className="flex-grow p-0 py-4 sm:py-6 border-y border-border/50 my-2 sm:my-4">
-        <ul className="space-y-2 sm:space-y-3">
+      <CardContent className="flex-grow p-0 py-6 border-y border-gray-200 dark:border-gray-700 my-4">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Included</h3>
+        <ul className="space-y-2">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center text-sm">
+            <li key={index} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
               <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
               {feature}
             </li>
           ))}
         </ul>
       </CardContent>
-      <CardFooter className="p-0 pt-3 sm:pt-4">
+      <CardFooter className="p-0 pt-4 flex flex-col items-start">
+        {/* Price display, styled to match screenshot */}
+        <p className="text-3xl font-extrabold text-gray-900 dark:text-white mb-4">
+          {price}
+          {priceSuffix && <span className="text-base font-medium text-gray-600 dark:text-gray-400"> {priceSuffix}</span>}
+        </p>
         <Button
           className={cn(
-            "w-full text-sm sm:text-base font-semibold py-2.5 sm:py-6 rounded-lg",
-            isMacButton && "bg-gradient-to-br from-landing-button-gradient-start to-landing-button-gradient-end text-white hover:from-landing-button-gradient-hover-start hover:to-landing-button-gradient-hover-end shadow-button-glow-hover",
-            !isMacButton && buttonVariant === "default" && "bg-primary text-primary-foreground hover:bg-primary/90",
-            buttonVariant === "outline" && "border border-input text-foreground bg-transparent hover:bg-accent",
-            isEnterprise && "bg-blue-500 text-white hover:bg-blue-600"
+            "w-full text-base font-semibold py-3 rounded-lg",
+            "bg-gradient-to-br from-pricing-button-gradient-start to-pricing-button-gradient-end text-white hover:from-pricing-button-gradient-end hover:to-pricing-button-gradient-start shadow-md", // Gradient button styling
           )}
-          {...(buttonVariant !== "default" && { variant: buttonVariant })}
           onClick={handleButtonClick}
           disabled={disabled || (isSubmitting && priceId !== null)}
         >
-          {buttonIcon && React.cloneElement(buttonIcon, { className: cn("h-4 w-4 sm:h-5 sm:w-5 mr-1.5 sm:mr-2", buttonIcon.props.className) })}
           {buttonText}
-          {buttonIcon === <ChevronDown /> && <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />}
+          <ChevronRight className="h-4 w-4 ml-2" /> {/* Right arrow icon */}
         </Button>
       </CardFooter>
     </Card>

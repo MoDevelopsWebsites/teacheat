@@ -3,10 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Apple, ChevronDown } from 'lucide-react';
+import { Apple, ChevronDown, Star, Zap, Award, Check } from 'lucide-react'; // Added Star, Zap, Award, Check icons
 import PricingCard from '@/components/PricingCard';
-import PricingFeatureTable from '@/components/PricingFeatureTable';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
@@ -14,7 +12,7 @@ import { showSuccess, showError } from '@/utils/toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useSession } from '@/integrations/supabase/SessionContextProvider';
-import TeacheatLogo from '@/components/TeacheatLogo';
+import TeacheatLogo from '@/components/TeacheatLogo'; // Keeping for potential future use, but not in main title
 
 const VITE_STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID;
@@ -22,56 +20,55 @@ const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID;
 const pricingPlans = {
   monthly: [
     {
-      title: "Starter",
-      price: "Free",
-      description: "All essential features.",
+      title: "Start",
+      description: "For early-stage founders & small teams\nPerfect if you're just getting started and want a professional design presence without going all-in.",
       features: [
-        "Limited AI responses",
-        "Unlimited real-time meeting notetaking",
-        "Customize instructions & upload files",
-        "Ask AI about all your past meetings",
+        "Custom landing page or 3 key screens (web/app)",
+        "Conversion-focused design system",
+        "Framer or Webflow build (responsive)",
+        "1 round of revisions",
+        "Email & chat support",
       ],
-      buttonText: "Join waitlist",
-      buttonIcon: undefined,
-      buttonVariant: "default",
+      buttonText: "Book a Demo",
+      buttonIcon: <ChevronDown className="h-4 w-4" />, // Using ChevronDown as a right arrow placeholder
       isPopular: false,
       priceId: null,
-      isMacButton: false,
+      iconComponent: <Star className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
     {
-      title: "Pro",
-      price: "$20",
-      priceSuffix: "/ month",
-      description: "Unlimited access.",
+      title: "Growth",
+      description: "For funded startups & scaling products\nIdeal for teams ready to grow fast with on-demand design & dev support to ship faster.",
       features: [
-        "Everything in Starter, plus...",
-        "Unlimited AI responses",
-        "Unlimited access to latest AI models",
-        "Priority support",
+        "Complete website or 5-7 app screens",
+        "UX audit & conversion optimization",
+        "Framer + Webflow development with animations",
+        "Priority support & feedback calls",
+        "2 active design requests at a time",
       ],
-      buttonText: "Subscribe",
-      buttonVariant: "default",
+      buttonText: "Book a Demo",
+      buttonIcon: <ChevronDown className="h-4 w-4" />,
       isPopular: true,
-      priceId: "price_1SGHowJGz5CboiG8FNzIDFz1",
+      priceId: "price_1SGHowJGz5CboiG8FNzIDFz1", // Original Pro monthly price ID
+      iconComponent: <Zap className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
     {
-      title: "Enterprise",
-      price: "Custom",
-      description: "Custom knowledge for teams.",
+      title: "Scale",
+      description: "For product-led teams & agencies\nA dedicated design partner for continuous growth, from new features to full product redesigns.",
       features: [
-        "Everything in Pro, plus...",
-        "Post-call coaching and analytics",
-        "RAG knowledge base",
-        "User provisioning & role-based access",
-        "Single sign-on & IDP Integration",
-        "Enterprise security & no data training",
+        "Unlimited design & development requests",
+        "Dedicated designer + developer",
+        "Strategy & creative direction calls",
+        "Advanced motion & prototype design",
+        "Priority 24h response",
       ],
-      buttonText: "Talk to sales",
-      buttonVariant: "default",
+      buttonText: "Book a Demo",
+      buttonIcon: <ChevronDown className="h-4 w-4" />,
       isEnterprise: true,
       priceId: null,
+      iconComponent: <Award className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
   ],
+  // Keeping annually data for reference, but it won't be displayed with the new design
   annually: [
     {
       title: "Starter",
@@ -89,6 +86,7 @@ const pricingPlans = {
       isPopular: false,
       priceId: null,
       isMacButton: false,
+      iconComponent: <Star className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
     {
       title: "Pro",
@@ -105,6 +103,7 @@ const pricingPlans = {
       buttonVariant: "default",
       isPopular: true,
       priceId: "price_1SGHqOJGz5CboiG8uBtvQ6he",
+      iconComponent: <Zap className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
     {
       title: "Enterprise",
@@ -122,43 +121,14 @@ const pricingPlans = {
       buttonVariant: "default",
       isEnterprise: true,
       priceId: null,
+      iconComponent: <Award className="h-8 w-8 text-gray-700 dark:text-gray-300" />,
     },
   ],
 };
 
-const featureTableData = [
-  {
-    name: "Features",
-    features: [
-      { name: "Custom system prompt", starter: true, pro: true, enterprise: true },
-      { name: "Pro Responses / day", starter: "Limited", pro: "Unlimited", enterprise: "Unlimited" },
-      { name: "Token limit", starter: "Unlimited", pro: "Unlimited", enterprise: "Unlimited" },
-      { name: "Model", starter: "GPT-5, Claude 4", pro: "GPT-5, Claude 4", enterprise: "Unlimited" },
-      { name: "Single sign-on (IDP)", starter: false, pro: false, enterprise: true },
-    ],
-  },
-  {
-    name: "Platform",
-    features: [
-      { name: "Conversations dashboard", starter: true, pro: true, enterprise: true },
-      { name: "Advanced analytics", starter: false, pro: true, enterprise: true },
-      { name: "Centralized billing", starter: false, pro: false, enterprise: true },
-      { name: "Custom integrations", starter: "Coming soon", pro: "Coming soon", enterprise: true },
-      { name: "User provisioning & role-based access", starter: false, pro: false, enterprise: true },
-    ],
-  },
-  {
-    name: "Support",
-    features: [
-      { name: "Community support", starter: true, pro: true, enterprise: true },
-      { name: "Priority support", starter: false, pro: true, enterprise: true },
-      { name: "Customized onboarding", starter: false, pro: false, enterprise: true },
-    ],
-  },
-];
+// Removed featureTableData as it's no longer used in the new design
 
 const Pricing = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -167,7 +137,8 @@ const Pricing = () => {
   const location = useLocation();
   const { session, isLoading: isSessionLoading } = useSession();
 
-  const currentPlans = pricingPlans[billingCycle];
+  // Always use monthly plans for the new design as there's no billing cycle toggle
+  const currentPlans = pricingPlans.monthly;
 
   useEffect(() => {
     const success = searchParams.get('success');
@@ -185,9 +156,10 @@ const Pricing = () => {
   }, [searchParams, navigate, location.pathname]);
 
   useEffect(() => {
-    if (!isSessionLoading && session && location.state?.priceId && location.state?.billingCycle) {
-      const { priceId, billingCycle: storedBillingCycle } = location.state;
-      setBillingCycle(storedBillingCycle);
+    // This logic is for handling redirects after login for subscription.
+    // Since the design no longer has a billing cycle toggle, we'll assume monthly if a priceId is present.
+    if (!isSessionLoading && session && location.state?.priceId) {
+      const { priceId } = location.state;
       handleSubscribe(priceId);
       navigate(location.pathname, { replace: true, state: {} });
     }
@@ -196,12 +168,20 @@ const Pricing = () => {
 
   const handleSubscribe = async (priceId: string | null) => {
     if (!priceId) {
-      showError("Price ID is missing.");
+      // For Starter and Enterprise, we navigate to other pages
+      if (currentPlans[0].priceId === priceId) { // Starter
+        navigate('/waitlist');
+      } else if (currentPlans[2].priceId === priceId) { // Enterprise
+        navigate('/enterprise');
+      } else {
+        showError("Price ID is missing for subscription.");
+      }
       return;
     }
 
     if (!session) {
-      navigate('/login', { state: { redirectTo: '/pricing', priceId: priceId, billingCycle: billingCycle } });
+      // Redirect to login, passing current pricing page as redirectTo and priceId
+      navigate('/login', { state: { redirectTo: '/pricing', priceId: priceId } });
       return;
     }
 
@@ -238,64 +218,46 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="min-h-screen flex flex-col bg-pricing-background-pattern text-foreground">
       <Header className="absolute top-0 left-0 right-0" />
       <main className="flex-grow flex flex-col items-center py-12 px-4 sm:py-16">
-        <div className="text-center mb-12 mt-20 sm:mt-24 sm:mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 flex flex-col sm:flex-row items-center justify-center font-display">
-            Join the future of AI-powered productivity. <TeacheatLogo className="h-10 w-10 sm:h-12 sm:w-12 mx-0 sm:mx-2 text-blue-500 mt-2 sm:mt-0" />
+        <div className="text-center mb-12 mt-20 sm:mt-24 sm:mb-16 relative">
+          <span className="inline-block bg-pricing-badge-bg text-pricing-badge-fg text-xs font-semibold px-3 py-1 rounded-full mb-4">
+            Pricing
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-gray-900 dark:text-white font-display">
+            Invest in design that drives results
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Unlock unlimited potential with our Pro and Enterprise plans, designed to elevate your workflow and insights.
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Flexible plans for startups and brands who value strategy, creativity, and seamless execution.
           </p>
         </div>
 
-        <Tabs
-          defaultValue="monthly"
-          className="mb-12 sm:mb-16"
-          onValueChange={(value) => setBillingCycle(value as 'monthly' | 'annually')}
-          value={billingCycle}
-        >
-          <TabsList className="bg-secondary p-1 rounded-full">
-            <TabsTrigger
-              value="monthly"
-              className={cn(
-                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all",
-                billingCycle === 'monthly'
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              Monthly
-            </TabsTrigger>
-            <TabsTrigger
-              value="annually"
-              className={cn(
-                "px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all",
-                billingCycle === 'annually'
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              Annually
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+        {/* Removed Tabs component */}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl w-full mb-16 sm:mb-24 px-4">
           {currentPlans.map((plan, index) => (
             <PricingCard
               key={index}
-              {...plan}
+              title={plan.title}
+              price={plan.price || "$0"} // Placeholder price, will be ignored by user
+              priceSuffix={plan.priceSuffix || "/mo"} // Placeholder suffix
+              description={plan.description}
+              features={plan.features}
+              buttonText={isSubmitting && plan.priceId ? "Processing..." : plan.buttonText}
+              buttonIcon={plan.buttonIcon}
+              isPopular={plan.isPopular}
+              isEnterprise={plan.isEnterprise}
+              priceId={plan.priceId}
               onSubscribe={handleSubscribe}
               isSubmitting={isSubmitting}
-              buttonText={isSubmitting && plan.priceId ? "Processing..." : plan.buttonText}
               disabled={isSubmitting && plan.priceId !== null}
+              iconComponent={plan.iconComponent}
             />
           ))}
         </div>
 
-        <PricingFeatureTable data={featureTableData} />
+        {/* Removed PricingFeatureTable */}
       </main>
       <Footer />
     </div>

@@ -53,6 +53,15 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        pricing: {
+          'bg-dots': 'hsl(var(--pricing-bg-dots))',
+          'badge-bg': 'hsl(var(--pricing-badge-bg))',
+          'badge-fg': 'hsl(var(--pricing-badge-fg))',
+          'popular-badge-bg': 'hsl(var(--popular-badge-bg))',
+          'popular-badge-fg': 'hsl(var(--popular-badge-fg))',
+          'button-gradient-start': 'hsl(var(--pricing-button-gradient-start))',
+          'button-gradient-end': 'hsl(var(--pricing-button-gradient-end))',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,12 +85,17 @@ const config = {
           from: { transform: 'translateX(calc(-100% / 3))' }, // Starts one set to the left
           to: { transform: 'translateX(0)' }, // Moves back to the right
         },
+        'dot-pattern': {
+          '0%': { backgroundPosition: '0 0' },
+          '100%': { backgroundPosition: '40px 40px' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         marquee: "marquee var(--duration) linear infinite",
         'marquee-reverse': "marquee-reverse var(--duration) linear infinite",
+        'dot-pattern-animate': 'dot-pattern 60s linear infinite',
       },
     },
   },
