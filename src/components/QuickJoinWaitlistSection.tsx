@@ -49,8 +49,8 @@ const QuickJoinWaitlistSection: React.FC = () => {
         className="absolute inset-0 z-0 opacity-20"
         style={{
           backgroundImage: `
-            linear-gradient(135deg, transparent 74%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05) 76%, transparent 77%),
-            linear-gradient(-135deg, transparent 74%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05) 76%, transparent 77%)
+            linear-gradient(135deg, transparent 74%, var(--waitlist-cta-pattern-color) 75%, var(--waitlist-cta-pattern-color) 76%, transparent 77%),
+            linear-gradient(-135deg, transparent 74%, var(--waitlist-cta-pattern-color) 75%, var(--waitlist-cta-pattern-color) 76%, transparent 77%)
           `,
           backgroundSize: '40px 40px',
           backgroundPosition: '0 0',

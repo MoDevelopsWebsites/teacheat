@@ -104,6 +104,7 @@
     --waitlist-cta-button-background: 210 40% 98%; /* White button */
     --waitlist-cta-button-foreground: 222.2 47.4% 11.2%; /* Dark text for button */
     --waitlist-cta-button-hover: 210 40% 90%; /* Slightly darker white on hover */
+    --waitlist-cta-pattern-color: rgba(255,255,255,0.05); /* Light pattern for light mode */
   }
 
   .dark {
@@ -204,6 +205,7 @@
     --waitlist-cta-button-background: 210 40% 98%; /* White button */
     --waitlist-cta-button-foreground: 222.2 47.4% 11.2%; /* Dark text for button */
     --waitlist-cta-button-hover: 210 40% 90%; /* Slightly darker white on hover */
+    --waitlist-cta-pattern-color: rgba(0,0,0,0.1); /* Dark pattern for dark mode */
   }
 }
 
