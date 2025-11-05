@@ -40,7 +40,7 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
         scrollerContent.forEach((item, index) => {
           calculatedWidth += item.getBoundingClientRect().width;
           if (index < scrollerContent.length - 1) {
-            calculatedWidth += 32;
+            calculatedWidth += 16; // Adjusted gap for calculation
           }
         });
         setTotalWidthToScroll(calculatedWidth);
@@ -59,7 +59,6 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
         direction === "left" ? "forwards" : "reverse"
       );
 
-      // Changed "fast" speed from "20s" to "15s"
       const duration =
         speed === "fast" ? "15s" : speed === "normal" ? "40s" : "80s";
       containerRef.current.style.setProperty("--animation-duration", duration);
@@ -86,18 +85,18 @@ export const InfiniteMovingLogos: React.FC<InfiniteMovingLogosProps> = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex min-w-full shrink-0 gap-8 py-4 w-max flex-nowrap",
+          "flex min-w-full shrink-0 gap-4 py-2 w-max flex-nowrap", // Reduced gap and padding
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="w-[200px] max-w-full relative flex-shrink-0 px-4 py-2 md:w-[250px] flex items-center space-x-3"
+            className="w-[120px] max-w-full relative flex-shrink-0 px-2 py-1 md:w-[160px] flex items-center space-x-2" // Reduced width and padding
             key={item.alt + idx}
           >
-            <img src={item.src} alt={item.alt} className="h-10 md:h-12 w-auto object-contain opacity-70 grayscale hover:grayscale-0 transition-all duration-300" />
-            <span className="text-lg font-medium text-undetectable-text-primary">{item.label}</span>
+            <img src={item.src} alt={item.alt} className="h-6 md:h-8 w-auto object-contain opacity-70 grayscale hover:grayscale-0 transition-all duration-300" /> {/* Reduced image height */}
+            <span className="text-xs md:text-sm font-medium text-undetectable-text-primary">{item.label}</span> {/* Reduced text size */}
           </li>
         ))}
       </ul>
