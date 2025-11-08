@@ -1,27 +1,57 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react'; // Added useState
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Apple } from 'lucide-react';
+import { Input } from '@/components/ui/input'; // Added Input
+import { Sparkles, Apple, Loader2 } from 'lucide-react'; // Added Loader2
 import { cn } from '@/lib/utils';
 import ProductIllustration from './ProductIllustration';
+import { supabase } from '@/integrations/supabase/client'; // Added supabase client
+import { showSuccess, showError } from '@/utils/toast'; // Added toast utilities
 
 const HeroSection: React.FC = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState(''); // State for email input
+  const [isLoading, setIsLoading] = useState(false); // State for loading spinner
 
-  const handleWaitlistClick = () => {
-    navigate('/waitlist');
+  const handleJoinWaitlist = async () => {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      showError("Please enter a valid email address.");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { error } = await supabase
+        .from('waitlist_entries')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique violation code
+          showError("This email is already on the waitlist!");
+        } else {
+          throw error;
+        }
+      } else {
+        showSuccess("You've been added to the waitlist!");
+        setEmail(''); // Clear email input on success
+      }
+    } catch (err: any) {
+      console.error("Error joining waitlist:", err.message);
+      showError(`Failed to join waitlist: ${err.message || "An unexpected error occurred."}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLearnMoreClick = () => {
-    // Scroll to the next section or navigate to a features section
     const featuresSection = document.getElementById('features-section');
     if (featuresSection) {
       featuresSection.scrollIntoView({ behavior: 'smooth' });
     } else {
-      navigate('/#features-section'); // Fallback for navigation
+      navigate('/#features-section');
     }
   };
 
@@ -40,7 +70,7 @@ const HeroSection: React.FC = () => {
 
       <div className="relative z-10 flex flex-col lg:flex-row w-full max-w-7xl mx-auto flex-grow">
         {/* Left Column: Hero Text, and CTAs */}
-        <div className="w-full lg:w-1/2 flex flex-col p-6 md:p-8 lg:p-12 xl:p-16 pt-24 md:pt-32 lg:pt-40"> {/* Adjusted top padding */}
+        <div className="w-full lg:w-1/2 flex flex-col p-6 md:p-8 lg:p-12 xl:p-16 pt-24 md:pt-32 lg:pt-40">
           {/* Hero Content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left flex-grow justify-center pb-12 lg:pb-0">
             <Badge variant="secondary" className="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium mb-6 flex items-center">
@@ -52,13 +82,31 @@ const HeroSection: React.FC = () => {
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">
               Track earnings, manage expenses, and visualize performance – all without the rhe noise.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full max-w-sm sm:max-w-none">
+
+            {/* Waitlist Input and Button */}
+            <div className="flex w-full max-w-md space-x-2 mb-4">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-grow px-4 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:border-gray-400 h-12 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder:text-gray-400"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
+              />
               <Button
-                className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-lg px-8 py-3 text-base font-semibold shadow-md"
-                onClick={handleWaitlistClick}
+                className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 rounded-lg px-6 h-12 text-base font-semibold shadow-md"
+                onClick={handleJoinWaitlist}
+                disabled={isLoading}
               >
-                <Apple className="h-5 w-5 mr-2" /> Join waitlist
+                {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Join waitlist"}
               </Button>
+            </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-8 md:mb-16 text-center lg:text-left">
+              *Join for free. No credit card required.
+            </p>
+
+            {/* Secondary CTA Button */}
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full max-w-sm sm:max-w-none">
               <Button
                 variant="outline"
                 className="border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-800 rounded-lg px-8 py-3 text-base font-semibold shadow-sm"
