@@ -134,10 +134,10 @@ const HeroSection: React.FC = () => {
             <Badge variant="secondary" className="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium mb-6 flex items-center">
               <Sparkles className="h-4 w-4 mr-2 text-blue-500" /> Powered by Teacheat AI Assistant
             </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-4 text-black dark:text-white max-w-3xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight mb-4 text-black dark:text-white max-w-4xl">
               The All In One Platform For Smarter <span className="text-gray-500 dark:text-gray-400">Decisions.</span>
             </h1>
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">
               Track earnings, manage expenses, and visualize performance – all without the rhe noise.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full max-w-sm sm:max-w-none">
