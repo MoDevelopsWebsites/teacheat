@@ -1,20 +1,28 @@
 "use client";
 
-import React, { useState } from 'react'; // Added useState
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input'; // Added Input
-import { Sparkles, Apple, Loader2 } from 'lucide-react'; // Added Loader2
+import { Input } from '@/components/ui/input';
+import { Sparkles, Apple, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ProductIllustration from './ProductIllustration';
-import { supabase } from '@/integrations/supabase/client'; // Added supabase client
-import { showSuccess, showError } from '@/utils/toast'; // Added toast utilities
+import { supabase } from '@/integrations/supabase/client';
+import { showSuccess, showError } from '@/utils/toast';
+import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Import InfiniteMovingLogos
+
+const defaultLogos = [
+  { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
+  { src: import.meta.env.BASE_URL + "webex.png", alt: "Webex Logo", label: "Webex" },
+  { src: import.meta.env.BASE_URL + "slack.png", alt: "Slack Logo", label: "Slack" },
+  { src: import.meta.env.BASE_URL + "zoomm.png", alt: "Zoom Logo", label: "Zoom" },
+];
 
 const HeroSection: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(''); // State for email input
-  const [isLoading, setIsLoading] = useState(false); // State for loading spinner
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleJoinWaitlist = async () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -43,15 +51,6 @@ const HeroSection: React.FC = () => {
       showError(`Failed to join waitlist: ${err.message || "An unexpected error occurred."}`);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleLearnMoreClick = () => {
-    const featuresSection = document.getElementById('features-section');
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#features-section');
     }
   };
 
@@ -105,15 +104,12 @@ const HeroSection: React.FC = () => {
               *Join for free. No credit card required.
             </p>
 
-            {/* Secondary CTA Button */}
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full max-w-sm sm:max-w-none">
-              <Button
-                variant="outline"
-                className="border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-800 rounded-lg px-8 py-3 text-base font-semibold shadow-sm"
-                onClick={handleLearnMoreClick}
-              >
-                Learn more
-              </Button>
+            {/* Infinite Moving Logos */}
+            <div className="w-full max-w-md lg:max-w-none mt-8"> {/* Adjusted margin-top */}
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4 text-center lg:text-left">
+                Trusted by people working at
+              </p>
+              <InfiniteMovingLogos items={defaultLogos} speed="normal" className="justify-center lg:justify-start" />
             </div>
           </div>
         </div>

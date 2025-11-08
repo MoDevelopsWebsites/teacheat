@@ -2,40 +2,34 @@
 
 import React from 'react';
 import Footer from '@/components/Footer';
-import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos';
+// import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // No longer needed here
 import UseCasesSection from '@/components/UseCasesSection';
 import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo';
 import FAQSection from '@/components/FAQSection';
 import FeaturesGridSection from '@/components/FeaturesGridSection';
 import HeroSection from '@/components/HeroSection';
-import Header from '@/components/Header'; // Import the Header component
+import Header from '@/components/Header';
 
-const defaultLogos = [
-  { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
-  { src: import.meta.env.BASE_URL + "webex.png", alt: "Webex Logo", label: "Webex" },
-  { src: import.meta.env.BASE_URL + "slack.png", alt: "Slack Logo", label: "Slack" },
-  { src: import.meta.env.BASE_URL + "zoomm.png", alt: "Zoom Logo", label: "Zoom" },
-];
+// const defaultLogos = [...] // No longer needed here
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans relative">
-      {/* The global Header is now positioned here */}
       <Header className="absolute top-0 left-0 right-0 z-20" isLandingPageHeader={true} />
 
-      <HeroSection /> {/* HeroSection now starts below the Header */}
+      <HeroSection />
 
       <main className="flex-grow flex flex-col items-center relative z-10">
         {/* Features Grid Section */}
         <FeaturesGridSection />
 
-        {/* Trusted By Section */}
+        {/* Trusted By Section - InfiniteMovingLogos removed from here */}
         <section className="w-full py-12 sm:py-16 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-8">
-              Trusted by people working at
+              {/* The logos are now in the HeroSection */}
             </p>
-            <InfiniteMovingLogos items={defaultLogos} speed="normal" className="justify-center" />
+            {/* <InfiniteMovingLogos items={defaultLogos} speed="normal" className="justify-center" /> */}
           </div>
         </section>
 
