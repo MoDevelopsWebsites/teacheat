@@ -7,7 +7,8 @@ import UseCasesSection from '@/components/UseCasesSection';
 import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo';
 import FAQSection from '@/components/FAQSection';
 import FeaturesGridSection from '@/components/FeaturesGridSection';
-import HeroSection from '@/components/HeroSection'; // Import the new HeroSection
+import HeroSection from '@/components/HeroSection';
+import Header from '@/components/Header'; // Import the Header component
 
 const defaultLogos = [
   { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
@@ -19,8 +20,10 @@ const defaultLogos = [
 const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans relative">
-      {/* The HeroSection now includes its own navigation, replacing the global Header for this page */}
-      <HeroSection />
+      {/* The global Header is now positioned here */}
+      <Header className="absolute top-0 left-0 right-0 z-20" isLandingPageHeader={true} />
+
+      <HeroSection /> {/* HeroSection now starts below the Header */}
 
       <main className="flex-grow flex flex-col items-center relative z-10">
         {/* Features Grid Section */}

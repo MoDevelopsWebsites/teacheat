@@ -1,32 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Apple, LogIn, User as UserIcon, Settings, LogOut } from 'lucide-react';
+import { Sparkles, Apple } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ProductIllustration from './ProductIllustration';
-import { useSession } from '@/integrations/supabase/SessionContextProvider';
-import { supabase } from '@/integrations/supabase/client';
-import { showSuccess, showError } from '@/utils/toast';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const HeroSection: React.FC = () => {
   const navigate = useNavigate();
-  const { user, isLoading: isSessionLoading } = useSession();
-
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
 
   const handleWaitlistClick = () => {
     navigate('/waitlist');
@@ -39,20 +22,6 @@ const HeroSection: React.FC = () => {
       featuresSection.scrollIntoView({ behavior: 'smooth' });
     } else {
       navigate('/#features-section'); // Fallback for navigation
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        throw error;
-      }
-      showSuccess("Logged out successfully!");
-      navigate('/login'); // Redirect to login after logout
-    } catch (error: any) {
-      console.error("Logout error:", error.message);
-      showError("Failed to log out. Please try again.");
     }
   };
 
@@ -70,65 +39,8 @@ const HeroSection: React.FC = () => {
       ></div>
 
       <div className="relative z-10 flex flex-col lg:flex-row w-full max-w-7xl mx-auto flex-grow">
-        {/* Left Column: Navigation, Hero Text, and CTAs */}
-        <div className="w-full lg:w-1/2 flex flex-col p-6 md:p-8 lg:p-12 xl:p-16">
-          {/* Top Navigation */}
-          <nav className="flex items-center justify-between mb-16 md:mb-24 lg:mb-32">
-            <Link to="/" className="relative flex items-center font-bold text-xl text-gray-900 dark:text-white transition-colors">
-              <img
-                src={import.meta.env.BASE_URL + "bachelor-hat-icon.png"}
-                alt="Teacheat Logo"
-                className="absolute -top-6 right-0 h-10 w-10 transform rotate-12 dark:filter dark:invert"
-              />
-              <span className="mr-2">Teacheat</span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Link to="/pricing" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors hidden sm:block">
-                Pricing
-              </Link>
-              <Link to="/enterprise" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors hidden sm:block">
-                Enterprise
-              </Link>
-              <Link to="#" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors hidden sm:block">
-                Blog
-              </Link>
-              {!isSessionLoading && user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="px-3 py-1 h-auto text-sm md:px-4 md:py-2 flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                      <Avatar className="h-6 w-6">
-                        <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                          {user.email ? user.email[0].toUpperCase() : <UserIcon className="h-3 w-3" />}
-                        </AvatarFallback>
-                      </Avatar>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => navigate('/settings')}>
-                      <Settings className="mr-2 h-4 w-4" />
-                      <span>Settings</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
-                      <LogOut className="mr-2 h-4 w-4" />
-                      <span>Log out</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <Button
-                  variant="ghost"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                  onClick={handleLoginClick}
-                >
-                  <LogIn className="h-4 w-4 mr-2" /> Login
-                </Button>
-              )}
-            </div>
-          </nav>
-
+        {/* Left Column: Hero Text, and CTAs */}
+        <div className="w-full lg:w-1/2 flex flex-col p-6 md:p-8 lg:p-12 xl:p-16 pt-24 md:pt-32 lg:pt-40"> {/* Adjusted top padding */}
           {/* Hero Content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left flex-grow justify-center pb-12 lg:pb-0">
             <Badge variant="secondary" className="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium mb-6 flex items-center">
