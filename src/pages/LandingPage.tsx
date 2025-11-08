@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Footer from '@/components/Footer';
-// import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // No longer needed here
+import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Re-import InfiniteMovingLogos
 import UseCasesSection from '@/components/UseCasesSection';
 import { TestimonialsSectionDemo } from '@/components/blocks/TestimonialsSectionDemo';
 import FAQSection from '@/components/FAQSection';
@@ -10,7 +10,13 @@ import FeaturesGridSection from '@/components/FeaturesGridSection';
 import HeroSection from '@/components/HeroSection';
 import Header from '@/components/Header';
 
-// const defaultLogos = [...] // No longer needed here
+// Re-defining defaultLogos for the LandingPage's Trusted By section
+const defaultLogos = [
+  { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
+  { src: import.meta.env.BASE_URL + "webex.png", alt: "Webex Logo", label: "Webex" },
+  { src: import.meta.env.BASE_URL + "slack.png", alt: "Slack Logo", label: "Slack" },
+  { src: import.meta.env.BASE_URL + "zoomm.png", alt: "Zoom Logo", label: "Zoom" },
+];
 
 const LandingPage = () => {
   return (
@@ -23,13 +29,13 @@ const LandingPage = () => {
         {/* Features Grid Section */}
         <FeaturesGridSection />
 
-        {/* Trusted By Section - InfiniteMovingLogos removed from here */}
+        {/* Trusted By Section - InfiniteMovingLogos re-added here */}
         <section className="w-full py-12 sm:py-16 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-8">
-              {/* The logos are now in the HeroSection */}
+              Trusted by people working at
             </p>
-            {/* <InfiniteMovingLogos items={defaultLogos} speed="normal" className="justify-center" /> */}
+            <InfiniteMovingLogos items={defaultLogos} speed="normal" className="justify-center" />
           </div>
         </section>
 
