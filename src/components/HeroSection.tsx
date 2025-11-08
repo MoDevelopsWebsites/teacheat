@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import ProductIllustration from './ProductIllustration';
 import { supabase } from '@/integrations/supabase/client';
 import { showSuccess, showError } from '@/utils/toast';
-import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos'; // Import InfiniteMovingLogos
+import { InfiniteMovingLogos } from '@/components/InfiniteMovingLogos';
 
 const defaultLogos = [
   { src: import.meta.env.BASE_URL + "teams.png", alt: "Microsoft Teams Logo", label: "Microsoft Teams" },
@@ -76,10 +76,10 @@ const HeroSection: React.FC = () => {
               <Sparkles className="h-4 w-4 mr-2 text-blue-500" /> Powered by Teacheat AI Assistant
             </Badge>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight mb-4 text-black dark:text-white max-w-4xl">
-              The All In One Platform For Smarter <span className="text-gray-500 dark:text-gray-400">Decisions.</span>
+              Unlock Your Potential with <span className="text-gray-500 dark:text-gray-400">Teacheat.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl">
-              Track earnings, manage expenses, and visualize performance – all without the rhe noise.
+              Teacheat is your AI-powered assistant for smarter learning and enhanced productivity. Get instant answers, personalized insights, and streamline your workflow.
             </p>
 
             {/* Waitlist Input and Button */}
@@ -105,7 +105,7 @@ const HeroSection: React.FC = () => {
             </p>
 
             {/* Infinite Moving Logos */}
-            <div className="w-full max-w-md lg:max-w-none mt-8"> {/* Adjusted margin-top */}
+            <div className="w-full max-w-md lg:max-w-none mt-8">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4 text-center lg:text-left">
                 Trusted by people working at
               </p>
